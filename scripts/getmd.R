@@ -2,7 +2,7 @@
 #20230904(18.21)
 ################
 #set<-d1
-getmd<-function(set){
+getmd<-function(set,tx.head){
   df.md<-set
   df.md.h<-paste0("|",paste(colnames(df.md),collapse = "|"),"|")
   df.md.1<-paste0("|",paste(rep(":--",length(df.md)),collapse = "|"),"|")
@@ -13,8 +13,8 @@ getmd<-function(set){
     df.md.x[k]<-paste0("|",paste(df.md[k,],collapse = "|"),"|")
   }
 #  df.md.x
-  df.md.head<-"## csv to md table
-"
+  df.md.head<-paste0(tx.head,"
+                     ")
   return(df.md.c<-c(df.md.head,df.md.h,df.md.1,df.md.x))
   
 }
