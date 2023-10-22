@@ -1,0 +1,17 @@
+#14431.wiki.content.analysis
+#20231021(13.49)
+################
+library(httr)
+library(xml2)
+#############
+q<-"dummy"
+src<-paste0("https://de.wikipedia.org/wiki/",q)
+d<-GET(src)
+r<-content(d,"text")
+d<-read_html(src)
+x<-xml_find_all(d,'//*[@id="mw-content-text"]/div[1]/p[1]')
+x.cn<-xml_find_all(d,'//*[@id="mw-content-text"]/*')
+x.p<-xml_find_all(x.cn,"p")
+x.h2<-xml_find_all(x.cn,"h2")
+x.df<-data.frame(text=xml_text(x.p))
+writeLines(x.df$text,paste0("c.wiki.",q,".txt"))
