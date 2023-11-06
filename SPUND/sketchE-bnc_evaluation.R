@@ -9,10 +9,10 @@ src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv"
 src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-491.csv.txt"
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.txt"
 
-d1<-read_csv(src1,skip = 4)
-d2<-read_delim("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv", 
-                          delim = "\t", escape_double = FALSE, 
-                          col_names = FALSE, trim_ws = TRUE)
+# d1<-read_csv(src1,skip = 4)
+# d2<-read_delim("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv", 
+#                           delim = "\t", escape_double = FALSE, 
+#                           col_names = FALSE, trim_ws = TRUE)
 d1<-read_delim(src1, 
                delim = "\t", escape_double = FALSE, 
                col_names = FALSE, trim_ws = TRUE)
@@ -24,9 +24,11 @@ colnames(d1)[5:7]<-c("left","kwic","right")
 
 l1<-length(d1$X1)
 l2<-length(d2$X1)
-ifelse(l1<l2,m<-d2$X12%in%d1$X12,m<-d1$X12%in%d2$X12)
+dif<-abs(l2-l1)
+ifelse(l1>l2,m<-d2$X12%in%d1$X12,m<-d1$X12%in%d2$X12)
 #m<-d2$X12%in%d1$X12
 sum(m)
+
 d2.sub<-d2[!m,]
 
 
