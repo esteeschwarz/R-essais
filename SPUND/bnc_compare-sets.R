@@ -4,12 +4,27 @@
 ################################
 library(readr)
 library(stringi)
+# workflow:
+# ssh @login.zedat...
+# query
+# cat Last > "results.txt"
+# exit
+# perl scripts/tidycwb.pl results.txt > public_html/results.csv
+# script now online under: userpage.fu-berlin.de/{user}/results.csv
+###############################################################
+
+# queries:
+#[hw="(R|r)e(-?)organi(z|s).*"&pos="V.*"]
+#[hw="(R|r)e(-?)organi(z|s).*"&pos!="(.*0)"&pos="V.*"]
+#[hw="re(-)*organi(s|z)e"]
+#[word="re-*organi(s|z)[edsing]+"%c&hw!="re-*organi(s|z)e"&pos!=".*AJ0.*"]
+
 src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/concordance_preloaded_bnc2_tt31_q3.V.submit.det.40c.csv"
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv"
 src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-491.csv.txt"
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.txt"
-src1<-"https://userpage.fu-berlin.de/stschwarz/reorg-sm.csv"
-src2<-"https://userpage.fu-berlin.de/stschwarz/reorg-lm.csv"
+src1<-"https://userpage.fu-berlin.de/stschwarz/reorg-c.csv"
+src2<-"https://userpage.fu-berlin.de/stschwarz/reorg-sm.csv"
 # d1<-read_csv(src1,skip = 4)
 # for bnc ssh source >
 ns.bnc<-c("corpus","id","left","kwic","right")
@@ -50,7 +65,7 @@ ifelse(l1<l2,m<-d2$id%in%d1$id,m<-d1$id%in%d2$id)
 #m<-d2$X12%in%d1$X12
 sum(m)
 
-d2.sub<-d2[!m,]
+ifelse(l1<l2,d2.sub<-d2[!m,],d1.sub<-d1[!m,])
 
 
 
