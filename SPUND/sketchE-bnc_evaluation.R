@@ -8,29 +8,49 @@ src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/concordance_preloaded_
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv"
 src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-491.csv.txt"
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.txt"
-
+src1<-"https://userpage.fu-berlin.de/stschwarz/reorg-sm.csv"
+src2<-"https://userpage.fu-berlin.de/stschwarz/reorg-lm.csv"
 # d1<-read_csv(src1,skip = 4)
+# for bnc ssh source >
+ns.bnc<-c("corpus","id","left","kwic","right")
+d1<-read_csv(src1,col_names = ns.bnc)
+d2<-read_csv(src2,col_names = ns.bnc)
+
+
 # d2<-read_delim("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv", 
 #                           delim = "\t", escape_double = FALSE, 
 #                           col_names = FALSE, trim_ws = TRUE)
-d1<-read_delim(src1, 
-               delim = "\t", escape_double = FALSE, 
-               col_names = FALSE, trim_ws = TRUE)
-d2<-read_delim(src2, 
-               delim = "\t", escape_double = FALSE, 
-               col_names = FALSE, trim_ws = TRUE)
-colnames(d2)[5:7]<-c("left","kwic","right")
-colnames(d1)[5:7]<-c("left","kwic","right")
+# for bnc web download > ##########################
+# d1<-read_delim(src1, 
+#                delim = "\t", escape_double = FALSE, 
+#                col_names = FALSE, trim_ws = TRUE)
+# d2<-read_delim(src2, 
+#                delim = "\t", escape_double = FALSE, 
+#                col_names = FALSE, trim_ws = TRUE)
+# 
+# # for bnc web source >
+# colnames(d2)[5:7]<-c("left","kwic","right")
+# colnames(d1)[5:7]<-c("left","kwic","right")
+# l1<-length(d1$X1)
+# l2<-length(d2$X1)
+# dif<-abs(l2-l1)
+# ifelse(l1>l2,m<-d2$X12%in%d1$X12,m<-d1$X12%in%d2$X12)
+# #m<-d2$X12%in%d1$X12
+# sum(m)
+# 
+# d2.sub<-d2[!m,]
+#d1.sub<-d1[!m,]
+################
 
-l1<-length(d1$X1)
-l2<-length(d2$X1)
+# for bnc ssh source >
+l1<-length(d1$id)
+l2<-length(d2$id)
 dif<-abs(l2-l1)
-ifelse(l1>l2,m<-d2$X12%in%d1$X12,m<-d1$X12%in%d2$X12)
+ifelse(l1<l2,m<-d2$id%in%d1$id,m<-d1$id%in%d2$id)
 #m<-d2$X12%in%d1$X12
 sum(m)
 
 d2.sub<-d2[!m,]
-
 
 
 
