@@ -6,13 +6,34 @@ library(readr)
 library(stringi)
 src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/concordance_preloaded_bnc2_tt31_q3.V.submit.det.40c.csv"
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv"
+src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-491.csv.txt"
+src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.txt"
 
 d1<-read_csv(src1,skip = 4)
 d2<-read_delim("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv", 
                           delim = "\t", escape_double = FALSE, 
                           col_names = FALSE, trim_ws = TRUE)
+d1<-read_delim(src1, 
+               delim = "\t", escape_double = FALSE, 
+               col_names = FALSE, trim_ws = TRUE)
+d2<-read_delim(src2, 
+               delim = "\t", escape_double = FALSE, 
+               col_names = FALSE, trim_ws = TRUE)
 colnames(d2)[5:7]<-c("left","kwic","right")
-colnames(d1)[2:4]<-c("left","kwic","right")
+colnames(d1)[5:7]<-c("left","kwic","right")
+
+l1<-length(d1$X1)
+l2<-length(d2$X1)
+ifelse(l1<l2,m<-d2$X12%in%d1$X12,m<-d1$X12%in%d2$X12)
+#m<-d2$X12%in%d1$X12
+sum(m)
+d2.sub<-d2[!m,]
+
+
+
+
+
+#colnames(d1)[2:4]<-c("left","kwic","right")
 ###
 #cont<-function(d)paste(d[,2:4],collapse = " ")
 #d1$cont<-lapply(d1,cont)
@@ -20,6 +41,7 @@ colnames(d1)[2:4]<-c("left","kwic","right")
 # for(k in 1:length(d1$Reference)){
 # d1$cont[k]<-paste(d1[k,2:4],collapse = " ")
 # }
+sketemp<-function(){
 d2$cont<-NA
 for(k in 1:length(d2$X1)){
   
@@ -65,3 +87,4 @@ sum(m) #all
 m<-d1$q.1%in%d2$X2
 sum(m) #3836
 d1$cont[!m]
+}
