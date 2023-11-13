@@ -15,7 +15,7 @@ library(stringi)
 
 # queries:
 #[hw="(R|r)e(-?)organi(z|s).*"&pos="V.*"]
-#[hw="(R|r)e(-?)organi(z|s).*"&pos!="(.*0)"&pos="V.*"]
+#[hw="(R|r)e(-?)organi(z|s).*"&pos!="(.*0)"&pos="V.*"] #491
 #[hw="re(-)*organi(s|z)e"]
 #[word="re-*organi(s|z)[edsing]+"%c&hw!="re-*organi(s|z)e"&pos!=".*AJ0.*"]
 
@@ -23,7 +23,7 @@ src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/concordance_preloaded_
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/q3.V.submit.csv"
 src1<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-491.csv.txt"
 src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.txt"
-src1<-"https://userpage.fu-berlin.de/stschwarz/reorg-c.csv"
+src1<-"https://userpage.fu-berlin.de/stschwarz/reorg-3.csv"
 src2<-"https://userpage.fu-berlin.de/stschwarz/reorg-sm.csv"
 # d1<-read_csv(src1,skip = 4)
 # for bnc ssh source >
