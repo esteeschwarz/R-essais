@@ -26,6 +26,10 @@ src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.t
 src1<-"https://userpage.fu-berlin.de/stschwarz/reorg-3.csv"
 src2<-"https://userpage.fu-berlin.de/stschwarz/reorg-sm.csv"
 # d1<-read_csv(src1,skip = 4)
+src2<-"https://userpage.fu-berlin.de/stschwarz/take.csv"
+src2<-"https://userpage.fu-berlin.de/stschwarz/give.csv"
+src2<-"https://userpage.fu-berlin.de/stschwarz/have.csv"
+src2<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/reorganise-522.csv-2.txt"
 # for bnc ssh source >
 ns.bnc<-c("corpus","id","left","kwic","right")
 d1<-read_csv(src1,col_names = ns.bnc)
