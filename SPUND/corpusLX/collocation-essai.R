@@ -66,6 +66,8 @@ d9.st<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-COHA.c
 #HTOED: historical thesaurus of the oxford english dictionary, define category
 
 #word<-"sauce"
+#############################
+### this function sends a request to below adress and fetches the category for the specified noun/word
 getcat<-function(word,count){
 #q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&label=&category=&year=&startf=&endf=&startl=&endl=",word)
 q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&page=1&categoryMinis=off&categorySort=length",word)
@@ -116,6 +118,7 @@ cat("run",count,"on (",word,")",", wait:",k,"\n")
   }
 return(cat.array)
 }
+##############################################################
 # catq<-getcat("sauce")
 # catq<-getcat("odem")
 # catq
@@ -125,10 +128,12 @@ return(cat.array)
 
 # dataset<-d9.df.sub
 # columnname<-"noun"
+######################################################################################################
+### this is the important function to call with a dataset containing a column with nouns to be queried
 get.cat.df<-function(dataset,columnname){
 cat.list<-list()
 #k<-1
-k
+#k
 d6.s<-dataset
 d6.s$category<-NA
 for(k in 1:length(d6.s[,columnname])){
@@ -143,6 +148,8 @@ cat.df<-as.data.frame(t(cat.df))
 cat.df<-cbind(token=rownames(cat.df),cat.df)
 return(d6.s)
 }
+############################################
+
 #cat.df<-get.cat.df(d6.s,"noun")
 # d6.s.sub<-subset(d9.st,)
 # write_csv(cat.df,"fragrance_HTOED-categories-s.csv")
