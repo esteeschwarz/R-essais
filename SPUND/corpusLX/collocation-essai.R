@@ -2,58 +2,70 @@
 #stefanowitsch, collostructions()
 #################################
 
+### these libraries are necessary:
 library(collostructions)
 library(readr)
 library(httr)
 library(xml2)
 library(stringi)
+##################################
 library(lme4)
-head(beginStart,12)
+#head(beginStart,12)
 
-tempfun.1<-function(){
-#pre:
-install.packages(file.choose(),repos = NULL)
-#ssh
-[hw="perfumed"][]{0,3}[pos="N.*"]
-80
-[hw="fragrant|perfumed|scented|sweet(-)smelling"][]{1,3}[pos="N.*"]
-365
-#set DataDirectory "./cqpdata"
-#show named;
-count Last by word%c on match[3]
-[hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{0,3}[pos="N.*"];
-492
-fragr2 = [hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{1,3}[pos="N.*"] within s;
-419
-cat Love  > "| collocates.pl -c > love-case-insensitive.csv"
-cat fragr2  > "| tidycwb.pl > public_html/cqpdata/fragrance-m.csv";
+### > this is not to source, its containing just notes on the cqp queries
+# tempfun.1<-function(){
+# #pre:
+# install.packages(file.choose(),repos = NULL)
+# #ssh
+# [hw="perfumed"][]{0,3}[pos="N.*"]
+# 80
+# [hw="fragrant|perfumed|scented|sweet(-)smelling"][]{1,3}[pos="N.*"]
+# 365
+# #set DataDirectory "./cqpdata"
+# #show named;
+# count Last by word%c on match[3]
+# [hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{0,3}[pos="N.*"];
+# 492
+# fragr2 = [hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{1,3}[pos="N.*"] within s;
+# 419
+# cat Love  > "| collocates.pl -c > love-case-insensitive.csv"
+# cat fragr2  > "| tidycwb.pl > public_html/cqpdata/fragrance-m.csv";
+# 
+# #PP2 = subset PP1 where matchend: [lemma = "time"];
+# define macro < 'makros.txt'
+# count fragr2 by word on matchend;
+# 
+# #14503.in class
+# [lemma="fragrant|perfumed|scented|sweet-smelling"]([pos="av.*"%c]? [pos="jj.*"%c]){0,3}[pos="N.*"%c]{1,};
+# 
+# }
+#########################################################################################################
 
-#PP2 = subset PP1 where matchend: [lemma = "time"];
-define macro < 'makros.txt'
-count fragr2 by word on matchend;
-
-#14503.in class
-[lemma="fragrant|perfumed|scented|sweet-smelling"]([pos="av.*"%c]? [pos="jj.*"%c]){0,3}[pos="N.*"%c]{1,};
-
-}
-d1<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-coll.csv")
-d2<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-m.csv",col_names = c("corpus","id","left","kwic","right"))
-d3<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-f1.csv")
-d4<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-f2.csv")
-d5<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-f3.csv")
-d6<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-NN.csv",col_names = c("count","token","ref"))
-d7<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/tempodor.csv",col_names = c("corpus","id","left","kwic","right"))
-d8.fragr<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-NN.csv",col_names = c("count","token","ref"))
-d8.perf<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/perfumed-NN.csv",col_names = c("count","token","ref"))
-d8.scent<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/scented-NN.csv",col_names = c("count","token","ref"))
-d8.smel<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/smelling-NN.csv",col_names = c("count","token","ref"))
+#this is just some used datasets
+############
+# d1<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-coll.csv")
+# d2<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-m.csv",col_names = c("corpus","id","left","kwic","right"))
+# d3<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-f1.csv")
+# d4<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-f2.csv")
+# d5<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-f3.csv")
+# d6<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrance-NN.csv",col_names = c("count","token","ref"))
+# d7<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/tempodor.csv",col_names = c("corpus","id","left","kwic","right"))
+# d8.fragr<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-NN.csv",col_names = c("count","token","ref"))
+# d8.perf<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/perfumed-NN.csv",col_names = c("count","token","ref"))
+# d8.scent<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/scented-NN.csv",col_names = c("count","token","ref"))
+# d8.smel<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/smelling-NN.csv",col_names = c("count","token","ref"))
 #d9.stef<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/smelling-NN.csv",col_names = c("count","token","ref"))
+############################################################################################################################
+
+#these are the important datasets:
 d9.stef<-read_csv("https://userpage.fu-berlin.de/anatolstef/t/FRAGRANT-NOUN-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
 d9.st<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
-
+############
+############
+############
 #HTOED: historical thesaurus of the oxford english dictionary, define category
 
-word<-"sauce"
+#word<-"sauce"
 getcat<-function(word,count){
 #q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&label=&category=&year=&startf=&endf=&startl=&endl=",word)
 q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&page=1&categoryMinis=off&categorySort=length",word)
@@ -111,8 +123,8 @@ return(cat.array)
 #getcats from df
 #d6.s<-subset(d6,d6$count>1)
 
-dataset<-d9.df.sub
-columnname<-"noun"
+# dataset<-d9.df.sub
+# columnname<-"noun"
 get.cat.df<-function(dataset,columnname){
 cat.list<-list()
 #k<-1
@@ -132,9 +144,10 @@ cat.df<-cbind(token=rownames(cat.df),cat.df)
 return(d6.s)
 }
 #cat.df<-get.cat.df(d6.s,"noun")
-d6.s.sub<-subset(d9.st,)
-write_csv(cat.df,"fragrance_HTOED-categories-s.csv")
+# d6.s.sub<-subset(d9.st,)
+# write_csv(cat.df,"fragrance_HTOED-categories-s.csv")
 ###wks.
+tempfun.2<-function(){
 cat.u.1<-list()
 for(k in 2:length(cat.df)){
 cat.u.1[[k]]<-unique(cat.df[,k])
@@ -207,7 +220,7 @@ print(d8.cpt$token[m])
 sum(m,na.rm = T)
 k
 lm.coef.p$category[1:10]
-
+}
 
 #14503.inclass
 d9.lemma<-stri_split_regex(d9.st$kwic,"/",
@@ -237,13 +250,13 @@ m<-d9.df$year>=1991&d9.df$year<=2030
 d9.df$period[m]<-"F"
 
 
-collex.covar(d9.df[c("noun","period")])
+# collex.covar(d9.df[c("noun","period")])
 
 #get categories for class set:
-d9.df.sub<-subset(d9.df,year==1919)
+#d9.df.sub<-subset(d9.df,year==1919)
 #d9.df.sub.10<-
-d9.df.sub.cat<-get.cat.df(d9.df.sub,"noun")
-d9.df.w.cats<-get.cat.df(d9.df,"noun")
+#d9.df.sub.cat<-get.cat.df(d9.df.sub,"noun")
+#d9.df.w.cats<-get.cat.df(d9.df,"noun")
 ### stops in 209 because of ![a-z]
 m<-grep("[^a-z]",d9.df$noun)
 d9.df$noun[m]
@@ -258,7 +271,13 @@ sum(m)-length(d9.df$year)
 d9.df.cl<-subset(d9.df,!is.na(year))
 m<-grep("--",d9.df.cl$noun,invert = T)
 d9.df.cl<-d9.df.cl[m,]
-d9.df.w.cats<-get.cat.df(d9.df.cl,"noun")
-write_csv(d9.df.w.cats,"fragrance_COHA_wt-categories.csv")
+######################################
+
+#run the following command decommented
+
+##########
+#d9.df.w.cats<-get.cat.df(d9.df.cl,"noun")
+##########################################
+#write_csv(d9.df.w.cats,"fragrance_COHA_wt-categories.csv")
 
 
