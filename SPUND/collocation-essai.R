@@ -10,6 +10,8 @@ library(stringi)
 library(lme4)
 head(beginStart,12)
 
+#pre:
+install.packages(file.choose(),repos = NULL)
 #ssh
 [hw="perfumed"][]{0,3}[pos="N.*"]
 80
@@ -18,10 +20,13 @@ head(beginStart,12)
 #set DataDirectory "./cqpdata"
 #show named;
 count Last by word%c on match[3]
-[hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{1,3}[pos="N.*"];
+[hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{0,3}[pos="N.*"];
 492
 fragr2 = [hw="fragrant|perfumed|(.*?)scented|(.*?)smelling"][]{1,3}[pos="N.*"] within s;
 419
+
+#14503.in class
+[lemma="fragrant|perfumed|scented|sweet-smelling"]([pos="av.*"%c]? [pos="jj.*"%c]){0,3}[pos="N.*"%c]{1,};
 
 cat Love  > "| collocates.pl -c > love-case-insensitive.csv"
 cat fragr2  > "| tidycwb.pl > public_html/cqpdata/fragrance-m.csv";
@@ -41,6 +46,9 @@ d8.fragr<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-N
 d8.perf<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/perfumed-NN.csv",col_names = c("count","token","ref"))
 d8.scent<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/scented-NN.csv",col_names = c("count","token","ref"))
 d8.smel<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/smelling-NN.csv",col_names = c("count","token","ref"))
+d9.stef<-read_table("https://userpage.fu-berlin.de/stschwarz/cqpdata/smelling-NN.csv",col_names = c("count","token","ref"))
+d9.stef<-read_csv("https://userpage.fu-berlin.de/anatolstef/t/FRAGRANT-NOUN-COHA.csv",col_names = c("corpus","id","left","kwic","right"))
+d9.st<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
 
 #HTOED: historical thesaurus of the oxford english dictionary, define category
 
@@ -185,3 +193,37 @@ print(d8.cpt$token[m])
 sum(m,na.rm = T)
 k
 lm.coef.p$category[1:10]
+
+d9.lemma<-stri_split_regex(d9.st$kwic,"/",
+                           simplify = T)
+
+m<-grep("UNDEF",d9.lemma[,2])
+m<-grep("UNDEF",d9.lemma[,4])
+m.split<-stri_split_regex(d9.lemma[m,3]," ",simplify = T)
+d9.lemma[m,4]<-m.split[,2]
+d9.df<-as.data.frame(cbind(year=d9.st$year,adj=d9.lemma[,2],noun=d9.lemma[,4]))
+write_csv(d9.df,"fragrant_year-adj-NN.csv")
+
+
+40 year period
+m<-d9.df$year<=1850
+d9.df$year[m]<-"A"
+m<-d9.df$year>=1850&d9.df$year<=1890
+d9.df$year[m]<-"B"
+m<-d9.df$year>=1891&d9.df$year<=1930
+d9.df$year[m]<-"C"
+m<-d9.df$year>=1931&d9.df$year<=1970
+d9.df$year[m]<-"D"
+m<-d9.df$year>=1971&d9.df$year<=1990
+d9.df$year[m]<-"E"
+m<-d9.df$year>=1991&d9.df$year<=2030
+d9.df$year[m]<-"F"
+
+
+m<-d9.df$year>=1850&d9.df$year<=1890
+d9.df$year[m]<-"F"
+d9.df$year[1891:1930]<-"B"
+d9.df$year[1931:1971]<-"C"
+d9.df$year[1971:19]<-"A"
+
+collex.covar(d9.df[c(1,3)])
