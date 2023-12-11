@@ -1,0 +1,322 @@
+token,V1,V2,V3
+flowers,The body ,Valued plants and weeds  ,Food 
+woods,NA,NA,NA
+herbs,NA,NA,NA
+bath,Relative position ,Healing/cure ,Healing/cure 
+tea,Particular plants ,Drink ,Drink 
+blossoms,NA,NA,NA
+garlic,Particular plants ,Food ,The Arts 
+lemon,Particular plants ,Food ,Be food for 
+mouth,Land ,Deity ,Speech 
+pot.pourri,Smell/odour ,The Arts ,Relationship 
+soap,Cleanness/dirtiness ,Wash ,Cleanness/dirtiness 
+summer,Period ,Pertaining to a period ,Relative position 
+trees,NA,NA,NA
+wine,Drink ,Healing/cure ,Healing/cure 
+Belmont,NA,NA,NA
+Christmas,Pertaining to worship ,Social ,Worship 
+Crocus,Particular plants ,Constitution of matter ,Materials 
+Daphne,Particular plants ,Particular plants ,Particular plants 
+Health,Health and disease  health (1509–),Drink ,Safety  health (c1250–c1611)
+Jane,Money ,Person ,Love 
+Janis,NA,NA,NA
+Kowloon,NA,NA,NA
+Land,Navigate/sail (a stretch of water) ,Travel by water in/on a vessel ,Land  land (1490–)
+Lily,Indication ,Pertaining to colour ,The Arts 
+Margaret,Particular plants ,Particular plants ,Particular plants 
+Mary,Worship ,Ethnicities ,Person 
+Mask,Knowledge ,Knowledge ,"Know, be aware of "
+Muscat,Particular plants ,Food ,Particular plants 
+Narcissi,NA,NA,NA
+New,New ,Frequently ,Recently  new- (a1340–)
+Newbury,NA,NA,NA
+Pike,Military equipment ,Military equipment ,Land 
+Provence,NA,NA,NA
+ROOM,Space ,Inhabited place ,Move in a certain direction 
+Roseraie,NA,NA,NA
+Solanum,Healing/cure ,Healing/cure ,Particular plants 
+air,Gas ,Gas ,Gas  
+alcoholic,Alcohols  alcoholic (1789–),Pertaining to drink ,Pertaining to ill-health/disease 
+blossom,),Creation  ,Indication 
+braes,NA,NA,NA
+cachous,NA,NA,NA
+character,Indication ,Writing ,Existence 
+cities,NA,NA,NA
+coconut,Particular plants ,Food ,Food 
+colour,Colour ,The body ,Sight/vision 
+colours,The Arts ,Indication ,Military organization 
+cooking,Food ,Food ,Food 
+coolness,Behaviour ,Absence of emotion ,Calmness 
+crop,Extend ,Farming ,Feed on 
+day,Particular time ,Day and night ,Light 
+dew,Liquid ,Liquid ,Give/fall as dew  dew (1382–1726)
+doubt,Belief ,Believe ,Belief 
+driftwood,Cleanness/dirtiness ,,[
+essence,Existence ,Existence ,Existence 
+extracts,NA,NA,NA
+foliage,The Arts ,Part of plant ,The Arts 
+gold,Pertaining to the Arts ,Pertaining to material worked with/upon ,Money 
+gulps,NA,NA,NA
+hair,Extension in space ,Quantity ,Textiles 
+hangers,NA,NA,NA
+hedge,Safety ,Cause to have specific position/arrangement ,Defend 
+hide,Materials ,"Know, be aware of ",Cause to have specific position/arrangement 
+hill,Land ,Relative position ,Cause to have specific position/arrangement 
+hills,NA,NA,NA
+holes,NA,NA,NA
+house,Artefacts ,The universe ,The universe 
+idea,Philosophy ,Memory ,Perception/cognition 
+just.in.out.of.the.cold,NA,NA,NA
+kind,Loving ,Pertaining to behaviour ,Ethnicities 
+kitchen,Food ,Be food for ,The body 
+lavender,Particular plants ,Smell/odour ,Clothing 
+lilium,Particular plants ,,[
+master,Cause to prosper/flourish ,Knowledge ,Good 
+matters,Doing ,Existence ,
+mind,Perception/cognition  mind (c1200–),Spirituality ,Consciousness 
+muslin,Textiles ,Textiles ,Invertebrates 
+needles,Land ,,[
+night,Day and night ,Day and night ,Day and night 
+nose,Smell/odour ,The body ,The body 
+nurse,Upbringing  ,Food ,Easiness 
+oil,Food ,Constitution of matter ,Materials 
+oils,Colour ,The Arts ,Clothing 
+oven,Be food for ,Be food for ,Equipment 
+parts,Ability ,Understanding ,The body 
+perfume,Smell/odour ,Impart an odour of ,Smell/odour 
+personalities,Behaviour ,,[
+places,NA,NA,NA
+plant,Furnish with inhabitants ,Place ,Form/make into a whole 
+plantings,NA,NA,NA
+polish,Polish  polish (a1300–),Shine ,Create 
+pomander,Healing/cure ,Smell/odour ,Smell/odour 
+results,Educational administration ,Sport ,Stocks and shares  
+road,Navigation ,Means of travel ,Means of travel 
+rosemary,Particular plants ,Death ,Kinship/relationship 
+roses,The body ,Prosperity ,
+scents,NA,NA,NA
+shades,Sight/vision ,Inferiority/baseness ,
+smell,Smell/odour  smell (a1175–),Be odorous  smell (c1175–),Impart an odour of 
+soups,Legal profession ,Fees and taxes ,
+south,Direction ,Nations ,"Atmosphere, weather "
+spice,Sleeping and waking ,Be food for ,Amount to a quantity 
+spices,NA,NA,NA
+statuary,The Arts ,The Arts ,The Arts 
+tables,Entertainment ,Entertainment ,Number 
+tart,Food ,Taste ,Angry 
+texture,Textiles ,Constitution of matter ,Wholeness 
+thyme,Particular plants ,Particular plants ,Food 
+tissues,NA,NA,NA
+tobacco,Particular plants ,"Use of drugs, poison ",Colour 
+toilet,Beautification ,Clothing ,Cleanness/dirtiness 
+touch,Create/make/bring about ,Impact ,Impact 
+tub,Food ,Equipment ,Wash one's body/part of it 
+varieties,Change  ,Relationship ,The Arts 
+water,Cleanness/dirtiness ,Water ,Water 
+wife,Family unit  ,Drink ,Providing with dwelling  
+Gewurztraminer,Food ,Drink ,
+Body,The body  body (c1200–),Person ,The body 
+Maggie,Food ,,[
+Mayflower,Particular plants ,Particular plants ,Particular plants 
+badly.smelling,NA,NA,NA
+breasts,NA,NA,NA
+cosmetics,Beautification ,,[
+display,Manifest ,Manifest  display (1575–),Manifest 
+earth,Land ,The universe ,By habitat 
+food,Food ,The body ,Food 
+honey,Love ,Be food for ,Taste 
+intervals,NA,NA,NA
+korma,Food ,,[
+logic,Philosophy ,Philosophy ,Understanding 
+magazine,Supply ,Military organization ,Military equipment 
+man,Warrior ,Have/exercise (authority) ,Person 
+ointment,Healing/cure ,Constitution of matter ,Worship 
+pets,Particular plants ,,[
+powder,Constitution of matter ,Healing/cure ,Cause to have specific position/arrangement 
+relief,Fees and taxes ,Pleasure ,Pleasure 
+talc,Minerals ,Minerals ,Materials 
+trick,Knowledge ,Clothing ,Beautify  
+vellum,Writing ,Writing ,Writing 
+velvet,Textiles ,Textiles ,Mammals 
+X.13,NA,NA,NA
+P.,Money ,,[
+leaves,Particular plants ,,[
+box,Measurement ,Of box-tree/shrub  box (1382–),Materials 
+garden,Farming ,Farm ,Land 
+geraniums,NA,NA,NA
+gods,The Arts ,,[
+liners,NA,NA,NA
+room,Space ,Inhabited place ,Move in a certain direction 
+shoulder,Impact upon/against ,Food ,Shape/give shape to 
+towels,NA,NA,NA
+Abul,NA,NA,NA
+Adam,Moral evil ,Pertaining to the Arts ,The Arts 
+Albertine,NA,NA,NA
+Attar,Smell/odour ,,[
+August,Having/showing esteem ,Having/showing esteem ,Period 
+B.,Invertebrates ,,[
+Brother,Social relations ,Social relations ,Church government 
+England,Named regions of earth ,,[
+English,Translate ,Printing ,Nations 
+Little,Social class ,Be important ,Distance  
+Liza,NA,NA,NA
+Matthiola,NA,NA,NA
+Nymphaea,Particular plants ,,[
+PLANTS,NA,NA,NA
+POTATOES.IN.A.BAG,NA,NA,NA
+Pinot,Particular plants ,Drink ,Drink 
+Price,Monetary value ,Change ,Payment  price (c1380–)
+S.,NA,NA,NA
+SECRETS,The body ,,[
+Sault,Motion in a certain direction ,Attack  sault (1297–a1600),Harm/detriment 
+Sibelius,NA,NA,NA
+Silberschmerze,NA,NA,NA
+Spar,Inhabited place ,Equipment ,Materials 
+Verse,The Arts ,The Arts ,The Arts 
+age,Person ,Period  age (1297–),Relative time 
+anthuriums,NA,NA,NA
+arch,The Arts ,The Arts ,Good 
+bathroom,Cleanness/dirtiness ,Cleanness/dirtiness ,
+bees,NA,NA,NA
+blind,Cause to be ill ,That judges ,Give sight/vision to 
+bloom,Part of plant ,),Be/become beautiful  bloom (c1200–)
+blooms,NA,NA,NA
+body,The body  body (c1200–),Person ,The body 
+books,Learning ,Administration of justice ,
+butter,Be food for ,Be food for ,Birds 
+cake,Food ,Food ,Food 
+candlelight,Light ,Day and night ,Light 
+cave,Land ,Inhabited place ,Be food for 
+cedar,Materials ,Particular plants ,Particular plants 
+ceramics,Industry ,,[
+chambers,Inhabited place ,Administration of justice ,
+chicken,Person ,Love ,Person 
+clusters,NA,NA,NA
+coffee,Drink ,Drink ,Drink 
+conservatory,Safe/unharmed ,Inhabited place ,Supply 
+corners,Move at specific rate ,,[
+creams,NA,NA,NA
+cuff,Clothing ,Clothing ,Impact upon/against 
+cultivation,Knowledge ,Farming ,Manner of action 
+darkness,Worship ,Knowledge ,Aspects of faith 
+de,Mammals ,Mammals ,Mammals 
+death,Assail with missiles  ,Existence ,Oaths  
+dei,NA,NA,NA
+disposal,Authority ,Doing ,Transfer of property  disposal (1660–)
+down,In adversity ,Relative position ,Form/make into a whole 
+evening,Day and night ,Shape ,Order 
+ferns,NA,NA,NA
+flavour,Smell/odour  flavour (a1400–),Taste/flavour  flavour (1671–),Emotion 
+flowerhead,Part of plant ,,[
+flowerheads,NA,NA,NA
+forest,Hunting ,Hunting ,Land 
+form,The body ,Sight/vision ,Shape  form (1297–)
+fragrance,Smell/odour ,Impart an odour of ,
+freesias,NA,NA,NA
+gardens,Farming ,Inhabited place ,
+guest,Inhabitant ,Social event ,Provide with dwelling 
+hall,Inhabited place ,Inhabited place ,Inhabited place 
+hankie,Cleanness/dirtiness ,,[
+hashish,"Use of drugs, poison ",,[
+honeysuckle,Particular plants ,Particular plants ,The Arts 
+hut,Inhabited place ,Inhabited place ,
+hyacinth,Materials ,Particular plants ,Particular plants 
+insides,Journalism ,The body ,
+kaufmanniana,NA,NA,NA
+life,Occupation and work  ,Life ,Manner of action 
+lilies,The body ,,[
+linen,Textiles ,Clothing ,Clothing 
+liquid,Liquid phase ,Liquid  liquid (1382–),Light 
+lotion,Healing/cure ,Beautification ,Cleanness/dirtiness 
+mask,Knowledge ,Knowledge ,"Know, be aware of "
+materials,Materials  materials (1556 Scots + 1610–),Advantage ,Wholeness 
+molasses,Food ,,[
+mountains,Inhabited place ,,[
+myrtle,Particular plants ,Particular plants ,Particular plants 
+narcissus,Particular plants ,Beauty  ,Pride 
+offering,Giving ,Giving ,Giving 
+orchards,NA,NA,NA
+others,Wholeness ,Quantity ,
+paper,Writing ,Materials ,Legal document  paper (1389–)
+passion,Aspects of faith ,Emotion ,Passion 
+paste,Food ,Materials ,Develop (a region) industrially 
+pea,Particular plants ,Food ,Properties of materials 
+phloxes,NA,NA,NA
+place,Place  place (c1250–),Place ,Social class  
+pocket,Measurement ,Equipment ,Clothing 
+porcelain,Materials ,Materials ,Pertaining to material worked with/upon 
+rhizome,Part of plant ,,[
+rock,Move in specific manner ,Textiles ,Sleep  
+roll.on,Clothing ,Clothing ,
+seat,Office ,Place ,Inhabited place 
+shirt,Clothing ,Clothing ,Clothing 
+skin,The body ,The body ,Writing 
+species,Philosophy ,Kind/sort ,Artefacts 
+spectrograms,NA,NA,NA
+staircase,Inhabited place ,Learning ,Biology 
+sylvaner,Particular plants ,Drink ,
+taste,Be food for ,Taste  taste (a1300–),Taste 
+teas,NA,NA,NA
+terrace,Inhabited place ,Means of travel ,Develop (a region) industrially 
+toiletries,NA,NA,NA
+walls,NA,NA,NA
+waters,Water ,Liquid ,Water 
+while.,Duration ,Quantity ,Frequently 
+woodland,Land ,By growth/development ,Land 
+X.15.50,NA,NA,NA
+cigarette,"Use of drugs, poison ",Healing/cure ,
+Albert,Beautification ,Writing ,
+Boulevard,Means of travel ,Means of travel ,
+Christina,NA,NA,NA
+Marines,Armed forces ,,[
+algae,Particular plants ,,[
+babies,Book ,,[
+barrels,NA,NA,NA
+body.shaping,NA,NA,NA
+botanists,NA,NA,NA
+breath,Source/principle of life  breath (a1300–),The body ,"Atmosphere, weather "
+bushes,Land ,By growth/development ,
+campers,NA,NA,NA
+classroom,Place of education ,,[
+coating,Relative position ,Textiles ,The Arts 
+contrast,Discovery ,Discovery ,Discovery 
+convent,Church government ,Artefacts ,Church government 
+couple,Form/make into a whole ,Love ,Kinship/relationship 
+delights,NA,NA,NA
+dishwater,Cleanness/dirtiness ,Cleanness/dirtiness ,Birds 
+doctors,Aspects of faith ,Philosophy ,
+father,Church government ,Worship ,Join by kindred/affinity 
+femaleness,Source/principle of life ,Source/principle of life ,
+forests,NA,NA,NA
+fumes,NA,NA,NA
+galligu,NA,NA,NA
+glands,NA,NA,NA
+grasses,NA,NA,NA
+ground,Causation ,Structure of the earth ,Minerals 
+hand,Speech ,Kinship/relationship ,Animal body 
+hound,Navigation ,Hunt ,Motivate  
+kitchen.garden,Farming ,Place of education ,
+kuzah,NA,NA,NA
+leather,Develop (a region) industrially ,Materials ,The body 
+lips,Think/behave contemptuously ,The body ,Number 
+men,Law enforcement ,,[
+moth,Importance ,By nature ,Invertebrates 
+nuisance,Harm/detriment  ,Harmfulness ,Suffering 
+order,Cause to have specific position/arrangement ,Deity ,Church government 
+party,Administration of justice ,Administration of justice ,Social relations 
+phalloids,NA,NA,NA
+port,Behaviour ,Defence ,Navigation 
+process,Doing ,Manner of action  ,Administration of justice 
+reassurance,Statement ,Expectation ,Financial dealings 
+rose.,NA,NA,NA
+sake,Drink ,Testing ,Relinquish/give up 
+shoes,Move in a certain direction ,Clothing ,Clothing 
+smoke,Affect the senses ,Products of burning  ,Properties of materials 
+storage,Supply ,Supply ,Fees and taxes 
+strips,"Use of drugs, poison ",,[
+surface,Land ,Relative position ,Number 
+talcum,Minerals ,Beautify ,
+things,Possessions  ,In relation to ,Clothing  things (1605–)
+throat,The body ,Drink ,Equipment 
+tussy.mussie,NA,NA,NA
+urine,The body ,The body ,The body 
