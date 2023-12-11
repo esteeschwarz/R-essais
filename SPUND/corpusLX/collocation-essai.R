@@ -259,3 +259,6 @@ d9.df.cl<-subset(d9.df,!is.na(year))
 m<-grep("--",d9.df.cl$noun,invert = T)
 d9.df.cl<-d9.df.cl[m,]
 d9.df.w.cats<-get.cat.df(d9.df.cl,"noun")
+write_csv(d9.df.w.cats,"fragrance_COHA_wt-categories.csv")
+
+
