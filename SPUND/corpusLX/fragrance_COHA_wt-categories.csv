@@ -1,15 +1,15 @@
 year,adj,noun,period,category
 1810,perfumed,billet,A,Materials 
 1810,perfumed,letter,A,Writing 
-1811,fragrant,loveliness,A,Beauty  loveliness (a1340–)
+1811,fragrant,loveliness,A,Beauty
 1813,fragrant,wing,A,Animal body 
 1815,perfumed,wing,A,Animal body 
-1819,fragrant,spirit,A,Source/principle of life  spirit (c1250–)
+1819,fragrant,spirit,A,Source/principle of life
 1819,scented,turf,A,Structure of the earth 
 1819,scented,nectar,A,Drink 
 1820,fragrant,air,A,Gas 
 1820,fragrant,lip,A,Ill-health 
-1820,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1820,fragrant,breath,A,Source/principle of life
 1820,fragrant,dew,A,Liquid 
 1820,fragrant,meads,A,NA
 1822,fragrant,plant,A,Furnish with inhabitants 
@@ -21,21 +21,21 @@ year,adj,noun,period,category
 1823,scented,meadow,A,Land 
 1824,fragrant,gale,A,"Atmosphere, weather "
 1824,scented,gale,A,"Atmosphere, weather "
-1824,fragrant,bed,A,Put in bed/provide a bed for  bed (c1200–)
+1824,fragrant,bed,A,Put in bed/provide a bed for
 1824,fragrant,vegetation,A,Biology 
 1824,fragrant,flower,A,Quality of being good 
 1824,fragrant,morning,A,Day and night 
 1824,fragrant,fume,A,Be angry 
 1824,fragrant,cluster,A,Biology 
-1825,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1825,fragrant,breath,A,Source/principle of life
 1825,fragrant,air,A,Gas 
-1826,fragrant,bed,A,Put in bed/provide a bed for  bed (c1200–)
+1826,fragrant,bed,A,Put in bed/provide a bed for
 1826,fragrant,couch,A,Inhabited place 
 1826,fragrant,brush,A,Materials 
 1826,fragrant,plant,A,Furnish with inhabitants 
 1827,fragrant,gale,A,"Atmosphere, weather "
 1827,fragrant,air,A,Gas 
-1827,perfumed,breath,A,Source/principle of life  breath (a1300–)
+1827,perfumed,breath,A,Source/principle of life
 1827,fragrant,jessamine,A,Fashionable 
 1827,fragrant,spice,A,Sleeping and waking 
 1827,fragrant,flower,A,Quality of being good 
@@ -70,8 +70,8 @@ year,adj,noun,period,category
 1831,fragrant,hour,A,Period 
 1831,fragrant,hour,A,Period 
 1831,fragrant,hour,A,Period 
-1831,scented,breath,A,Source/principle of life  breath (a1300–)
-1831,fragrant,blossom,A,)
+1831,scented,breath,A,Source/principle of life
+1831,fragrant,blossom,A,NA
 1831,fragrant,birch,A,Punishment 
 1831,scented,air,A,Gas 
 1831,fragrant,hay,A,Dancing 
@@ -80,7 +80,7 @@ year,adj,noun,period,category
 1831,fragrant,leaf,A,Relative position 
 1831,perfumed,bath,A,Relative position 
 1831,fragrant,vow,A,Speech 
-1832,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1832,fragrant,breath,A,Source/principle of life
 1832,perfumed,vapor,A,Gas 
 1832,fragrant,leaf,A,Relative position 
 1833,fragrant,flower,A,Quality of being good 
@@ -93,7 +93,7 @@ year,adj,noun,period,category
 1833,scented,shadow,A,Physics 
 1834,fragrant,compliment,A,Behaviour 
 1834,fragrant,meadow,A,Land 
-1834,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1834,fragrant,breath,A,Source/principle of life
 1834,fragrant,lily,A,Indication 
 1835,fragrant,race,A,Water 
 1835,fragrant,cluster,A,Biology 
@@ -114,12 +114,12 @@ year,adj,noun,period,category
 1835,scented,grove,A,Relative position 
 1835,scented,field,A,Knowledge 
 1835,fragrant,orange,A,Particular plants 
-1835,fragrant,odour,A,Smell/odour  odour/odor (a1300–)
+1835,fragrant,odour,A,Smell/odour
 1835,fragrant,cluster,A,Biology 
 1835,fragrant,snow-drop,A,NA
 1835,fragrant,snow-drop,A,NA
 1835,fragrant,lemon,A,Particular plants 
-1835,fragrant,loveliness,A,Beauty  loveliness (a1340–)
+1835,fragrant,loveliness,A,Beauty
 1835,fragrant,turf,A,Structure of the earth 
 1835,fragrant,meadow,A,Land 
 1835,fragrant,june,A,Period 
@@ -133,7 +133,7 @@ year,adj,noun,period,category
 1836,fragrant,rose,A,Beauty 
 1836,fragrant,thyme,A,Particular plants 
 1836,perfumed,papyrus,A,Particular plants 
-1836,fragrant,blossom,A,)
+1836,fragrant,blossom,A,NA
 1836,fragrant,thyme,A,Particular plants 
 1836,perfumed,robe,A,Clothing 
 1836,perfumed,water,A,Cleanness/dirtiness 
@@ -142,7 +142,7 @@ year,adj,noun,period,category
 1836,fragrant,herb,A,Healing/cure 
 1836,fragrant,shrub,A,Drink 
 1836,fragrant,shrubbery,A,Farming 
-1836,fragrant,live,A,Inhabit/dwell  live (c1205–)
+1836,fragrant,live,A,Inhabit/dwell
 1836,scented,gale,A,"Atmosphere, weather "
 1837,fragrant,flower,A,Quality of being good 
 1837,fragrant,breast,A,Food 
@@ -154,17 +154,17 @@ year,adj,noun,period,category
 1837,fragrant,peach,A,Particular plants 
 1837,fragrant,summer,A,Period 
 1837,fragrant,land,A,Navigate/sail (a stretch of water) 
-1837,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1837,fragrant,breath,A,Source/principle of life
 1837,scented,oil,A,Food 
-1838,scented,blossom,A,)
+1838,scented,blossom,A,NA
 1838,perfumed,medicament,A,Healing/cure 
 1838,fragrant,lamp,A,Light 
 1838,fragrant,flower,A,Quality of being good 
-1838,fragrant,word,A,)
+1838,fragrant,word,A,NA
 1838,fragrant,wing,A,Animal body 
 1838,fragrant,grove,A,Relative position 
 1838,fragrant,sigh,A,The body 
-1838,fragrant,odour,A,Smell/odour  odour/odor (a1300–)
+1838,fragrant,odour,A,Smell/odour
 1839,sweet-smelling,vineyard,A,Farming 
 1839,fragrant,flower,A,Quality of being good 
 1839,fragrant,flower,A,Quality of being good 
@@ -177,22 +177,22 @@ year,adj,noun,period,category
 1839,fragrant,shrub,A,Drink 
 1839,fragrant,island,A,Land 
 1839,fragrant,mountain,A,Land 
-1839,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1839,fragrant,breath,A,Source/principle of life
 1839,fragrant,breeze,A,"Atmosphere, weather "
 1839,fragrant,gladness,A,Pleasure 
 1839,scented,bottle,A,Equipment 
 1839,fragrant,field,A,Knowledge 
 1840,perfumed,bowers,A,NA
 1840,fragrant,avenue,A,Means of travel 
-1840,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1840,fragrant,breath,A,Source/principle of life
 1840,fragrant,branch,A,Wholeness 
 1840,fragrant,labor,A,Manner of action 
 1840,fragrant,night-breeze,A,NA
 1840,fragrant,tress,A,The body 
 1840,fragrant,leaf,A,Relative position 
-1841,fragrant,load,A,Transport  
-1841,fragrant,odor,A,Smell/odour  odour/odor (a1300–)
-1841,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1841,fragrant,load,A,Transport
+1841,fragrant,odor,A,Smell/odour
+1841,fragrant,breath,A,Source/principle of life
 1841,perfumed,amity,A,Dissent 
 1841,fragrant,flower,A,Quality of being good 
 1841,fragrant,head,A,Land 
@@ -200,7 +200,7 @@ year,adj,noun,period,category
 1842,fragrant,fir,A,Particular plants 
 1842,fragrant,womb,A,Kinship/relationship 
 1842,sweet-smelling,flower,A,Quality of being good 
-1842,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1842,fragrant,breath,A,Source/principle of life
 1842,fragrant,incense,A,Smell/odour 
 1842,fragrant,orange,A,Particular plants 
 1842,fragrant,bowers,A,NA
@@ -210,11 +210,11 @@ year,adj,noun,period,category
 1842,perfumed,lip,A,Ill-health 
 1842,fragrant,flower,A,Quality of being good 
 1842,fragrant,orange,A,Particular plants 
-1842,fragrant,blossom,A,)
+1842,fragrant,blossom,A,NA
 1843,fragrant,pile,A,Money 
 1843,scented,shrub,A,Drink 
 1843,fragrant,anana,A,NA
-1843,fragrant,gift,A,Ability  
+1843,fragrant,gift,A,Ability
 1843,fragrant,magnolia,A,Particular plants 
 1843,fragrant,guayavas,A,NA
 1843,fragrant,branch,A,Wholeness 
@@ -227,11 +227,11 @@ year,adj,noun,period,category
 1843,fragrant,blue,A,Pertaining to colour 
 1843,fragrant,foot-path,A,Means of travel 
 1843,fragrant,garden,A,Farming 
-1843,scented,walk,A,Inhabit/dwell  walk (c1225–)
+1843,scented,walk,A,Inhabit/dwell
 1843,fragrant,air,A,Gas 
 1843,fragrant,may,A,Person 
 1843,perfumed,cambric,A,Textiles 
-1843,fragrant,odour,A,Smell/odour  odour/odor (a1300–)
+1843,fragrant,odour,A,Smell/odour
 1843,perfumed,billet,A,Materials 
 1843,fragrant,wine,A,Drink 
 1843,fragrant,herb,A,Healing/cure 
@@ -251,7 +251,7 @@ year,adj,noun,period,category
 1844,fragrant,coffee,A,Drink 
 1844,fragrant,mocha,A,Materials 
 1844,fragrant,coffee,A,Drink 
-1844,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1844,fragrant,breath,A,Source/principle of life
 1844,fragrant,air,A,Gas 
 1844,perfumed,liquid,A,Liquid phase 
 1844,fragrant,shrubbery,A,Farming 
@@ -267,7 +267,7 @@ year,adj,noun,period,category
 1845,fragrant,flower,A,Quality of being good 
 1845,fragrant,fruit,A,Plants 
 1845,fragrant,havana,A,"Use of drugs, poison "
-1845,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1845,fragrant,breath,A,Source/principle of life
 1845,fragrant,garland,A,Farming 
 1845,scented,wreath,A,Farming 
 1845,scented,water,A,Cleanness/dirtiness 
@@ -283,16 +283,16 @@ year,adj,noun,period,category
 1845,fragrant,bowers,A,NA
 1845,fragrant,wind,A,Cause to have specific position/arrangement 
 1845,scented,wind,A,Cause to have specific position/arrangement 
-1845,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1845,fragrant,breath,A,Source/principle of life
 1845,fragrant,flower,A,Quality of being good 
-1845,fragrant,bed,A,Put in bed/provide a bed for  bed (c1200–)
+1845,fragrant,bed,A,Put in bed/provide a bed for
 1845,fragrant,flower,A,Quality of being good 
 1845,fragrant,air,A,Gas 
 1846,perfumed,lamp,A,Light 
 1846,fragrant,air,A,Gas 
-1846,perfumed,breath,A,Source/principle of life  breath (a1300–)
+1846,perfumed,breath,A,Source/principle of life
 1846,fragrant,honey,A,Love 
-1846,perfumed,atmosphere,A,"Atmosphere, weather  atmosphere (1638–)"
+1846,perfumed,atmosphere,A,"Atmosphere, weather"
 1846,perfumed,tunic,A,Clothing 
 1846,perfumed,lock,A,Water 
 1846,perfumed,hair,A,Extension in space 
@@ -305,15 +305,15 @@ year,adj,noun,period,category
 1846,scented,oil,A,Food 
 1846,fragrant,young,A,Living creature 
 1846,fragrant,beauty,A,Beauty 
-1846,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1846,fragrant,breath,A,Source/principle of life
 1846,fragrant,bough,A,Wholeness 
 1846,fragrant,unction,A,Worship 
 1846,scented,water,A,Cleanness/dirtiness 
-1846,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1846,fragrant,breath,A,Source/principle of life
 1846,fragrant,food,A,Food 
 1846,fragrant,little,A,Social class 
 1846,fragrant,sigh,A,The body 
-1846,fragrant,blessing,A,Advantage  
+1846,fragrant,blessing,A,Advantage
 1846,fragrant,twilight,A,Light 
 1846,fragrant,heart,A,Love 
 1846,fragrant,balm,A,Healing/cure 
@@ -331,7 +331,7 @@ year,adj,noun,period,category
 1846,fragrant,wind,A,Cause to have specific position/arrangement 
 1846,scented,air,A,Gas 
 1846,fragrant,head,A,Land 
-1846,perfumed,breath,A,Source/principle of life  breath (a1300–)
+1846,perfumed,breath,A,Source/principle of life
 1846,fragrant,dew,A,Liquid 
 1846,scented,flower,A,Quality of being good 
 1846,perfumed,chalice,A,Part of plant 
@@ -339,7 +339,7 @@ year,adj,noun,period,category
 1846,perfumed,cup,A,Suffering 
 1846,scented,coronals,A,NA
 1847,fragrant,floor,A,Land 
-1847,fragrant,beverage,A,Drink  beverage (c1325–)
+1847,fragrant,beverage,A,Drink
 1847,sweet-smelling,hay,A,Dancing 
 1847,scented,pocket-handkerchiefs,A,NA
 1847,fragrant,box,A,Measurement 
@@ -355,7 +355,7 @@ year,adj,noun,period,category
 1847,fragrant,perfume,A,Smell/odour 
 1847,scented,cordovan,A,Materials 
 1847,fragrant,wood,A,Materials 
-1847,perfumed,blossom,A,)
+1847,perfumed,blossom,A,NA
 1847,perfumed,flower,A,Quality of being good 
 1847,perfumed,forest,A,Hunting 
 1847,perfumed,vapor,A,Gas 
@@ -366,7 +366,7 @@ year,adj,noun,period,category
 1847,scented,rose,A,Beauty 
 1847,scented,bud,A,Part of plant 
 1847,fragrant,sigh,A,The body 
-1847,scented,sky,A,Deity  
+1847,scented,sky,A,Deity
 1847,scented,tube,A,Shape 
 1847,fragrant,tube,A,Shape 
 1847,scented,air,A,Gas 
@@ -377,7 +377,7 @@ year,adj,noun,period,category
 1847,fragrant,air,A,Gas 
 1847,fragrant,glade,A,Land 
 1847,fragrant,havana,A,"Use of drugs, poison "
-1848,fragrant,blossom,A,)
+1848,fragrant,blossom,A,NA
 1848,perfumed,medicament,A,Healing/cure 
 1848,perfumed,air,A,Gas 
 1848,perfumed,ether,A,Alchemy 
@@ -387,7 +387,7 @@ year,adj,noun,period,category
 1848,perfumed,smoke,A,Affect the senses 
 1848,fragrant,smoke,A,Affect the senses 
 1848,fragrant,fig,A,Particular plants 
-1848,perfumed,atmosphere,A,"Atmosphere, weather  atmosphere (1638–)"
+1848,perfumed,atmosphere,A,"Atmosphere, weather"
 1848,fragrant,moss,A,Particular plants 
 1848,fragrant,cider,A,Drink 
 1848,perfumed,vapor,A,Gas 
@@ -396,7 +396,7 @@ year,adj,noun,period,category
 1848,fragrant,ceiling,A,Inhabited place 
 1848,fragrant,heart,A,Love 
 1848,fragrant,vine,A,Particular plants 
-1848,fragrant,blessing,A,Advantage  
+1848,fragrant,blessing,A,Advantage
 1848,fragrant,october,A,Drink 
 1848,fragrant,october,A,Drink 
 1848,fragrant,tobacco,A,Particular plants 
@@ -412,7 +412,7 @@ year,adj,noun,period,category
 1849,fragrant,flower,A,Quality of being good 
 1849,perfumed,water,A,Cleanness/dirtiness 
 1849,perfumed,billet-doux,A,Love 
-1849,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1849,fragrant,breath,A,Source/principle of life
 1849,fragrant,vapor,A,Gas 
 1849,fragrant,flow,A,Move along 
 1849,sweet-smelling,flower,A,Quality of being good 
@@ -436,15 +436,15 @@ year,adj,noun,period,category
 1849,fragrant,havanna,A,NA
 1849,perfumed,hand,A,Speech 
 1849,fragrant,cigar,A,"Use of drugs, poison "
-1849,fragrant,tassel,A,Sew/ornament textile fabric  
-1849,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1849,fragrant,tassel,A,Sew/ornament textile fabric
+1849,fragrant,breath,A,Source/principle of life
 1849,fragrant,water-lily,A,Particular plants 
 1849,fragrant,azalea,A,Particular plants 
 1849,fragrant,gale,A,"Atmosphere, weather "
 1849,perfumed,breeze,A,"Atmosphere, weather "
 1849,perfumed,tree,A,Kinship/relationship 
 1850,fragrant,flower,B,Quality of being good 
-1850,fragrant,odour,B,Smell/odour  odour/odor (a1300–)
+1850,fragrant,odour,B,Smell/odour
 1850,fragrant,herb,B,Healing/cure 
 1850,scented,myrtle,B,Particular plants 
 1850,scented,noble,B,Social class 
@@ -453,16 +453,16 @@ year,adj,noun,period,category
 1851,fragrant,chowder,B,Be food for 
 1851,scented,air,B,Gas 
 1851,fragrant,garland,B,Farming 
-1851,fragrant,blossom,B,)
+1851,fragrant,blossom,B,NA
 1851,fragrant,flower,B,Quality of being good 
 1851,fragrant,treasure,B,Wealth 
 1851,fragrant,valley,B,Land 
-1851,fragrant,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1851,fragrant,atmosphere,B,"Atmosphere, weather"
 1851,perfumed,tobacco,B,Particular plants 
 1851,fragrant,fold,B,Shape 
 1851,fragrant,division,B,Wholeness 
 1851,fragrant,mist,B,Liquid 
-1851,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1851,fragrant,breath,B,Source/principle of life
 1851,scented,wood,B,Materials 
 1851,fragrant,thing,B,Person 
 1851,fragrant,water,B,Cleanness/dirtiness 
@@ -473,7 +473,7 @@ year,adj,noun,period,category
 1852,fragrant,moss,B,Particular plants 
 1852,fragrant,geranium,B,Particular plants 
 1852,fragrant,tea,B,Particular plants 
-1852,fragrant,blossom,B,)
+1852,fragrant,blossom,B,NA
 1852,fragrant,violet,B,Particular plants 
 1852,scented,cambric,B,Textiles 
 1852,scented,hair,B,Extension in space 
@@ -509,8 +509,8 @@ year,adj,noun,period,category
 1854,fragrant,wreath,B,Farming 
 1854,fragrant,wreath,B,Farming 
 1854,fragrant,hay,B,Dancing 
-1854,fragrant,blossom,B,)
-1854,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1854,fragrant,blossom,B,NA
+1854,perfumed,breath,B,Source/principle of life
 1854,fragrant,sassafras,B,Healing/cure 
 1854,fragrant,fume,B,Be angry 
 1854,fragrant,flower,B,Quality of being good 
@@ -535,7 +535,7 @@ year,adj,noun,period,category
 1854,fragrant,decoction,B,Food 
 1854,fragrant,character,B,Indication 
 1854,fragrant,maze,B,Affect the senses 
-1854,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1854,fragrant,breath,B,Source/principle of life
 1854,fragrant,tea,B,Particular plants 
 1854,fragrant,rose,B,Beauty 
 1855,fragrant,fan,B,Gas 
@@ -563,9 +563,9 @@ year,adj,noun,period,category
 1855,perfumed,hand,B,Speech 
 1855,fragrant,rose,B,Beauty 
 1855,scented,paper,B,Writing 
-1856,fragrant,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1856,fragrant,atmosphere,B,"Atmosphere, weather"
 1856,perfumed,cambric,B,Textiles 
-1856,perfumed,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1856,perfumed,atmosphere,B,"Atmosphere, weather"
 1856,perfumed,cambric,B,Textiles 
 1856,fragrant,tobacco,B,Particular plants 
 1856,fragrant,tobacco,B,Particular plants 
@@ -576,15 +576,15 @@ year,adj,noun,period,category
 1856,scented,flower,B,Quality of being good 
 1856,fragrant,vine,B,Particular plants 
 1856,perfumed,light,B,Shine 
-1856,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1856,perfumed,breath,B,Source/principle of life
 1856,fragrant,heap,B,Suffer mental pain 
 1856,fragrant,offer,B,Give 
 1856,scented,peace,B,Subjection 
 1856,fragrant,hour,B,Period 
-1856,perfumed,load,B,Transport  
+1856,perfumed,load,B,Transport
 1856,fragrant,leaf,B,Relative position 
-1856,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
-1856,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1856,fragrant,odor,B,Smell/odour
+1856,fragrant,breath,B,Source/principle of life
 1856,fragrant,wine,B,Drink 
 1856,fragrant,wine,B,Drink 
 1856,fragrant,freight,B,Navigation 
@@ -598,9 +598,9 @@ year,adj,noun,period,category
 1857,scented,pillow,B,Cause to have specific position/arrangement 
 1857,fragrant,bloom,B,Part of plant 
 1857,perfumed,finger,B,Measurement 
-1857,fragrant,blossom,B,)
+1857,fragrant,blossom,B,NA
 1857,fragrant,rose,B,Beauty 
-1857,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1857,fragrant,breath,B,Source/principle of life
 1858,perfumed,cambrics,B,NA
 1858,perfumed,billet,B,Materials 
 1858,fragrant,breeze,B,"Atmosphere, weather "
@@ -612,12 +612,12 @@ year,adj,noun,period,category
 1858,fragrant,eglantine,B,Particular plants 
 1859,fragrant,immortelle,B,Particular plants 
 1859,fragrant,reminiscence,B,Memory 
-1859,fragrant,store,B,Supply (something)  
+1859,fragrant,store,B,Supply (something)
 1859,fragrant,varnish,B,Shine 
 1859,fragrant,petal,B,Part of plant 
-1859,fragrant,blossom,B,)
-1859,fragrant,blossom,B,)
-1859,fragrant,blossom,B,)
+1859,fragrant,blossom,B,NA
+1859,fragrant,blossom,B,NA
+1859,fragrant,blossom,B,NA
 1859,perfumed,handkerchief,B,Clothing 
 1859,perfumed,note,B,Take notice of 
 1859,perfumed,waiter,B,Expectation 
@@ -625,16 +625,16 @@ year,adj,noun,period,category
 1860,fragrant,flower,B,Quality of being good 
 1860,sweet-smelling,thyme,B,Particular plants 
 1860,scented,verbena,B,Particular plants 
-1860,fragrant,blossom,B,)
-1860,fragrant,blossom,B,)
+1860,fragrant,blossom,B,NA
+1860,fragrant,blossom,B,NA
 1860,fragrant,draught,B,Drink 
 1860,fragrant,bloom,B,Part of plant 
 1860,fragrant,freshness,B,Cleanness/dirtiness 
 1860,fragrant,bunch,B,Ill-health 
 1860,fragrant,flower,B,Quality of being good 
 1860,perfumed,gale,B,"Atmosphere, weather "
-1860,perfumed,sky,B,Deity  
-1860,scented,gift,B,Ability  
+1860,perfumed,sky,B,Deity
+1860,scented,gift,B,Ability
 1860,scented,herbage,B,By growth/development 
 1860,scented,herbage,B,By growth/development 
 1860,scented,bay-tree,B,Particular plants 
@@ -661,7 +661,7 @@ year,adj,noun,period,category
 1860,fragrant,gum,B,Constitution of matter 
 1860,sweet-smelling,flower,B,Quality of being good 
 1860,fragrant,cup,B,Suffering 
-1861,fragrant,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1861,fragrant,atmosphere,B,"Atmosphere, weather"
 1861,perfumed,altar,B,Artefacts 
 1861,fragrant,gloom,B,Be angry 
 1861,fragrant,meadow,B,Land 
@@ -682,11 +682,11 @@ year,adj,noun,period,category
 1862,perfumed,air,B,Gas 
 1862,fragrant,chip,B,Quantity 
 1862,fragrant,business,B,Doing 
-1863,fragrant,life,B,Occupation and work  
+1863,fragrant,life,B,Occupation and work
 1863,fragrant,pathway,B,Means of travel 
 1863,fragrant,white,B,Make white 
 1863,perfumed,handkerchief,B,Clothing 
-1863,fragrant,sweetness,B,Pleasure  sweetness (a1225–1886)
+1863,fragrant,sweetness,B,Pleasure
 1863,scented,gale,B,"Atmosphere, weather "
 1863,sweet-smelling,incense,B,Smell/odour 
 1863,fragrant,white,B,Make white 
@@ -694,13 +694,13 @@ year,adj,noun,period,category
 1863,scented,grape,B,Particular plants 
 1863,fragrant,flower,B,Quality of being good 
 1863,fragrant,parting,B,Wholeness 
-1863,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1863,fragrant,odor,B,Smell/odour
 1863,scented,grass,B,Farming 
 1863,fragrant,silver,B,Money 
 1863,fragrant,rummers,B,NA
 1863,fragrant,captive,B,Subjection 
 1863,fragrant,couch,B,Inhabited place 
-1864,fragrant,memory,B,Memory  memory (c1250–)
+1864,fragrant,memory,B,Memory
 1864,fragrant,flower,B,Quality of being good 
 1864,fragrant,petal,B,Part of plant 
 1864,perfumed,fringe,B,Textiles 
@@ -710,11 +710,11 @@ year,adj,noun,period,category
 1864,perfumed,cambric,B,Textiles 
 1864,perfumed,damsel,B,Social class 
 1864,fragrant,dew,B,Liquid 
-1864,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1864,fragrant,odor,B,Smell/odour
 1864,scented,air,B,Gas 
 1864,scented,hair,B,Extension in space 
 1864,perfumed,handkerchief,B,Clothing 
-1864,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1864,fragrant,breath,B,Source/principle of life
 1864,fragrant,page,B,Office 
 1864,perfumed,dew,B,Liquid 
 1864,fragrant,bower,B,Inhabited place 
@@ -728,17 +728,17 @@ year,adj,noun,period,category
 1864,fragrant,bouquet,B,Farming 
 1864,scented,food,B,Food 
 1866,perfumed,scarlet,B,Pertaining to colour 
-1866,fragrant,pine,B,Suffering  pine (c1205–)
+1866,fragrant,pine,B,Suffering
 1866,fragrant,flower,B,Quality of being good 
 1866,fragrant,bloom,B,Part of plant 
-1866,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1866,fragrant,breath,B,Source/principle of life
 1866,fragrant,breeze,B,"Atmosphere, weather "
-1866,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
-1866,fragrant,breath,B,Source/principle of life  breath (a1300–)
-1866,perfumed,spring,B,Spring  spring (c1175–)
-1866,perfumed,spring,B,Spring  spring (c1175–)
+1866,fragrant,odor,B,Smell/odour
+1866,fragrant,breath,B,Source/principle of life
+1866,perfumed,spring,B,Spring
+1866,perfumed,spring,B,Spring
 1866,fragrant,promise,B,Speech 
-1866,scented,memory,B,Memory  memory (c1250–)
+1866,scented,memory,B,Memory
 1867,perfumed,berry,B,Be food for 
 1867,scented,bank,B,Land 
 1867,fragrant,brush,B,Materials 
@@ -752,16 +752,16 @@ year,adj,noun,period,category
 1867,fragrant,hay,B,Dancing 
 1868,fragrant,record,B,Administration of justice 
 1868,fragrant,luxury,B,Moral evil 
-1868,sweet-smelling,savor,B,Taste/flavour  savour (a1225–)
+1868,sweet-smelling,savor,B,Taste/flavour
 1868,perfumed,silk,B,Textiles 
 1868,perfumed,limb,B,Wholeness 
 1869,fragrant,dusk,B,Light 
 1869,perfumed,dusk,B,Light 
 1869,fragrant,vapor,B,Gas 
 1869,fragrant,smoke,B,Affect the senses 
-1869,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1869,fragrant,odor,B,Smell/odour
 1869,fragrant,glove,B,Clothing 
-1869,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1869,fragrant,odor,B,Smell/odour
 1869,perfumed,chamber,B,Inhabited place 
 1869,fragrant,hay,B,Dancing 
 1869,fragrant,south,B,Direction 
@@ -776,25 +776,25 @@ year,adj,noun,period,category
 1869,fragrant,leaf,B,Relative position 
 1869,fragrant,orange,B,Particular plants 
 1869,fragrant,honeysuckle,B,Particular plants 
-1869,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1869,fragrant,breath,B,Source/principle of life
 1869,fragrant,sigh,B,The body 
-1869,perfumed,blossom,B,)
+1869,perfumed,blossom,B,NA
 1869,fragrant,flower,B,Quality of being good 
-1869,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1869,perfumed,breath,B,Source/principle of life
 1869,scented,herb,B,Healing/cure 
-1869,fragrant,breath,B,Source/principle of life  breath (a1300–)
-1869,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1869,fragrant,breath,B,Source/principle of life
+1869,perfumed,breath,B,Source/principle of life
 1869,fragrant,breeze,B,"Atmosphere, weather "
 1869,perfumed,beauty,B,Beauty 
 1869,fragrant,bud,B,Part of plant 
-1869,fragrant,blossom,B,)
+1869,fragrant,blossom,B,NA
 1869,fragrant,bosom,B,Spirituality 
 1869,perfumed,censer,B,Smell/odour 
 1869,fragrant,black,B,Pertaining to colour 
-1869,scented,blossom,B,)
+1869,scented,blossom,B,NA
 1869,fragrant,dew,B,Liquid 
-1869,fragrant,drop,B,Liquid  
-1869,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1869,fragrant,drop,B,Liquid
+1869,perfumed,breath,B,Source/principle of life
 1869,perfumed,mass,B,Materials 
 1869,fragrant,flower,B,Quality of being good 
 1869,fragrant,bouquet,B,Farming 
@@ -802,12 +802,12 @@ year,adj,noun,period,category
 1869,perfumed,lace,B,Equipment 
 1869,fragrant,room,B,Space 
 1870,fragrant,potato,B,Food 
-1870,fragrant,bed,B,Put in bed/provide a bed for  bed (c1200–)
+1870,fragrant,bed,B,Put in bed/provide a bed for
 1870,fragrant,steam,B,Liquid 
 1870,scented,leaflet,B,Part of plant 
 1870,fragrant,preparation,B,Undertaking 
 1870,fragrant,puff,B,Gas 
-1870,fragrant,blossom,B,)
+1870,fragrant,blossom,B,NA
 1870,fragrant,aromatic,B,Odorous 
 1870,fragrant,draught,B,Drink 
 1870,fragrant,weed,B,Farm 
@@ -816,13 +816,13 @@ year,adj,noun,period,category
 1870,perfumed,handkerchief,B,Clothing 
 1870,fragrant,fir-tree,B,Particular plants 
 1871,fragrant,summer,B,Period 
-1871,fragrant,memory,B,Memory  memory (c1250–)
+1871,fragrant,memory,B,Memory
 1871,fragrant,south,B,Direction 
 1871,fragrant,flower,B,Quality of being good 
-1871,fragrant,blossom,B,)
+1871,fragrant,blossom,B,NA
 1871,scented,sandal,B,Clothing 
-1871,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
-1871,fragrant,blossom,B,)
+1871,fragrant,odor,B,Smell/odour
+1871,fragrant,blossom,B,NA
 1871,fragrant,path,B,Means of travel 
 1871,fragrant,steam,B,Liquid 
 1871,perfumed,mayflower,B,Particular plants 
@@ -831,31 +831,31 @@ year,adj,noun,period,category
 1871,fragrant,chocolate,B,Drink 
 1871,fragrant,coffee,B,Drink 
 1871,fragrant,brake,B,By growth/development 
-1872,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1872,fragrant,odor,B,Smell/odour
 1872,fragrant,herb,B,Healing/cure 
 1872,fragrant,blood,B,Ethnicities 
 1872,fragrant,flower,B,Quality of being good 
-1872,fragrant,drop,B,Liquid  
+1872,fragrant,drop,B,Liquid
 1872,fragrant,shrub,B,Drink 
 1872,fragrant,flower,B,Quality of being good 
-1872,fragrant,blossom,B,)
-1872,fragrant,blossom,B,)
+1872,fragrant,blossom,B,NA
+1872,fragrant,blossom,B,NA
 1872,fragrant,field,B,Knowledge 
 1872,fragrant,little,B,Social class 
 1872,perfumed,powder,B,Constitution of matter 
-1872,fragrant,odour,B,Smell/odour  odour/odor (a1300–)
-1872,fragrant,spirit,B,Source/principle of life  spirit (c1250–)
+1872,fragrant,odour,B,Smell/odour
+1872,fragrant,spirit,B,Source/principle of life
 1872,perfumed,even-breeze,B,NA
 1872,perfumed,night,B,Day and night 
 1872,fragrant,decomposition,B,Wholeness 
 1872,fragrant,hay,B,Dancing 
-1872,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1872,fragrant,breath,B,Source/principle of life
 1872,fragrant,tobacco,B,Particular plants 
 1872,fragrant,partaga,B,"Use of drugs, poison "
-1872,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1872,fragrant,breath,B,Source/principle of life
 1872,perfumed,note,B,Take notice of 
 1872,fragrant,meadow,B,Land 
-1872,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1872,fragrant,odor,B,Smell/odour
 1872,fragrant,air,B,Gas 
 1873,fragrant,tropical,B,The universe 
 1873,perfumed,air,B,Gas 
@@ -865,9 +865,9 @@ year,adj,noun,period,category
 1873,fragrant,petal,B,Part of plant 
 1873,fragrant,mixture,B,Wholeness 
 1873,fragrant,mouth,B,Land 
-1873,fragrant,thankfulness,B,Gratitude  thankfulness (1552–)
+1873,fragrant,thankfulness,B,Gratitude
 1873,fragrant,pass,B,Move in a certain direction 
-1873,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1873,fragrant,breath,B,Source/principle of life
 1873,fragrant,haycocks,B,NA
 1873,fragrant,jessamines,B,NA
 1873,fragrant,herb,B,Healing/cure 
@@ -926,7 +926,7 @@ year,adj,noun,period,category
 1875,scented,paper,B,Writing 
 1875,fragrant,lily,B,Indication 
 1875,fragrant,mosaic,B,The Arts 
-1875,fragrant,message,B,Exercise of authority  
+1875,fragrant,message,B,Exercise of authority
 1875,perfumed,envelope,B,Correspondence 
 1875,perfumed,pink,B,Navigation 
 1875,fragrant,bloom,B,Part of plant 
@@ -936,7 +936,7 @@ year,adj,noun,period,category
 1875,fragrant,geranium,B,Particular plants 
 1875,perfumed,note,B,Take notice of 
 1875,fragrant,heliotrope,B,Minerals 
-1875,fragrant,loveliness,B,Beauty  loveliness (a1340–)
+1875,fragrant,loveliness,B,Beauty
 1875,perfumed,wing,B,Animal body 
 1875,fragrant,lily,B,Indication 
 1875,fragrant,pond,B,Water 
@@ -946,7 +946,7 @@ year,adj,noun,period,category
 1875,perfumed,snow-fall,B,NA
 1875,fragrant,blush-rose,B,Particular plants 
 1875,sweet-smelling,object,B,Existence 
-1875,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1875,perfumed,breath,B,Source/principle of life
 1875,fragrant,sphere,B,The universe 
 1875,scented,envelope,B,Correspondence 
 1875,perfumed,epistle,B,Aspects of faith 
@@ -985,15 +985,15 @@ year,adj,noun,period,category
 1877,fragrant,flower,B,Quality of being good 
 1877,fragrant,kiss,B,Love 
 1878,perfumed,wrapper,B,Relative position 
-1878,perfumed,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
-1878,fragrant,bear,B,)
+1878,perfumed,atmosphere,B,"Atmosphere, weather"
+1878,fragrant,bear,B,NA
 1878,fragrant,pile,B,Money 
 1878,fragrant,weed,B,Farm 
 1879,fragrant,heifer,B,Person 
 1879,fragrant,petal,B,Part of plant 
 1879,fragrant,loam,B,Materials 
 1879,fragrant,bowers,B,NA
-1879,fragrant,soul,B,Person  soul (c1180–)
+1879,fragrant,soul,B,Person
 1879,fragrant,kiss,B,Love 
 1879,perfumed,nest,B,By habitat 
 1879,fragrant,altar-gifts,B,NA
@@ -1014,14 +1014,14 @@ year,adj,noun,period,category
 1880,fragrant,oil,B,Food 
 1880,perfumed,spell,B,Write 
 1880,fragrant,dew,B,Liquid 
-1880,fragrant,crew,B,Society and the community  
-1880,fragrant,pine,B,Suffering  pine (c1205–)
+1880,fragrant,crew,B,Society and the community
+1880,fragrant,pine,B,Suffering
 1880,fragrant,crush,B,Create/make/bring about 
 1880,scented,handkerchief,B,Clothing 
 1880,fragrant,june,B,Period 
 1880,fragrant,nook,B,Shape 
 1880,fragrant,handful,B,Number 
-1880,fragrant,old,B,Of/pertaining to the past/passed away/gone  
+1880,fragrant,old,B,Of/pertaining to the past/passed away/gone
 1880,scented,kidnapper,B,Taking 
 1880,fragrant,grass,B,Farming 
 1880,perfumed,sea,B,Quantity 
@@ -1046,12 +1046,12 @@ year,adj,noun,period,category
 1882,fragrant,smoke,B,Affect the senses 
 1882,fragrant,hay,B,Dancing 
 1882,fragrant,star,B,The universe 
-1882,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
-1882,fragrant,breath,B,Source/principle of life  breath (a1300–)
-1882,perfumed,tide,B,Present difficulties  
+1882,fragrant,odor,B,Smell/odour
+1882,fragrant,breath,B,Source/principle of life
+1882,perfumed,tide,B,Present difficulties
 1882,fragrant,shower,B,Liquid 
 1882,perfumed,eve,B,Day and night 
-1882,fragrant,rest,B,Be positioned/situated  rest (c1200–)
+1882,fragrant,rest,B,Be positioned/situated
 1882,perfumed,lamp,B,Light 
 1882,perfumed,shine,B,Be manifest 
 1882,fragrant,shower,B,Liquid 
@@ -1074,7 +1074,7 @@ year,adj,noun,period,category
 1882,perfumed,wine,B,Drink 
 1882,fragrant,night,B,Day and night 
 1882,scented,note,B,Take notice of 
-1883,scented,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1883,scented,atmosphere,B,"Atmosphere, weather"
 1883,fragrant,tea,B,Particular plants 
 1883,fragrant,cloud,B,"Atmosphere, weather "
 1883,perfumed,amity,B,Dissent 
@@ -1094,13 +1094,13 @@ year,adj,noun,period,category
 1883,fragrant,green,B,Land 
 1883,fragrant,honeysuckle,B,Particular plants 
 1883,perfumed,hankerchiefs,B,NA
-1883,sweet-smelling,medicinal,B,Healing/curing  medicinal (a1340–)
+1883,sweet-smelling,medicinal,B,Healing/curing
 1883,scented,herb,B,Healing/cure 
 1883,fragrant,sweet-brier,B,Particular plants 
 1883,fragrant,white,B,Make white 
-1883,fragrant,memory,B,Memory  memory (c1250–)
+1883,fragrant,memory,B,Memory
 1883,scented,dew,B,Liquid 
-1883,fragrant,memory,B,Memory  memory (c1250–)
+1883,fragrant,memory,B,Memory
 1883,fragrant,madge,B,Birds 
 1884,fragrant,flower,B,Quality of being good 
 1884,fragrant,experiment,B,Knowledge 
@@ -1118,7 +1118,7 @@ year,adj,noun,period,category
 1884,fragrant,park,B,Farming 
 1884,scented,sward,B,Land 
 1884,fragrant,grass,B,Farming 
-1884,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1884,fragrant,breath,B,Source/principle of life
 1884,fragrant,gloom,B,Be angry 
 1884,fragrant,gloom,B,Be angry 
 1885,sweet-smelling,flower,B,Quality of being good 
@@ -1133,7 +1133,7 @@ year,adj,noun,period,category
 1885,scented,silk,B,Textiles 
 1885,scented,handkerchief,B,Clothing 
 1885,scented,article,B,Aspects of faith 
-1885,fragrant,breath,B,Source/principle of life  breath (a1300–)
+1885,fragrant,breath,B,Source/principle of life
 1885,fragrant,bud,B,Part of plant 
 1885,fragrant,flower,B,Quality of being good 
 1885,fragrant,grass,B,Farming 
@@ -1150,17 +1150,17 @@ year,adj,noun,period,category
 1886,scented,night,B,Day and night 
 1886,perfumed,waft,B,Navigate/sail (a stretch of water) 
 1886,perfumed,touch,B,Create/make/bring about 
-1886,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1886,perfumed,breath,B,Source/principle of life
 1886,perfumed,darkness,B,Worship 
 1886,fragrant,namesake,B,Naming 
-1886,fragrant,blossom,B,)
+1886,fragrant,blossom,B,NA
 1886,sweet-smelling,shrub,B,Drink 
 1886,scented,danger,B,Harm/detriment 
 1886,fragrant,tea,B,Particular plants 
 1886,perfumed,bath,B,Relative position 
 1886,scented,garden-ways,B,NA
-1886,fragrant,breath,B,Source/principle of life  breath (a1300–)
-1886,fragrant,gift,B,Ability  
+1886,fragrant,breath,B,Source/principle of life
+1886,fragrant,gift,B,Ability
 1886,fragrant,offer,B,Give 
 1886,fragrant,lily,B,Indication 
 1886,fragrant,attar-jar,B,NA
@@ -1173,7 +1173,7 @@ year,adj,noun,period,category
 1886,fragrant,moss,B,Particular plants 
 1886,perfumed,violet,B,Particular plants 
 1886,fragrant,bunch,B,Ill-health 
-1886,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1886,perfumed,breath,B,Source/principle of life
 1886,fragrant,sward,B,Land 
 1886,fragrant,wood,B,Materials 
 1887,perfumed,air,B,Gas 
@@ -1188,7 +1188,7 @@ year,adj,noun,period,category
 1887,perfumed,silence,B,Speech 
 1887,perfumed,night,B,Day and night 
 1887,perfumed,yellow,B,Particular plants 
-1887,perfumed,blossom,B,)
+1887,perfumed,blossom,B,NA
 1887,perfumed,air,B,Gas 
 1887,fragrant,rose,B,Beauty 
 1887,fragrant,air,B,Gas 
@@ -1197,14 +1197,14 @@ year,adj,noun,period,category
 1887,fragrant,tea,B,Particular plants 
 1888,scented,air,B,Gas 
 1888,fragrant,flower,B,Quality of being good 
-1888,fragrant,load,B,Transport  
+1888,fragrant,load,B,Transport
 1888,scented,wine,B,Drink 
 1888,fragrant,dusk,B,Light 
-1888,fragrant,load,B,Transport  
+1888,fragrant,load,B,Transport
 1888,fragrant,dusk,B,Light 
 1888,scented,grass,B,Farming 
 1888,fragrant,heap,B,Suffer mental pain 
-1888,fragrant,spring,B,Spring  spring (c1175–)
+1888,fragrant,spring,B,Spring
 1888,sweet-smelling,border,B,Textiles 
 1888,scented,grass,B,Farming 
 1888,fragrant,dusk,B,Light 
@@ -1221,17 +1221,17 @@ year,adj,noun,period,category
 1889,fragrant,hay,B,Dancing 
 1889,perfumed,smoke,B,Affect the senses 
 1889,fragrant,bloom,B,Part of plant 
-1889,fragrant,blossom,B,)
+1889,fragrant,blossom,B,NA
 1889,fragrant,barrier,B,Defence 
 1889,fragrant,boon,B,Speech 
-1889,fragrant,blossom,B,)
+1889,fragrant,blossom,B,NA
 1889,fragrant,stillness,B,Calmness 
 1889,perfumed,hair,B,Extension in space 
 1889,perfumed,little,B,Social class 
 1889,fragrant,rose,B,Beauty 
 1889,perfumed,lace,B,Equipment 
 1889,fragrant,leave,B,Make inactive 
-1889,scented,breath,B,Source/principle of life  breath (a1300–)
+1889,scented,breath,B,Source/principle of life
 1889,perfumed,flower,B,Quality of being good 
 1890,fragrant,bough,B,Wholeness 
 1890,fragrant,phlox,B,Particular plants 
@@ -1242,18 +1242,18 @@ year,adj,noun,period,category
 1890,perfumed,water,B,Cleanness/dirtiness 
 1890,perfumed,water,B,Cleanness/dirtiness 
 1890,scented,vine,B,Particular plants 
-1890,perfumed,breath,B,Source/principle of life  breath (a1300–)
+1890,perfumed,breath,B,Source/principle of life
 1891,perfumed,sea,C,Quantity 
 1891,fragrant,darkness,C,Worship 
 1891,fragrant,flower,C,Quality of being good 
 1891,fragrant,field,C,Knowledge 
-1891,fragrant,life,C,Occupation and work  
+1891,fragrant,life,C,Occupation and work
 1891,fragrant,air,C,Gas 
-1891,fragrant,conquest,C,Victory  
-1891,fragrant,sweetness,C,Pleasure  sweetness (a1225–1886)
+1891,fragrant,conquest,C,Victory
+1891,fragrant,sweetness,C,Pleasure
 1891,fragrant,boudoir,C,Inhabited place 
 1891,fragrant,eve,C,Day and night 
-1892,fragrant,beverage,C,Drink  beverage (c1325–)
+1892,fragrant,beverage,C,Drink
 1892,perfumed,oil,C,Food 
 1892,fragrant,bloom,C,Part of plant 
 1892,perfumed,whisper,C,Think/behave contemptuously 
@@ -1295,8 +1295,8 @@ year,adj,noun,period,category
 1893,scented,air,C,Gas 
 1893,fragrant,ground,C,Causation 
 1893,fragrant,birch,C,Punishment 
-1893,scented,breath,C,Source/principle of life  breath (a1300–)
-1893,fragrant,blossom,C,)
+1893,scented,breath,C,Source/principle of life
+1893,fragrant,blossom,C,NA
 1893,fragrant,shade,C,Existence 
 1893,fragrant,wind,C,Cause to have specific position/arrangement 
 1893,fragrant,thicket,C,Relative position 
@@ -1323,7 +1323,7 @@ year,adj,noun,period,category
 1894,scented,vine,C,Particular plants 
 1894,scented,rose,C,Beauty 
 1894,fragrant,juniper,C,Particular plants 
-1894,fragrant,expression,C,Expression  expression (1460–)
+1894,fragrant,expression,C,Expression
 1895,fragrant,shadow,C,Physics 
 1895,fragrant,wood,C,Materials 
 1895,scented,gale,C,"Atmosphere, weather "
@@ -1340,7 +1340,7 @@ year,adj,noun,period,category
 1895,scented,lip,C,Ill-health 
 1895,perfumed,breeze,C,"Atmosphere, weather "
 1895,fragrant,plant,C,Furnish with inhabitants 
-1895,fragrant,soul,C,Person  soul (c1180–)
+1895,fragrant,soul,C,Person
 1895,fragrant,field,C,Knowledge 
 1895,perfumed,plant,C,Furnish with inhabitants 
 1895,fragrant,flower,C,Quality of being good 
@@ -1363,7 +1363,7 @@ year,adj,noun,period,category
 1896,scented,bloom,C,Part of plant 
 1896,perfumed,french,C,Languages of the world 
 1896,fragrant,sward,C,Land 
-1896,scented,breath,C,Source/principle of life  breath (a1300–)
+1896,scented,breath,C,Source/principle of life
 1896,perfumed,stationery,C,Pertaining to writing 
 1896,fragrant,water,C,Cleanness/dirtiness 
 1896,scented,glove,C,Clothing 
@@ -1399,14 +1399,14 @@ year,adj,noun,period,category
 1896,fragrant,water-lily,C,Particular plants 
 1896,fragrant,space,C,Duration 
 1896,fragrant,bloom,C,Part of plant 
-1896,fragrant,bed,C,Put in bed/provide a bed for  bed (c1200–)
+1896,fragrant,bed,C,Put in bed/provide a bed for
 1897,fragrant,air,C,Gas 
 1897,fragrant,clover,C,Particular plants 
 1897,perfumed,vale,C,Land 
 1897,perfumed,cushion,C,Inhabited place 
 1897,fragrant,draught,C,Drink 
 1897,fragrant,urn,C,Death 
-1897,scented,thorn,C,Harm/detriment  
+1897,scented,thorn,C,Harm/detriment
 1897,perfumed,dress,C,Be food for 
 1897,fragrant,linen,C,Textiles 
 1897,scented,brooks,C,NA
@@ -1433,7 +1433,7 @@ year,adj,noun,period,category
 1898,fragrant,brush,C,Materials 
 1898,fragrant,tree,C,Kinship/relationship 
 1898,scented,gallery,C,Means of travel 
-1898,fragrant,message,C,Exercise of authority  
+1898,fragrant,message,C,Exercise of authority
 1898,fragrant,stretch,C,Cause to have specific position/arrangement 
 1898,sweet-smelling,herb,C,Healing/cure 
 1898,fragrant,object,C,Existence 
@@ -1443,7 +1443,7 @@ year,adj,noun,period,category
 1899,fragrant,confusion,C,Humility 
 1899,fragrant,flower,C,Quality of being good 
 1899,scented,air,C,Gas 
-1899,fragrant,picture,C,Representation  picture (c1420–)
+1899,fragrant,picture,C,Representation
 1899,perfumed,lace,C,Equipment 
 1899,perfumed,handkerchief,C,Clothing 
 1899,perfumed,handkerchief,C,Clothing 
@@ -1458,20 +1458,20 @@ year,adj,noun,period,category
 1899,scented,lime,C,Form/make into a whole 
 1899,fragrant,honeysuckle,C,Particular plants 
 1899,fragrant,bloom,C,Part of plant 
-1899,fragrant,blossom,C,)
+1899,fragrant,blossom,C,NA
 1899,scented,water,C,Cleanness/dirtiness 
-1900,fragrant,breath,C,Source/principle of life  breath (a1300–)
+1900,fragrant,breath,C,Source/principle of life
 1900,fragrant,nature,C,Existence 
-1900,fragrant,health,C,Health and disease  health (1509–)
+1900,fragrant,health,C,Health and disease
 1900,fragrant,garden,C,Farming 
 1900,fragrant,cytherea,C,NA
 1900,scented,soap,C,Cleanness/dirtiness 
-1900,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1900,fragrant,odor,C,Smell/odour
 1900,fragrant,english,C,Translate 
 1900,sweet-smelling,flower,C,Quality of being good 
 1900,scented,air,C,Gas 
 1900,fragrant,foot-bath,C,Cleanness/dirtiness 
-1900,fragrant,breath,C,Source/principle of life  breath (a1300–)
+1900,fragrant,breath,C,Source/principle of life
 1900,fragrant,night,C,Day and night 
 1900,scented,content,C,Pleasurable 
 1900,fragrant,shrub,C,Drink 
@@ -1506,7 +1506,7 @@ year,adj,noun,period,category
 1902,scented,dusk,C,Light 
 1902,fragrant,trailer,C,Hunting 
 1902,fragrant,wax,C,Change 
-1902,scented,spring,C,Spring  spring (c1175–)
+1902,scented,spring,C,Spring
 1902,fragrant,garden,C,Farming 
 1902,scented,box,C,Measurement 
 1902,fragrant,night,C,Day and night 
@@ -1517,7 +1517,7 @@ year,adj,noun,period,category
 1902,fragrant,java,C,Drink 
 1902,fragrant,springlike,C,Pertaining to a period 
 1902,fragrant,loneliness,C,Social relations 
-1902,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1902,fragrant,odor,C,Smell/odour
 1902,fragrant,pillow,C,Cause to have specific position/arrangement 
 1902,fragrant,dewy,C,Liquid 
 1902,fragrant,incense,C,Smell/odour 
@@ -1528,7 +1528,7 @@ year,adj,noun,period,category
 1902,fragrant,breathe,C,The body 
 1902,fragrant,scent,C,Hunting 
 1902,scented,grass,C,Farming 
-1902,fragrant,blossom,C,)
+1902,fragrant,blossom,C,NA
 1902,fragrant,emerald,C,Materials 
 1902,fragrant,oil,C,Food 
 1902,perfumed,wood,C,Materials 
@@ -1536,9 +1536,9 @@ year,adj,noun,period,category
 1902,scented,forest,C,Hunting 
 1902,fragrant,violet,C,Particular plants 
 1902,fragrant,lilac,C,Particular plants 
-1902,scented,odor,C,Smell/odour  odour/odor (a1300–)
+1902,scented,odor,C,Smell/odour
 1902,fragrant,bath,C,Relative position 
-1902,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1902,fragrant,odor,C,Smell/odour
 1902,perfumed,gallant,C,Social class 
 1902,fragrant,steam,C,Liquid 
 1902,perfumed,note,C,Take notice of 
@@ -1554,21 +1554,21 @@ year,adj,noun,period,category
 1903,fragrant,eddy,C,Water 
 1903,fragrant,heart,C,Love 
 1904,fragrant,lily,C,Indication 
-1904,perfumed,atmosphere,C,"Atmosphere, weather  atmosphere (1638–)"
-1904,fragrant,beverage,C,Drink  beverage (c1325–)
-1904,fragrant,pine,C,Suffering  pine (c1205–)
+1904,perfumed,atmosphere,C,"Atmosphere, weather"
+1904,fragrant,beverage,C,Drink
+1904,fragrant,pine,C,Suffering
 1904,fragrant,wine,C,Drink 
 1904,sweet-smelling,herb,C,Healing/cure 
 1904,fragrant,supper,C,Food 
 1904,scented,lane,C,Means of travel 
-1904,scented,society,C,Social relations  society (1531–)
+1904,scented,society,C,Social relations
 1904,fragrant,refuge,C,Safety 
 1904,scented,note,C,Take notice of 
 1905,scented,joy,C,Pleasure 
 1905,scented,hour,C,Period 
-1905,fragrant,blossom,C,)
+1905,fragrant,blossom,C,NA
 1905,scented,water,C,Cleanness/dirtiness 
-1905,fragrant,smell,C,Smell/odour  smell (a1175–)
+1905,fragrant,smell,C,Smell/odour
 1905,fragrant,lock,C,Water 
 1905,fragrant,garden,C,Farming 
 1905,sweet-smelling,oil,C,Food 
@@ -1588,7 +1588,7 @@ year,adj,noun,period,category
 1906,fragrant,tea,C,Particular plants 
 1906,scented,bad,C,Inferior 
 1906,fragrant,cup,C,Suffering 
-1906,fragrant,breath,C,Source/principle of life  breath (a1300–)
+1906,fragrant,breath,C,Source/principle of life
 1906,perfumed,tress,C,The body 
 1906,perfumed,hair,C,Extension in space 
 1906,fragrant,room,C,Space 
@@ -1613,7 +1613,7 @@ year,adj,noun,period,category
 1908,scented,sheet,C,Navigation 
 1908,fragrant,harbinger,C,Inhabited place 
 1908,fragrant,emblem,C,Representation 
-1908,fragrant,smell,C,Smell/odour  smell (a1175–)
+1908,fragrant,smell,C,Smell/odour
 1908,perfumed,silk,C,Textiles 
 1908,perfumed,linen,C,Textiles 
 1908,fragrant,hedge,C,Safety 
@@ -1622,7 +1622,7 @@ year,adj,noun,period,category
 1908,fragrant,flower,C,Quality of being good 
 1908,fragrant,cluster,C,Biology 
 1908,fragrant,cedar,C,Materials 
-1908,sweet-smelling,pine,C,Suffering  pine (c1205–)
+1908,sweet-smelling,pine,C,Suffering
 1908,fragrant,stillness,C,Calmness 
 1908,scented,grass,C,Farming 
 1908,scented,june,C,Period 
@@ -1661,13 +1661,13 @@ year,adj,noun,period,category
 1909,fragrant,dried,C,Liquid 
 1909,fragrant,sage,C,Able to understand 
 1909,fragrant,silence,C,Speech 
-1909,fragrant,loveliness,C,Beauty  loveliness (a1340–)
+1909,fragrant,loveliness,C,Beauty
 1909,perfumed,night,C,Day and night 
 1910,scented,sheet,C,Navigation 
 1910,scented,dew,C,Liquid 
 1910,perfumed,bath,C,Relative position 
 1910,fragrant,forest,C,Hunting 
-1910,scented,breath,C,Source/principle of life  breath (a1300–)
+1910,scented,breath,C,Source/principle of life
 1910,fragrant,silence,C,Speech 
 1910,fragrant,storm-wind,C,"Atmosphere, weather "
 1910,fragrant,land,C,Navigate/sail (a stretch of water) 
@@ -1679,7 +1679,7 @@ year,adj,noun,period,category
 1911,fragrant,heart,C,Love 
 1911,fragrant,shadow,C,Physics 
 1911,fragrant,darkness,C,Worship 
-1911,fragrant,pine,C,Suffering  pine (c1205–)
+1911,fragrant,pine,C,Suffering
 1911,fragrant,set,C,Follow (a course of behaviour) 
 1911,fragrant,summer,C,Period 
 1911,fragrant,darkness,C,Worship 
@@ -1690,20 +1690,20 @@ year,adj,noun,period,category
 1911,fragrant,cloud,C,"Atmosphere, weather "
 1911,fragrant,fold,C,Shape 
 1911,scented,air,C,Gas 
-1911,fragrant,taint,C,Cause/effect (harm)  
+1911,fragrant,taint,C,Cause/effect (harm)
 1912,fragrant,summer,C,Period 
 1912,perfumed,air,C,Gas 
 1912,fragrant,breeze,C,"Atmosphere, weather "
 1912,fragrant,coolness,C,Behaviour 
 1912,fragrant,beauty,C,Beauty 
 1912,fragrant,mint,C,Speak/say/utter 
-1912,perfumed,breath,C,Source/principle of life  breath (a1300–)
+1912,perfumed,breath,C,Source/principle of life
 1912,fragrant,cup,C,Suffering 
 1912,scented,pink,C,Navigation 
 1912,perfumed,freshness,C,Cleanness/dirtiness 
 1912,scented,glove,C,Clothing 
 1912,fragrant,earth,C,Land 
-1913,fragrant,smell,C,Smell/odour  smell (a1175–)
+1913,fragrant,smell,C,Smell/odour
 1913,fragrant,bloom,C,Part of plant 
 1913,scented,air,C,Gas 
 1913,scented,purple,C,Clothing 
@@ -1719,7 +1719,7 @@ year,adj,noun,period,category
 1913,fragrant,past,C,Of/pertaining to the past/passed away/gone 
 1914,fragrant,incense,C,Smell/odour 
 1914,perfumed,peony,C,Pertaining to colour 
-1914,fragrant,bed,C,Put in bed/provide a bed for  bed (c1200–)
+1914,fragrant,bed,C,Put in bed/provide a bed for
 1914,perfumed,air,C,Gas 
 1914,perfumed,handkerchief,C,Clothing 
 1914,perfumed,talcum,C,Minerals 
@@ -1735,7 +1735,7 @@ year,adj,noun,period,category
 1914,fragrant,honeysuckle,C,Particular plants 
 1915,scented,possible,C,Easy/presenting little difficulty 
 1915,fragrant,lemonade,C,Drink 
-1915,fragrant,breath,C,Source/principle of life  breath (a1300–)
+1915,fragrant,breath,C,Source/principle of life
 1915,scented,flower,C,Quality of being good 
 1915,fragrant,pastime,C,Entertainment 
 1915,fragrant,roast,C,Punish 
@@ -1752,7 +1752,7 @@ year,adj,noun,period,category
 1917,perfumed,shade,C,Existence 
 1917,fragrant,mass,C,Materials 
 1917,fragrant,border,C,Textiles 
-1917,perfumed,breath,C,Source/principle of life  breath (a1300–)
+1917,perfumed,breath,C,Source/principle of life
 1917,perfumed,note,C,Take notice of 
 1917,fragrant,burden,C,Transport 
 1917,fragrant,pile,C,Money 
@@ -1769,14 +1769,14 @@ year,adj,noun,period,category
 1917,scented,evening,C,Day and night 
 1918,fragrant,rose,C,Beauty 
 1918,scented,soap,C,Cleanness/dirtiness 
-1918,fragrant,blossom,C,)
+1918,fragrant,blossom,C,NA
 1919,scented,danger,C,Harm/detriment 
 1919,fragrant,berry,C,Be food for 
-1919,fragrant,smell,C,Smell/odour  smell (a1175–)
+1919,fragrant,smell,C,Smell/odour
 1919,fragrant,lilac,C,Particular plants 
 1919,fragrant,plume,C,Birds 
 1919,fragrant,smoke,C,Affect the senses 
-1919,fragrant,smell,C,Smell/odour  smell (a1175–)
+1919,fragrant,smell,C,Smell/odour
 1919,fragrant,mist,C,Liquid 
 1919,fragrant,herb,C,Healing/cure 
 1919,scented,shadow,C,Physics 
@@ -1786,7 +1786,7 @@ year,adj,noun,period,category
 1919,scented,air,C,Gas 
 1919,fragrant,mass,C,Materials 
 1920,fragrant,blow,C,Gas 
-1920,fragrant,place,C,Place  place (c1250–)
+1920,fragrant,place,C,Place
 1920,sweet-smelling,dress,C,Be food for 
 1920,fragrant,powder,C,Constitution of matter 
 1920,fragrant,summer,C,Period 
@@ -1798,13 +1798,13 @@ year,adj,noun,period,category
 1920,scented,hillside,C,Land 
 1920,fragrant,springy,C,Constitution of matter 
 1920,fragrant,balsam,C,Healing/cure 
-1920,fragrant,breath,C,Source/principle of life  breath (a1300–)
+1920,fragrant,breath,C,Source/principle of life
 1920,fragrant,nest,C,By habitat 
 1920,fragrant,shrine,C,Death 
 1920,fragrant,dew,C,Liquid 
-1920,fragrant,soul,C,Person  soul (c1180–)
+1920,fragrant,soul,C,Person
 1920,fragrant,chalice,C,Part of plant 
-1920,fragrant,soul,C,Person  soul (c1180–)
+1920,fragrant,soul,C,Person
 1920,fragrant,basket,C,Food 
 1920,fragrant,plume,C,Birds 
 1920,scented,lane,C,Means of travel 
@@ -1853,7 +1853,7 @@ year,adj,noun,period,category
 1921,fragrant,silence,C,Speech 
 1921,scented,note,C,Take notice of 
 1921,scented,path,C,Means of travel 
-1921,fragrant,smell,C,Smell/odour  smell (a1175–)
+1921,fragrant,smell,C,Smell/odour
 1921,scented,pink,C,Navigation 
 1921,fragrant,bloom,C,Part of plant 
 1921,fragrant,leaf,C,Relative position 
@@ -1871,11 +1871,11 @@ year,adj,noun,period,category
 1922,fragrant,darkness,C,Worship 
 1922,fragrant,grass,C,Farming 
 1922,fragrant,field,C,Knowledge 
-1922,fragrant,bed,C,Put in bed/provide a bed for  bed (c1200–)
+1922,fragrant,bed,C,Put in bed/provide a bed for
 1922,fragrant,mixture,C,Wholeness 
 1922,scented,forest,C,Hunting 
 1922,fragrant,evidence,C,Indication 
-1922,fragrant,witch,C,Enchant/cast under spell  witch (a1400–)
+1922,fragrant,witch,C,Enchant/cast under spell
 1922,scented,envelope,C,Correspondence 
 1922,fragrant,coffee,C,Drink 
 1922,perfumed,strand,C,Water 
@@ -1885,7 +1885,7 @@ year,adj,noun,period,category
 1922,fragrant,embrace,C,Cause to have specific position/arrangement 
 1922,fragrant,presence,C,Place 
 1922,fragrant,wood,C,Materials 
-1922,fragrant,pine,C,Suffering  pine (c1205–)
+1922,fragrant,pine,C,Suffering
 1922,perfumed,garment,C,Clothing 
 1922,perfumed,garment,C,Clothing 
 1922,fragrant,garden,C,Farming 
@@ -1898,7 +1898,7 @@ year,adj,noun,period,category
 1922,perfumed,handkerchief,C,Clothing 
 1922,scented,scrap,C,Quantity 
 1922,perfumed,garment,C,Clothing 
-1922,scented,humiliation,C,Adversity  
+1922,scented,humiliation,C,Adversity
 1922,fragrant,greenness,C,Person 
 1922,scented,mountain,C,Land 
 1922,perfumed,towel,C,Cleanness/dirtiness 
@@ -1906,21 +1906,21 @@ year,adj,noun,period,category
 1922,scented,air,C,Gas 
 1922,fragrant,spike,C,Equipment 
 1922,sweet-smelling,barricade,C,Cause to have specific position/arrangement 
-1922,fragrant,memory,C,Memory  memory (c1250–)
+1922,fragrant,memory,C,Memory
 1922,fragrant,dusk,C,Light 
 1922,scented,kiss,C,Love 
 1922,perfumed,morning,C,Day and night 
-1922,fragrant,corn,C,Of/pertaining to cereal/corn/grain  corn (c1420–)
-1922,fragrant,kentucky,C,North America  
+1922,fragrant,corn,C,Of/pertaining to cereal/corn/grain
+1922,fragrant,kentucky,C,North America
 1922,scented,danger,C,Harm/detriment 
 1922,scented,oil,C,Food 
 1922,scented,wind,C,Cause to have specific position/arrangement 
 1922,fragrant,smoke,C,Affect the senses 
 1922,fragrant,smoke,C,Affect the senses 
 1922,scented,soap,C,Cleanness/dirtiness 
-1922,fragrant,memory,C,Memory  memory (c1250–)
+1922,fragrant,memory,C,Memory
 1922,perfumed,air,C,Gas 
-1922,fragrant,case,C,Occurrence  
+1922,fragrant,case,C,Occurrence
 1922,scented,bloom,C,Part of plant 
 1922,scented,breeze,C,"Atmosphere, weather "
 1922,scented,star,C,The universe 
@@ -1929,8 +1929,8 @@ year,adj,noun,period,category
 1922,perfumed,snuff,C,Light 
 1922,scented,fox,C,Ability 
 1922,sweet-smelling,timber,C,Indication 
-1922,scented,raiment,C,Clothing  raiment (a1424–)
-1922,fragrant,wild,C,Of/pertaining to creation  
+1922,scented,raiment,C,Clothing
+1922,fragrant,wild,C,Of/pertaining to creation
 1923,fragrant,flower,C,Quality of being good 
 1923,scented,tea,C,Particular plants 
 1923,fragrant,balsam,C,Healing/cure 
@@ -1975,24 +1975,24 @@ year,adj,noun,period,category
 1931,fragrant,needle-strewn,D,NA
 1931,scented,toilet,D,Beautification 
 1931,perfumed,handkerchief,D,Clothing 
-1931,fragrant,pine,D,Suffering  pine (c1205–)
+1931,fragrant,pine,D,Suffering
 1931,fragrant,dream,D,Sleeping and waking 
 1931,fragrant,paper,D,Writing 
 1931,fragrant,nearness,D,Kinship/relationship 
 1931,sweet-smelling,grass,D,Farming 
 1931,scented,night,D,Day and night 
 1931,fragrant,flower,D,Quality of being good 
-1932,scented,money,D,Money  money (c1290–)
+1932,scented,money,D,Money
 1932,fragrant,wood,D,Materials 
 1932,scented,flood,D,"Atmosphere, weather "
 1932,sweet-smelling,commonplacesof,D,NA
 1932,scented,harpoon,D,Hunting 
 1932,fragrant,shadow,D,Physics 
-1932,fragrant,pine,D,Suffering  pine (c1205–)
+1932,fragrant,pine,D,Suffering
 1932,scented,blanket,D,Relative position 
 1932,fragrant,hair,D,Extension in space 
 1932,scented,form,D,The body 
-1932,fragrant,atmosphere,D,"Atmosphere, weather  atmosphere (1638–)"
+1932,fragrant,atmosphere,D,"Atmosphere, weather"
 1932,fragrant,ash,D,Structure of the earth 
 1932,fragrant,warmth,D,Properties of materials 
 1932,perfumed,cow,D,Be afraid of 
@@ -2001,18 +2001,18 @@ year,adj,noun,period,category
 1932,fragrant,liquid,D,Liquid phase 
 1932,scented,lavender,D,Particular plants 
 1932,fragrant,strip,D,Clothing 
-1932,fragrant,tangle,D,Render immobile  
+1932,fragrant,tangle,D,Render immobile
 1933,scented,drama,D,The Arts 
 1933,scented,flesh,D,People 
 1933,sweet-smelling,fat,D,Extending in space 
-1933,perfumed,eye,D,Sight/vision  eye (a1200–)
+1933,perfumed,eye,D,Sight/vision
 1933,fragrant,garden,D,Farming 
 1933,fragrant,garden,D,Farming 
 1934,scented,blackness,D,Colour 
-1934,fragrant,place,D,Place  place (c1250–)
+1934,fragrant,place,D,Place
 1934,fragrant,night,D,Day and night 
 1934,fragrant,morning,D,Day and night 
-1934,fragrant,smell,D,Smell/odour  smell (a1175–)
+1934,fragrant,smell,D,Smell/odour
 1934,perfumed,oil,D,Food 
 1934,scented,water,D,Cleanness/dirtiness 
 1934,scented,head,D,Land 
@@ -2027,9 +2027,9 @@ year,adj,noun,period,category
 1934,fragrant,luxury,D,Moral evil 
 1934,perfumed,girl,D,Person 
 1934,sweet-smelling,rowan,D,Textiles 
-1934,perfumed,breath,D,Source/principle of life  breath (a1300–)
+1934,perfumed,breath,D,Source/principle of life
 1934,fragrant,head,D,Land 
-1934,perfumed,breath,D,Source/principle of life  breath (a1300–)
+1934,perfumed,breath,D,Source/principle of life
 1934,fragrant,lily,D,Indication 
 1935,fragrant,tea,D,Particular plants 
 1935,perfumed,camellia,D,Particular plants 
@@ -2054,7 +2054,7 @@ year,adj,noun,period,category
 1936,perfumed,cushion,D,Inhabited place 
 1936,fragrant,bouquet,D,Farming 
 1936,perfumed,garment,D,Clothing 
-1936,scented,body,D,The body  body (c1200–)
+1936,scented,body,D,The body
 1936,scented,evening,D,Day and night 
 1936,scented,curl,D,Beautify 
 1936,fragrant,steam,D,Liquid 
@@ -2073,13 +2073,13 @@ year,adj,noun,period,category
 1938,sweet-smelling,box,D,Measurement 
 1938,perfumed,handkerchief,D,Clothing 
 1938,fragrant,apricot,D,Particular plants 
-1938,fragrant,place,D,Place  place (c1250–)
+1938,fragrant,place,D,Place
 1938,perfumed,gust,D,"Atmosphere, weather "
 1939,fragrant,coffee,D,Drink 
 1939,fragrant,channel,D,Water 
 1939,fragrant,wallflower,D,Particular plants 
 1939,sweet-smelling,flower,D,Quality of being good 
-1939,fragrant,odor,D,Smell/odour  odour/odor (a1300–)
+1939,fragrant,odor,D,Smell/odour
 1939,fragrant,april,D,Period 
 1939,fragrant,coffee,D,Drink 
 1939,scented,island,D,Land 
@@ -2093,7 +2093,7 @@ year,adj,noun,period,category
 1941,fragrant,belly,D,The body 
 1941,fragrant,coffee,D,Drink 
 1941,fragrant,darkness,D,Worship 
-1941,fragrant,body,D,The body  body (c1200–)
+1941,fragrant,body,D,The body
 1941,fragrant,little,D,Social class 
 1941,fragrant,land,D,Navigate/sail (a stretch of water) 
 1941,perfumed,perspiration,D,The body 
@@ -2121,16 +2121,16 @@ year,adj,noun,period,category
 1943,sweet-smelling,warm,D,Heat/make hot/warm 
 1943,sweet-smelling,cedar,D,Materials 
 1943,fragrant,ground,D,Causation 
-1943,fragrant,pine,D,Suffering  pine (c1205–)
+1943,fragrant,pine,D,Suffering
 1943,fragrant,leaf,D,Relative position 
 1943,fragrant,bloom,D,Part of plant 
 1944,perfumed,dampness,D,Liquid 
 1944,fragrant,boxes.,D,NA
 1944,perfumed,thatthe,D,NA
-1944,sweet-smelling,blossom,D,)
+1944,sweet-smelling,blossom,D,NA
 1944,scented,handkerchief,D,Clothing 
 1944,fragrant,tobacco,D,Particular plants 
-1944,sweet-smelling,pine,D,Suffering  pine (c1205–)
+1944,sweet-smelling,pine,D,Suffering
 1944,perfumed,light,D,Shine 
 1944,fragrant,homecured,D,NA
 1944,sweet-smelling,darkness,D,Worship 
@@ -2140,7 +2140,7 @@ year,adj,noun,period,category
 1944,scented,realm,D,Rule/government 
 1945,fragrant,lily,D,Indication 
 1945,fragrant,witchery,D,The occult 
-1945,fragrant,fluid,D,Fluids  fluid (1603–)
+1945,fragrant,fluid,D,Fluids
 1945,fragrant,crop,D,Extend 
 1945,fragrant,arm,D,Of armour: protect 
 1945,scented,arbor,D,Farming 
@@ -2155,8 +2155,8 @@ year,adj,noun,period,category
 1946,fragrant,little,D,Social class 
 1946,scented,woman,D,Person 
 1946,fragrant,field,D,Knowledge 
-1946,fragrant,sky,D,Deity  
-1946,fragrant,store,D,Supply (something)  
+1946,fragrant,sky,D,Deity
+1946,fragrant,store,D,Supply (something)
 1946,fragrant,weed,D,Farm 
 1946,scented,flower,D,Quality of being good 
 1946,sweet-smelling,shrubbery,D,Farming 
@@ -2178,7 +2178,7 @@ year,adj,noun,period,category
 1947,scented,gloom,D,Be angry 
 1947,fragrant,silence,D,Speech 
 1947,scented,note,D,Take notice of 
-1947,fragrant,cleanliness,D,Cleanness/dirtiness  cleanliness (a1586–)
+1947,fragrant,cleanliness,D,Cleanness/dirtiness
 1947,fragrant,immaculateness,D,Virtue 
 1948,perfumed,snuff,D,Light 
 1948,scented,red,D,The body 
@@ -2221,13 +2221,13 @@ year,adj,noun,period,category
 1952,sweet-smelling,water,D,Cleanness/dirtiness 
 1952,fragrant,black,D,Pertaining to colour 
 1953,sweet-smelling,cluster,D,Biology 
-1953,perfumed,wife,D,Family unit  
+1953,perfumed,wife,D,Family unit
 1953,fragrant,cigar,D,"Use of drugs, poison "
 1953,fragrant,clothes,D,Inhabited place 
 1953,scented,envelope,D,Correspondence 
 1953,fragrant,delight,D,Pleasure 
-1953,fragrant,odor,D,Smell/odour  odour/odor (a1300–)
-1953,fragrant,smell,D,Smell/odour  smell (a1175–)
+1953,fragrant,odor,D,Smell/odour
+1953,fragrant,smell,D,Smell/odour
 1954,scented,flesh,D,People 
 1954,scented,yule,D,Specific festivities 
 1954,fragrant,hair,D,Extension in space 
@@ -2260,17 +2260,17 @@ year,adj,noun,period,category
 1956,fragrant,flower,D,Quality of being good 
 1956,fragrant,flower,D,Quality of being good 
 1956,scented,paper,D,Writing 
-1956,fragrant,wild,D,Of/pertaining to creation  
+1956,fragrant,wild,D,Of/pertaining to creation
 1956,fragrant,onion,D,Particular plants 
 1957,fragrant,cavern,D,Land 
 1957,sweet-smelling,farmhouse,D,Farming 
 1957,fragrant,gloom,D,Be angry 
 1957,fragrant,clothes,D,Inhabited place 
 1957,fragrant,garden,D,Farming 
-1957,fragrant,body,D,The body  body (c1200–)
+1957,fragrant,body,D,The body
 1957,scented,ground,D,Causation 
 1957,scented,whiteness,D,The body 
-1957,fragrant,bed,D,Put in bed/provide a bed for  bed (c1200–)
+1957,fragrant,bed,D,Put in bed/provide a bed for
 1957,fragrant,tangerine,D,Particular plants 
 1957,perfumed,blanket,D,Relative position 
 1958,fragrant,weed,D,Farm 
@@ -2301,9 +2301,9 @@ year,adj,noun,period,category
 1960,perfumed,catherine,D,Means of travel 
 1960,fragrant,aisle,D,Artefacts 
 1960,fragrant,flower,D,Quality of being good 
-1960,scented,drop,D,Liquid  
+1960,scented,drop,D,Liquid
 1960,fragrant,skin,D,The body 
-1960,fragrant,death,D,Assail with missiles  
+1960,fragrant,death,D,Assail with missiles
 1960,fragrant,bloom,D,Part of plant 
 1960,fragrant,smoke,D,Affect the senses 
 1960,scented,water,D,Cleanness/dirtiness 
@@ -2316,7 +2316,7 @@ year,adj,noun,period,category
 1961,fragrant,rum,D,Drink 
 1961,perfumed,oil,D,Food 
 1962,scented,lacquer,D,Materials 
-1962,sweet-smelling,witch,D,Enchant/cast under spell  witch (a1400–)
+1962,sweet-smelling,witch,D,Enchant/cast under spell
 1962,perfumed,cotton,D,Textiles 
 1962,fragrant,cloud,D,"Atmosphere, weather "
 1963,perfumed,envelope,D,Correspondence 
@@ -2329,8 +2329,8 @@ year,adj,noun,period,category
 1964,fragrant,shade,D,Existence 
 1964,scented,water,D,Cleanness/dirtiness 
 1964,fragrant,air,D,Gas 
-1964,fragrant,smell,D,Smell/odour  smell (a1175–)
-1964,perfumed,will,D,Wish/be disposed/inclined  will/would have (c1205–)
+1964,fragrant,smell,D,Smell/odour
+1964,perfumed,will,D,Wish/be disposed/inclined
 1965,perfumed,run,D,Liquid 
 1965,perfumed,noon,D,Day and night 
 1965,fragrant,hill,D,Land 
@@ -2355,7 +2355,7 @@ year,adj,noun,period,category
 1966,scented,note,D,Take notice of 
 1967,fragrant,bouvardia,D,Particular plants 
 1967,fragrant,honeysuckle,D,Particular plants 
-1967,sweet-smelling,nurse,D,Upbringing  
+1967,sweet-smelling,nurse,D,Upbringing
 1967,fragrant,shade,D,Existence 
 1967,scented,shade,D,Existence 
 1967,fragrant,flower,D,Quality of being good 
@@ -2375,12 +2375,12 @@ year,adj,noun,period,category
 1968,scented,rise,D,Be unsubmissive 
 1968,fragrant,fruit,D,Plants 
 1968,fragrant,dusk,D,Light 
-1969,perfumed,breath,D,Source/principle of life  breath (a1300–)
+1969,perfumed,breath,D,Source/principle of life
 1969,sweet-smelling,leaf,D,Relative position 
 1969,scented,douche,D,Cleanness/dirtiness 
 1969,perfumed,paper,D,Writing 
 1969,sweet-smelling,cowboy,D,Farming 
-1970,fragrant,odor,D,Smell/odour  odour/odor (a1300–)
+1970,fragrant,odor,D,Smell/odour
 1970,scented,soap,D,Cleanness/dirtiness 
 1970,perfumed,woman,D,Person 
 1970,scented,smoke,D,Affect the senses 
@@ -2400,12 +2400,12 @@ year,adj,noun,period,category
 1971,scented,handkerchief,E,Clothing 
 1971,scented,air,E,Gas 
 1971,perfumed,amber,E,Minerals 
-1971,fragrant,pine,E,Suffering  pine (c1205–)
+1971,fragrant,pine,E,Suffering
 1972,perfumed,flesh,E,People 
 1972,fragrant,bowl,E,Shape 
 1972,scented,soap,E,Cleanness/dirtiness 
 1972,perfumed,air,E,Gas 
-1972,fragrant,wash,E,Wash oneself  wash (c1175–)
+1972,fragrant,wash,E,Wash oneself
 1972,scented,soap,E,Cleanness/dirtiness 
 1972,perfumed,cigarette,E,"Use of drugs, poison "
 1972,fragrant,fruit,E,Plants 
@@ -2418,8 +2418,8 @@ year,adj,noun,period,category
 1974,scented,tree,E,Kinship/relationship 
 1974,fragrant,mutton,E,Food 
 1975,fragrant,verge,E,Relative position 
-1975,sweet-smelling,breath,E,Source/principle of life  breath (a1300–)
-1975,fragrant,rest,E,Be positioned/situated  rest (c1200–)
+1975,sweet-smelling,breath,E,Source/principle of life
+1975,fragrant,rest,E,Be positioned/situated
 1975,scented,water,E,Cleanness/dirtiness 
 1976,scented,heap,E,Suffer mental pain 
 1976,perfumed,barge,E,Navigation 
@@ -2448,11 +2448,11 @@ year,adj,noun,period,category
 1978,scented,steam,E,Liquid 
 1979,fragrant,herb,E,Healing/cure 
 1979,fragrant,hair,E,Extension in space 
-1979,fragrant,smell,E,Smell/odour  smell (a1175–)
+1979,fragrant,smell,E,Smell/odour
 1979,fragrant,meadow,E,Land 
 1979,scented,back,E,The body 
 1979,fragrant,bath,E,Relative position 
-1979,sweet-smelling,body,E,The body  body (c1200–)
+1979,sweet-smelling,body,E,The body
 1979,fragrant,part,E,Form/make into a whole 
 1979,fragrant,part,E,Form/make into a whole 
 1979,scented,hair,E,Extension in space 
@@ -2460,7 +2460,7 @@ year,adj,noun,period,category
 1979,fragrant,tree,E,Kinship/relationship 
 1979,fragrant,glade,E,Land 
 1979,fragrant,hair,E,Extension in space 
-1979,fragrant,odor,E,Smell/odour  odour/odor (a1300–)
+1979,fragrant,odor,E,Smell/odour
 1980,fragrant,darkness,E,Worship 
 1980,fragrant,morning,E,Day and night 
 1980,fragrant,german,E,Related 
@@ -2474,7 +2474,7 @@ year,adj,noun,period,category
 1981,scented,water,E,Cleanness/dirtiness 
 1981,scented,oil,E,Food 
 1981,fragrant,face,E,The body 
-1981,perfumed,sky,E,Deity  
+1981,perfumed,sky,E,Deity
 1981,perfumed,robe,E,Clothing 
 1981,scented,belly,E,The body 
 1981,sweet-smelling,girl,E,Person 
@@ -2493,7 +2493,7 @@ year,adj,noun,period,category
 1983,perfumed,transvestite,E,Sexual relations 
 1983,fragrant,dusty,E,Important 
 1983,fragrant,smoke,E,Affect the senses 
-1984,fragrant,blossom,E,)
+1984,fragrant,blossom,E,NA
 1984,fragrant,garden,E,Farming 
 1984,sweet-smelling,ointment,E,Healing/cure 
 1984,perfumed,silk,E,Textiles 
@@ -2504,11 +2504,11 @@ year,adj,noun,period,category
 1985,fragrant,air,E,Gas 
 1985,fragrant,air,E,Gas 
 1985,scented,breeze,E,"Atmosphere, weather "
-1986,sweet-smelling,breath,E,Source/principle of life  breath (a1300–)
+1986,sweet-smelling,breath,E,Source/principle of life
 1986,fragrant,straw,E,Particular plants 
 1986,perfumed,air,E,Gas 
 1986,fragrant,august,E,Having/showing esteem 
-1986,fragrant,old,E,Of/pertaining to the past/passed away/gone  
+1986,fragrant,old,E,Of/pertaining to the past/passed away/gone
 1986,fragrant,promise,E,Speech 
 1986,fragrant,memento,E,Worship 
 1986,scented,air,E,Gas 
@@ -2532,10 +2532,10 @@ year,adj,noun,period,category
 1989,perfumed,woman,E,Person 
 1989,sweet-smelling,smoke,E,Affect the senses 
 1989,perfumed,hair,E,Extension in space 
-1989,scented,prey,E,Animals hunted  prey (a1240–)
+1989,scented,prey,E,Animals hunted
 1989,scented,soap,E,Cleanness/dirtiness 
 1992,fragrant,mint,F,Speak/say/utter 
-1992,fragrant,wad,F,Fire (a gun)  
+1992,fragrant,wad,F,Fire (a gun)
 1992,sweet-smelling,straw,F,Particular plants 
 1992,sweet-smelling,stream,F,Quantity 
 1992,fragrant,bouquet,F,Farming 
@@ -2570,7 +2570,7 @@ year,adj,noun,period,category
 1993,fragrant,wreath,F,Farming 
 1993,fragrant,brown,F,Pertaining to colour 
 1993,fragrant,lavender,F,Particular plants 
-1993,fragrant,blossom,F,)
+1993,fragrant,blossom,F,NA
 1993,fragrant,steam,F,Liquid 
 1993,fragrant,clothespress,F,Inhabited place 
 1993,scented,candle,F,Artefacts 
@@ -2595,7 +2595,7 @@ year,adj,noun,period,category
 1994,fragrant,clean-u-lichen,F,NA
 1994,scented,water,F,Cleanness/dirtiness 
 1994,sweet-smelling,base,F,Relative position 
-1995,fragrant,liquor,F,Drink  liquor (a1300–)
+1995,fragrant,liquor,F,Drink
 1995,sweet-smelling,dust,F,Importance 
 1995,perfumed,slipstream,F,Water 
 1995,scented,smoke,F,Affect the senses 
@@ -2607,11 +2607,11 @@ year,adj,noun,period,category
 1996,scented,oil,F,Food 
 1996,fragrant,mock-orange,F,Particular plants 
 1996,scented,cat,F,Inferiority/baseness 
-1996,perfumed,smell,F,Smell/odour  smell (a1175–)
+1996,perfumed,smell,F,Smell/odour
 1996,scented,air,F,Gas 
 1996,perfumed,skin,F,The body 
 1997,perfumed,room,F,Space 
-1997,sweet-smelling,blossom,F,)
+1997,sweet-smelling,blossom,F,NA
 1997,fragrant,steam,F,Liquid 
 1997,fragrant,perfection,F,Quality of being good 
 1997,scented,candle,F,Artefacts 
@@ -2620,7 +2620,7 @@ year,adj,noun,period,category
 1997,fragrant,black,F,Pertaining to colour 
 1997,perfumed,new,F,New 
 1997,scented,water,F,Cleanness/dirtiness 
-1997,sweet-smelling,waxy,F,Capable of emotional perception/experience  waxy (1596–)
+1997,sweet-smelling,waxy,F,Capable of emotional perception/experience
 1998,scented,bath,F,Relative position 
 1998,scented,rainwater,F,"Atmosphere, weather "
 1998,scented,cloud,F,"Atmosphere, weather "
@@ -2628,7 +2628,7 @@ year,adj,noun,period,category
 1998,perfumed,cream,F,Food 
 1998,perfumed,lair,F,Farming 
 1998,fragrant,english,F,Translate 
-1998,fragrant,odor,F,Smell/odour  odour/odor (a1300–)
+1998,fragrant,odor,F,Smell/odour
 1998,fragrant,shiver,F,Create/make/bring about 
 1998,fragrant,cup,F,Suffering 
 1998,fragrant,morning,F,Day and night 
@@ -2642,7 +2642,7 @@ year,adj,noun,period,category
 1999,fragrant,canopy,F,Inhabited place 
 1999,fragrant,fire,F,Properties of materials 
 1999,fragrant,cup,F,Suffering 
-1999,perfumed,tangle,F,Render immobile  
+1999,perfumed,tangle,F,Render immobile
 1999,perfumed,rosy,F,Pertaining to colour 
 1999,scented,lunar,F,The universe 
 1999,fragrant,blend,F,Constitute a whole 
@@ -2670,7 +2670,7 @@ year,adj,noun,period,category
 2000,scented,potion,F,Healing/cure 
 2000,scented,darkness,F,Worship 
 2001,fragrant,tea,F,Particular plants 
-2001,fragrant,smell,F,Smell/odour  smell (a1175–)
+2001,fragrant,smell,F,Smell/odour
 2001,fragrant,smother,F,Come by death 
 2001,scented,garland,F,Farming 
 2001,scented,air,F,Gas 
@@ -2690,7 +2690,7 @@ year,adj,noun,period,category
 2001,perfumed,cloud,F,"Atmosphere, weather "
 2001,perfumed,stationery,F,Pertaining to writing 
 2001,fragrant,air,F,Gas 
-2001,perfumed,pine,F,Suffering  pine (c1205–)
+2001,perfumed,pine,F,Suffering
 2001,perfumed,water,F,Cleanness/dirtiness 
 2002,fragrant,juniper,F,Particular plants 
 2002,fragrant,juniper,F,Particular plants 
@@ -2701,7 +2701,7 @@ year,adj,noun,period,category
 2002,scented,air,F,Gas 
 2002,perfumed,interior,F,Placeable/usable in more than one position 
 2002,fragrant,cotton,F,Textiles 
-2002,fragrant,word,F,)
+2002,fragrant,word,F,NA
 2002,scented,candle,F,Artefacts 
 2002,fragrant,summer,F,Period 
 2002,perfumed,tea,F,Particular plants 
@@ -2758,7 +2758,7 @@ year,adj,noun,period,category
 2006,sweet-smelling,cloud,F,"Atmosphere, weather "
 2006,fragrant,pink,F,Navigation 
 2006,scented,jasmine,F,Particular plants 
-2006,fragrant,place,F,Place  place (c1250–)
+2006,fragrant,place,F,Place
 2006,scented,candle,F,Artefacts 
 2006,fragrant,flower,F,Quality of being good 
 2006,fragrant,tea,F,Particular plants 
@@ -2767,11 +2767,11 @@ year,adj,noun,period,category
 2006,fragrant,bush,F,By growth/development 
 2006,scented,soap,F,Cleanness/dirtiness 
 2006,fragrant,air,F,Gas 
-2006,fragrant,wild,F,Of/pertaining to creation  
-2006,perfumed,breath,F,Source/principle of life  breath (a1300–)
+2006,fragrant,wild,F,Of/pertaining to creation
+2006,perfumed,breath,F,Source/principle of life
 2007,perfumed,soap,F,Cleanness/dirtiness 
 2007,perfumed,summer,F,Period 
-2007,perfumed,old,F,Of/pertaining to the past/passed away/gone  
+2007,perfumed,old,F,Of/pertaining to the past/passed away/gone
 2007,perfumed,cream,F,Food 
 2007,fragrant,air,F,Gas 
 2007,fragrant,goddess,F,Deity 
@@ -2785,9 +2785,9 @@ year,adj,noun,period,category
 2008,scented,oil,F,Food 
 2008,sweet-smelling,field,F,Knowledge 
 2008,fragrant,moist,F,Of/pertaining to part of plant 
-2008,fragrant,smell,F,Smell/odour  smell (a1175–)
+2008,fragrant,smell,F,Smell/odour
 2008,sweet-smelling,pillow,F,Cause to have specific position/arrangement 
-2008,fragrant,smell,F,Smell/odour  smell (a1175–)
+2008,fragrant,smell,F,Smell/odour
 2008,scented,handkerchief,F,Clothing 
 2009,scented,white,F,Make white 
 2009,sweet-smelling,flower,F,Quality of being good 
@@ -2798,24 +2798,24 @@ year,adj,noun,period,category
 2009,fragrant,pale,F,The body 
 2009,perfumed,attacker,F,Harm/detriment 
 1823,fragrant,phlox,A,Particular plants 
-1825,perfumed,atmosphere,A,"Atmosphere, weather  atmosphere (1638–)"
+1825,perfumed,atmosphere,A,"Atmosphere, weather"
 1828,scented,red,A,The body 
 1829,fragrant,wind,A,Cause to have specific position/arrangement 
-1832,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1832,fragrant,breath,A,Source/principle of life
 1832,perfumed,garden,A,Farming 
-1835,fragrant,blossom,A,)
+1835,fragrant,blossom,A,NA
 1835,fragrant,tribute,A,Fees and taxes 
-1838,fragrant,breath,A,Source/principle of life  breath (a1300–)
+1838,fragrant,breath,A,Source/principle of life
 1840,perfumed,bowers,A,NA
 1841,fragrant,air,A,Gas 
 1843,fragrant,incense,A,Smell/odour 
 1845,perfumed,island,A,Land 
 1850,scented,herb,B,Healing/cure 
 1851,fragrant,buckwheat,B,Food 
-1851,fragrant,memory,B,Memory  memory (c1250–)
+1851,fragrant,memory,B,Memory
 1853,fragrant,flower,B,Quality of being good 
 1853,fragrant,weed,B,Farm 
-1853,fragrant,virtue,B,Virtue  virtue (a1225–)
+1853,fragrant,virtue,B,Virtue
 1853,fragrant,flower,B,Quality of being good 
 1854,scented,air,B,Gas 
 1854,perfumed,liquid,B,Liquid phase 
@@ -2827,8 +2827,8 @@ year,adj,noun,period,category
 1855,fragrant,decoction,B,Food 
 1855,fragrant,flower,B,Quality of being good 
 1855,perfumed,lock,B,Water 
-1856,fragrant,blossom,B,)
-1856,fragrant,exhalation,B,Gas  
+1856,fragrant,blossom,B,NA
+1856,fragrant,exhalation,B,Gas
 1857,fragrant,shrine,B,Death 
 1857,fragrant,plant,B,Furnish with inhabitants 
 1857,scented,tea,B,Particular plants 
@@ -2838,21 +2838,21 @@ year,adj,noun,period,category
 1859,perfumed,one,B,Kind/sort 
 1862,fragrant,coolness,B,Behaviour 
 1863,fragrant,berry,B,Be food for 
-1863,fragrant,bed,B,Put in bed/provide a bed for  bed (c1200–)
+1863,fragrant,bed,B,Put in bed/provide a bed for
 1864,perfumed,flower,B,Quality of being good 
 1864,perfumed,wind,B,Cause to have specific position/arrangement 
 1864,fragrant,tree,B,Kinship/relationship 
-1864,fragrant,breath,B,Source/principle of life  breath (a1300–)
-1864,fragrant,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1864,fragrant,breath,B,Source/principle of life
+1864,fragrant,atmosphere,B,"Atmosphere, weather"
 1864,fragrant,flower,B,Quality of being good 
-1865,fragrant,memory,B,Memory  memory (c1250–)
+1865,fragrant,memory,B,Memory
 1865,fragrant,lamp,B,Light 
 1865,perfumed,air,B,Gas 
 1866,perfumed,weapon,B,Military equipment 
-1866,scented,atmosphere,B,"Atmosphere, weather  atmosphere (1638–)"
+1866,scented,atmosphere,B,"Atmosphere, weather"
 1866,fragrant,eglantine,B,Particular plants 
 1868,fragrant,tobacco,B,Particular plants 
-1868,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1868,fragrant,odor,B,Smell/odour
 1869,perfumed,beauty,B,Beauty 
 1870,scented,mixture,B,Wholeness 
 1870,fragrant,globe,B,Shape 
@@ -2860,8 +2860,8 @@ year,adj,noun,period,category
 1872,perfumed,dandy,B,Fashionableness 
 1872,fragrant,weed,B,Farm 
 1873,fragrant,hyson,B,Drink 
-1873,fragrant,blossom,B,)
-1873,fragrant,pine,B,Suffering  pine (c1205–)
+1873,fragrant,blossom,B,NA
+1873,fragrant,pine,B,Suffering
 1874,fragrant,oil,B,Food 
 1875,fragrant,spire,B,Particular plants 
 1875,fragrant,milky,B,Pertaining to colour 
@@ -2872,14 +2872,14 @@ year,adj,noun,period,category
 1876,fragrant,myrtle,B,Particular plants 
 1876,fragrant,orchard,B,Farming 
 1876,fragrant,freshness,B,Cleanness/dirtiness 
-1876,fragrant,pine,B,Suffering  pine (c1205–)
+1876,fragrant,pine,B,Suffering
 1877,perfumed,hay,B,Dancing 
 1877,scented,byway,B,Means of travel 
-1877,fragrant,bed,B,Put in bed/provide a bed for  bed (c1200–)
+1877,fragrant,bed,B,Put in bed/provide a bed for
 1877,fragrant,hay,B,Dancing 
 1877,fragrant,flower,B,Quality of being good 
 1878,fragrant,crystal,B,Mineral 
-1879,fragrant,beverage,B,Drink  beverage (c1325–)
+1879,fragrant,beverage,B,Drink
 1880,fragrant,draught,B,Drink 
 1881,fragrant,flower,B,Quality of being good 
 1882,fragrant,garden,B,Farming 
@@ -2892,30 +2892,30 @@ year,adj,noun,period,category
 1885,fragrant,cargo,B,Navigation 
 1885,fragrant,gale,B,"Atmosphere, weather "
 1885,fragrant,air,B,Gas 
-1887,fragrant,blossom,B,)
+1887,fragrant,blossom,B,NA
 1887,fragrant,clover,B,Particular plants 
 1888,fragrant,fern,B,Equipment 
 1888,fragrant,wreath,B,Farming 
 1889,fragrant,burden,B,Transport 
 1890,fragrant,bunch,B,Ill-health 
 1890,fragrant,bower,B,Inhabited place 
-1891,fragrant,wild,C,Of/pertaining to creation  
+1891,fragrant,wild,C,Of/pertaining to creation
 1891,fragrant,birch,C,Punishment 
 1893,fragrant,shell,C,Relative position 
 1893,fragrant,sauce,C,Food 
-1893,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1893,fragrant,odor,C,Smell/odour
 1894,fragrant,lace,C,Equipment 
 1894,fragrant,burden,C,Transport 
 1895,perfumed,lady,C,Person 
-1895,fragrant,bed,C,Put in bed/provide a bed for  bed (c1200–)
+1895,fragrant,bed,C,Put in bed/provide a bed for
 1896,fragrant,sandal,C,Clothing 
-1897,perfumed,breath,C,Source/principle of life  breath (a1300–)
+1897,perfumed,breath,C,Source/principle of life
 1898,fragrant,wood,C,Materials 
 1899,scented,forest,C,Hunting 
 1899,scented,danger,C,Harm/detriment 
 1899,fragrant,sentence,C,Administration of justice 
 1900,fragrant,mug,C,Drink 
-1900,fragrant,memory,C,Memory  memory (c1250–)
+1900,fragrant,memory,C,Memory
 1902,fragrant,hower,C,NA
 1902,fragrant,rose,C,Beauty 
 1902,scented,bloom,C,Part of plant 
@@ -2930,8 +2930,8 @@ year,adj,noun,period,category
 1905,perfumed,tea,C,Particular plants 
 1905,scented,soap,C,Cleanness/dirtiness 
 1906,fragrant,fir,C,Particular plants 
-1906,fragrant,load,C,Transport  
-1906,fragrant,fluid,C,Fluids  fluid (1603–)
+1906,fragrant,load,C,Transport
+1906,fragrant,fluid,C,Fluids
 1907,fragrant,short,C,The Arts 
 1908,fragrant,steam,C,Liquid 
 1908,fragrant,petal,C,Part of plant 
@@ -2941,7 +2941,7 @@ year,adj,noun,period,category
 1909,fragrant,wind,C,Cause to have specific position/arrangement 
 1910,fragrant,hay,C,Dancing 
 1910,fragrant,chip,C,Quantity 
-1910,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1910,fragrant,odor,C,Smell/odour
 1910,fragrant,white,C,Make white 
 1911,sweet-smelling,wood,C,Materials 
 1911,fragrant,summer,C,Period 
@@ -2981,7 +2981,7 @@ year,adj,noun,period,category
 1922,fragrant,scent,C,Hunting 
 1922,fragrant,flower,C,Quality of being good 
 1922,scented,orchis,C,Particular plants 
-1922,fragrant,area,C,Space  
+1922,fragrant,area,C,Space
 1922,fragrant,plant,C,Furnish with inhabitants 
 1922,fragrant,particle,C,Wholeness 
 1922,scented,leaf,C,Relative position 
@@ -3006,7 +3006,7 @@ year,adj,noun,period,category
 1924,fragrant,canopy,C,Inhabited place 
 1924,scented,field,C,Knowledge 
 1925,sweet-smelling,resin,C,Materials 
-1925,fragrant,wild,C,Of/pertaining to creation  
+1925,fragrant,wild,C,Of/pertaining to creation
 1926,perfumed,note,C,Take notice of 
 1926,scented,taste,C,Be food for 
 1926,sweet-smelling,fellow,C,Love 
@@ -3017,9 +3017,9 @@ year,adj,noun,period,category
 1928,fragrant,fruit,C,Plants 
 1929,fragrant,bale,C,Suffering 
 1929,scented,ruin,C,Adversity 
-1930,fragrant,blossom,C,)
+1930,fragrant,blossom,C,NA
 1930,scented,bloom,C,Part of plant 
-1930,fragrant,picture,C,Representation  picture (c1420–)
+1930,fragrant,picture,C,Representation
 1931,fragrant,garden,D,Farming 
 1932,scented,flower,D,Quality of being good 
 1933,fragrant,stream,D,Quantity 
@@ -3036,15 +3036,15 @@ year,adj,noun,period,category
 1935,scented,orange,D,Particular plants 
 1936,fragrant,breeze,D,"Atmosphere, weather "
 1936,fragrant,scent,D,Hunting 
-1936,scented,loveliness,D,Beauty  loveliness (a1340–)
-1936,scented,loveliness,D,Beauty  loveliness (a1340–)
+1936,scented,loveliness,D,Beauty
+1936,scented,loveliness,D,Beauty
 1937,scented,bower,D,Inhabited place 
 1937,fragrant,yard,D,Farming 
 1937,perfumed,water,D,Cleanness/dirtiness 
 1938,sweet-smelling,native,D,Of/pertaining to existence 
 1939,scented,cheek,D,Farming 
 1939,fragrant,hothouse,D,Cleanness/dirtiness 
-1939,fragrant,blossom,D,)
+1939,fragrant,blossom,D,NA
 1939,fragrant,spice,D,Sleeping and waking 
 1939,sweet-smelling,perfume,D,Smell/odour 
 1940,fragrant,coffee,D,Drink 
@@ -3054,7 +3054,7 @@ year,adj,noun,period,category
 1942,scented,bath,D,Relative position 
 1942,perfumed,bath,D,Relative position 
 1943,fragrant,smoke,D,Affect the senses 
-1944,scented,breath,D,Source/principle of life  breath (a1300–)
+1944,scented,breath,D,Source/principle of life
 1944,sweet-smelling,air,D,Gas 
 1944,fragrant,grove,D,Relative position 
 1944,fragrant,chi-chi,D,Ethnicities 
@@ -3071,7 +3071,7 @@ year,adj,noun,period,category
 1948,perfumed,folder,D,Relative position 
 1949,fragrant,summer,D,Period 
 1950,fragrant,bouquet,D,Farming 
-1950,sweet-smelling,pine,D,Suffering  pine (c1205–)
+1950,sweet-smelling,pine,D,Suffering
 1952,scented,water,D,Cleanness/dirtiness 
 1952,fragrant,snowfall,D,"Atmosphere, weather "
 1952,fragrant,grapefruit,D,Particular plants 
@@ -3113,14 +3113,14 @@ year,adj,noun,period,category
 1979,perfumed,air,E,Gas 
 1979,fragrant,hay,E,Dancing 
 1980,scented,candle,E,Artefacts 
-1982,fragrant,old,E,Of/pertaining to the past/passed away/gone  
+1982,fragrant,old,E,Of/pertaining to the past/passed away/gone
 1983,perfumed,wax,E,Change 
 1984,perfumed,forest,E,Hunting 
 1984,fragrant,ditto,E,Relationship 
 1985,perfumed,malice,E,Harmfulness 
 1985,scented,social,E,Loving 
 1985,fragrant,dough,E,Constitution of matter 
-1985,fragrant,pine,E,Suffering  pine (c1205–)
+1985,fragrant,pine,E,Suffering
 1986,perfumed,mood,E,Linguistics 
 1987,fragrant,eucalyptus,E,Particular plants 
 1987,fragrant,fare,E,Food 
@@ -3145,26 +3145,26 @@ year,adj,noun,period,category
 1990,fragrant,white,E,Make white 
 1991,fragrant,advice,F,"Judgement, decision "
 1991,sweet-smelling,scent,F,Hunting 
-1992,perfumed,die,F,Die  die (c1135–)
+1992,perfumed,die,F,Die
 1992,fragrant,wood,F,Materials 
 1992,fragrant,frangipani,F,Particular plants 
-1992,fragrant,old,F,Of/pertaining to the past/passed away/gone  
+1992,fragrant,old,F,Of/pertaining to the past/passed away/gone
 1993,scented,mall,F,Equipment 
 1993,scented,foot,F,Distance 
 1993,fragrant,wine,F,Drink 
 1995,fragrant,countryside,F,Inhabited place 
-1995,fragrant,beast,F,Animals  beast (c1220–)
+1995,fragrant,beast,F,Animals
 1995,scented,lotion,F,Healing/cure 
 1996,fragrant,wreath,F,Farming 
 1996,scented,natural,F,Pertaining to behaviour 
 1996,fragrant,flower,F,Quality of being good 
 1998,fragrant,needle,F,Indication 
 1998,fragrant,plant,F,Furnish with inhabitants 
-1998,scented,body,F,The body  body (c1200–)
+1998,scented,body,F,The body
 1999,scented,wax,F,Change 
 1999,fragrant,herb,F,Healing/cure 
 1999,fragrant,alternative,F,Pertaining to change 
-2000,fragrant,pine,F,Suffering  pine (c1205–)
+2000,fragrant,pine,F,Suffering
 2000,scented,candle,F,Artefacts 
 2000,fragrant,fir,F,Particular plants 
 2000,fragrant,sauce,F,Food 
@@ -3184,14 +3184,14 @@ year,adj,noun,period,category
 2002,fragrant,saffron,F,Food 
 2002,fragrant,saffron,F,Food 
 2002,perfumed,talc,F,Minerals 
-2002,fragrant,body,F,The body  body (c1200–)
-2002,perfumed,body,F,The body  body (c1200–)
-2002,fragrant,body,F,The body  body (c1200–)
+2002,fragrant,body,F,The body
+2002,perfumed,body,F,The body
+2002,fragrant,body,F,The body
 2002,fragrant,lily,F,Indication 
 2002,fragrant,secretary,F,Office 
 2002,fragrant,breeze,F,"Atmosphere, weather "
 2002,scented,mask,F,Knowledge 
-2002,scented,eye,F,Sight/vision  eye (a1200–)
+2002,scented,eye,F,Sight/vision
 2003,fragrant,spice,F,Sleeping and waking 
 2003,fragrant,bouquet,F,Farming 
 2003,scented,candle,F,Artefacts 
@@ -3209,10 +3209,10 @@ year,adj,noun,period,category
 2006,sweet-smelling,house,F,Artefacts 
 2006,scented,victory,F,Prosperity 
 2006,fragrant,topping,F,Relative position 
-2006,scented,body,F,The body  body (c1200–)
+2006,scented,body,F,The body
 2006,fragrant,sorbet,F,Drink 
 2007,fragrant,bath,F,Relative position 
-2007,sweet-smelling,blossom,F,)
+2007,sweet-smelling,blossom,F,NA
 2007,scented,flower,F,Quality of being good 
 2009,perfumed,soap,F,Cleanness/dirtiness 
 2009,scented,soap,F,Cleanness/dirtiness 
@@ -3234,7 +3234,7 @@ year,adj,noun,period,category
 1980,scented,wisteria,E,Particular plants 
 1980,scented,spray,E,Part of plant 
 1981,fragrant,scent,E,Hunting 
-1982,fragrant,blossom,E,)
+1982,fragrant,blossom,E,NA
 1987,fragrant,one,E,Kind/sort 
 1987,fragrant,flower,E,Quality of being good 
 1987,fragrant,flower,E,Quality of being good 
@@ -3266,7 +3266,7 @@ year,adj,noun,period,category
 2007,fragrant,herb,F,Healing/cure 
 1817,fragrant,offer,A,Give 
 1829,perfumed,bath,A,Relative position 
-1832,fragrant,blossom,A,)
+1832,fragrant,blossom,A,NA
 1833,fragrant,flower,A,Quality of being good 
 1838,fragrant,flower,A,Quality of being good 
 1838,fragrant,honeysuckle,A,Particular plants 
@@ -3274,7 +3274,7 @@ year,adj,noun,period,category
 1841,fragrant,gum,A,Constitution of matter 
 1841,fragrant,gummy,A,Constitution of matter 
 1841,fragrant,birch,A,Punishment 
-1841,fragrant,blossom,A,)
+1841,fragrant,blossom,A,NA
 1841,fragrant,substance,A,Deity 
 1841,fragrant,flower,A,Quality of being good 
 1841,fragrant,flower,A,Quality of being good 
@@ -3288,14 +3288,14 @@ year,adj,noun,period,category
 1844,fragrant,rose,A,Beauty 
 1844,scented,rose,A,Beauty 
 1844,fragrant,flower,A,Quality of being good 
-1844,fragrant,commerce,A,Trade and finance  commerce (1587–)
+1844,fragrant,commerce,A,Trade and finance
 1845,perfumed,louis,A,Money 
-1845,perfumed,flavour,A,Smell/odour  flavour (a1400–)
-1845,perfumed,flavour,A,Smell/odour  flavour (a1400–)
-1845,perfumed,flavour,A,Smell/odour  flavour (a1400–)
-1845,perfumed,flavour,A,Smell/odour  flavour (a1400–)
-1845,perfumed,flavour,A,Smell/odour  flavour (a1400–)
-1845,perfumed,flavour,A,Smell/odour  flavour (a1400–)
+1845,perfumed,flavour,A,Smell/odour
+1845,perfumed,flavour,A,Smell/odour
+1845,perfumed,flavour,A,Smell/odour
+1845,perfumed,flavour,A,Smell/odour
+1845,perfumed,flavour,A,Smell/odour
+1845,perfumed,flavour,A,Smell/odour
 1845,perfumed,cherry,A,Particular plants 
 1847,fragrant,flower,A,Quality of being good 
 1847,scented,fop,A,Fashionableness 
@@ -3305,9 +3305,9 @@ year,adj,noun,period,category
 1849,fragrant,flower,A,Quality of being good 
 1849,fragrant,flower,A,Quality of being good 
 1850,perfumed,flavor.,B,NA
-1850,perfumed,flavor,B,Smell/odour  flavour (a1400–)
-1850,perfumed,flavor,B,Smell/odour  flavour (a1400–)
-1850,perfumed,flavor,B,Smell/odour  flavour (a1400–)
+1850,perfumed,flavor,B,Smell/odour
+1850,perfumed,flavor,B,Smell/odour
+1850,perfumed,flavor,B,Smell/odour
 1851,fragrant,species,B,Philosophy 
 1851,fragrant,flower,B,Quality of being good 
 1851,fragrant,flower,B,Quality of being good 
@@ -3317,7 +3317,7 @@ year,adj,noun,period,category
 1851,fragrant,Martynea,B,NA
 1851,fragrant,flower,B,Quality of being good 
 1851,fragrant,flower,B,Quality of being good 
-1851,fragrant,hardy,B,Encourage/embolden  hardy (a1225–)
+1851,fragrant,hardy,B,Encourage/embolden
 1851,fragrant,climber,B,Motion in a certain direction 
 1851,fragrant,flower,B,Quality of being good 
 1851,fragrant,flower,B,Quality of being good 
@@ -3331,23 +3331,23 @@ year,adj,noun,period,category
 1851,fragrant,shrub,B,Drink 
 1852,fragrant,shade,B,Existence 
 1853,fragrant,sweet,B,Pertaining to behaviour 
-1853,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1853,fragrant,odor,B,Smell/odour
 1853,scented,sugar-water,B,Food 
 1854,fragrant,flower,B,Quality of being good 
 1856,fragrant,scent,B,Hunting 
 1856,fragrant,weed,B,Farm 
-1856,fragrant,blossom,B,)
+1856,fragrant,blossom,B,NA
 1856,fragrant,breeze,B,"Atmosphere, weather "
 1856,scented,sword-grass,B,Particular plants 
 1856,fragrant,couch,B,Inhabited place 
 1856,fragrant,haunt,B,Inhabit temporarily 
 1856,fragrant,bank,B,Land 
 1858,perfumed,aroma,B,Food 
-1858,perfumed,flavor,B,Smell/odour  flavour (a1400–)
+1858,perfumed,flavor,B,Smell/odour
 1858,perfumed,rix,B,NA
 1858,perfumed,juice,B,Part of plant 
-1859,perfumed,breath,B,Source/principle of life  breath (a1300–)
-1863,fragrant,blossom,B,)
+1859,perfumed,breath,B,Source/principle of life
+1863,fragrant,blossom,B,NA
 1863,fragrant,plantation,B,Farming 
 1863,fragrant,bloom,B,Part of plant 
 1863,perfumed,rose,B,Beauty 
@@ -3358,8 +3358,8 @@ year,adj,noun,period,category
 1868,perfumed,glove,B,Clothing 
 1868,scented,fountain,B,Water 
 1868,fragrant,flower,B,Quality of being good 
-1868,fragrant,odour,B,Smell/odour  odour/odor (a1300–)
-1869,fragrant,odor,B,Smell/odour  odour/odor (a1300–)
+1868,fragrant,odour,B,Smell/odour
+1869,fragrant,odor,B,Smell/odour
 1869,perfumed,chambers,B,Inhabited place 
 1870,fragrant,flower,B,Quality of being good 
 1870,perfumed,powder,B,Constitution of matter 
@@ -3374,7 +3374,7 @@ year,adj,noun,period,category
 1873,fragrant,hay-carts,B,NA
 1873,fragrant,wood,B,Materials 
 1873,scented,vine,B,Particular plants 
-1873,fragrant,drop,B,Liquid  
+1873,fragrant,drop,B,Liquid
 1874,scented,herb,B,Healing/cure 
 1874,scented,herb,B,Healing/cure 
 1874,perfumed,water,B,Cleanness/dirtiness 
@@ -3413,18 +3413,18 @@ year,adj,noun,period,category
 1889,fragrant,forest,B,Hunting 
 1889,fragrant,flower,B,Quality of being good 
 1889,fragrant,forest,B,Hunting 
-1889,sweet-smelling,pine,B,Suffering  pine (c1205–)
+1889,sweet-smelling,pine,B,Suffering
 1891,fragrant,storm-wind,C,"Atmosphere, weather "
 1891,fragrant,land,C,Navigate/sail (a stretch of water) 
 1891,fragrant,smoke,C,Affect the senses 
 1891,scented,myall,C,Ethnicities 
 1891,fragrant,timber,C,Indication 
-1891,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1891,fragrant,odor,C,Smell/odour
 1891,fragrant,flower,C,Quality of being good 
-1891,fragrant,smell,C,Smell/odour  smell (a1175–)
+1891,fragrant,smell,C,Smell/odour
 1891,fragrant,seed,C,Biology 
 1891,fragrant,resin,C,Materials 
-1891,fragrant,odor,C,Smell/odour  odour/odor (a1300–)
+1891,fragrant,odor,C,Smell/odour
 1891,fragrant,bark,C,Speak 
 1891,fragrant,aromatic,C,Odorous 
 1891,perfumed,distillation,C,Chemistry 
@@ -3435,23 +3435,23 @@ year,adj,noun,period,category
 1895,perfumed,yellow,C,Particular plants 
 1895,scented,air,C,Gas 
 1895,fragrant,bosom,C,Spirituality 
-1895,fragrant,odour,C,Smell/odour  odour/odor (a1300–)
+1895,fragrant,odour,C,Smell/odour
 1895,fragrant,field,C,Knowledge 
 1895,fragrant,root,C,Causation 
-1895,fragrant,odour,C,Smell/odour  odour/odor (a1300–)
-1898,fragrant,pine,C,Suffering  pine (c1205–)
+1895,fragrant,odour,C,Smell/odour
+1898,fragrant,pine,C,Suffering
 1898,fragrant,wintergreen,C,Particular plants 
 1898,scented,air,C,Gas 
 1898,fragrant,wine,C,Drink 
 1898,fragrant,flower,C,Quality of being good 
 1898,fragrant,nectar,C,Drink 
-1898,fragrant,work,C,Cause/bring about  work (c1220–)
+1898,fragrant,work,C,Cause/bring about
 1899,fragrant,clover,C,Particular plants 
 1899,fragrant,lock,C,Water 
 1901,fragrant,beauty,C,Beauty 
 1901,fragrant,mistiness,C,"Atmosphere, weather "
 1901,fragrant,wood,C,Materials 
-1901,fragrant,easter,C,East  easter (1387–)
+1901,fragrant,easter,C,East
 1901,fragrant,flower,C,Quality of being good 
 1901,scented,plant,C,Furnish with inhabitants 
 1901,perfumed,whisper,C,Think/behave contemptuously 
@@ -3459,15 +3459,15 @@ year,adj,noun,period,category
 1901,fragrant,one,C,Kind/sort 
 1901,fragrant,hepaticas,C,NA
 1901,fragrant,purple,C,Clothing 
-1901,fragrant,wild,C,Of/pertaining to creation  
+1901,fragrant,wild,C,Of/pertaining to creation
 1901,fragrant,spike,C,Equipment 
 1901,fragrant,stone,C,Come by death 
 1901,fragrant,thistle,C,Indication 
 1901,fragrant,flower,C,Quality of being good 
 1901,fragrant,colony,C,Inhabitant 
 1901,fragrant,little,C,Social class 
-1901,fragrant,blossom,C,)
-1901,fragrant,blossom,C,)
+1901,fragrant,blossom,C,NA
+1901,fragrant,blossom,C,NA
 1901,fragrant,flower,C,Quality of being good 
 1901,fragrant,pink,C,Navigation 
 1901,fragrant,flower,C,Quality of being good 
@@ -3482,10 +3482,10 @@ year,adj,noun,period,category
 1905,fragrant,vessel,C,Person 
 1905,fragrant,cup,C,Suffering 
 1906,fragrant,charm,C,The occult 
-1906,fragrant,memory,C,Memory  memory (c1250–)
+1906,fragrant,memory,C,Memory
 1906,fragrant,leaf,C,Relative position 
 1906,fragrant,gum,C,Constitution of matter 
-1908,perfumed,breath,C,Source/principle of life  breath (a1300–)
+1908,perfumed,breath,C,Source/principle of life
 1909,fragrant,plants.,C,NA
 1910,perfumed,sea,C,Quantity 
 1910,sweet-smelling,vapour,C,Gas 
@@ -3495,19 +3495,19 @@ year,adj,noun,period,category
 1914,perfumed,water,C,Cleanness/dirtiness 
 1914,fragrant,temple,C,The body 
 1914,fragrant,petal,C,Part of plant 
-1914,fragrant,spring,C,Spring  spring (c1175–)
+1914,fragrant,spring,C,Spring
 1914,sweet-smelling,favorite,C,Love 
 1914,fragrant,snowdrift,C,"Atmosphere, weather "
 1914,fragrant,outdoor,C,Of/pertaining to gas 
 1914,fragrant,open,C,Cause to have specific position/arrangement 
 1914,fragrant,flower,C,Quality of being good 
-1917,fragrant,blossom,C,)
+1917,fragrant,blossom,C,NA
 1919,fragrant,apple,C,Particular plants 
 1919,sweet-smelling,savor.,C,NA
 1920,fragrant,peat,C,Materials 
 1920,fragrant,spicy,C,Food 
 1920,fragrant,blue,C,Pertaining to colour 
-1920,fragrant,place,C,Place  place (c1250–)
+1920,fragrant,place,C,Place
 1921,fragrant,flower,C,Quality of being good 
 1922,fragrant,sandalwood,C,Particular plants 
 1922,fragrant,flower,C,Quality of being good 
@@ -3519,20 +3519,20 @@ year,adj,noun,period,category
 1929,sweet-smelling,herb,C,Healing/cure 
 1929,fragrant,scented,C,Odorous 
 1930,fragrant,forest,C,Hunting 
-1931,scented,gift,D,Ability  
+1931,scented,gift,D,Ability
 1931,scented,danger,D,Harm/detriment 
 1931,scented,victory,D,Prosperity 
 1932,fragrant,empty,D,"Capable of being understood, intelligible "
 1934,scented,bath,D,Relative position 
 1935,scented,powder,D,Constitution of matter 
 1937,perfumed,tea-rose,D,Particular plants 
-1937,fragrant,memory,D,Memory  memory (c1250–)
+1937,fragrant,memory,D,Memory
 1942,fragrant,zodiac,D,The universe 
 1942,perfumed,soap,D,Cleanness/dirtiness 
 1942,fragrant,water,D,Cleanness/dirtiness 
 1942,scented,after-shave,D,Smell/odour 
 1942,perfumed,cosmetic,D,Beautified 
-1943,fragrant,smell,D,Smell/odour  smell (a1175–)
+1943,fragrant,smell,D,Smell/odour
 1943,fragrant,perfume,D,Smell/odour 
 1944,fragrant,dried,D,Liquid 
 1944,fragrant,kitchen,D,Food 
@@ -3547,7 +3547,7 @@ year,adj,noun,period,category
 1946,perfumed,corruption,D,Death 
 1947,scented,talcum,D,Minerals 
 1953,fragrant,perfume,D,Smell/odour 
-1953,fragrant,fluid,D,Fluids  fluid (1603–)
+1953,fragrant,fluid,D,Fluids
 1953,perfumed,powder,D,Constitution of matter 
 1954,scented,soap,D,Cleanness/dirtiness 
 1958,fragrant,bayberry,D,Particular plants 
@@ -3580,10 +3580,10 @@ year,adj,noun,period,category
 1988,scented,air,E,Gas 
 1989,fragrant,omelet,E,Food 
 1995,perfumed,deodorant,F,Smell/odour 
-1995,sweet-smelling,kindling,F,Family unit  
-1997,fragrant,smell,F,Smell/odour  smell (a1175–)
+1995,sweet-smelling,kindling,F,Family unit
+1997,fragrant,smell,F,Smell/odour
 2005,scented,notepaper.,F,NA
 2005,fragrant,aroma,F,Food 
 2005,fragrant,apple,F,Particular plants 
-2006,perfumed,flock,F,Animals collectively  
+2006,perfumed,flock,F,Animals collectively
 2009,scented,joke,F,Pleasure 

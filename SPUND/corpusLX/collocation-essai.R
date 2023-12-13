@@ -288,15 +288,20 @@ d9.df.cl<-d9.df.cl[m,]
 #write_csv(d9.df.w.cats,"fragrance_COHA_wt-categories.csv")
 
 # read in saved dataset
-d9.a<-read.csv("fragrance_COHA_wt-categories.csv") #!!! not read in with read_csv(), but read.csv() !!!!!
+d9.a<-read.csv("https://github.com/esteeschwarz/R-essais/raw/main/SPUND/corpusLX/fragrance_COHA_wt-categories.csv") #!!! not read in with read_csv(), but read.csv() !!!!!
 
 ######################
 # clean up categories:
 cat.split<-stri_split_regex(d9.a$category,"  ",simplify = T)
-m<-!is.na(cat.split[,2])
+m<-""!=cat.split[,2]
+sum(m,na.rm = T)
+m<-d9.a$category==")"
+d9.a$category[m]<-NA
+write_csv(d9.a,"fragrance_COHA_wt-categories.csv")
 
-library(collostructions)
-collex.covar(d9.df.cl[c("noun","period")])
+### stats
+#library(collostructions)
+#collex.covar(d9.df.cl[c("noun","period")])
 collex.covar(d9.a[c("noun","period")])
 #typeof(d9.a)
 collex.covar(d9.a[c("period","category")])
