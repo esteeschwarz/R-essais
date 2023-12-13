@@ -15,7 +15,7 @@ library(lme4)
 ### > this is not to source, its containing just notes on the cqp queries
 # tempfun.1<-function(){
 # #pre:
-# install.packages(file.choose(),repos = NULL)
+ #install.packages(file.choose(),repos = NULL)
 # #ssh
 # [hw="perfumed"][]{0,3}[pos="N.*"]
 # 80
@@ -257,7 +257,7 @@ m<-d9.df$year>=1991&d9.df$year<=2030
 d9.df$period[m]<-"F"
 
 
-# collex.covar(d9.df[c("noun","period")])
+ #collex.covar(d9.df[c("noun","period")])
 
 #get categories for class set:
 #d9.df.sub<-subset(d9.df,year==1919)
@@ -286,5 +286,19 @@ d9.df.cl<-d9.df.cl[m,]
 #d9.df.w.cats<-get.cat.df(d9.df.cl,"noun")
 ##########################################
 #write_csv(d9.df.w.cats,"fragrance_COHA_wt-categories.csv")
+
+# read in saved dataset
+d9.a<-read.csv("fragrance_COHA_wt-categories.csv") #!!! not read in with read_csv(), but read.csv() !!!!!
+
+######################
+# clean up categories:
+cat.split<-stri_split_regex(d9.a$category,"  ",simplify = T)
+m<-!is.na(cat.split[,2])
+
+library(collostructions)
+collex.covar(d9.df.cl[c("noun","period")])
+collex.covar(d9.a[c("noun","period")])
+#typeof(d9.a)
+collex.covar(d9.a[c("period","category")])
 
 
