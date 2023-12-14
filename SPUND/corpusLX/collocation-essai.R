@@ -292,18 +292,38 @@ d9.a<-read.csv("https://github.com/esteeschwarz/R-essais/raw/main/SPUND/corpusLX
 
 ######################
 # clean up categories:
+# only run if starting from basic cqp dataset
+temp.clean<-function(set){
 cat.split<-stri_split_regex(d9.a$category,"  ",simplify = T)
 m<-""!=cat.split[,2]
 sum(m,na.rm = T)
 m<-d9.a$category==")"
 d9.a$category[m]<-NA
-write_csv(d9.a,"fragrance_COHA_wt-categories.csv")
+#write_csv(d9.a,"fragrance_COHA_wt-categories.csv")
+}
+set<-d9.a
+temp.clean.2<-function(set){
+  #t1<-"be auty "
+  #gsub(" $","p",t1)
+  set$category<-gsub(" $","",set$category)
+return(set)
+}
+#d9.b<-temp.clean.2(d9.a)
+#write_csv(d9.b,"fragrance_COHA_wt-categories.csv")
 
+length(unique(d9.b$category))
 ### stats
 #library(collostructions)
 #collex.covar(d9.df.cl[c("noun","period")])
 collex.covar(d9.a[c("noun","period")])
 #typeof(d9.a)
-collex.covar(d9.a[c("period","category")])
-
-
+col.1<-collex.covar(d9.b[c("period","category")])
+col.1
+plot(col.1)
+barplot(col.1$fS1~col.1$SLOT1+col.1$SLOT2)
+barplot(col.1$fS1~col.1$SLOT2+col.1$SLOT1)
+lm4<-lmer(OBS~SLOT2+(EXP|SLOT1),col.1)
+summary(lm4)
+sum(col.1$fS2)
+m<-is.na(d9.a$noun)
+sum(m)
