@@ -61,6 +61,7 @@ library(lme4)
 d9.stef<-read_csv("https://userpage.fu-berlin.de/anatolstef/t/FRAGRANT-NOUN-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
 d9.st<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
 d10.stef<-read.csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/Casestudy2_AS_unpleasant.csv")
+d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
 ############
 ############
 ############
@@ -351,7 +352,7 @@ m<-""==d10.df$Category
 d10.df.m<-d10.df
 d10.df.m$Category[m]<-d10.df$category[m]
 getwd()
-write_csv(d10.df.m,"~/boxhkw/21s/dh/local/spund/corpuslx/stefanowitsch/casestudy2.csv")
+#write_csv(d10.df.m,"~/boxhkw/21s/dh/local/spund/corpuslx/stefanowitsch/casestudy2.csv")
 ##########
 #peterson-traba(2021).getcategories
 ###################################
