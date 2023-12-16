@@ -60,6 +60,7 @@ library(lme4)
 #these are the important datasets:
 d9.stef<-read_csv("https://userpage.fu-berlin.de/anatolstef/t/FRAGRANT-NOUN-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
 d9.st<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-COHA.csv",col_names = c("corpus","id","year","left","kwic","right"))
+d10.stef<-read.csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/Casestudy2_AS_unpleasant.csv")
 ############
 ############
 ############
@@ -70,7 +71,7 @@ d9.st<-read_csv("https://userpage.fu-berlin.de/stschwarz/cqpdata/fragrant-COHA.c
 ### this function sends a request to below adress and fetches the category for the specified noun/word
 getcat<-function(word,count){
 #q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&label=&category=&year=&startf=&endf=&startl=&endl=",word)
-q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&page=1&categoryMinis=off&categorySort=length",word)
+q<-sprintf("https://www.ht.ac.uk/category-selection/?word=%s&page=1&pos=n&categoryMinis=off&categorySort=length",word)
 g<-GET(q)
 r<-content(g,"text")
 rhtm<-read_html(r)
@@ -112,9 +113,10 @@ print(cat.array)
 }
 #wait loop
 #count<-1
+#k<-1
 #waiting loop to prevent rejected server requests to HTOED...
 for(k in 2000:1){
-cat("run",count,"on (",word,")",", wait:",k,"\n")
+cat("run",count,"- wait:",k,"\n")
   }
 return(cat.array)
 }
@@ -130,19 +132,22 @@ return(cat.array)
 # columnname<-"noun"
 ######################################################################################################
 ### this is the important function to call with a dataset containing a column with nouns to be queried
+#columnname<-"Noun"
+#dataset<-d10.stef
 get.cat.df<-function(dataset,columnname){
 cat.list<-list()
-#k<-1
+#k<-2
 #k
 d6.s<-dataset
 d6.s$category<-NA
 for(k in 1:length(d6.s[,columnname])){
-cat<-getcat(d6.s[k,columnname],k)
-ifelse(!is.na(cat),cat.list[[d6.s[k,columnname]]]<-cat,cat.list[[d6.s[k,columnname]]]<-"none")  
+cat<-getcat(d6.s[k,columnname],k)[1]
+cat<-gsub(" $","",cat)
+ifelse(!is.na(cat),cat.list[[as.character(d6.s[k,columnname])]]<-cat,cat.list[[as.character(d6.s[k,columnname])]]<-"none")  
 d6.s$category[k]<-cat
 }
 #chk.
-d9.df.sub$noun
+#d9.df.sub$noun
 cat.df<-as.data.frame(cat.list)
 cat.df<-as.data.frame(t(cat.df))
 cat.df<-cbind(token=rownames(cat.df),cat.df)
@@ -294,14 +299,19 @@ d9.a<-read.csv("https://github.com/esteeschwarz/R-essais/raw/main/SPUND/corpusLX
 # clean up categories:
 # only run if starting from basic cqp dataset
 temp.clean<-function(set){
+  d9.a<-as.data.frame(set)
 cat.split<-stri_split_regex(d9.a$category,"  ",simplify = T)
-m<-""!=cat.split[,2]
+#m<-""!=cat.split[,2]
+d9.a$category<-cat.split[,1]
 sum(m,na.rm = T)
+set$category<-gsub(" $","",set$category)
 m<-d9.a$category==")"
-d9.a$category[m]<-NA
+if(sum(m,na.rm = T)>0)
+   d9.a$category[m]<-NA
 #write_csv(d9.a,"fragrance_COHA_wt-categories.csv")
+return(d9.a)
 }
-set<-d9.a
+#set<-d10.df
 temp.clean.2<-function(set){
   #t1<-"be auty "
   #gsub(" $","p",t1)
@@ -310,7 +320,8 @@ return(set)
 }
 #d9.b<-temp.clean.2(d9.a)
 #write_csv(d9.b,"fragrance_COHA_wt-categories.csv")
-
+#############################
+temp.eval.1<-function(){
 length(unique(d9.b$category))
 ### stats
 #library(collostructions)
@@ -327,3 +338,48 @@ summary(lm4)
 sum(col.1$fS2)
 m<-is.na(d9.a$noun)
 sum(m)
+}
+###################
+#14511.casestudy2: unpleasant
+
+d10.df<-get.cat.df(d10.stef,"Noun")
+#typeof(d10.stef$Noun)
+typeof(d10.df)
+d10.df<-temp.clean(d10.df)
+#d10.df<-temp.clean.2(d10.df)
+m<-""==d10.df$Category
+d10.df.m<-d10.df
+d10.df.m$Category[m]<-d10.df$category[m]
+getwd()
+write_csv(d10.df.m,"~/boxhkw/21s/dh/local/spund/corpuslx/stefanowitsch/casestudy2.csv")
+##########
+#peterson-traba(2021).getcategories
+###################################
+cat.list<-list()
+cat.array<-c("FOOD & DRINK","PLANTS & FLOWERS","EARTH","BODY","MATTER","SENSATION","AESTHETICS","CLEANING","TEXTILE & CLOTHING")
+cat.list<-list(cat.array)
+cat.list[[cat.array[1]]]<-c("apple", "beverage", "bread", "chicken", "coffee", "cup", "drink", "food", "fruit", "liquid", "meal", "omelet", "rice", "spice", "tea", "wine")
+cat.list[[cat.array[2]]]<-c("bloom", "blossom", "bower", "flower", "garden", "geranium", "grass", "herb", "lip*", "leaf", "petal", "pine", "rose", "shrub", "vine", "violet")
+cat.list[[cat.array[3]]]<-c("breeze", "brook", "dew", "flood", "gale", "grove", "hill", "sea", "vale", "valley", "wind")
+cat.list[[cat.array[4]]]<-c("arm", "breath*", "cheek", "face", "flesh", "hair", "hand", "head", "limb", "lip*", "lock", "mouth", "shoulder", "skin", "wrist")
+cat.list[[cat.array[5]]]<-c("air", "atmosphere", "candle", "cloud*", "dust", "fume", "gas", "oil*", "night", "smoke", "steam", "vapor")
+cat.list[[cat.array[6]]]<-c("aroma", "breath*", "flavor", "incense", "scent", "smell", "odor", "taste")
+cat.list[[cat.array[7]]]<-c("cologne", "cosmetics", "cream", "oil*", "ointment", "powder", "talcum", "wax")
+cat.list[[cat.array[8]]]<-c("deodorant", "dish-water", "disinfectant", "napkin", "soap", "soap-powder", "sponge", "spray", "suds", "tissue", "wash-ball")
+cat.list[[cat.array[9]]]<-c("blanket", "cambric", "cloth", "dress", "flannel", "garment", "glove", "lace", "linen", "pillow", "robe", "sheet", "shirt", "silk")
+m<-2
+k<-1
+d10.df.m$cat.m<-NA
+for(k in 1:length(d10.df.m$Noun)){
+  noun<-d10.df.m$Noun[k]
+  m<-grep(noun,cat.list)
+print(noun)  
+print(names(cat.list[m]))
+print("printed")
+if(length(m)==1)
+   d10.df.m$cat.m[k]<-names(cat.list[m])
+  }
+
+
+
+
