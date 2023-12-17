@@ -26,7 +26,7 @@ get.ske<-function(item,run){
   cat("run",run,"\n")
   d <- GET(paste0(BASE_URL, '/wsketch'), authenticate(USERNAME, API_KEY),query=list(
   lemma=item,
-  # lpos='-v',
+  lpos='-n',
   corpname='preloaded/bnc2',
   format= 'json')
 )%>%content("text")%>%fromJSON()
@@ -135,7 +135,7 @@ k<-1
 sum(nouns.cats.known$noun=="rose")
 #nouns.cats.known$category[nouns.cats.known$noun=="rose"]
 nouns.cats.known$category<-NA
-nouns.cats.known$category.pet<-NA
+#nouns.cats.known$category.pet<-NA
 for(k in 1:length(d10.stef$Noun[m.k.pet])){
   m.3<-d10.stef$Noun[m.k.pet][k]==nouns.cats.known$noun
  sum(m.3)
@@ -148,16 +148,24 @@ for(k in 1:length(d10.stef$Noun[m.k.mod])){
   nouns.cats.known$category[m.3]<-d10.stef$category.modified[m.k.mod][k]
 }
 nouns.cats.known$category[nouns.cats.known$noun=="work"]
-write.csv(nouns.cats.known,"fragrance_known-cats_coll.cpt.csv",row.names = F)
-getwd()
+nouns.cats.known.w<-nouns.cats.known[,c(1,2,3,4,6)] # wo cat.pet, declaration l:138 discarded
+#write.csv(nouns.cats.known.w,"fragrance_known-cats_coll.cpt.csv",row.names = F)
+#to read in again for new run
+#getwd()
 #k<-8
 #d10.stef$cat.ai<-NA
 ####################
 ### 4. get collocates for nouns of unknown category and seek most frequent matches between collocates of known and unknown nouns
 ### define the category (unknown noun) to that of the category with the most agreement in collocates
-for(k in 1:length(d10.stef$Noun)){
+#for(k in 1:length(d10.stef$Noun)){
+#k<-16  
+run<-16
+noun.q<-""
+  getcat<-function(run,noun.q){
+  k<-run
   d.c.u<-1:4 # empty response simulation at the begin of the loop 
-  noun<-d10.stef$Noun[k]
+  ifelse(run>0,noun<-d10.stef$Noun[k],noun<-noun.q)
+  print(noun)
   d.c.u<-get.ske(noun,k)
   ### here test
   if (length(d.c.u)>4){
@@ -211,19 +219,22 @@ for(k in 1:length(d10.stef$Noun)){
   d.c.f<-factor(nouns.cats.known$category[m.coll])
   d.c.f.n<-factor(nouns.cats.known$noun[m.coll])
   d.c.f.f<-factor(nouns.cats.known$unique[m.coll])
+  #d.c.f.f<-nouns.cats.known$unique[m.coll]
+  #d.c.f.n<-nouns.cats.known$noun[m.coll]
   length(d.c.f)
+  noun
   length(d.c.f.n)
   #sum(d.c.f/d.c.f.n,na.rm = T)
   plot(d.c.f.n)
   d.c.t<-table(d.c.f)
-  d.c.t
-  noun
+  #names(d.c.t)
+  #noun
   d.c.t.n<-table(d.c.f.n)
   d.c.f.t<-table(d.c.f)
   d.c.f
   d.c.f.t
   d.c.f.n
-#nouns.cats.known.p<-as.double(d.c.f.f)/nouns.cats.known$unique
+#nouns.cats.known.p<-as.double(d.c.f.f)/nouns.cats.known$unique[m.coll]
 #nouns.cats.known.p.2<-nouns.cats.known$unique/as.double(d.c.f.f)
 
  #  typeof(unique(nouns.cats.known.p))
@@ -254,22 +265,70 @@ for(k in 1:length(d10.stef$Noun)){
   sum(d.c.t)
   sum(d.c.t.n)
   d.c.t.coll<-d.c.t
+  #names(d.c.t.coll)<-noun.q
   d.c.t.ass<-c(d.c.t.coll,d.c.t.both)
-  print(d.c.t.ass[which.max(d.c.t.ass)])
-  d10.stef$cat.ai[k]<-names(d.c.t.ass[which.max(d.c.t.ass)])
+  l.d.c.t.both<-length(d.c.t.both)
+  l.d.c.t.coll<-length(d.c.t.coll)
+  l.dif<-(l.d.c.t.coll-l.d.c.t.both)
+  l.dif.a<-rep(0,abs(l.dif))
+  if(l.dif>0){
+    names(l.dif.a)<-rep("sub",l.dif)
+    l.dif.a
+    d.c.t.both.cor<-c(d.c.t.both,l.dif.a)
+    d.c.t.com<-rbind(d.c.t.coll,d.c.t.both.cor)
+    d.c.t.sum<-d.c.t.coll+d.c.t.both.cor
+    catfinal<-d.c.t.sum
+  }
+  if(l.dif<=0){
+    d.c.t.both.cor<-c(d.c.t.both,d.c.t.coll)
+    catfinal<-d.c.t.both.cor
+  }
+  #sum(d.c.t.com[,1])
+ # print(d.c.t.sum)
+  print(noun)
+#catfinal<-d.c.t.ass[which.max(d.c.t.ass)]
+#d10.stef$cat.ai[k]<-catfinal
   } #end if 1
   } #end if 2
-  for (i in 5000:1){
-    cat(k,i,sum(m),"\n")
-  }
+  return(catfinal)
+  } # end getcat
+catfinal
+cat.test<-list()
+k<-7
+k
+for(k in 1:length(d10.stef$Noun)){
+#for(k in 17:19){
+  noun<-d10.stef$Noun[k]  
+  cat.test[[noun]]<-getcat(k,"")
+  cat.max<-which.max(cat.test[[noun]])
+  catfinal<-names(cat.max)
+  print(cat.test[[noun]])
+  print(catfinal)
+if(is.null(catfinal))
+     catfinal<-NA
+  d10.stef$cat.ai[k]<-catfinal
 }
+# catfinal
+# noun
+# cat.test
+#   factor(cat.test)
+#   cat.test['AN']
+#   catfinal<-names(cat.test[which.max(cat.test)])
+#   unique(nouns.cats.known$category)
+#     for (i in 5000:1){
+#     cat(k,i,sum(m),"\n")
+#   }
+#   
+# }
 write.csv(d10.stef,"fragrance2_ai-cats.csv")
 ############################################
 ### evaluate definition:
 d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
 c.ai<-d10.gold$cat.ai # cats defined with script
+c.ai<-d10.stef$cat.ai # cats defined with script
 c.gold<-d10.gold$cat.gold # cats corrected manually
 p1<-c.ai==c.gold
+sum(p1,na.rm = T)
 sum(p1,na.rm = T)/length(p1)
 78% # trefferquote to goldstandard
 ##################################
