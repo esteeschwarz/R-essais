@@ -95,17 +95,22 @@ d.c.ar<-array()
 d.c.k.ar<-list()
 m.k.pet<-d10.stef$Category!="" #original stefanowitsch (petterson) categories
 m.k.mod<-d10.stef$category.modified!="" #first training manually edited cats
+m.ai<-grep("cat.ai",colnames(d10.stef))
+if(length(m.ai)>0)
+  m.k.ai<-d10.stef$cat.ai!="" #first training manually edited cats
 sum(m.k.pet)
 sum(m.k.mod)
 m.k.w.1<-which(m.k.pet)
 m.k.w.2<-which(m.k.mod)
-m.k.c<-c(m.k.w.1,m.k.w.2) # join array of all predefined categories in df
+m.k.c<-c(m.k.w.1,m.k.w.2) # join array (rows in df) of all predefined categories in df
 #join.freqs(m.k,m.k.pet)
 length(m.k.c)
 m.k<-m.k.c
 length(d10.stef$Noun[m.k])==length(unique(d10.stef$Noun[m.k])) # seem to be doubled nouns in df
 k<-1
-### 3.2 make a sketchengine request for each noun and get the collocates
+
+### 3.2 make a sketchengine request for each noun (category defined) and get the collocates
+getknowncats<-function(m.k){
 for(k in 1:length(d10.stef$Noun[m.k])){
   d.c.k<-get.ske(d10.stef$Noun[m.k][k],k)
   d1u<-unlist(lapply(d.c.k$Gramrels$Words, get.words))
@@ -118,11 +123,24 @@ for(k in 1:length(d10.stef$Noun[m.k])){
   d.c.k.ar[[d10.stef$Noun[m.k][k]]]<-d1uu
   d1uu
 }
-d.c.k.ar$rose
+  return(d.c.k.ar)
+  
+  }
+#m.k<-92
+m.cpt<-1:length(d10.stef$Category)
+m.not<-m.cpt%in%m.k
+which(!m.not)
+d.c.k.ar<-getknowncats(m.k)
+d.c.k.ar<-getknowncats(1:2)
+#d.c.k.ar$rose
+
+
+nouns.cats.known.fun<-function(d.c.k.ar){
 d.c.k.df<-cbind(unlist(d.c.k.ar))
 nouns.nm<-stri_split_regex(rownames(d.c.k.df),"[a-z]",simplify = T)
 nouns.nm.df<-as.data.frame(as.double(nouns.nm))
 m<-nouns.nm==""
+sum(m)
 nouns.nm[m]<-NA
 mode(nouns.nm)<-"double"
 nouns.nm.sum<-rowSums(nouns.nm,na.rm = T)
@@ -131,7 +149,7 @@ nouns.nm.sum
 nouns<-stri_split_regex(rownames(d.c.k.df),"[0-9]",simplify = T)
 d.c.k.df.c<-data.frame(lfd=nouns.nm.sum,noun=nouns[,1],collocations=d.c.k.df[,1])
 nouns.cats.known<-d.c.k.df.c
-k<-1
+#k<-1
 sum(nouns.cats.known$noun=="rose")
 #nouns.cats.known$category[nouns.cats.known$noun=="rose"]
 nouns.cats.known$category<-NA
@@ -147,8 +165,22 @@ for(k in 1:length(d10.stef$Noun[m.k.mod])){
   sum(m.3)
   nouns.cats.known$category[m.3]<-d10.stef$category.modified[m.k.mod][k]
 }
-nouns.cats.known$category[nouns.cats.known$noun=="work"]
-nouns.cats.known.w<-nouns.cats.known[,c(1,2,3,4,6)] # wo cat.pet, declaration l:138 discarded
+if(length(m.ai)>0){
+for(k in 1:length(d10.stef$Noun[m.k.ai])){
+  m.3<-d10.stef$Noun[m.k.mod][k]==nouns.cats.known$noun
+  sum(m.3)
+  nouns.cats.known$category[m.3]<-d10.stef$cat.ai[m.k.mod][k]
+}
+}
+return(nouns.cats.known)
+}
+m.k
+#nouns.cats.known.test<-nouns.cats.known.fun(d.c.k.ar)
+#nouns.cats.known.1<-nouns.cats.known.fun(getknowncats(1))
+nouns.cats.known<-nouns.cats.known.fun(getknowncats(m.k))
+#nouns.cats.known.c<-rbind(nouns.cats.known.test,nouns.cats.known.1)
+#nouns.cats.known$category[nouns.cats.known$noun=="work"]
+#nouns.cats.known.w<-nouns.cats.known[,c(1,2,3,4,6)] # wo cat.pet, declaration l:138 discarded
 #write.csv(nouns.cats.known.w,"fragrance_known-cats_coll.cpt.csv",row.names = F)
 #to read in again for new run
 #getwd()
@@ -290,14 +322,16 @@ noun.q<-""
 #d10.stef$cat.ai[k]<-catfinal
   } #end if 1
   } #end if 2
-  return(catfinal)
+  #return(catfinal)
+  return(d.c.t.ass)
   } # end getcat
 catfinal
 cat.test<-list()
 k<-7
 k
-for(k in 1:length(d10.stef$Noun)){
-#for(k in 17:19){
+which(!m.not)
+#for(k in 1:length(d10.stef$Noun)){
+for(k in 14:15){
   noun<-d10.stef$Noun[k]  
   cat.test[[noun]]<-getcat(k,"")
   cat.max<-which.max(cat.test[[noun]])
@@ -307,8 +341,11 @@ for(k in 1:length(d10.stef$Noun)){
 if(is.null(catfinal))
      catfinal<-NA
   d10.stef$cat.ai[k]<-catfinal
+nouns.cats.known.temp<-nouns.cats.known.fun(getknowncats(k))
+nouns.cats.known<-rbind(nouns.cats.known,nouns.cats.known.temp)
 }
-# catfinal
+nouns.cats.known$category[nouns.cats.known$noun=="money"]
+catfinal
 # noun
 # cat.test
 #   factor(cat.test)
@@ -330,7 +367,7 @@ c.gold<-d10.gold$cat.gold # cats corrected manually
 p1<-c.ai==c.gold
 sum(p1,na.rm = T)
 sum(p1,na.rm = T)/length(p1)
-78% # trefferquote to goldstandard
+77% # trefferquote to goldstandard
 ##################################
 # d10.stef$category.modified[which.max(d.c.ar)]
 # #d10.stef$category.modified[which.max(d.c.ar)]<-NA
