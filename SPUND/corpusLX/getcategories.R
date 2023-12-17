@@ -1,22 +1,16 @@
 #20231216(08.09)
-#stefanowitsch.casestudy-2
+#stefanowitsch.casestudy-2.badsmelling adjectives
 #peterson-traba(2021).getcategories
 ###################################
-cat.list<-list()
-cat.array<-c("FOOD & DRINK","PLANTS & FLOWERS","EARTH","BODY","MATTER","SENSATION","AESTHETICS","CLEANING","TEXTILE & CLOTHING")
-cat.list<-list(cat.array)
-cat.list[[cat.array[1]]]<-c("apple", "beverage", "bread", "chicken", "coffee", "cup", "drink", "food", "fruit", "liquid", "meal", "omelet", "rice", "spice", "tea", "wine")
-cat.list[[cat.array[2]]]<-c("bloom", "blossom", "bower", "flower", "garden", "geranium", "grass", "herb", "lip*", "leaf", "petal", "pine", "rose", "shrub", "vine", "violet")
-cat.list[[cat.array[3]]]<-c("breeze", "brook", "dew", "flood", "gale", "grove", "hill", "sea", "vale", "valley", "wind")
-cat.list[[cat.array[4]]]<-c("arm", "breath*", "cheek", "face", "flesh", "hair", "hand", "head", "limb", "lip*", "lock", "mouth", "shoulder", "skin", "wrist")
-cat.list[[cat.array[5]]]<-c("air", "atmosphere", "candle", "cloud*", "dust", "fume", "gas", "oil*", "night", "smoke", "steam", "vapor")
-cat.list[[cat.array[6]]]<-c("aroma", "breath*", "flavor", "incense", "scent", "smell", "odor", "taste")
-cat.list[[cat.array[7]]]<-c("cologne", "cosmetics", "cream", "oil*", "ointment", "powder", "talcum", "wax")
-cat.list[[cat.array[8]]]<-c("deodorant", "dish-water", "disinfectant", "napkin", "soap", "soap-powder", "sponge", "spray", "suds", "tissue", "wash-ball")
-cat.list[[cat.array[9]]]<-c("blanket", "cambric", "cloth", "dress", "flannel", "garment", "glove", "lace", "linen", "pillow", "robe", "sheet", "shirt", "silk")
-
-
-
+###################################
+# this script defines the categories of nouns according to below cat.array of (9) fixed noun categories.
+# method:
+### 1. get the categories which where user defined in a table
+d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
+sum(d10.stef$Category!="")+sum(d10.stef$category.modified!="")
+61
+### 2. declare function to request sketchengine wordsketch (get collocations to a noun) 
+##################
 #WSKETCH, collocations, R-translation:
 d<-read.csv("~/boxHKW/21S/DH/local/R/cred_gener.csv")
 #12367.sketchenginge API request
@@ -26,11 +20,10 @@ library(purrr)
 USERNAME = d$bn[d$q=="sketch"]
 API_KEY = d$key[d$q=="sketch"]
 BASE_URL = 'https://api.sketchengine.eu/bonito/run.cgi'
-item<-"buzzard"
+#item<-"buzzard"
 #for (item in c('make', 'ensure')){
 get.ske<-function(item,run){
   cat("run",run,"\n")
-  
   d <- GET(paste0(BASE_URL, '/wsketch'), authenticate(USERNAME, API_KEY),query=list(
   lemma=item,
   # lpos='-v',
@@ -38,105 +31,87 @@ get.ske<-function(item,run){
   format= 'json')
 )%>%content("text")%>%fromJSON()
 }
-# cat( 'Word sketch data for', item,"\n")
-# g<-1
-# for (g in 1:length(d[['Gramrels']][['score']])){
-#   print(d[['Gramrels']][['name']][g])
-# 
-#   for (i in 1:length(d[['Gramrels']][['Words']][[g]])){
-#   print(d[['Gramrels']][['Words']][[g]]['word'])
-# }
-# }
-# 
-# library(jsonlite)
-# jsonlite::
-# i<-1
 # beware of FUP, see https://www.sketchengine.eu/service-level-agreement/
+#########################################################################
 
-#d.j<-fromJSON(d)
+### 3. create list of all collocations to nouns with known (predefined) categories 
 
-which(names(d$Gramrels)=='word')
-k<-1
-x<-d
+# which(names(d$Gramrels)=='word')
+# k<-1
+# x<-d
+#########################################
 get.words<-function(x)unlist(x[['word']])
-l<-length(d.c.u$Gramrels$Words)
-word.no<-d.c.u$Gramrels$Words[[l]]['word']
-word.no$word
-d1u
-d1u%in%word.no$word
-
-#d$Gramrels$Words[[12]]['word']
-#d.1.u<-unlist('word',get.words(d))
-#d.2.u<-unlist(d.c$Gramrels$Words)
-#d.2.u<-
-#m<-grep("bird",d$Gramrels$Words)
-d.c<-get.ske("eagle")
-d1u<-unlist(lapply(d$Gramrels$Words, get.words))
-d2u<-unlist(lapply(d.c$Gramrels$Words, get.words))
-d1u<-unique(d1u)
-d2u<-unique(d2u)
-ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
-sum(m)
-d.c.ar<-array()
-for(k in 1:length(d10.stef$category.modified)){
-  d.c<-get.ske(d10.stef$Noun[k])
-#  d1u<-unlist(lapply(d$Gramrels$Words, get.words))
-  d2u<-unlist(lapply(d.c$Gramrels$Words, get.words))
- # d1u<-unique(d1u)
-  d2u<-unique(d2u)
-  ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
-  d.c.ar[k]<-sum(m)
-  for (i in 5000:1){
-    cat(k,i,sum(m),"\n")
-  }
-}
-d10.stef$category.modified[which.max(d.c.ar)]
-#d10.stef$category.modified[which.max(d.c.ar)]<-NA
-df<-d10.stef
-#df$Noun[order(d.c.ar) ]
-#df$category.modified[order(d.c.ar) ]
-
-#which.max(d.c.ar)]
-#d.c.ar
-#df$category.modified[which(d.c.ar>=10)]
-d.c.f<-factor(df$category.modified[which(d.c.ar>=10)],exclude = c("",NA),ordered = T)
-#rank(d.c.f,ties.method = "max")
-#sum(d.c.f=="AN")
-#count
-plot(d.c.f)
-#levels(ordered(d.c.f))
-#levels(d.c.f))
-d.c.t<-table(d.c.f)
-d.c.t
-d.c.t[which.max(d.c.t)]
+#l<-length(d.c.u$Gramrels$Words)
+#word.no<-d.c.u$Gramrels$Words[[l]]['word']
+#word.no$word
+#d1u
+#d1u%in%word.no$word
+# d.c<-get.ske("eagle")
+# d1u<-unlist(lapply(d$Gramrels$Words, get.words))
+# d2u<-unlist(lapply(d.c$Gramrels$Words, get.words))
+# d1u<-unique(d1u)
+# d2u<-unique(d2u)
+# ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
+# sum(m)
+#d.c.ar<-array()
+# for(k in 1:length(d10.stef$category.modified)){
+#   d.c<-get.ske(d10.stef$Noun[k])
+# #  d1u<-unlist(lapply(d$Gramrels$Words, get.words))
+#   d2u<-unlist(lapply(d.c$Gramrels$Words, get.words))
+#  # d1u<-unique(d1u)
+#   d2u<-unique(d2u)
+#   ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
+#   d.c.ar[k]<-sum(m)
+#   for (i in 5000:1){
+#     cat(k,i,sum(m),"\n")
+#   }
+# }
+# d10.stef$category.modified[which.max(d.c.ar)]
+# #d10.stef$category.modified[which.max(d.c.ar)]<-NA
+# df<-d10.stef
+# #df$Noun[order(d.c.ar) ]
+# #df$category.modified[order(d.c.ar) ]
+# 
+# #which.max(d.c.ar)]
+# #d.c.ar
+# #df$category.modified[which(d.c.ar>=10)]
+# d.c.f<-factor(df$category.modified[which(d.c.ar>=10)],exclude = c("",NA),ordered = T)
+# #rank(d.c.f,ties.method = "max")
+# #sum(d.c.f=="AN")
+# #count
+# plot(d.c.f)
+# #levels(ordered(d.c.f))
+# #levels(d.c.f))
+# d.c.t<-table(d.c.f)
+# d.c.t
+# d.c.t[which.max(d.c.t)]
 ###wks.
 ################
 # now empty cats
-d10.stef$cat.ai<-NA
+d10.stef$cat.ai<-NA # declare empty column for later input categories
 #r<-1
-k<-1
+#k<-1
 d.c.ar<-array()
 d.c.k.ar<-list()
-m.k.pet<-d10.stef$Category!="" #original stefanowitsch (petterson)
-m.k.mod<-d10.stef$category.modified!="" #first training manually modified cats
+m.k.pet<-d10.stef$Category!="" #original stefanowitsch (petterson) categories
+m.k.mod<-d10.stef$category.modified!="" #first training manually edited cats
 sum(m.k.pet)
 sum(m.k.mod)
 m.k.w.1<-which(m.k.pet)
 m.k.w.2<-which(m.k.mod)
-m.k.c<-c(m.k.w.1,m.k.w.2)
+m.k.c<-c(m.k.w.1,m.k.w.2) # join array of all predefined categories in df
 #join.freqs(m.k,m.k.pet)
-sum(m.k.c)
+length(m.k.c)
 m.k<-m.k.c
-length(d10.stef$Noun[m.k])==length(unique(d10.stef$Noun[m.k]))
+length(d10.stef$Noun[m.k])==length(unique(d10.stef$Noun[m.k])) # seem to be doubled nouns in df
 k<-1
+### 3.2 make a sketchengine request for each noun and get the collocates
 for(k in 1:length(d10.stef$Noun[m.k])){
-  d.c.k<-get.ske(d10.stef$Noun[m.k][k])
+  d.c.k<-get.ske(d10.stef$Noun[m.k][k],k)
   d1u<-unlist(lapply(d.c.k$Gramrels$Words, get.words))
   d1uu<-unique(d1u)
   l<-length(d.c.k$Gramrels$Words)
   word.no<-d.c.k$Gramrels$Words[[l]]['word']
-  #word.no$word
-  #d1u
   m.pos<-d1uu%in%word.no$word
   sum(m.pos)
   d1uu<-d1uu[!m.pos] #discards postag cats from array
@@ -144,7 +119,6 @@ for(k in 1:length(d10.stef$Noun[m.k])){
   d1uu
 }
 d.c.k.ar$rose
-#d.c.k.df<-data.frame(d.c.k.ar)
 d.c.k.df<-cbind(unlist(d.c.k.ar))
 nouns.nm<-stri_split_regex(rownames(d.c.k.df),"[a-z]",simplify = T)
 nouns.nm.df<-as.data.frame(as.double(nouns.nm))
@@ -154,70 +128,44 @@ mode(nouns.nm)<-"double"
 nouns.nm.sum<-rowSums(nouns.nm,na.rm = T)
 nouns.nm.df<-as.double(nouns.nm)
 nouns.nm.sum
-#nm.sum<-function(x)sum(as.double(x),na.rm = T)
-#library(abind)
-#sum(as.double(nouns.nm[2,]),na.rm = T)
-#nouns.nm.sum<-lapply(nouns.nm[,1:length(nouns.nm[2,])],nm.sum)
 nouns<-stri_split_regex(rownames(d.c.k.df),"[0-9]",simplify = T)
 d.c.k.df.c<-data.frame(lfd=nouns.nm.sum,noun=nouns[,1],collocations=d.c.k.df[,1])
 nouns.cats.known<-d.c.k.df.c
 k<-1
 sum(nouns.cats.known$noun=="rose")
-nouns.cats.known$category[nouns.cats.known$noun=="rose"]
+#nouns.cats.known$category[nouns.cats.known$noun=="rose"]
 nouns.cats.known$category<-NA
 nouns.cats.known$category.pet<-NA
 for(k in 1:length(d10.stef$Noun[m.k.pet])){
   m.3<-d10.stef$Noun[m.k.pet][k]==nouns.cats.known$noun
-sum(m.3)
-#m.3.mod<-d10.stef$Noun[m.k.mod][k]==nouns.cats.known$noun
-#sum(m.3.mod)
-#  m.v.1<-d10.stef$Category!=""
- # sum(m.v)
-  #m.v.2<-d10.stef$!=""
-  #sum(m.v.2)
-  #nouns.cats.known$category.pet[m.3]<-d10.stef$Category[m.k][k]
-  #nouns.cats.known$category[m.3]<-d10.stef$category.modified[m.k][k]
+ sum(m.3)
   nouns.cats.known$category[m.3]<-d10.stef$Category[m.k.pet][k]
 #  nouns.cats.known$category[m.k.mod]<-d10.stef$category.modified[m.k.mod][k]
 }
 for(k in 1:length(d10.stef$Noun[m.k.mod])){
   m.3<-d10.stef$Noun[m.k.mod][k]==nouns.cats.known$noun
   sum(m.3)
-  # m.3.mod<-d10.stef$Noun[m.k.mod][k]==nouns.cats.known$noun
-  # sum(m.3.mod)
-  # #  m.v.1<-d10.stef$Category!=""
-  # sum(m.v)
-  #m.v.2<-d10.stef$!=""
-  #sum(m.v.2)
-  #nouns.cats.known$category.pet[m.3]<-d10.stef$Category[m.k][k]
-  #nouns.cats.known$category[m.3]<-d10.stef$category.modified[m.k][k]
-  #nouns.cats.known$category[m.k.pet]<-d10.stef$Category[m.k.pet][k]
   nouns.cats.known$category[m.3]<-d10.stef$category.modified[m.k.mod][k]
 }
 nouns.cats.known$category[nouns.cats.known$noun=="work"]
-#colnames(d.c.k.df)<-c()
 write.csv(nouns.cats.known,"fragrance_known-cats_coll.cpt.csv",row.names = F)
 getwd()
-#m.u<-d10.stef$Category==""
-#d.c.kn<-get.ske(d10.stef$Noun[m][k])
-k<-8
-d10.stef$cat.ai<-NA
+#k<-8
+#d10.stef$cat.ai<-NA
+####################
+### 4. get collocates for nouns of unknown category and seek most frequent matches between collocates of known and unknown nouns
+### define the category (unknown noun) to that of the category with the most agreement in collocates
 for(k in 1:length(d10.stef$Noun)){
-  d.c.u<-1:4
+  d.c.u<-1:4 # empty response simulation at the begin of the loop 
   noun<-d10.stef$Noun[k]
-  #if(d10.stef$Category[k]!="")
-#  if(d10.stef$category.modified[k]!="")
-  #if(d10.stef$category.modified[k]==""&d10.stef$Category[k]=="")
-      d.c.u<-get.ske(noun)
+  d.c.u<-get.ske(noun,k)
   ### here test
   if (length(d.c.u)>4){
   d2u<-unlist(lapply(d.c.u$Gramrels$Words, get.words))
-  # d1u<-unique(d1u)
   d2u<-unique(d2u)
   l<-length(d.c.u$Gramrels$Words)
   word.no<-d.c.u$Gramrels$Words[[l]]['word']
   word.no$word
-  #d1u
   m.pos<-d2u%in%word.no$word
   m.pos
   d2u<-d2u[!m.pos] #discards postag cats from array
@@ -225,7 +173,6 @@ for(k in 1:length(d10.stef$Noun)){
   m.both<-noun==nouns.cats.known$collocations
   sum(m.both)
   m.coll<-nouns.cats.known$collocations%in%d2u
-  #m.coll<-d2u%in%nouns.cats.known$collocations # where fit the collocations of query into collocations of known categories
   sum(m.coll)
   m.coll
   nouns.cats.known$collocations[m.both]
@@ -235,7 +182,6 @@ for(k in 1:length(d10.stef$Noun)){
   nouns.cats.known$noun[m.coll]
   nouns.cats.known$category[m.both]
   nouns.cats.known$category[m.coll]
-  #nouns.cats.known$unique<-NA
   u<-1
   typeof(nouns.cats.known$lfd)
   for (u in 1:length(nouns.cats.known$unique)){
@@ -313,40 +259,41 @@ for(k in 1:length(d10.stef$Noun)){
   d10.stef$cat.ai[k]<-names(d.c.t.ass[which.max(d.c.t.ass)])
   } #end if 1
   } #end if 2
-  #nouns.cats.known$category[nouns.cats.known$noun=="canal"]
-  #  d1u<-unlist(lapply(d$Gramrels$Words, get.words))
-  #d2u<-unlist(lapply(d.c.u$Gramrels$Words, get.words))
-  # d1u<-unique(d1u)
-  #d2u<-unique(d2u)
-  #m<-d2u%in%d1u
-  #ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
-  #d.c.ar[k]<-sum(m)
   for (i in 5000:1){
     cat(k,i,sum(m),"\n")
   }
 }
 write.csv(d10.stef,"fragrance2_ai-cats.csv")
-d10.stef$category.modified[which.max(d.c.ar)]
-#d10.stef$category.modified[which.max(d.c.ar)]<-NA
-df<-d10.stef
-#df$Noun[order(d.c.ar) ]
-#df$category.modified[order(d.c.ar) ]
-
-#which.max(d.c.ar)]
-#d.c.ar
-#df$category.modified[which(d.c.ar>=10)]
-d.c.f<-factor(df$category.modified[which(d.c.ar>=10)],exclude = c("",NA),ordered = T)
-#rank(d.c.f,ties.method = "max")
-#sum(d.c.f=="AN")
-#count
-#plot(d.c.f)
-#levels(ordered(d.c.f))
-#levels(d.c.f))
-d.c.t<-table(d.c.f)
-d.c.t
-d.c.t[which.max(d.c.t)]
-d10.stef$cat.ai[m[k]]<-names(d.c.t[which.max(d.c.t)])
-  
-}
+############################################
+### evaluate definition:
+d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
+c.ai<-d10.gold$cat.ai # cats defined with script
+c.gold<-d10.gold$cat.gold # cats corrected manually
+p1<-c.ai==c.gold
+sum(p1,na.rm = T)/length(p1)
+78% # trefferquote to goldstandard
+##################################
+# d10.stef$category.modified[which.max(d.c.ar)]
+# #d10.stef$category.modified[which.max(d.c.ar)]<-NA
+# df<-d10.stef
+# #df$Noun[order(d.c.ar) ]
+# #df$category.modified[order(d.c.ar) ]
+# 
+# #which.max(d.c.ar)]
+# #d.c.ar
+# #df$category.modified[which(d.c.ar>=10)]
+# d.c.f<-factor(df$category.modified[which(d.c.ar>=10)],exclude = c("",NA),ordered = T)
+# #rank(d.c.f,ties.method = "max")
+# #sum(d.c.f=="AN")
+# #count
+# #plot(d.c.f)
+# #levels(ordered(d.c.f))
+# #levels(d.c.f))
+# d.c.t<-table(d.c.f)
+# d.c.t
+# d.c.t[which.max(d.c.t)]
+# d10.stef$cat.ai[m[k]]<-names(d.c.t[which.max(d.c.t)])
+#   
+# }
 
 
