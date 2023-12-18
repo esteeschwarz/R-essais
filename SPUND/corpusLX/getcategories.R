@@ -248,7 +248,7 @@ nouns.cats.known<-nouns.cats.known.fun(getknowncats(m.k))
 #k<-16  
 run<-0
 noun.q<-"canal"
-  getcat<-function(run,noun.q){
+  getcat<-function(run,noun.q,nouns.cats.known){
   k<-run
   d.c.u<-1:4 # empty response simulation at the begin of the loop 
   ifelse(run>0,noun.q<-d10.stef$Noun[k],noun.q<-noun.q)
@@ -303,7 +303,7 @@ noun.q<-"canal"
   if(length(nouns.cats.known$category[m.both])>1){
     
     d.c.f.1<-factor(nouns.cats.known$category[m.both])
-    plot(d.c.f.1)
+  #  plot(d.c.f.1)
     d.c.t.1<-table(d.c.f.1)
     d.c.t.1
     d.c.t.both<-d.c.t.1
@@ -329,7 +329,7 @@ noun.q<-"canal"
   noun
   length(d.c.f.n)
   #sum(d.c.f/d.c.f.n,na.rm = T)
-  plot(d.c.f.n)
+ # plot(d.c.f.n)
   d.c.t<-table(d.c.f)
   #names(d.c.t)
   #noun
