@@ -6,17 +6,26 @@
 # this script defines the categories of nouns according to below cat.array of (9) fixed noun categories.
 # method:
 ### 1. get the categories which where user defined in a table
-d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
+#lapsi
+#d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
+#mini:
+d10.stef<-read.csv("/volumes/ext/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
+#from saved df
+nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
 sum(d10.stef$Category!="")+sum(d10.stef$category.modified!="")
 61
 ### 2. declare function to request sketchengine wordsketch (get collocations to a noun) 
 ##################
 #WSKETCH, collocations, R-translation:
-d<-read.csv("~/boxHKW/21S/DH/local/R/cred_gener.csv")
+#mini:
+d<-read.csv("/volumes/ext/boxHKW/21S/DH/local/R/cred_gener.csv")
+#d<-read.csv("~/boxHKW/21S/DH/local/R/cred_gener.csv")
 #12367.sketchenginge API request
 library(httr)
 library(jsonlite)
 library(purrr)
+library(stringi)
+library(readr)
 USERNAME = d$bn[d$q=="sketch"]
 API_KEY = d$key[d$q=="sketch"]
 BASE_URL = 'https://api.sketchengine.eu/bonito/run.cgi'
@@ -182,14 +191,16 @@ return(nouns.cats.known)
 }
 #d.c.k.ar<-getcat(14,nouns.cats.old = nouns.cats.known)
 ######################################################
-
-#catarray<-d.c.k.ar
+#noun
+#catarray<-cat.test[[noun]] # noun defined in calling function
 nouns.cats.known.ai<-function(catarray,m.k.ai){
   #m.k.ai<-d10.stef$cat.ai!=""
   #sum(m.k.ai,na.rm = T)
   nouns.cats.new<-data.frame(lfd=NA,noun=NA,collocations=NA,category=NA,unique=NA)
   d.c.k.df<-cbind(unlist(catarray$coll))
-  if(length(d.c.k.ar$coll[[1]])>0){
+  l1<-length(catarray$coll)
+  #length(listreturn$coll)
+  if(length(catarray$coll[[l1]])>0){
   nouns.nm<-stri_split_regex(rownames(d.c.k.df),"[a-z]",simplify = T)
   nouns.nm.df<-as.data.frame(as.double(nouns.nm))
   m<-nouns.nm==""
@@ -230,7 +241,8 @@ nouns.cats.known.ai<-function(catarray,m.k.ai){
 ### define the category (unknown noun) to that of the category with the most agreement in collocates
 #for(k in 1:length(d10.stef$Noun)){
 #k<-16  
-run<-82
+run<-13
+d10.stef$Noun[14]
 #noun.q<-"canal"
   getcat<-function(run,noun.q,nouns.cats.old){
 nouns.cats.known<-nouns.cats.old
@@ -254,7 +266,7 @@ nouns.cats.known<-nouns.cats.old
   d2u<-d2u[!m.pos]
   } #discards postag cats from array
   d2u
-  d.c.k.ar<-list()
+  d.c.k.ar<-list(empty=NA)
   d.c.k.ar[[noun.q]]<-d2u
   ###### collocations list:
   #########################
@@ -338,6 +350,7 @@ nouns.cats.known<-nouns.cats.old
   #return(catfinal)
   listreturn<-list(cat=d.c.t.ass,coll=d.c.k.ar)
   #return(d.c.t.ass,d.c.k.ar)
+  #listreturn$coll[[noun]]
   return(listreturn)
   } # end getcat
 #catfinal
@@ -347,13 +360,14 @@ cat.test
 #k<-43
 #which(!m.not)
 #for(k in 1:length(d10.stef$Noun)){
-#range<-43
+range<-43:45
 #nouns.cats.old<-nouns.cats.known
 #rm(nouns.cats.known.temp)
-cat.process<-function(range,nouns.cats.old){
+cat.process<-function(range){ #,nouns.cats.old){
+  nouns.cats.old<-read.csv("nouns.cats.temp.csv")
   d10.stef$cat.ai<-NA
   d10.stef$cat.ai[d10.stef$Noun=="rose"]<-"P&F"
-#  range<-14:19
+  #range<-14:19
   for(k in range){
   m.ai<-grep("cat.ai",colnames(d10.stef))
   if(length(m.ai)>0)
@@ -377,11 +391,17 @@ if(is.null(catfinal))
   noun
   
 nouns.cats.known.temp<-nouns.cats.known.ai(cat.test[[noun]],m.k.ai) #[[noun]][['coll']]
+nouns.cats.known.temp$category<-catfinal
 #nouns.cats.known.temp<-nouns.cats.known.ai(catarray,m.k.ai) #[[noun]][['coll']]
 #nouns.cats.new.a<-append(nouns.cats.known[,1:5],nouns.cats.temp[,1:5],after = length(nouns.cats.known$noun))
 #nouns.cats.new.a<-append(nouns.cats.old,nouns.cats.known.temp,after = length(nouns.cats.old$noun))
   print(l.nouns)
   nouns.cats.old<-rbind(nouns.cats.old,nouns.cats.known.temp)
+  write_csv(nouns.cats.old,"nouns.cats.temp.csv")
+  for(w in 10000:1){
+    cat("wait",w,"\n")
+  }
+  #write_csv(nouns.cats.known,"nouns.cats.temp.csv")
   #nouns.cats.old<-nouns.cats.new.i
   }
   listreturn<-list(df=d10.stef,nouns=nouns.cats.old) # TODO, feedback new categories here
@@ -403,13 +423,21 @@ m.pr<-which(!m.not)
 ###############################################################
 #from saved df
 nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
-d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
+write_csv(nouns.cats.known,"nouns.cats.temp.csv")
+#ds<-read.csv("nouns.cats.temp_859.csv")
+#write_csv(ds,"nouns.cats.temp.csv")
+#d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
 ###############################################################
 #rm(nouns.cats.new)
 fun.eval<-function(){
 nouns.cats.known$category[nouns.cats.known$noun=="rose"]
 length(unique(nouns.cats.known$noun))
-d11<-cat.process(m.pr,nouns.cats.known)
+length(unique(d10.stef$Noun))
+
+m<-grepl("ailanthus",d10.stef$Noun)
+#m.pr<-m.pr[!m]
+#m.pr<-m.pr[859:length(m.pr)]
+d11<-cat.process(m.pr)#,nouns.cats.known)
 d11.df<-data.frame(d11$df)
 length(unique(d11$nouns$noun))
 #d10.stef$Noun[]
@@ -428,10 +456,23 @@ catfinal
 #   }
 #   
 # }
-write.csv(d10.stef,"fragrance2_ai-cats.csv")
+#write.csv(d10.stef,"fragrance2_ai-cats.csv")
 ############################################
 ### evaluate definition:
 d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
+d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
+d10.ai<-ds
+length(unique(ds$noun))
+cat<-array()
+k<-1
+for (k in 1:length(d10.gold$Noun)){
+  noun<-d10.gold$Noun[k]
+  cat[k]<-d10.ai$category[d10.ai$noun==noun]
+  
+  
+}
+d10.ai$
+#standard of cats
 #c.ai<-d10.gold$cat.ai # cats defined with script
 c.gold<-d10.gold$cat.gold # cats corrected manually
 d11.df<-data.frame(d11$df)
