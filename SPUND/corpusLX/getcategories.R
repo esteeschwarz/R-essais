@@ -416,7 +416,7 @@ cat.process<-function(range){
     m.k.ai<-!is.na(d10.stef$cat.ai) #first training manually edited cats
     sum(m.k.ai)  
   noun<-d10.stef$Noun[k]  
-  cat.test[[noun]]<-getcat(k,"")
+  cat.test[[noun]]<-getcat(k,"",nouns.cats.known)
   cat.max<-which.max(cat.test[[noun]][['cat']])
   cat.max
   #cat.test$buzzard$cat
@@ -429,7 +429,8 @@ if(is.null(catfinal))
 
 nouns.cats.known.temp<-nouns.cats.known.ai(cat.test[[noun]][['coll']],m.k.ai)
 nouns.cats.known<-rbind(nouns.cats.known,nouns.cats.known.temp)
-}
+  }
+  listreturn<-list(d10.stef,nouns.cats.known) # TODO, feedback new categories here
 return(d10.stef)  
 }
 #########################################################
