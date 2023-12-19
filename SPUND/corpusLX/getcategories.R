@@ -7,14 +7,16 @@
 # method:
 ### 1. get the categories which where user defined in a table
 #lapsi
-#d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
+#d10.mod<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
+
 #mini:
 #d10.stef<-read.csv("/volumes/ext/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
 #lapsi
 d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
+
 #from saved df
 nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
-sum(d10.stef$Category!="")+sum(d10.stef$category.modified!="")
+#sum(d10.stef$Category!="")+sum(d10.stef$category.modified!="")
 61
 ### 2. declare function to request sketchengine wordsketch (get collocations to a noun) 
 ##################
@@ -52,50 +54,6 @@ get.ske<-function(item,run){
 # x<-d
 #########################################
 get.words<-function(x)unlist(x[['word']])
-#l<-length(d.c.u$Gramrels$Words)
-#word.no<-d.c.u$Gramrels$Words[[l]]['word']
-#word.no$word
-#d1u
-#d1u%in%word.no$word
-# d.c<-get.ske("eagle")
-# d1u<-unlist(lapply(d$Gramrels$Words, get.words))
-# d2u<-unlist(lapply(d.c$Gramrels$Words, get.words))
-# d1u<-unique(d1u)
-# d2u<-unique(d2u)
-# ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
-# sum(m)
-#d.c.ar<-array()
-# for(k in 1:length(d10.stef$category.modified)){
-#   d.c<-get.ske(d10.stef$Noun[k])
-# #  d1u<-unlist(lapply(d$Gramrels$Words, get.words))
-#   d2u<-unlist(lapply(d.c$Gramrels$Words, get.words))
-#  # d1u<-unique(d1u)
-#   d2u<-unique(d2u)
-#   ifelse(length(d1u)>length(d2u),m<-d1u%in%d2u,m<-d2u%in%d1u)
-#   d.c.ar[k]<-sum(m)
-#   for (i in 5000:1){
-#     cat(k,i,sum(m),"\n")
-#   }
-# }
-# d10.stef$category.modified[which.max(d.c.ar)]
-# #d10.stef$category.modified[which.max(d.c.ar)]<-NA
-# df<-d10.stef
-# #df$Noun[order(d.c.ar) ]
-# #df$category.modified[order(d.c.ar) ]
-# 
-# #which.max(d.c.ar)]
-# #d.c.ar
-# #df$category.modified[which(d.c.ar>=10)]
-# d.c.f<-factor(df$category.modified[which(d.c.ar>=10)],exclude = c("",NA),ordered = T)
-# #rank(d.c.f,ties.method = "max")
-# #sum(d.c.f=="AN")
-# #count
-# plot(d.c.f)
-# #levels(ordered(d.c.f))
-# #levels(d.c.f))
-# d.c.t<-table(d.c.f)
-# d.c.t
-# d.c.t[which.max(d.c.t)]
 ###wks.
 ################
 # now empty cats
@@ -105,7 +63,9 @@ d10.stef$cat.ai<-NA # declare empty column for later input categories
 d.c.ar<-array()
 d.c.k.ar<-list()
 m.k.pet<-d10.stef$Category!="" #original stefanowitsch (petterson) categories
+sum(m.k.pet)
 m.k.mod<-d10.stef$category.modified!="" #first training manually edited cats
+### obsolete, no predefined cats in df
 # m.ai<-grep("cat.ai",colnames(d10.stef))
 # if(length(m.ai)>0)
 #   m.k.ai<-d10.stef$cat.ai!="" #first training manually edited cats
@@ -119,6 +79,18 @@ length(m.k.c)
 m.k<-m.k.c
 #length(d10.stef$Noun[m.k])==length(unique(d10.stef$Noun[m.k])) # seem to be doubled nouns in df
 #k<-1
+#m.k<-92
+m.cpt<-1:length(d10.stef$Category)
+
+# new for known cats of training:
+m.not<-d10.stef$Noun%in%nouns.cats.known$noun
+sum(!m.not)
+m.not<-m.cpt%in%m.n
+which(!m.not)
+#d.c.k.ar<-getknowncats(m.k)
+#d.c.k.ar<-getknowncats(1:2)
+#d.c.k.ar$rose
+
 
 ### 3.2 make a sketchengine request for each noun (category defined) and get the collocates
 getknowncats<-function(m.k){
@@ -137,14 +109,6 @@ for(k in 1:length(d10.stef$Noun[m.k])){
   return(d.c.k.ar)
   
   }
-#m.k<-92
-m.cpt<-1:length(d10.stef$Category)
-m.not<-m.cpt%in%m.k
-which(!m.not)
-#d.c.k.ar<-getknowncats(m.k)
-#d.c.k.ar<-getknowncats(1:2)
-#d.c.k.ar$rose
-
 
 nouns.cats.known.fun<-function(d.c.k.ar){
 d.c.k.df<-cbind(unlist(d.c.k.ar))
@@ -198,7 +162,7 @@ return(nouns.cats.known)
 nouns.cats.known.ai<-function(catarray,m.k.ai){
   #m.k.ai<-d10.stef$cat.ai!=""
   #sum(m.k.ai,na.rm = T)
-  nouns.cats.new<-data.frame(lfd=NA,noun=NA,collocations=NA,category=NA,unique=NA)
+  nouns.cats.new<-data.frame(lfd=NA,noun=NA,collocations=NA,category="n.a.",unique=NA)
   catarray$coll[['empty']]<-"#empty#"
   d.c.k.df<-cbind(unlist(catarray$coll))
   l1<-length(catarray$coll)
@@ -216,7 +180,7 @@ nouns.cats.known.ai<-function(catarray,m.k.ai){
   nouns<-stri_split_regex(rownames(d.c.k.df),"[0-9]",simplify = T)
   d.c.k.df.c<-data.frame(lfd=nouns.nm.sum,noun=nouns[,1],collocations=d.c.k.df[,1])
   nouns.cats.new<-d.c.k.df.c
-  nouns.cats.new$category<-NA
+  nouns.cats.new$category<-"n.a."
   nouns.cats.new$unique<-NA
   for (u in 1:length(nouns.cats.new$unique)){
     nouns.cats.new$unique[u]<-max(nouns.cats.new$lfd[nouns.cats.new$noun==nouns.cats.new$noun[u]])
@@ -248,8 +212,8 @@ nouns.cats.known.ai<-function(catarray,m.k.ai){
 ### collocations in that cat and therefore most matches in general
 
 #nouns.cats.old
-run<-13
-d10.stef$Noun[14]
+run<-233
+d10.stef$Noun[233]
 #noun.q<-"canal"
   getcat<-function(run,noun.q,nouns.cats.old){
 nouns.cats.known<-nouns.cats.old
@@ -260,11 +224,18 @@ nouns.cats.known<-nouns.cats.old
   print(noun)
   d.c.u<-get.ske(noun,k)
   ### here test
+  ### declare var if 
   d.c.t.ass<-0
+  cat.df<-data.frame(cat="n.a.",score=0,row.names = "#empty#")
+
+  #####################
+  ### start loop
+  ### if response contains collocates:
   if (length(d.c.u)>4){
   d2u<-unlist(lapply(d.c.u$Gramrels$Words, get.words))
   d2u<-unique(d2u)
   l<-length(d.c.u$Gramrels$Words)
+  ########
   if(l>1){
   word.no<-d.c.u$Gramrels$Words[[l]]['word']
   word.no$word
@@ -278,23 +249,26 @@ nouns.cats.known<-nouns.cats.old
   ###### collocations list:
   #########################
   m.both<-noun==nouns.cats.known$collocations
+  nouns.cats.known$noun[m.both]
   sum(m.both)
   d.c.t.both<-0
   m.coll<-nouns.cats.known$collocations%in%d2u
+  #m.coll<-d2u%in%nouns.cats.known$collocations
   sum(m.coll)
   m.coll
   #nouns.cats.known$collocations[m.both]
   #factor(nouns.cats.known$collocations[m.both])
-  #nouns.cats.known$noun[m.both]
+  nouns.cats.known$noun[m.coll]
   #nouns.cats.known$collocations[m.coll]
   #nouns.cats.known$noun[m.coll]
   #nouns.cats.known$category[m.both]
   #nouns.cats.known$category[m.coll]
 #  u<-1
-  typeof(nouns.cats.known$lfd)
+  #typeof(nouns.cats.known$lfd)
   #nouns.cats.known$unique[nouns.cats.known$noun=="alley"]
-  if(length(nouns.cats.known$category[m.both])>1){
-    
+ # if(length(nouns.cats.known$category[m.both])>1){
+  if(length(nouns.cats.known$category[m.both])>0){
+      
     d.c.f.1<-factor(nouns.cats.known$category[m.both])
 d.c.f.1
       #  plot(d.c.f.1)
@@ -309,33 +283,58 @@ d.c.f.1
   #nouns.cats.known$category[m.coll]
   #nouns.cats.known$noun[m.coll]
   #nouns.cats.known$category[m.both]
-  d.c.f<-factor(nouns.cats.known$category[m.coll])
-  d.c.f.f<-factor(nouns.cats.known$unique[m.coll])
-  d.c.t<-table(d.c.f)
-  d.c.t.f<-table(d.c.f.f)
-  df.dcf<-df.dcf[c(3,1,4)]
-  df.t<-table(df.dcf)
-  which.max(df.t)
-  df.t[,1,]
-  df.t[,,43] # max 126 bei unique 43, cat AC, noun: day
-  df.t[,,1] # 1, cat MA, noun: vapor
-  df.t[,,2] # 1, cat B&UE, noun: guardhouse
-  df.t[,'MA',1]
-  colnames(df.t[,,1])[which.max(df.t[,,1])]
-  which.max(df.t[,,1]) #373 in the matrix, which cat?
-  df.dcf$d.c.f[373]
-  df.t[which.max(df.t)]
-  names(max(df.t[,,1:2]))
-  noun
+#  d.c.t
+  #df.t<-table(df.dcf)
+  #which.max(df.t)
+  # df.t[,1,]
+  # df.t[,,43] # max 126 bei unique 43, cat AC, noun: day
+  # df.t[,,1] # 1, cat MA, noun: vapor
+  # df.t[,,2] # 1, cat B&UE, noun: guardhouse
+  # df.t[,'MA',1]
+  # colnames(df.t[,,1])[which.max(df.t[,,1])]
+  # which.max(df.t[,,1]) #373 in the matrix, which cat?
+  # df.dcf$d.c.f[373]
+  # df.t[which.max(df.t)]
+  # names(max(df.t[,,1:2]))
+  # noun
   #plot(df.t)
   # this the category totals of matches, it has to be cleaned by totals of noun collocates
-  d.c.f
-  df.dcf<-data.frame(d.c.f)
-  df.dcf$noun<-d.c.f.n
-  df.dcf$unique<-d.c.f.f
-  m.coll
-  plot(d.c.f)
+ # d.c.f
+  d.c.f<-factor(nouns.cats.known$category[m.coll])
   d.c.f.n<-factor(nouns.cats.known$noun[m.coll])
+  d.c.f.f<-factor(nouns.cats.known$unique[m.coll])
+  
+  df.dcf<-data.frame(cat=as.character(d.c.f))
+  df.dcf$noun<-as.character(d.c.f.n)
+  df.dcf$unique<-as.double(as.character(d.c.f.f))
+  df.dcf$matches<-as.double(d.c.f.f)
+  df.dcf$factor<-1/df.dcf$unique
+  
+  d.c.t<-table(d.c.f)
+  d.c.t.f<-table(d.c.f.f)
+  #df.dcf<-df.dcf[c(3,1,4)]
+  #colnames(df.dcf)[2]<-"cat"
+ # df.dcf$score<-1/as.double(df.dcf$unique)
+  df.s<-data.frame(cat=as.character(unique(df.dcf$cat)),score=NA,row.names = unique(df.dcf$cat))
+  #k<-1
+  k
+  c<-1
+  for(c in 1:length(df.s$cat)){
+    ck<-df.dcf$factor[df.dcf$cat==df.s$cat[c]]
+    
+    df.s$score[c]<-sum(ck,na.rm = T)
+  }
+  c
+  ##############################################
+  catfinal.coll<-df.s$cat[which.max(df.s$score)]
+  cat.df<-df.s
+  df.s
+  noun
+  catfinal.coll
+  #### THIS ####################################
+  
+  m.coll
+  #plot(d.c.f)
   sum(d.c.f.n=="rose") # total of matches
   nouns.cats.known$unique[nouns.cats.known$noun=="rose"] #total of collocations
   # so if rose has 21 matches in 125 collocations of rose in the nouns known set, 
@@ -353,11 +352,11 @@ d.c.f.1
   
   d.c.f.f.u<-unique(d.c.f.f)
   d.c.f.f.u2<-nouns.cats.known$unique[m.coll]
-  d.c.f/d.c.f.f.u2
+  #d.c.f/d.c.f.f.u2
   #d.c.f.n<-nouns.cats.known$noun[m.coll]
-  length(d.c.f)
-  noun
-  length(d.c.f.n)
+  #length(d.c.f)
+  #noun
+  #length(d.c.f.n)
   #sum(d.c.f/d.c.f.n,na.rm = T)
  # plot(d.c.f.n)
   #names(d.c.t)
@@ -396,7 +395,7 @@ d.c.f.1
   } #end if 1
   } #end if 2
   #return(catfinal)
-  listreturn<-list(cat=d.c.t.ass,coll=d.c.k.ar)
+  listreturn<-list(catmatches=d.c.t.ass,catscore=cat.df,coll=d.c.k.ar)
   #return(d.c.t.ass,d.c.k.ar)
   listreturn
   return(listreturn)
@@ -405,15 +404,15 @@ d.c.f.1
 cat.test<-list()
 cat.test
 #k<-7
-#k<-43
+k<-75
 #which(!m.not)
 #for(k in 1:length(d10.stef$Noun)){
-range<-12:13
+range<-75:75
 #nouns.cats.old<-nouns.cats.known
 #rm(nouns.cats.known.temp)
 cat.process<-function(range){ #,nouns.cats.old){
   nouns.cats.old<-read.csv("nouns.cats.temp.csv") # will be saved at end of loop under same name after adding new categories
-  d10.stef$cat.ai<-NA
+  d10.stef$cat.ai<-"n.a."
   d10.stef$cat.ai[d10.stef$Noun=="rose"]<-"P&F"
   #range<-14:19
   for(k in range){
@@ -422,17 +421,41 @@ cat.process<-function(range){ #,nouns.cats.old){
     m.k.ai<-!is.na(d10.stef$cat.ai) #first training manually edited cats
     sum(m.k.ai)  
   noun<-d10.stef$Noun[k]  
-  cat.test[[noun]]<-getcat(k,"",nouns.cats.old)
+  noun
+ # noun<-"rose"
+  is.cat<-nouns.cats.known$category[nouns.cats.known$noun==noun]
+  if(length(is.cat)>0){
+    catfinal<-nouns.cats.known$category[nouns.cats.known$noun==noun][1]
+  }
+  if(length(is.cat)==0){
+     cat.test[[noun]]<-getcat(k,"",nouns.cats.old)
+  d3u<-unlist(cat.test[[noun]])
+  #empty<-c(0,"n.a.",NA)
+  m<-grepl("0|n.a.",d3u)
+  sum(m)
+  d3u.c<-d3u[!m]
+  l3<-length(d3u.c)
   #cat.test[[noun]]<-getcat(82,"",nouns.cats.old)
-  cat.test
-  cat.max<-which.max(cat.test[[noun]][['cat']])
-  cat.max
+  listreturn<-cat.test
+  cat.wmax<-which.max(listreturn[[noun]][['catscore']][['score']][listreturn[[noun]][['catscore']][['cat']]!="n.a."])
+  cat.max<-max(listreturn[[noun]][['catscore']][['score']][listreturn[[noun]][['catscore']][['cat']]!="n.a."])
+  catfinal<-"n.a."
+  #l3>0
+  #is.infinite(cat.max)
+  if(l3>1&!is.infinite(cat.max))
+    catfinal<-listreturn[[noun]][['catscore']][['cat']][[cat.wmax]]
+  #cat.max<-which.max((listreturn[[noun]][['catscore']][['score']]))
+  #catfinal<-listreturn$catscore$cat[which.max(listreturn$catscore$score)]
+  #catfinal<-listreturn$catscore$cat[which.max(listreturn$catscore$score)]
+   # cat.max
   #cat.test$buzzard$cat
-  catfinal<-names(cat.max)
-  print(cat.test[[noun]][['cat']])
+  #catfinal<-names(cat.max)
+  #print(cat.test[[noun]][['cat']])
   print(catfinal)
+  }
+  
 if(is.null(catfinal))
-     catfinal<-NA
+     catfinal<-"n.a."
   d10.stef$cat.ai[k]<-catfinal
 #d.c.k.ar
   l.nouns<-length(nouns.cats.old$noun)
@@ -440,20 +463,23 @@ if(is.null(catfinal))
   
 nouns.cats.known.temp<-nouns.cats.known.ai(cat.test[[noun]],m.k.ai) #[[noun]][['coll']]
 nouns.cats.known.temp$category<-catfinal
+nouns.cats.known.temp$noun<-noun
 #nouns.cats.known.temp<-nouns.cats.known.ai(catarray,m.k.ai) #[[noun]][['coll']]
 #nouns.cats.new.a<-append(nouns.cats.known[,1:5],nouns.cats.temp[,1:5],after = length(nouns.cats.known$noun))
 #nouns.cats.new.a<-append(nouns.cats.old,nouns.cats.known.temp,after = length(nouns.cats.old$noun))
   print(l.nouns)
   nouns.cats.old<-rbind(nouns.cats.old,nouns.cats.known.temp)
   write_csv(nouns.cats.old,"nouns.cats.temp.csv")
-  for(w in 50000:1){
+  for(w in 80000:1){
     cat("wait",w,"\n")
   }
   #write_csv(nouns.cats.known,"nouns.cats.temp.csv")
   #nouns.cats.old<-nouns.cats.new.i
   }
   listreturn<-list(df=d10.stef,nouns=nouns.cats.old) # TODO, feedback new categories here
-length(unique(listreturn$nouns$noun))
+  listreturn
+  #listreturn$nouns$noun
+  length(unique(listreturn$nouns$noun))
     cat("nounscats.old length:",length(nouns.cats.old$lfd),"\n")
   cat("nounscats.temp length:",length(nouns.cats.known.temp$lfd),"\n")
   #cat("nounscats.new length:",length(nouns.cats.new.i$lfd),"\n")
@@ -486,7 +512,10 @@ m<-grepl("ailanthus",d10.stef$Noun)
 #m.pr<-m.pr[!m]
 #m.pr<-m.pr[859:length(m.pr)]
 d11<-cat.process(m.pr[161:length(m.pr)])#,nouns.cats.known)
-
+###############################################
+### RUN
+d11<-cat.process(m.pr) #,nouns.cats.known)
+###############################################
 d11.df<-data.frame(d11$df)
 length(unique(d11$nouns$noun))
 #d10.stef$Noun[]
