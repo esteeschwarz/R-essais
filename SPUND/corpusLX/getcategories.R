@@ -243,7 +243,11 @@ nouns.cats.known.ai<-function(catarray,m.k.ai){
 ### 4. get collocates for nouns of unknown category and seek most frequent matches between collocates of known and unknown nouns
 ### define the category (unknown noun) to that of the category with the most agreement in collocates
 #for(k in 1:length(d10.stef$Noun)){
-#k<-16  
+#k<-16
+### 14514.it is to be taken total of collocations/token into account, else all will be classified AC as with the most
+### collocations in that cat and therefore most matches in general
+
+#nouns.cats.old
 run<-13
 d10.stef$Noun[14]
 #noun.q<-"canal"
@@ -292,7 +296,8 @@ nouns.cats.known<-nouns.cats.old
   if(length(nouns.cats.known$category[m.both])>1){
     
     d.c.f.1<-factor(nouns.cats.known$category[m.both])
-  #  plot(d.c.f.1)
+d.c.f.1
+      #  plot(d.c.f.1)
     d.c.t.1<-table(d.c.f.1)
     d.c.t.1
     d.c.t.both<-d.c.t.1
@@ -305,16 +310,56 @@ nouns.cats.known<-nouns.cats.old
   #nouns.cats.known$noun[m.coll]
   #nouns.cats.known$category[m.both]
   d.c.f<-factor(nouns.cats.known$category[m.coll])
-  d.c.f.n<-factor(nouns.cats.known$noun[m.coll])
   d.c.f.f<-factor(nouns.cats.known$unique[m.coll])
-  #d.c.f.f<-nouns.cats.known$unique[m.coll]
+  d.c.t<-table(d.c.f)
+  d.c.t.f<-table(d.c.f.f)
+  df.dcf<-df.dcf[c(3,1,4)]
+  df.t<-table(df.dcf)
+  which.max(df.t)
+  df.t[,1,]
+  df.t[,,43] # max 126 bei unique 43, cat AC, noun: day
+  df.t[,,1] # 1, cat MA, noun: vapor
+  df.t[,,2] # 1, cat B&UE, noun: guardhouse
+  df.t[,'MA',1]
+  colnames(df.t[,,1])[which.max(df.t[,,1])]
+  which.max(df.t[,,1]) #373 in the matrix, which cat?
+  df.dcf$d.c.f[373]
+  df.t[which.max(df.t)]
+  names(max(df.t[,,1:2]))
+  noun
+  #plot(df.t)
+  # this the category totals of matches, it has to be cleaned by totals of noun collocates
+  d.c.f
+  df.dcf<-data.frame(d.c.f)
+  df.dcf$noun<-d.c.f.n
+  df.dcf$unique<-d.c.f.f
+  m.coll
+  plot(d.c.f)
+  d.c.f.n<-factor(nouns.cats.known$noun[m.coll])
+  sum(d.c.f.n=="rose") # total of matches
+  nouns.cats.known$unique[nouns.cats.known$noun=="rose"] #total of collocations
+  # so if rose has 21 matches in 125 collocations of rose in the nouns known set, 
+  # the number of matches for that noun between query and nouns.known has to be reduced as /125
+  21/125
+  
+  # model:
+  # 10 matches, 100 coll in gold, 20 in q
+  # 10 - 100 - 50
+  10/120 # 
+  10/150 # 
+  # 10 - 50 -10
+  10/60
+  10/30
+  
+  d.c.f.f.u<-unique(d.c.f.f)
+  d.c.f.f.u2<-nouns.cats.known$unique[m.coll]
+  d.c.f/d.c.f.f.u2
   #d.c.f.n<-nouns.cats.known$noun[m.coll]
   length(d.c.f)
   noun
   length(d.c.f.n)
   #sum(d.c.f/d.c.f.n,na.rm = T)
  # plot(d.c.f.n)
-  d.c.t<-table(d.c.f)
   #names(d.c.t)
   #noun
   d.c.t.n<-table(d.c.f.n)
@@ -353,7 +398,7 @@ nouns.cats.known<-nouns.cats.old
   #return(catfinal)
   listreturn<-list(cat=d.c.t.ass,coll=d.c.k.ar)
   #return(d.c.t.ass,d.c.k.ar)
-  #listreturn$coll[[noun]]
+  listreturn
   return(listreturn)
   } # end getcat
 #catfinal
