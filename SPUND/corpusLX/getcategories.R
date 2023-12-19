@@ -367,7 +367,7 @@ range<-12:13
 #nouns.cats.old<-nouns.cats.known
 #rm(nouns.cats.known.temp)
 cat.process<-function(range){ #,nouns.cats.old){
-  nouns.cats.old<-read.csv("nouns.cats.temp.csv")
+  nouns.cats.old<-read.csv("nouns.cats.temp.csv") # will be saved at end of loop under same name after adding new categories
   d10.stef$cat.ai<-NA
   d10.stef$cat.ai[d10.stef$Noun=="rose"]<-"P&F"
   #range<-14:19
@@ -401,7 +401,7 @@ nouns.cats.known.temp$category<-catfinal
   print(l.nouns)
   nouns.cats.old<-rbind(nouns.cats.old,nouns.cats.known.temp)
   write_csv(nouns.cats.old,"nouns.cats.temp.csv")
-  for(w in 10000:1){
+  for(w in 50000:1){
     cat("wait",w,"\n")
   }
   #write_csv(nouns.cats.known,"nouns.cats.temp.csv")
@@ -440,7 +440,7 @@ length(unique(d10.stef$Noun))
 m<-grepl("ailanthus",d10.stef$Noun)
 #m.pr<-m.pr[!m]
 #m.pr<-m.pr[859:length(m.pr)]
-d11<-cat.process(m.pr)#,nouns.cats.known)
+d11<-cat.process(m.pr[161:length(m.pr)])#,nouns.cats.known)
 
 d11.df<-data.frame(d11$df)
 length(unique(d11$nouns$noun))
@@ -471,17 +471,31 @@ d10.ai<-ds
 length(unique(ds$noun))
 cat<-array()
 k<-1
-for (k in 1:length(d10.stef$Noun)){
+for (k in 1:length(d10.stef$Category)){
   noun<-d10.stef$Noun[k]
   cat.u<-unique(d10.ai$category[d10.ai$noun==noun])
-  if(length(cat.u)>0)
-  cat[k]<-cat.u
+  ifelse(length(cat.u)>0,cat[k]<-cat.u,cat[k]<-NA)
   
   
 }
+cat
+d10.stef$category<-cat
+#sort back gold df after tokenid:
+df[with(df,order(df[,"a"])), ]
+d10.gold<-d10.gold[order]
+df<-d10.gold
+d10.gs<-df[with(df,order(df[,"Token_ID"])), ]
+d10.gs$cat.ai<-cat
+p1<-c.ass[m.pr]==c.gold[m.pr]
+sum(p1,na.rm = T)
+sum(p1,na.rm = T)/length(p1)
+p2<-d10.gs$Category==d10.gs$cat.ai
+sum(p2,na.rm = T)
+sum(p2,na.rm = T)/length(p2)
+
 #standard of cats
 #c.ai<-d10.gold$cat.ai # cats defined with script
-c.gold<-d10.gold$cat.gold # cats corrected manually
+c.gold<-d10.gs$Category # cats corrected manually
 d11.df<-data.frame(d11$df)
 d11.nouns<-d11$nouns
 length(unique(d11.df$Noun))
