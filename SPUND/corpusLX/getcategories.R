@@ -9,7 +9,9 @@
 #lapsi
 #d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
 #mini:
-d10.stef<-read.csv("/volumes/ext/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
+#d10.stef<-read.csv("/volumes/ext/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
+#lapsi
+d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
 #from saved df
 nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
 sum(d10.stef$Category!="")+sum(d10.stef$category.modified!="")
@@ -18,8 +20,8 @@ sum(d10.stef$Category!="")+sum(d10.stef$category.modified!="")
 ##################
 #WSKETCH, collocations, R-translation:
 #mini:
-d<-read.csv("/volumes/ext/boxHKW/21S/DH/local/R/cred_gener.csv")
-#d<-read.csv("~/boxHKW/21S/DH/local/R/cred_gener.csv")
+#d<-read.csv("/volumes/ext/boxHKW/21S/DH/local/R/cred_gener.csv")
+d<-read.csv("~/boxHKW/21S/DH/local/R/cred_gener.csv")
 #12367.sketchenginge API request
 library(httr)
 library(jsonlite)
@@ -197,6 +199,7 @@ nouns.cats.known.ai<-function(catarray,m.k.ai){
   #m.k.ai<-d10.stef$cat.ai!=""
   #sum(m.k.ai,na.rm = T)
   nouns.cats.new<-data.frame(lfd=NA,noun=NA,collocations=NA,category=NA,unique=NA)
+  catarray$coll[['empty']]<-"#empty#"
   d.c.k.df<-cbind(unlist(catarray$coll))
   l1<-length(catarray$coll)
   #length(listreturn$coll)
@@ -360,7 +363,7 @@ cat.test
 #k<-43
 #which(!m.not)
 #for(k in 1:length(d10.stef$Noun)){
-range<-43:45
+range<-12:13
 #nouns.cats.old<-nouns.cats.known
 #rm(nouns.cats.known.temp)
 cat.process<-function(range){ #,nouns.cats.old){
@@ -424,7 +427,7 @@ m.pr<-which(!m.not)
 #from saved df
 nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
 write_csv(nouns.cats.known,"nouns.cats.temp.csv")
-#ds<-read.csv("nouns.cats.temp_859.csv")
+ds<-read.csv("nouns.cats.temp.csv")
 #write_csv(ds,"nouns.cats.temp.csv")
 #d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2.mod.csv")
 ###############################################################
@@ -438,6 +441,7 @@ m<-grepl("ailanthus",d10.stef$Noun)
 #m.pr<-m.pr[!m]
 #m.pr<-m.pr[859:length(m.pr)]
 d11<-cat.process(m.pr)#,nouns.cats.known)
+
 d11.df<-data.frame(d11$df)
 length(unique(d11$nouns$noun))
 #d10.stef$Noun[]
@@ -460,18 +464,21 @@ catfinal
 ############################################
 ### evaluate definition:
 d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
-d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
+#d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
+#lapsi
+d10.gold<-read_csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
 d10.ai<-ds
 length(unique(ds$noun))
 cat<-array()
 k<-1
-for (k in 1:length(d10.gold$Noun)){
-  noun<-d10.gold$Noun[k]
-  cat[k]<-d10.ai$category[d10.ai$noun==noun]
+for (k in 1:length(d10.stef$Noun)){
+  noun<-d10.stef$Noun[k]
+  cat.u<-unique(d10.ai$category[d10.ai$noun==noun])
+  if(length(cat.u)>0)
+  cat[k]<-cat.u
   
   
 }
-d10.ai$
 #standard of cats
 #c.ai<-d10.gold$cat.ai # cats defined with script
 c.gold<-d10.gold$cat.gold # cats corrected manually
