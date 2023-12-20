@@ -12,6 +12,8 @@
 #mini:
 #d10.stef<-read.csv("/volumes/ext/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
 #lapsi
+library(readr)
+library(stringi)
 d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
 d10.gold<-read_csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
 
@@ -148,10 +150,134 @@ get.dist.df.g<-function(noun.q){
   return(cats.dist.df)
 } #end get.dist.df.g()
 #########################################################
+### function from model:
+#range.df<-1:10
+get.cat.no.df<-function(noun.q){
+#  nouns.df.no<-data.frame(w.array)
+  nouns.df.no<-d10.stef
+  nouns.df.no$cat.ai<-NA
+  k<-8
+  nouns.cats.known$fac.p<-1/nouns.cats.known$unique
+  #  w.array<-data.frame()
+  # for(k in 1:length(nouns.df.no$Noun[range.df])){
+  #   noun<-nouns.df.no$Noun[k]
+  noun<-noun.q
+    ### > all collocations of q noun from df
+    d2u<-nouns.cats.known.cpt$collocations[nouns.cats.known.cpt$noun==noun]
+    d2u<-unique(d2u)
+    #l<-length(d.c.u$Gramrels$Words)
+    l<-length(d2u)
+    ########
+    word.no<-"#empty#"
+    m<-grep(word.no,nouns.cats.known)
+    sum(m)
+    m<-grepl(word.no,nouns.cats.known.cpt$collocations)
+    sum(m)
+    nouns.cats.known.cpt<-nouns.cats.known.cpt[!m,]
+    if(l>1){
+      #  word.no<-d.c.u$Gramrels$Words[[l]]['word']
+      #  word.no$word
+      #  m.pos<-d2u%in%word.no$word
+      m.pos<-d2u%in%word.no
+      m.pos
+      d2u<-d2u[!m.pos]
+    } #discards postag cats from array
+    d2u # collocations array of noun in question
+    #word
+    ############################################
+    ### > matches of collocates (known cat) in collocates (cat unknown)
+    m.coll<-nouns.cats.known$collocations%in%d2u
+    #m.coll<-d2u%in%nouns.cats.known$collocations
+    length(m.coll)
+    sum(m.coll)
+    m.coll
+    m<-m.coll
+    ######
+    
+    # c.split<-stri_split_boundaries(word,type="char",simplify = T)
+    # c.split<-t(c.split)
+    # colls<-c.split
+    # colls
+    # m<-nouns.df$coll%in%colls
+    nouns.df<-nouns.cats.known
+    m.coll<-nouns.df$coll
+    m.coll
+    m.coll.n<-nouns.df$cat[m]
+    m.coll.n
+    m.coll.t<-table(factor(m.coll.n))
+    m.coll.t
+    max.coll.n<-which.max(table(factor(m.coll.n)))
+    max.coll.n # this works!
+    max.coll.ns<-names(max.coll.n)
+    max.coll.ns
+    mf<-nouns.df$cat==names(m.coll.t)
+    nouns.df$cat[mf]
+    #max.coll.p<-m.coll.t/nouns.df$fac.c[mf]
+    #max.coll.p
+    #max.coll.cat<-which.max(max.coll.p)
+    noun
+    #max.coll.cat
+    # max.f<-which.max(table(nouns.df$factor[m]))*as.double(names(which.max(table(nouns.df$factor[m]))))
+    # max.f
+    # max.f<-max(table(nouns.df$factor[m]))*as.double(names(which.max(table(nouns.df$factor[m]))))    
+    # max.t<-table(nouns.df$factor[m])*as.double(names(table(nouns.df$factor[m])))
+    # max.t
+    # max.cat<-names(table(nouns.df$cat[names(max.coll.n)==nouns.df$noun]))
+    # max.s<-max.t*as.double(names(max.t))
+    # max.s2<-which.max(max.s)
+    # #max.cat<-max.f
+    names(table(nouns.df$cat))
+    #max.cat<-names(table(nouns.df$cat[max.s2]))
+    #word
+    ############################################
+    m
+    
+    df.s<-data.frame(cat=names(m.coll.t),match=m.coll.t,score=NA,row.names = names(m.coll.t),max=F)
+    #k<-1
+    #k
+    c<-2
+    # df.dcf$factor<-      #TODO
+    for(c in 1:length(df.s$cat)){
+  #    ck<-nouns.df$fac.p[nouns.df$cat==df.s$cat[c]]
+      ck<-nouns.df$fac.p[nouns.df$cat==df.s$cat[c]]
+      df.s$factor[c]<-sum(ck)
+      m<-is.infinite(df.s$factor)
+      sum(m)
+      df.s$factor[m]<-NA
+      df.s$score<-df.s$match.Freq*df.s$factor
+      maxcore<-which.max(df.s$score)
+      df.s$max[maxcore]<-T
+      }
+    cats.dist.df<-df.s
+    ##############################################
+    catfinal.coll<-df.s$cat[which.max(df.s$score)]
+    word
+    max.cat<-catfinal.coll
+    #max.cat<-names(max.coll.cat)
+    max.cat
+    ############################################
+    #max.cat<-nouns.df$cat[nouns.df$noun==names(max.coll.n)]
+    #m.coll<-unique(m.coll.n)
+    #max.coll<-which.max(table(factor(m.coll.n)))
+    #max.cat<-names(max.coll)
+    # m.coll.c<-nouns.df$cat[m]
+    # m.coll.c<-unique(m.coll.c)
+    # max.coll.c<-which.max(table(factor(m.coll.c)))
+    # max.cat.c<-names(max.coll.c)
+    #k
+    #nouns.df$noun[k]
+    length(max.cat)
+    ifelse(length(max.cat)>0,nouns.df.no$cat.ai[k]<-max.cat,nouns.df.no$cat.ai[k]<-NA)
+  #}
+  returnlist<-list(dist=cats.dist.df,nouns.df=nouns.df.no)
+  return(returnlist)
+  return(nouns.df.no)
+}
 
-
+#########################################################
+dmax1<-get.cat.no.df("xxx",1:2)
 dmax1<-get.dist.df.g("rose")
-print(dmax1)
+print(dmax1$dist)
 k<-1
 dist.list<-list()
 range.df<-1:10
@@ -163,7 +289,10 @@ for(k in range.df){
   q<-d10.stef$Noun[k]
   q
   df<-get.dist.df.g(q)
-  
+  #################### model
+  df<-get.cat.no.df(q)
+  df$dist$cat
+  df$dist$max
   maxcat<-df$dist$cat[which(df$dist$max==T)]
   maxcat
   d10.stef$cat.ai[k]<-maxcat

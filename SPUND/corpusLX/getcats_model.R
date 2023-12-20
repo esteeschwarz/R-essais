@@ -95,11 +95,11 @@ get.cat.no.df<-function(noun){
     max.coll.ns
     mf<-nouns.df$cat==names(m.coll.t)
     nouns.df$cat[mf]
-    max.coll.p<-m.coll.t/nouns.df$fac.c[mf]
-    max.coll.p
-    max.coll.cat<-which.max(max.coll.p)
+    #max.coll.p<-m.coll.t/nouns.df$fac.c[mf]
+    #max.coll.p
+    #max.coll.cat<-which.max(max.coll.p)
     word
-    max.coll.cat
+    #max.coll.cat
     max.f<-which.max(table(nouns.df$factor[m]))*as.double(names(which.max(table(nouns.df$factor[m]))))
     max.f
     max.f<-max(table(nouns.df$factor[m]))*as.double(names(which.max(table(nouns.df$factor[m]))))    
@@ -114,44 +114,7 @@ get.cat.no.df<-function(noun){
     word
     ############################################
     m
-tempfun1<-function(){
-        d.c.f<-factor(nouns.df$cat[m])
-    d.c.f
-    d.c.t<-table(d.c.f)
-    d.c.t
-    #d.c.f.0<-
-    d.c.f.0<-factor(nouns.df$cat)
-    d.c.f.0
-    d.c.t.0<-table(d.c.f.0)
-    d.c.t.0 # cat frequency overall set, this factor has to be taken into account 
-  #  k<-1
-    for (k2 in 1:length(d.c.t.0)){
-      m2<-nouns.df$cat==names(d.c.t.0[k2])
-    sum(m2)
-      nouns.df$fac.c[m2]<-1/d.c.t.0[k2]
-    }
-    nouns.df$fac.p<-nouns.df$factor*nouns.df$fac.c
-    table(nouns.df$fac.p[m])
-    d.c.f.n<-factor(nouns.df$noun[m])
-    d.c.f.n
-    d.c.f.n.t<-table(d.c.f.n)
-    d.c.f.n.t
-    # d.c.f.f<-factor(nouns.cats.known$unique[m.coll])
-    # d.c.f.f
-    d.c.f.c<-factor(nouns.df$coll[m])
-    d.c.f.c
-    d.c.f.c.t<-table(d.c.f.c)
-    d.c.f.c.t
-    # df.dcf<-data.frame(cat=as.character(d.c.f))
-    # df.dcf$noun<-as.character(d.c.f.n)
-    # #df.dcf$unique<-as.double(as.character(d.c.f.f))
-    # co<-1
-    # for(co in 1:length(names(d.c.f.n.t))){
-    #   df.dcf$matches[df.dcf$noun==names(d.c.f.n.t)[co]]<-sum(d.c.f.n==names(d.c.f.n.t)[co])
-    #   #  df.dcf$matches[df.dcf$noun==names(d.c.f.n.t)[co]]<-d.c.f.n.t[co]
-    # }
-}
-    
+
     df.s<-data.frame(cat=names(m.coll.t),match=m.coll.t,score=NA,row.names = names(m.coll.t))
     #k<-1
     k
