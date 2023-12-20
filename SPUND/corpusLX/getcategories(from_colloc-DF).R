@@ -225,7 +225,8 @@ lfix<-length(nouns.cats.known.fix$lfd)
   d.c.u<-1:4 # empty response simulation at the begin of the loop 
   ifelse(run>0,noun.q<-d10.stef$Noun[k],noun.q<-noun.q)
   noun.q<-"bone"
-  ################################
+  #########################################################
+  #########################################################
   get.dist.df.g<-function(noun.q){
     
   noun<-noun.q
@@ -321,8 +322,10 @@ lfix<-length(nouns.cats.known.fix$lfd)
   dmax<-which.max(cats.dist.df$dist)
   cats.dist.df$max[dmax]<-TRUE
   return(cats.dist.df)
-  }
-  }
+  } #end get.dist.df.g()
+  #########################################################
+  
+ 
   dmax1<-get.dist.df.g("rose")
   dmax1
   k<-1
@@ -337,9 +340,10 @@ lfix<-length(nouns.cats.known.fix$lfd)
     maxcat<-df$cat[which(df$max==T)]
     maxcat
     d10.stef$cat.ai[k]<-maxcat
-    cat("run",k,maxcat,"\n")
+    cat("run",k,q,maxcat,"\n")
     dist.list[[q]]<-df
   }
+  ##################################
   #pmin(1:10,3)
   #nouns.cats.known$noun[m.coll]
   #nouns.cats.known$category[m.both]
@@ -499,7 +503,7 @@ catfinal<-catfinal.coll
 #catfinal<-d.c.t.ass[which.max(d.c.t.ass)]
 #d10.stef$cat.ai[k]<-catfinal
   } #end if 1
-  } #end if 2
+ # } #end if 2
   #return(catfinal)
   listreturn<-list(cat=catfinal,catmatches=d.c.t.ass,catscore=cat.df,coll=d.c.k.ar)
   #return(d.c.t.ass,d.c.k.ar)
@@ -657,29 +661,19 @@ catfinal
 #d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
 #lapsi
 d10.gold<-read_csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
-d10.ai<-d10.stef$cat.ai
-d10.ai
-length(unique(ds$noun))
-cat<-array()
-k<-1
-for (k in 1:length(d10.stef$Category)){
-  noun<-d10.stef$Noun[k]
-  cat.u<-unique(d10.ai$category[d10.ai$noun==noun])
-  ifelse(length(cat.u)>0,cat[k]<-cat.u,cat[k]<-NA)
-  
-  
-}
-cat
-d10.stef$category<-cat
-#sort back gold df after tokenid:
-df[with(df,order(df[,"a"])), ]
-d10.gold<-d10.gold[order]
+#d10.ai<-d10.stef$cat.ai
+############
 df<-d10.gold
 d10.gs<-df[with(df,order(df[,"Token_ID"])), ]
+df<-d10.stef
+d10.ai.s<-df[with(df,order(df[,"Token_ID"])), ]
+chks<-d10.ai.s$Token_ID==d10.gs$Token_ID
+sum(chks)
 d10.gs$cat.ai<-cat
-p1<-c.ass[m.pr]==c.gold[m.pr]
+p1<-d10.gs$Category==d10.ai.s$cat.ai
 sum(p1,na.rm = T)
 sum(p1,na.rm = T)/length(p1)
+############################
 p2<-d10.gs$Category==d10.gs$cat.ai
 sum(p2,na.rm = T)
 sum(p2,na.rm = T)/length(p2)
