@@ -216,35 +216,50 @@ run<-78
 d10.stef$Noun[78]
 #noun.q<-"canal"
   getcat<-function(run,noun.q,nouns.cats.old){
-nouns.cats.known<-nouns.cats.old
+    nouns.cats.known<-nouns.cats.old
+nouns.cats.known.fix<-read.csv("nouns.cats.known.csv") # modeled df of fixed cats, 8274 obs
+nouns.cats.known$category[(lfix+1):length(nouns.cats.known$lfd)]<-NA
+lfix<-length(nouns.cats.known.fix$lfd)
+
       k<-run
   d.c.u<-1:4 # empty response simulation at the begin of the loop 
   ifelse(run>0,noun.q<-d10.stef$Noun[k],noun.q<-noun.q)
+  noun.q<-"bone"
+  ################################
+  get.dist.df.g<-function(noun.q){
+    
   noun<-noun.q
   print(noun)
   catfinal<-"n.a"
-  d.c.u<-get.ske(noun,k)
+  ### > sketchengine request: fetch collocates to noun
+  #d.c.u<-get.ske(noun,k)
+  ###########################
   ### here test
-  ### declare var if 
+  ### declare empty vars if 
   d.c.t.ass<-0
   cat.df<-data.frame(cat="n.a.",score=0,row.names = "#empty#")
 
   #####################
   ### start loop
   ### if response contains collocates:
-  if (length(d.c.u)>4){
-  d2u<-unlist(lapply(d.c.u$Gramrels$Words, get.words))
+  ### here new essai with collocates from DF, no new SkE request:
+ # if (length(d.c.u)>4){
+#  d2u<-unlist(lapply(d.c.u$Gramrels$Words, get.words))
+  d2u<-nouns.cats.known$collocations[nouns.cats.known$noun==noun]
   d2u<-unique(d2u)
-  l<-length(d.c.u$Gramrels$Words)
+  #l<-length(d.c.u$Gramrels$Words)
+  l<-length(d2u)
   ########
   if(l>1){
-  word.no<-d.c.u$Gramrels$Words[[l]]['word']
-  word.no$word
-  m.pos<-d2u%in%word.no$word
+#  word.no<-d.c.u$Gramrels$Words[[l]]['word']
+  word.no<-"#empty#"
+#  word.no$word
+#  m.pos<-d2u%in%word.no$word
+  m.pos<-d2u%in%word.no
   m.pos
   d2u<-d2u[!m.pos]
   } #discards postag cats from array
-  d2u
+  d2u # collocations array of noun in question
   d.c.k.ar<-list(empty=NA)
   d.c.k.ar[[noun.q]]<-d2u
   ###### collocations list:
@@ -253,14 +268,79 @@ nouns.cats.known<-nouns.cats.old
   nouns.cats.known$noun[m.both]
   sum(m.both)
   d.c.t.both<-0
+  ### > matches of collocates (known cat) in collocates (cat unknown)
   m.coll<-nouns.cats.known$collocations%in%d2u
   #m.coll<-d2u%in%nouns.cats.known$collocations
+  length(m.coll)
   sum(m.coll)
   m.coll
   #nouns.cats.known$collocations[m.both]
-  #factor(nouns.cats.known$collocations[m.both])
-  nouns.cats.known$noun[m.coll]
-  #nouns.cats.known$collocations[m.coll]
+  table(factor(nouns.cats.known$collocations[m.both]))
+  which.max(table(factor(nouns.cats.known$noun[m.coll])))
+  m.coll.t<-table(factor(nouns.cats.known$noun[m.coll]))[order(table(factor(nouns.cats.known$noun[m.coll])))]
+  ### discard:
+  m.coll.mf<-tail(table(factor(nouns.cats.known$noun))[order(table(factor(nouns.cats.known$noun)))],10)
+  m.coll.mf
+  coll.disc<-names(tail(m.coll.mf,2)) # most frequent collocates over all /thing/ + /place/
+  m.disc<-names(m.coll.t)%in%coll.disc
+  sum(m.disc)
+  length(m.coll.t)
+  m.coll.t<-m.coll.t[!m.disc]
+  m.coll.t # now (for /bone/ most frequent match is /bone/)
+  #?order()
+  #?sort()
+  nouns.cats.known$collocations[m.coll]
+  m.coll.max<-tail(m.coll.t,10)
+  m.coll.max
+  ### > back remove m.disc from m.coll
+  m.coll.disc.n<-nouns.cats.known$noun[m.coll]%in%coll.disc
+  m.coll.disc.c<-nouns.cats.known$collocations[m.coll]%in%coll.disc
+  m.coll.sub<-nouns.cats.known[m.coll,]%in%coll.disc
+  m.coll.disc.w<-which(nouns.cats.known$noun[m.coll]%in%coll.disc)
+  sum(m.coll.disc.n)
+  sum(m.coll.disc.c)
+  sum(m.coll.disc.n)
+  cats.dist<-table(nouns.cats.known$category) # overall distribution of predefined cats
+  cats.dist
+  ### > make factor of that
+  f<-1
+  noun
+  nouns.cats.known$factor<-NA
+  for ( f in 1:length(cats.dist)){
+    m<-nouns.cats.known$category==names(cats.dist[f])
+  sum(m)
+  nouns.cats.known$factor[m]<-1/cats.dist[f]
+  }
+  d<-1
+#  get.dist.df<-function(noun){
+  cats.dist.df<-data.frame(cat=names(cats.dist),noun=noun,dist=NA,max=NA)
+  for (d in 1:length(cats.dist.df$cat)){
+  m.chk<-nouns.cats.known$category[m.coll]==cats.dist.df$cat[d]
+  cats.dist.df$dist[d]<-sum(nouns.cats.known$factor[m.chk],na.rm = T)
+  }
+  dmax<-which.max(cats.dist.df$dist)
+  cats.dist.df$max[dmax]<-TRUE
+  return(cats.dist.df)
+  }
+  }
+  dmax1<-get.dist.df.g("rose")
+  dmax1
+  k<-1
+  dist.list<-list()
+  
+  d10.stef$cat.ai<-NA
+  for(k in 1:length(d10.stef$Noun)){
+    q<-d10.stef$Noun[k]
+    q
+    df<-get.dist.df.g(q)
+    df
+    maxcat<-df$cat[which(df$max==T)]
+    maxcat
+    d10.stef$cat.ai[k]<-maxcat
+    cat("run",k,maxcat,"\n")
+    dist.list[[q]]<-df
+  }
+  #pmin(1:10,3)
   #nouns.cats.known$noun[m.coll]
   #nouns.cats.known$category[m.both]
   #nouns.cats.known$category[m.coll]
@@ -268,10 +348,14 @@ nouns.cats.known<-nouns.cats.old
   #typeof(nouns.cats.known$lfd)
   #nouns.cats.known$unique[nouns.cats.known$noun=="alley"]
  # if(length(nouns.cats.known$category[m.both])>1){
+  
   if(length(nouns.cats.known$category[m.both])>0){
       
+    #d.c.f.1<-factor(nouns.cats.known$category[m.both])
     d.c.f.1<-factor(nouns.cats.known$category[m.both])
-d.c.f.1
+    d.c.f.1<-factor(nouns.cats.known$category[m.both])
+    
+    d.c.f.1
       #  plot(d.c.f.1)
     d.c.t.1<-table(d.c.f.1)
     d.c.t.1
@@ -433,7 +517,8 @@ range<-76:78
 #nouns.cats.old<-nouns.cats.known
 #rm(nouns.cats.known.temp)
 cat.process<-function(range){ #,nouns.cats.old){
-  nouns.cats.old<-read.csv("nouns.cats.temp.csv") # will be saved at end of loop under same name after adding new categories
+  nouns.cats.old<-read.csv("nouns.cats.temp_918.csv") # will be saved at end of loop under same name after adding new categories
+  nouns.cats.known<-nouns.cats.old
   d10.stef$cat.ai<-"n.a."
   d10.stef$cat.ai[d10.stef$Noun=="rose"]<-"P&F"
   #range<-14:19
@@ -568,11 +653,12 @@ catfinal
 #write.csv(d10.stef,"fragrance2_ai-cats.csv")
 ############################################
 ### evaluate definition:
-d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
+#d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
 #d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
 #lapsi
 d10.gold<-read_csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
-d10.ai<-ds
+d10.ai<-d10.stef$cat.ai
+d10.ai
 length(unique(ds$noun))
 cat<-array()
 k<-1
