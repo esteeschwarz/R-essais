@@ -13,11 +13,24 @@
 #d10.stef<-read.csv("/volumes/ext/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
 #lapsi
 d10.stef<-read.csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/CaseStudy2_FullData.csv")
+d10.gold<-read_csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
 
 #from saved df
+#nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
 nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
+nouns.cats.known.fix<-read.csv("nouns.cats.known.csv") # modeled df of fixed cats, 8274 obs
+nouns.cats.known.cpt<-read.csv("nouns.cats.temp_918.csv")
+lfix<-length(nouns.cats.known.fix$lfd)
+nouns.cats.known.cpt$category[(lfix+1):length(nouns.cats.known.cpt$lfd)]<-NA
+
 #########################################################
 #########################################################
+
+mplus<-d10.stef$Noun%in%nouns.cats.known$noun
+m.not<-!mplus
+sum(m.not)
+### random noun from df which is not in the training set:
+noun.q<-sample(d10.stef$Noun[m.not],1)
 get.dist.df.g<-function(noun.q){
   
   noun<-noun.q
@@ -37,14 +50,20 @@ get.dist.df.g<-function(noun.q){
   ### here new essai with collocates from DF, no new SkE request:
   # if (length(d.c.u)>4){
   #  d2u<-unlist(lapply(d.c.u$Gramrels$Words, get.words))
-  d2u<-nouns.cats.known$collocations[nouns.cats.known$noun==noun]
+  ### > all collocations of q noun from df
+  d2u<-nouns.cats.known.cpt$collocations[nouns.cats.known.cpt$noun==noun]
   d2u<-unique(d2u)
   #l<-length(d.c.u$Gramrels$Words)
   l<-length(d2u)
   ########
+  word.no<-"#empty#"
+  m<-grep(word.no,nouns.cats.known)
+  sum(m)
+  m<-grepl(word.no,nouns.cats.known.cpt$collocations)
+  sum(m)
+  nouns.cats.known.cpt<-nouns.cats.known.cpt[!m,]
   if(l>1){
     #  word.no<-d.c.u$Gramrels$Words[[l]]['word']
-    word.no<-"#empty#"
     #  word.no$word
     #  m.pos<-d2u%in%word.no$word
     m.pos<-d2u%in%word.no
@@ -56,6 +75,7 @@ get.dist.df.g<-function(noun.q){
   d.c.k.ar[[noun.q]]<-d2u
   ###### collocations list:
   #########################
+  ### q direct match (appearance of noun.q in) noun in known.collocation
   m.both<-noun==nouns.cats.known$collocations
   nouns.cats.known$noun[m.both]
   sum(m.both)
@@ -68,13 +88,22 @@ get.dist.df.g<-function(noun.q){
   m.coll
   #nouns.cats.known$collocations[m.both]
   table(factor(nouns.cats.known$collocations[m.both]))
+  table(factor(nouns.cats.known$collocations[m.coll]))
+  ### highes match in noun:
   which.max(table(factor(nouns.cats.known$noun[m.coll])))
+  ### highest match in cat:
+  which.max(table(factor(nouns.cats.known$category[m.coll])))
   m.coll.t<-table(factor(nouns.cats.known$noun[m.coll]))[order(table(factor(nouns.cats.known$noun[m.coll])))]
+  m.coll.t
   ### discard:
-  m.coll.mf<-tail(table(factor(nouns.cats.known$noun))[order(table(factor(nouns.cats.known$noun)))],10)
+  m.coll.mf<-sort(table(factor(nouns.cats.known.cpt$collocations)),decreasing = T)
+  m.coll.mf<-sort(table(factor(nouns.cats.known.cpt$noun)))
+  #  ?sort
   m.coll.mf
   coll.disc<-names(tail(m.coll.mf,2)) # most frequent collocates over all /thing/ + /place/
+  coll.disc
   m.disc<-names(m.coll.t)%in%coll.disc
+  m.disc
   sum(m.disc)
   length(m.coll.t)
   m.coll.t<-m.coll.t[!m.disc]
@@ -85,13 +114,14 @@ get.dist.df.g<-function(noun.q){
   m.coll.max<-tail(m.coll.t,10)
   m.coll.max
   ### > back remove m.disc from m.coll
-  m.coll.disc.n<-nouns.cats.known$noun[m.coll]%in%coll.disc
-  m.coll.disc.c<-nouns.cats.known$collocations[m.coll]%in%coll.disc
-  m.coll.sub<-nouns.cats.known[m.coll,]%in%coll.disc
-  m.coll.disc.w<-which(nouns.cats.known$noun[m.coll]%in%coll.disc)
-  sum(m.coll.disc.n)
-  sum(m.coll.disc.c)
-  sum(m.coll.disc.n)
+  # m.coll.disc.n<-nouns.cats.known$noun[m.coll]%in%coll.disc
+  # m.coll.disc.c<-nouns.cats.known$collocations[m.coll]%in%coll.disc
+  # m.coll.sub<-nouns.cats.known[m.coll,]%in%coll.disc
+  # m.coll.disc.w<-which(nouns.cats.known$noun[m.coll]%in%coll.disc)
+  # sum(m.coll.disc.n)
+  # sum(m.coll.disc.c)
+  # sum(m.coll.disc.n)
+  # m.coll.disc.w
   cats.dist<-table(nouns.cats.known$category) # overall distribution of predefined cats
   cats.dist
   ### > make factor of that
@@ -112,6 +142,7 @@ get.dist.df.g<-function(noun.q){
   }
   dmax<-which.max(cats.dist.df$dist)
   cats.dist.df$max[dmax]<-TRUE
+  cats.dist.df
   returnlist<-list(dist=cats.dist.df,nouns.df=nouns.cats.known)
   return(returnlist)
   return(cats.dist.df)
@@ -146,8 +177,44 @@ return(returnlist)
 }
 sampledist<-sample(1:length(d10.stef$Corpus),100)
 sampledist
+##############################
 distessai<-catcall(sampledist)
 distessai
+############################################
+### evaluate definition:
+#d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
+#d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
+#lapsi
+#d10.ai<-d10.stef$cat.ai
+############
+evalcat<-function(goldset,testset,sampledist){
+  df<-goldset
+  d10.gs<-df[with(df,order(df[,"Token_ID"])), ]
+  d10.gs<-d10.gs[sampledist,]
+  df<-testset
+  d10.ai.s<-df[with(df,order(df[,"Token_ID"])), ]
+  d10.ai.s$cat.ai<-gsub("B&UE","B&AE",d10.ai.s$cat.ai)
+  d10.ai.s<-d10.ai.s[sampledist,]
+  chks<-d10.ai.s$Token_ID==d10.gs$Token_ID
+  print(chks)
+  print(sampledist)
+  print(sum(chks,na.rm = T))
+  #d10.gs$cat.ai<-cat
+  p1<-d10.gs$Category==d10.ai.s$cat.ai
+  p2<-p1
+  p2[is.na(p1)]<-F
+  print(d10.gs$Noun[p2])
+  print(d10.gs$Category[p2])
+  print(sum(p1,na.rm = T))
+  print(sum(p1,na.rm = T)/length(p1))
+  dfreturn<-data.frame(cat=d10.gs$Category,ai=d10.ai.s$cat.ai)
+  d10.ai.s$Category<-d10.gs$Category
+  return(d10.ai.s)
+  ############################
+  ##################################
+}
+### > change algorithm of defining cats from df
+df.known<-distessai$nouns
 ############################################
 ### > evaluate:
 #distessai$df
@@ -162,37 +229,5 @@ evaldf<-evalcat(goldset,testset,sampledist)
 catsknown.t<-table(nouns.cats.known$category)
 catsknown.t
 ############################################
-### evaluate definition:
-#d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
-#d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
-#lapsi
-d10.gold<-read_csv("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
-#d10.ai<-d10.stef$cat.ai
-############
-evalcat<-function(goldset,testset,sampledist){
-df<-goldset
-d10.gs<-df[with(df,order(df[,"Token_ID"])), ]
-d10.gs<-d10.gs[sampledist,]
-df<-testset
-d10.ai.s<-df[with(df,order(df[,"Token_ID"])), ]
-d10.ai.s$cat.ai<-gsub("B&UE","B&AE",d10.ai.s$cat.ai)
-d10.ai.s<-d10.ai.s[sampledist,]
-chks<-d10.ai.s$Token_ID==d10.gs$Token_ID
-print(chks)
-print(sampledist)
-print(sum(chks,na.rm = T))
-#d10.gs$cat.ai<-cat
-p1<-d10.gs$Category==d10.ai.s$cat.ai
-p2<-p1
-p2[is.na(p1)]<-F
-print(d10.gs$Noun[p2])
-print(d10.gs$Category[p2])
-print(sum(p1,na.rm = T))
-print(sum(p1,na.rm = T)/length(p1))
-dfreturn<-data.frame(cat=d10.gs$Category,ai=d10.ai.s$cat.ai)
-d10.ai.s$Category<-d10.gs$Category
-return(d10.ai.s)
-############################
-##################################
-}
+
 ### N: theres too many AC coded, this is the only cat recognized correctly
