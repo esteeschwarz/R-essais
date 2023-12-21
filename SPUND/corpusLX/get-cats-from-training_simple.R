@@ -204,7 +204,7 @@ mod.factor<-function(ai.form){
 ### function from model:
 #range.df<-1:10
 noun.q<-"lake"
-nouns.df.ai<-mod.factor(ai.form)
+#nouns.df.ai<-mod.factor(ai.form)
 #sum(nouns.df.ai$noun=="lake")
 ### > feed in nounsdfai from modfactor()
 get.cat.no.df<-function(noun.q,nouns.df.ai){
