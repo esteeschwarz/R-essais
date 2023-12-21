@@ -152,6 +152,7 @@ get.dist.df.g<-function(noun.q){
 #########################################################
 ### function from model:
 #range.df<-1:10
+noun.q<-"pit-latrine"
 get.cat.no.df<-function(noun.q){
 #  nouns.df.no<-data.frame(w.array)
   nouns.df.no<-d10.stef
@@ -174,6 +175,10 @@ get.cat.no.df<-function(noun.q){
     m<-grepl(word.no,nouns.cats.known.cpt$collocations)
     sum(m)
     nouns.cats.known.cpt<-nouns.cats.known.cpt[!m,]
+    l<-length(d2u)
+    m<-grepl(word.no,d2u)
+    sum(m)
+    d2u<-d2u[!m]
     if(l>1){
       #  word.no<-d.c.u$Gramrels$Words[[l]]['word']
       #  word.no$word
@@ -186,13 +191,110 @@ get.cat.no.df<-function(noun.q){
     #word
     ############################################
     ### > matches of collocates (known cat) in collocates (cat unknown)
+    getmatches<-function(coltrain,colq){
     m.coll<-nouns.cats.known$collocations%in%d2u
+    m.coll<-coltrain%in%colq
     #m.coll<-d2u%in%nouns.cats.known$collocations
     length(m.coll)
     sum(m.coll)
     m.coll
     m<-m.coll
-    ######
+    }
+    #############################################
+    ### remove mfw
+    #table(factor(nouns.cats.known$collocations[m.coll]))
+    ### highes match in noun:
+    #which.max(table(factor(nouns.cats.known$noun[m.coll])))
+    ### highest match in cat:
+    #which.max(table(factor(nouns.cats.known$category[m.coll])))
+    #nouns.cats.known$cat[nouns.cats.known$noun=="body"]
+    ### N: q/body/ == "AC", cat /body/ == "BO" !! max cat differs from /body/ concept
+    ###################
+    getmfw<-function(m.coll.x){
+    m.coll.t<-table(factor(nouns.cats.known$noun[m.coll.x]))[order(table(factor(nouns.cats.known$noun[m.coll.x])))]
+    m.coll.t
+    m.coll.cat<-table(factor(nouns.cats.known$cat[m.coll.x]))[order(table(factor(nouns.cats.known$cat[m.coll.x])))]
+    m.coll.cat
+    ### discard:
+    m.coll.mf<-sort(table(factor(nouns.cats.known.cpt$collocations)),decreasing = T)
+    m.coll.mf<-sort(table(factor(nouns.cats.known.cpt$noun)))
+    #  ?sort
+    m.coll.mf
+    coll.disc<-names(tail(m.coll.mf,2)) # most frequent collocates over all /thing/ + /place/
+    coll.disc
+    returnlist<-list(coll.t=m.coll.t,coll.cat=m.coll.cat,coll.disc=coll.disc)
+    return(returnlist)
+    }
+    m.coll<-getmatches(nouns.cats.known$collocations,d2u)
+    #########################
+    coll.disc.g<-getmfw(m.coll)
+    coll.disc<-coll.disc.g$coll.disc
+    #########################
+    coll.disc
+    mdisc<-d2u%in%coll.disc
+    sum(mdisc)
+    length(d2u)
+    d2u.disc<-d2u[!mdisc]
+    length(d2u.disc)
+    
+    coll.a<-nouns.cats.known$collocations[m.coll]
+    coll.a
+    sum(m.coll)
+    
+    m.coll.b<-getmatches(nouns.cats.known$collocations,d2u.disc)
+    sum(m.coll.b)
+    ### highes match in noun:
+    which.max(table(factor(nouns.cats.known$noun[m.coll.b])))
+    ### highest match in cat:
+    which.max(table(factor(nouns.cats.known$category[m.coll.b])))
+    ### highes match in noun:
+    table(factor(nouns.cats.known$noun[m.coll.b]))
+    ### highest match in cat:
+    catfactor<-data.frame(cat=c(unique(nouns.cats.known$category),"n.a."),fac.p=NA)
+    unique(nouns.cats.known$unique[nouns.cats.known$category=="B&UE"]) # infinite values in df
+    m0<-nouns.cats.known$unique==0
+    sum(m0)
+    nouns.cats.known$unique[m0]<-1
+    nouns.cats.known$fac.p<-1/nouns.cats.known$unique
+    for(c in 1:length(catfactor$cat)){
+      cat<-catfactor$cat[c]
+    catfactor$fac.p[c]<-sum(nouns.cats.known$fac.p[nouns.cats.known$category==cat])
+    }
+    
+    catfactor
+    table(factor(nouns.cats.known$category[m.coll.b]))
+    lt<-length(table(factor(nouns.cats.known$category[m.coll.b])))
+    ifelse(lt>0,catfactor$fac.t<-as.double(table(factor(nouns.cats.known$category[m.coll.b])))/catfactor$fac.p,
+           catfactor$fac.t<-NA)
+    catfactor
+ #   m.disc<-names(m.coll.t)%in%coll.disc
+  #  m.disc
+   # sum(m.disc)
+    m.nodisc.g<-getmfw(m.coll.b)
+    m.nodisc<-m.nodisc.g$coll.disc
+    m.nodisc
+    m.coll.t<-getmfw(m.coll.b)$coll.t
+    #length(m.coll.t)
+    #m.coll.t<-m.coll.t[!m.disc]
+    #m.coll.t # now (for /bone/ most frequent match is /bone/)
+    #?order()
+    #?sort()
+    
+    m.coll.max<-tail(m.coll.t,10)
+    m.coll.max
+    ### > back remove m.disc from m.coll
+    # m.coll.disc.n<-nouns.cats.known$noun[m.coll]%in%coll.disc
+    # m.coll.disc.c<-nouns.cats.known$collocations[m.coll]%in%coll.disc
+    # m.coll.sub<-nouns.cats.known[m.coll,]%in%coll.disc
+    # m.coll.disc.w<-which(nouns.cats.known$noun[m.coll]%in%coll.disc)
+    # sum(m.coll.disc.n)
+    # sum(m.coll.disc.c)
+    # sum(m.coll.disc.n)
+    # m.coll.disc.w
+    cats.dist<-table(nouns.cats.known$category) # overall distribution of predefined cats
+    cats.dist
+    ###########################################
+    
     
     # c.split<-stri_split_boundaries(word,type="char",simplify = T)
     # c.split<-t(c.split)
@@ -202,7 +304,10 @@ get.cat.no.df<-function(noun.q){
     nouns.df<-nouns.cats.known
     m.coll<-nouns.df$coll
     m.coll
-    m.coll.n<-nouns.df$cat[m]
+    ###########
+    #m<-m.coll.b # new matches
+    ###########
+    m.coll.n<-nouns.df$cat[m.coll.b]
     m.coll.n
     m.coll.t<-table(factor(m.coll.n))
     m.coll.t
@@ -230,12 +335,19 @@ get.cat.no.df<-function(noun.q){
     #max.cat<-names(table(nouns.df$cat[max.s2]))
     #word
     ############################################
-    m
+    #m
+    df.s<-data.frame(cat="n.a",match=NA,score=NA,row.names = "n.a.",max=T)
+    max.cat<-"n.a"
+    cats.dist.df<-df.s
+    if(length(names(m.coll.t))>0){
+      df.s<-data.frame(cat=names(m.coll.t),match=m.coll.t,score=NA,row.names = names(m.coll.t),max=F)
     
-    df.s<-data.frame(cat=names(m.coll.t),match=m.coll.t,score=NA,row.names = names(m.coll.t),max=F)
+    #df.s<-data.frame(cat=names(m.coll.t),match=m.coll.t,score=NA,row.names = names(m.coll.t),max=F)
     #k<-1
     #k
     c<-2
+    m0<-nouns.df$unique==0
+    sum(m0)
     # df.dcf$factor<-      #TODO
     for(c in 1:length(df.s$cat)){
   #    ck<-nouns.df$fac.p[nouns.df$cat==df.s$cat[c]]
@@ -244,17 +356,20 @@ get.cat.no.df<-function(noun.q){
       m<-is.infinite(df.s$factor)
       sum(m)
       df.s$factor[m]<-NA
-      df.s$score<-df.s$match.Freq*df.s$factor
-      maxcore<-which.max(df.s$score)
-      df.s$max[maxcore]<-T
-      }
+      df.s$score<-df.s$match.Freq/df.s$factor
+    
+    }
+    maxcore<-which.max(df.s$score)
+    df.s$max[maxcore]<-T
     cats.dist.df<-df.s
+    df.s
     ##############################################
     catfinal.coll<-df.s$cat[which.max(df.s$score)]
-    word
     max.cat<-catfinal.coll
     #max.cat<-names(max.coll.cat)
     max.cat
+    }
+    
     ############################################
     #max.cat<-nouns.df$cat[nouns.df$noun==names(max.coll.n)]
     #m.coll<-unique(m.coll.n)
@@ -272,10 +387,10 @@ get.cat.no.df<-function(noun.q){
   returnlist<-list(dist=cats.dist.df,nouns.df=nouns.df.no)
   return(returnlist)
   return(nouns.df.no)
-}
+} #end get.cat.no.df()
 
 #########################################################
-dmax1<-get.cat.no.df("xxx",1:2)
+dmax1<-get.cat.no.df("pit-latrine")
 dmax1<-get.dist.df.g("rose")
 print(dmax1$dist)
 k<-1
