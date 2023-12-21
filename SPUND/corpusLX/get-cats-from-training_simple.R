@@ -148,21 +148,78 @@ get.dist.df.g<-function(noun.q){
   returnlist<-list(dist=cats.dist.df,nouns.df=nouns.cats.known)
   return(returnlist)
   return(cats.dist.df)
-} #end get.dist.df.g()
+} #end get.dist.df.g() # obsolete function
+#########################################################
+### factor correction, cat SE
+#set<-d10.gold
+#coll.set<-nouns.cats.known.cpt
+#ai.s<-F
+ai.f<-1:2
+nouns.set<-nouns.cats.known
+mod.factor<-function(ai.form){
+  goldset<-d10.gold
+  nouns.set<-eval(ai.form[1])
+  coll.set<-eval(ai.form[2])
+  ai.cat<-eval(ai.form[3])
+  ai.s<-eval(ai.form[4])
+  ai.f<-eval(ai.form[5])
+  #ai.s<-T
+  ifelse(ai.s==F,ai.mode<-F,ai.mode<-T)
+  ai.nouns<-goldset$Noun[goldset$Category==ai.cat]
+  length(ai.nouns)
+  ai.nouns<-unique(ai.nouns)
+  ai.m<-nouns.cats.known$noun%in%ai.nouns
+  sum(ai.m) # not yet coded, klar
+  ai.m<-coll.set$noun%in%ai.nouns
+  sum(ai.m)
+  if(ai.mode==T)
+    {ai.ch.s<-sample(ai.nouns,ai.s)
+  ai.ch.s
+  }
+  ai.coll.nouns<-coll.set$noun[ai.m]
+  ai.coll.m<-coll.set$noun%in%ai.coll.nouns
+  ai.coll.s.t<-sort(table(coll.set$noun[ai.coll.m]),decreasing = T)
+  ai.coll.s.t
+  ai.m.coll<-coll.set$noun%in%names(ai.coll.s.t)
+  sum(ai.m.coll)
+  length(ai.s)
+  if(sum(ai.f>=1)>1)
+    ai.ch.fix<-names(ai.coll.s.t)[ai.f]
+  ###################################
+  ### add collocates of chosen SE noun to known noun df
+  ifelse(ai.mode==T,ai.use<-ai.ch.s,ai.use<-ai.ch.fix)
+  ai.use
+  coll.sub<-coll.set[coll.set$noun%in%ai.use,]
+  coll.sub$category<-ai.cat
+  coll.new<-rbind(nouns.set,coll.sub)
+  m0<-coll.new$unique==0
+  sum(m0)
+  coll.new<-coll.new[!m0,]
+  
+  return(coll.new)
+
+
+}  
 #########################################################
 ### function from model:
 #range.df<-1:10
-noun.q<-"pit-latrine"
-get.cat.no.df<-function(noun.q){
+noun.q<-"lake"
+nouns.df.ai<-mod.factor(ai.form)
+#sum(nouns.df.ai$noun=="lake")
+### > feed in nounsdfai from modfactor()
+get.cat.no.df<-function(noun.q,nouns.df.ai){
 #  nouns.df.no<-data.frame(w.array)
   nouns.df.no<-d10.stef
   nouns.df.no$cat.ai<-NA
-  k<-8
+  nouns.cats.known<-nouns.df.ai
+  
+  #  k<-8
   nouns.cats.known$fac.p<-1/nouns.cats.known$unique
   #  w.array<-data.frame()
   # for(k in 1:length(nouns.df.no$Noun[range.df])){
   #   noun<-nouns.df.no$Noun[k]
   noun<-noun.q
+  noun
     ### > all collocations of q noun from df
     d2u<-nouns.cats.known.cpt$collocations[nouns.cats.known.cpt$noun==noun]
     d2u<-unique(d2u)
@@ -226,6 +283,7 @@ get.cat.no.df<-function(noun.q){
     return(returnlist)
     }
     m.coll<-getmatches(nouns.cats.known$collocations,d2u)
+    sum(m.coll)
     #########################
     coll.disc.g<-getmfw(m.coll)
     coll.disc<-coll.disc.g$coll.disc
@@ -248,9 +306,10 @@ get.cat.no.df<-function(noun.q){
     ### highest match in cat:
     which.max(table(factor(nouns.cats.known$category[m.coll.b])))
     ### highes match in noun:
-    table(factor(nouns.cats.known$noun[m.coll.b]))
+    sort(table(factor(nouns.cats.known$noun[m.coll.b])))
     ### highest match in cat:
     catfactor<-data.frame(cat=c(unique(nouns.cats.known$category),"n.a."),fac.p=NA)
+    catfactor
     unique(nouns.cats.known$unique[nouns.cats.known$category=="B&UE"]) # infinite values in df
     m0<-nouns.cats.known$unique==0
     sum(m0)
@@ -357,9 +416,12 @@ get.cat.no.df<-function(noun.q){
       sum(m)
       df.s$factor[m]<-NA
       df.s$score<-df.s$match.Freq/df.s$factor
+      ### this should be the place to modifying after training and insert feedback of the errorrate, maybe the proportion
+      ### of correct matched cats
     
     }
     maxcore<-which.max(df.s$score)
+    maxcore
     df.s$max[maxcore]<-T
     cats.dist.df<-df.s
     df.s
@@ -382,7 +444,10 @@ get.cat.no.df<-function(noun.q){
     #k
     #nouns.df$noun[k]
     length(max.cat)
-    ifelse(length(max.cat)>0,nouns.df.no$cat.ai[k]<-max.cat,nouns.df.no$cat.ai[k]<-NA)
+    mk<-nouns.df.no$Noun==noun
+    sum(mk)
+    which(mk)
+    ifelse(length(max.cat)>0,nouns.df.no$cat.ai[mk]<-max.cat,nouns.df.no$cat.ai[mk]<-NA)
   #}
   returnlist<-list(dist=cats.dist.df,nouns.df=nouns.df.no)
   return(returnlist)
@@ -390,47 +455,62 @@ get.cat.no.df<-function(noun.q){
 } #end get.cat.no.df()
 
 #########################################################
-dmax1<-get.cat.no.df("pit-latrine")
-dmax1<-get.dist.df.g("rose")
-print(dmax1$dist)
-k<-1
+#dmax1<-get.cat.no.df("lake")
+#dmax1<-get.dist.df.g("rose")
+#dmax1$nouns.df$collocations[dmax1$nouns.df$Noun=="lake"]
+#dmax1$nouns.df$
+#returnlist$nouns.df$cat.ai[returnlist$nouns.df$Noun=="lake"]
+#returnlist$nouns.df$cat.ai[mk]
+#sum(returnlist$nouns.df$Noun=="lake")
+#print(dmax1$dist)
+#k<-1k<-1cat.ai
 dist.list<-list()
-range.df<-1:10
+range.df<-103:104
+range.df
+k<-103
 ############################
-catcall<-function(range.df){
+catcall<-function(range.df,ai.form){
 d10.stef$cat.ai<-NA
 #range.df<-1:length(d10.stef$Noun
 for(k in range.df){
   q<-d10.stef$Noun[k]
   q
-  df<-get.dist.df.g(q)
+  #df<-get.dist.df.g(q)
   #################### model
-  df<-get.cat.no.df(q)
-  df$dist$cat
-  df$dist$max
+  ### > here feed in factor modfication:
+  # formula:
+  df<-get.cat.no.df(q,mod.factor(ai.form))
+  ####################
+  df$dist
   maxcat<-df$dist$cat[which(df$dist$max==T)]
   maxcat
-  d10.stef$cat.ai[k]<-maxcat
+  mk<-d10.stef$Noun==q
+  which(mk)
+  d10.stef$cat.ai[mk]<-maxcat
   cat("run",k,q,maxcat,"\n")
-  dist.list[['eval']][[q]]<-df$dist
-  dist.list[['nouns']]<-df$nouns.df
+  dist.list[['dist.df']][[q]]<-df$dist
+  #  df$nouns.df$cat.ai[103:105]
 }
-cat.df<-data.frame(dist.list$nouns)
-returnlist<-list(cat=dist.list,df=d10.stef,nouns=cat.df)
+dist.list[['nouns.df']]<-d10.stef
+#cat.df<-data.frame(dist.list$dist.df)
+returnlist<-list(nouns.df=d10.stef,dist.df=dist.list$dist.df,trainset=nouns.cats.known)
 return(returnlist)
 }
 sampledist<-sample(1:length(d10.stef$Corpus),100)
 sampledist
 ##############################
-distessai<-catcall(sampledist)
-distessai
+ai.form<-expression(nouns.cats.known,nouns.cats.known.cpt,'SE',F,c(1:2))
+eval(ai.form[4])
+
+distessai<-catcall(sampledist,ai.form)
+distessai$nouns.df$cat.ai[distessai$nouns.df$Noun=="lake"]
 ############################################
 ### evaluate definition:
 #d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
 #d10.gold<-read_csv("/Volumes/EXT/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/casestudy2_full.csv") # manually defined gold 
 #lapsi
 #d10.ai<-d10.stef$cat.ai
-############
+########################
 evalcat<-function(goldset,testset,sampledist){
   df<-goldset
   d10.gs<-df[with(df,order(df[,"Token_ID"])), ]
@@ -463,7 +543,17 @@ df.known<-distessai$nouns
 ### > evaluate:
 #distessai$df
 distessai$df[!is.na(distessai$df$cat.ai),c('Noun','cat.ai')]
-testset<-distessai$df
+testset<-distessai$nouns.df
+#temp
+m<-is.na(testset$cat.ai)
+sum(m)
+mdw<-which(duplicated(testset$Noun))
+mdw
+md<-duplicated(testset$Noun)
+#sum(md)
+testset$Noun[md]
+md
+###
 goldset<-d10.gold
 #print(sum(testset$Token_ID==goldset$Token_ID))
 evaldf<-evalcat(goldset,testset,sampledist)
@@ -475,3 +565,27 @@ catsknown.t
 ############################################
 
 ### N: theres too many AC coded, this is the only cat recognized correctly
+### < factorized cats
+### : 8% correct recognition
+### : feedback p
+### : tendency: assign SE, which is the cat with highest factor because theres only 1 in training set.
+### > code more SE nouns manually resp fetch them from goldset: nouns.cats.known<-mod.factor()
+################
+
+
+distessai$cat$eval$sandwich
+m<-evaldf$match<-evaldf$Category==evaldf$cat.ai
+sum(m,na.rm = T)
+unique(evaldf$cat.ai)
+evaldf$cat.ai[evaldf$cat.ai=="n.a"]<-NA
+m<-evaldf$match<-evaldf$Category==evaldf$cat.ai
+sum(m,na.rm = T)
+evaldist<-data.frame(cat=unique(evaldf$cat.ai),sum=NA)
+#x<-"AC"
+evalsum<-function(x)sum(evaldf$cat.ai==x,na.rm = T)
+evaldist$sum<-lapply(evaldist$cat,evalsum)
+evaldist
+distessai$cat$eval$sandwich
+evaldf$Category[evaldf$Noun=="sandwich"]
+length(distessai$cat$eval)
+nouns.cats.known.cpt$category[nouns.cats.known.cpt$noun=="lake"]
