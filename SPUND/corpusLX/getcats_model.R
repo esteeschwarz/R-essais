@@ -3,6 +3,7 @@
 #####################
 #####################
 library(stringi)
+library(rbenchmark)
 a1<-LETTERS
 a2<-letters
 we1<-c("e1word","ee2word","eee3word","eeee4word","eeeee5word")
@@ -152,9 +153,36 @@ cats.no<-get.cat.no.df("xx")
 #nouns.n
 #co.list<-list()
 
-
-
-
-
-
+library(RecordLinkage)
+benchmark(wa1,wa1)
+levenshteinSim(wa1,we1)
+levenshteinSim(we1,wa1[1])
+levenshteinSim(wa1,wa1[1])
+benchmark(levenshteinDist(wa1[1],wa1[3]))
+benchmark(levenshteinSim(wa1[1],we1[4]))
+levenshteinSim("dreimal schwarzer kater","kater")
+levenshteinSim("dreimal schwarzer kater","kater dreimal schwarzer")
+sum(levenshteinSim(c("dreimal", "schwarzer", "kater"),c("dreimal", "kater")))
+sum(jarowinkler(c("dreimal schwarzer kater"),c("kater dreimal schwarzer")))
+sum(jarowinkler(c("dreimal", "schwarzer","kater"),c(" dreimal"," kater")))
+m1<-matrix(wa1)
+m2<-matrix(we1)
+m1<-matrix(c("dreimal", "schwarzer", "kater","place"))
+m2<-matrix(c("dreimal", "place","kater","kater","dreimal","kater","kater"))
+c1<-compare.linkage(m1,m2)
+c1$pairs
+c1$frequencies
+m<-m2%in%m1
+sum(m)
+sum(m)/(length(m1)+length(m2))
+#getTable(c1)
+getPairs(c1)
+d1<-data.frame(m=m1,cat=m1)
+d2<-data.frame(m=m2,cat=m2)
+d1
+rpairs<-RLBigDataDedup(   rbind(d1,d2))
+rpairs
+rpairs
+rpairs<-epiWeights(rpairs)
+getPairs(rpairs)
 

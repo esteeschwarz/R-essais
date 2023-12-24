@@ -14,6 +14,8 @@
 #lapsi
 library(readr)
 library(stringi)
+library(RecordLinkage)
+library(clipr)
 
 box<-"https://userpage.fu-berlin.de/stschwarz/cqpdata/"
 desk<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/"
@@ -27,8 +29,8 @@ d10.gold<-read_csv(paste0(desk,"casestudy2_full.csv")) # manually defined gold
 git<-"https://raw.githubusercontent.com/esteeschwarz/R-essais/main/SPUND/corpusLX/"
 local<-"~/Documents/GitHub/R-essais/SPUND/corpusLX/"
 nouns.cats.known<-read.csv(paste0(local,"fragrance_known-cats_coll.cpt.csv"))
-nouns.cats.known.fix<-read.csv(local,"nouns.cats.known.csv") # modeled df of fixed cats, 8274 obs
-nouns.cats.known.cpt<-read.csv(local,"nouns.cats.temp_918.csv")
+nouns.cats.known.fix<-read.csv(paste0(local,"nouns.cats.known.csv")) # modeled df of fixed cats, 8274 obs
+nouns.cats.known.cpt<-read.csv(paste0(local,"nouns.cats.temp_918.csv"))
 ### from git:
 # nouns.cats.known<-read.csv(paste0(git,"fragrance_known-cats_coll.cpt.csv"))
 # nouns.cats.known.fix<-read.csv(git,"nouns.cats.known.csv") # modeled df of fixed cats, 8274 obs
@@ -218,6 +220,178 @@ mod.factor<-function(ai.form){
 #nouns.df.ai<-mod.factor(ai.form)
 #sum(nouns.df.ai$noun=="lake")
 ### > feed in nounsdfai from modfactor()
+### > matches of collocates (known cat) in collocates (cat unknown)
+getmatches.first<-function(coltrain,colq){
+  m.coll<-nouns.cats.known$collocations%in%d2u
+  m.coll<-coltrain%in%colq
+  #m.coll<-d2u%in%nouns.cats.known$collocations
+  length(m.coll)
+  sum(m.coll)
+  m.coll
+  coll.temp<-table(nouns.cats.known$collocations[m.coll])
+  coll.temp
+  m<-m.coll
+  
+}
+getmfw.first<-function(m.coll.x){
+  m.coll.t<-table(factor(nouns.cats.known$noun[m.coll.x]))[order(table(factor(nouns.cats.known$noun[m.coll.x])))]
+  m.coll.t
+  m.coll.cat<-table(factor(nouns.cats.known$cat[m.coll.x]))[order(table(factor(nouns.cats.known$cat[m.coll.x])))]
+  m.coll.cat
+  ### discard:
+  m.coll.mf<-sort(table(factor(nouns.cats.known.cpt$collocations)),decreasing = T)
+  m.coll.mf<-sort(table(factor(nouns.cats.known.cpt$noun)))
+  #  ?sort
+  m.coll.mf
+  coll.disc<-names(tail(m.coll.mf,2)) # most frequent collocates over all /thing/ + /place/
+  coll.disc
+  returnlist<-list(coll.t=m.coll.t,coll.cat=m.coll.cat,coll.disc=coll.disc)
+  return(returnlist)
+}
+
+
+get.coll.array<-function(testset,noun){
+  nouns.cats.known.cpt<-testset  
+  d2u<-nouns.cats.known.cpt$collocations[nouns.cats.known.cpt$noun==noun]
+  d2u<-unique(d2u)
+  
+  #l<-length(d.c.u$Gramrels$Words)
+  l<-length(d2u)
+  ########
+  word.no<-"#empty#"
+ # m<-grep(word.no,nouns.cats.known)
+  #sum(m)
+  m<-grepl(word.no,nouns.cats.known.cpt$collocations)
+  sum(m)
+  nouns.cats.known.cpt<-nouns.cats.known.cpt[!m,]
+  l<-length(d2u)
+  m<-grepl(word.no,d2u)
+  sum(m)
+  d2u<-d2u[!m]
+  if(l>0){
+    m.pos<-d2u%in%word.no
+    m.pos
+    d2u<-d2u[!m.pos]
+  } #discards postag cats from array
+  d2u # collocations array of noun in question
+return(d2u)
+    d2u=data.frame(df="test",coll=d2u)
+  return(d2u)
+  
+}
+k<-6
+tnoun<-d10.stef$Noun[k]
+tnoun
+#d1u<-get.train.array(nouns.cats.known,"lake")
+#d2u<-get.coll.array(nouns.cats.known.cpt,tnoun)
+#length(d2u)
+#a.noun
+#unoun
+##anoun<-"river"
+#traindf<-trainset
+get.train.array<-function(traindf,anoun){
+ # d1u<-nouns.cats.known$collocations[nouns.cats.known$noun==anoun]
+  d1u<-traindf$collocations[traindf$noun==anoun]
+  a.cat<-traindf$category[traindf$noun==anoun]
+  d1u.df<-data.frame(df="train",coll=d1u,cat=a.cat)
+}
+trainset<-nouns.cats.known
+testset<-nouns.cats.known.cpt
+k<-10
+
+qnoun<-d10.stef$Noun[k]
+unoun<-"lane"
+#########
+get.compare.df<-function(trainset,testset,unoun,qnoun){
+  d1u<-get.train.array(trainset,unoun)
+  d2u<-get.coll.array(testset,qnoun)
+  ### discard mfw:
+  m.coll<-getmatches.first(d1u$coll,d2u)
+  length(d1u$coll)
+  sum(m.coll)
+  m.disc<-getmfw.first(m.coll)
+  ### this returns the mf 2 matches, can be adapted to return more
+  #table(nouns.cats.known$collocations[m.coll])[order(table(factor(nouns.cats.known$collocations[m.coll])))]
+  m.disc$coll.cat
+  m.disc$coll.t
+  m.disc$coll.disc
+  md1<-d1u%in%m.disc$coll.disc
+  sum(md1)
+  d1u<-d1u[!md1]
+  md2<-d2u%in%m.disc$coll.disc
+  sum(md2)
+  d2u<-d2u[!md2]
+  d1u.df<-data.frame(df="traincoll",coll=d1u$coll,cat=d1u$cat)
+  d2u.df<-data.frame(df="testcoll",coll="#empty#",cat="n.a.")
+  if(length(d2u)>0)
+    d2u.df<-data.frame(df="testcoll",coll=d2u[!md2],cat=0)
+  dfcompare<-rbind(d1u.df,d2u.df)
+returnlist<-list(train=d1u.df,test=d2u.df)
+}
+u<-1
+testarray<-get.coll.array(nouns.cats.known.cpt,"odor")
+sum(is.na(nouns.cats.known$category))
+trainset<-nouns.cats.known
+u<-4
+qnoun
+###################################################
+get.max.compare.cats<-function(trainset,testset,qnoun){
+  nouns.cats.known<-trainset
+  u1<-data.frame(noun=unique(nouns.cats.known$noun[!is.na(nouns.cats.known$category)]),freq=NA,category=NA)
+  
+  for (u in 1:length(u1$noun)){
+    unoun<-u1$noun[u]
+    unoun
+    cat(u,"getmatches for:",unoun)
+    compareset<-get.compare.df(trainset,testset,unoun,qnoun)
+    #compareset$
+    length(compareset$train$coll)
+    length(compareset$test$coll)
+    if(length(compareset$test$coll)>0)
+####>      c1<-get.max.compare.cats(compareset$train$coll,compareset$test$coll)
+      c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
+    
+  #    d1u<-get.train.array(u1$noun[u])
+  #d2u<-get.coll.array(nouns.cats.known.cpt,q)
+  #c1<-compare.linkage(matrix(d1u),matrix(testarray))
+  f1<-c1$frequencies
+  cat("> ",f1,"\n")
+#  u1$[u]
+  u1$freq[u]<-f1
+  u1$q<-qnoun
+  #nouns.cats.known$category[nouns.cats.known$noun==unoun]
+  length(u1$category[u])
+  u1$category[u]<-unique(nouns.cats.known$category[nouns.cats.known$noun==unoun])
+  
+
+  }
+  u1$category[which.min(u1$freq)]
+  u1$category[which.max(u1$freq)]
+  
+  return(u1)
+}
+#qnoun
+#c1<-get.max.compare.cats(nouns.cats.known,nouns.cats.known.cpt,qnoun)
+# d2u<-get.coll.array(nouns.cats.known.cpt,"water")
+# u1<-get.max.compare.cats(nouns.cats.known,d2u)
+getlinks<-function(compareset){
+  c1<-compare.linkage(compareset)
+  
+}
+
+#################################
+### test with linkage library
+
+# get.link.freq<-function(d2u){
+# #d2u<-get.coll.array(nouns.cats.known.cpt,"lake")
+# #d1u<-get.train.df()
+# compareset<-get.compare.df(d2u)
+# c1<-getPairs(compareset)
+# c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
+# c1$frequencies
+# 
+# }
+
 get.cat.no.df<-function(noun.q,nouns.df.ai){
 #  nouns.df.no<-data.frame(w.array)
   nouns.df.no<-d10.stef
@@ -250,6 +424,10 @@ get.cat.no.df<-function(noun.q,nouns.df.ai){
       d2u<-d2u[!m.pos]
     } #discards postag cats from array
     d2u # collocations array of noun in question
+    #}
+ #   d2u<-get.coll.array(nouns.cats.known.cpt,"lake") #ref: /lake/=141 tokens
+    d2u<-get.coll.array(nouns.cats.known.cpt,noun) #ref: /lake/=141 tokens
+    
     #word
     ############################################
     ### > matches of collocates (known cat) in collocates (cat unknown)
@@ -428,42 +606,256 @@ dist.list<-list()
 range.df<-103:104
 range.df
 k<-103
+
 ############################
+#trainset<-get.train.array(nouns.cats.known,"lake")
+#testset<-get.coll.array(nouns.cats.known.cpt,"lake")
+q<-10
+qnoun<-d10.stef$Noun[q]
+qnoun
+get.link.freq.x<-function(trainset,testset,q){
+  max.df<-data.frame(noun=q,freq=NA,category=NA)
+ # trainset<-get.train.array(nouns.cats.known,q)
+#  testset<-get.coll.array(nouns.cats.known.cpt,q)
+  
+#  d2u<-get.coll.array(testset,q)
+  #d1u<-get.train.df()
+  # compareset<-get.compare.df(trainset,testset)
+  # length(compareset$train$coll)
+  # if(length(compareset$test$coll)>0)
+  #   c1<-get.max.compare.cats(trainset,testset,qnoun)
+  #   c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
+  # m<-c1$pairs$V1>0
+  # sum(m)
+#  c1$data1$V1[c1$pairs[m,1]]
+  # if(length(d2u)>0)
+    c1<-get.max.compare.cats(nouns.cats.known,nouns.cats.known.cpt,qnoun)
+  #   c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
+  max.df<-c1
+  
+}
+c1<-get.link.freq(trainset,testset,qnoun)
+ml<-c1$data1=="thing"
+sum(ml)
+range.df<-1:30
+####################################
+
 catcall<-function(range.df,ai.form){
+  dist.df<-list()
 d10.stef$cat.ai<-NA
 #range.df<-1:length(d10.stef$Noun
+k<-11
+
 for(k in range.df){
   q<-d10.stef$Noun[k]
-  q
+  qnoun<-q
+  cat("run",k,"qnoun to match:",q,"-------------\n")
+  
   #df<-get.dist.df.g(q)
   #################### model
   ### > here feed in factor modfication:
   # formula:
-  df<-get.cat.no.df(q,mod.factor(ai.form))
-  ####################
-  df$dist
-  maxcat<-df$dist$cat[which(df$dist$max==T)]
-  maxcat
-  mk<-d10.stef$Noun==q
-  which(mk)
-  d10.stef$cat.ai[mk]<-maxcat
-  cat("run",k,q,maxcat,"\n")
-  dist.list[['dist.df']][[q]]<-df$dist
-  #  df$nouns.df$cat.ai[103:105]
-}
-dist.list[['nouns.df']]<-d10.stef
+  ########################################
+  ### new with recordlinks
+  ### test with linkage library
+  #c1<-get.link.freq(nouns.cats.known,nouns.cats.known.cpt,q)
+  #c1$frequencies
+ # max.cat<-c1$category[which.max(c1$freq)]
+#  dist.df[[q]]<-c1[!is.na(c1$freq),]
+  #dist.df[[q]]<-c1$frequencies
+  c1<-get.max.compare.cats(nouns.cats.known,nouns.cats.known.cpt,qnoun)
+  dist.df[[q]]<-c1
+  ########################################
+#   tempout.df<-function(){
+#   out:  df<-get.cat.no.df(q,mod.factor(ai.form))
+#   df$dist
+#   maxcat<-df$dist$cat[which(df$dist$max==T)]
+#   maxcat
+#   mk<-d10.stef$Noun==q
+#   which(mk)
+#   d10.stef$cat.ai[mk]<-maxcat
+#   cat("run",k,q,maxcat,"\n")
+#   dist.list[['dist.df']][[q]]<-df$dist
+#   #  df$nouns.df$cat.ai[103:105]
+# }
+# d10.stef$cat.ai[k]<-max.cat
+  cat(" --- done\n")
+  
+  }
+#dist.list[['nouns.cats.ai']]<-d10.stef
 #cat.df<-data.frame(dist.list$dist.df)
-returnlist<-list(nouns.df=d10.stef,dist.df=dist.list$dist.df,trainset=nouns.cats.known)
+returnlist<-list(nouns.cats.ai=d10.stef,dist.list=dist.df,trainset=nouns.cats.known)
+returnlist<-list(dist.list=dist.df)
+
+#returnlist<-list(nouns.df=d10.stef,trainset=nouns.cats.known)#dist.df=dist.list$dist.df,trainset=nouns.cats.known)
 return(returnlist)
 }
 sampledist<-sample(1:length(d10.stef$Corpus),100)
-sampledist
+sampledist<-1:10
 ##############################
 ai.form<-expression(nouns.cats.known,nouns.cats.known.cpt,'SE',F,c(1:2))
 eval(ai.form[4])
-
+#eval(get.cat.no.df)
 distessai<-catcall(sampledist,ai.form)
-distessai$nouns.df$cat.ai[distessai$nouns.df$Noun=="lake"]
+getwd()
+save(distessai,file = paste0(local,"/freqlist_linkrecord(sample1-10.3).RData"))
+### > get factor into df
+distlist<-distessai$dist.list
+c.df.from.dist<-function(distlist){
+  t.df<-data.frame(distlist)
+  delist<-function(x)data.frame(noun=unlist(x$noun),freq=unlist(x$freq),category=unlist(x$category))
+  cdf1<-lapply(distessai$dist.list, delist)
+  mna<-is.na(cdf1)
+  mna
+  sum(mna)
+  ldf<-length(t.df)
+  lc<-length(distessai$dist.list[[1]])
+  cf<-ldf/lc
+  
+  c.sel.s<-seq(1,ldf,lc)
+  c.sel.e<-c.sel.s-1
+  c.sel.e<-c(c.sel.e[2:length(c.sel.e)],ldf)
+  c.sel.s
+  c.sel.e # col selection of df, 3 for each test noun (noun,freq,cat)
+  #######
+  k<-1
+  s.df<-matrix("",ncol = 4)
+  colnames(s.df)<-c("noun","freq","cat","q")
+  
+  for (k in 1:length(c.sel.s)){
+    cs<-c.sel.s[k]
+    ce<-c.sel.e[k]
+    s.df.temp<-t.df[,cs:ce]
+    colnames(s.df.temp)<-c("noun","freq","cat","q")
+    s.df.temp$q<-names(distessai$dist.list)[k]
+    #mna<-is.na()
+        
+    s.df<-rbind(s.df,s.df.temp)
+    
+  }
+  m<-is.na(s.df$noun)
+  sum(m)
+  s.df<-s.df[!m,]
+  m<-s.df$noun==""
+  s.df<-s.df[!m,]
+}
+disttable<-c.df.from.dist(distessai$dist.list)
+
+apply.factor<-function(disttable){
+  #fac.t<-table(nouns.cats.known$category)
+  fac.u<-table(disttable$cat)
+  fac.u
+  #write_clip(fac.u)
+  #write_clip(names(fac.u))
+  for(k in 1:length(fac.u)){
+    disttable$fac.u[disttable$cat==names(fac.u)[k]]<-fac.u[k]
+    
+  }
+  fac.s<-sum(fac.u)
+  fac.s #100%
+  fac.u #p
+  
+  
+  
+  fac.u.s<-fac.u/fac.s
+  fac.u.s
+  fac.u.ch<-fac.s
+  #write_clip(fac.u)
+  fac.s
+  disttable$max.obs<-F
+  mode(disttable$freq)<-"double"
+  disttable$max.p<-F
+  #disttable$max.c<-NA
+  #disttable$fac.n<-NA
+  #disttable$fac.s<-NA
+  #disttable$max.n<-F
+  k<-1
+  anoun<-unique(disttable$noun)
+  qnoun<-unique(disttable$q)
+  ccat<-unique(disttable$cat)
+  qnoun
+  anoun
+  for (k in 1:length(qnoun)){
+    u.noun<-qnoun[k]
+    n.array<-disttable$q==u.noun
+    which(n.array)
+    sum(n.array)
+    disttable$max.obs[n.array][which.max(disttable$freq[n.array])]<-T
+  }
+    print(disttable[disttable$max.obs,])
+  #a.noun<-"lunchroom"
+  #q.noun
+  typeof(disttable$freq)
+  for (k in 1:length(anoun)){
+    a.noun<-anoun[k]
+    a.noun.array<-disttable$noun==a.noun
+    
+    disttable$q[a.noun.array]
+    for (qn in 1:length(qnoun)){
+      q.noun<-qnoun[qn]
+      q.noun
+      q.noun.array<-disttable$q==q.noun
+      sum(q.noun.array)
+      disttable[a.noun.array,]
+      sum(q.noun.array)
+      c<-1
+      for(c in 1:length(ccat)){
+        a.cat<-ccat[c]
+        a.cat
+        cat.array<-disttable$cat==a.cat&disttable$q==q.noun
+        which(cat.array)
+        disttable$q[cat.array]
+        sum(cat.array)
+        disttable$sum.cat[cat.array]<-sum(disttable$freq[cat.array])
+        disttable$sum.all.cat[cat.array]<-sum(disttable$sum.cat[cat.array])
+        
+      }
+      disttable$noun[q.noun.array]
+      disttable$q[a.noun.array]
+      
+      #      disttable$sum.noun[q.noun.array]<-sum(disttable$freq[a.noun.array])
+      
+      
+    }
+      
+      
+  
+  disttable$exp[a.noun.array]<-disttable$freq[a.noun.array]/
+    disttable$sum.cat[a.noun.array]*
+    sum(disttable$sum.all.cat[a.noun.array])
+  
+  }
+  disttable$ex.dif<-abs(disttable$freq-disttable$exp)
+  disttable$p<-(disttable$ex.dif*disttable$ex.dif)/disttable$freq
+  disttable$freq.p<-(disttable$p*disttable$freq)
+  print(disttable[disttable$max.obs,])
+  
+  for (k in 1:length(qnoun)){
+    u.noun<-qnoun[k]
+    q.noun.array<-disttable$q==u.noun
+    which(q.noun.array)
+    sum(q.noun.array)
+  #  disttable$max.obs[n.array][which.max(disttable$freq[n.array])]<-T
+  
+  disttable$max.p[q.noun.array][which.max(disttable$freq.p[q.noun.array])]<-T
+  cat.true<-disttable$cat[q.noun.array][which.max(disttable$freq.p[q.noun.array])]
+  disttable$cat.ai[q.noun.array]<-cat.true
+  }
+#  cat.true<-which(disttable$max.p==T)
+ # disttable
+  print(disttable[disttable$max.p,])
+  print(disttable[disttable$q=="rose",])
+  
+  print(disttable[disttable$max.p,])
+  return(disttable)
+  }
+  
+resulttable<-apply.factor(disttable)
+print(resulttable[resulttable$max.p,c('q','cat')])
+#print(resulttable[resulttable$max.0,])
+#print(resulttable[resulttable$max.n,c('q','cat')])
+
+#distessai$nouns.df$cat.ai[distessai$nouns.df$Noun=="lake"]
 ############################################
 ### evaluate definition:
 #d10.gold<-read_csv("fragrance2_ai-cats.gold.csv") # manually defined gold standard of cats
@@ -471,14 +863,25 @@ distessai$nouns.df$cat.ai[distessai$nouns.df$Noun=="lake"]
 #lapsi
 #d10.ai<-d10.stef$cat.ai
 ########################
-evalcat<-function(goldset,testset,sampledist){
+goldset<-d10.gold
+testset<-d10.stef
+evalcat<-function(goldset,testset,resulttable,sampledist){
   df<-goldset
   d10.gs<-df[with(df,order(df[,"Token_ID"])), ]
-  d10.gs<-d10.gs[sampledist,]
+ # d10.gs<-d10.gs[sampledist,]
   df<-testset
   d10.ai.s<-df[with(df,order(df[,"Token_ID"])), ]
+  #d10.ai.s<-d10.ai.s[sampledist,]
+  d10.ai.s$cat.ai<-NA
+  k<-3
+  for (k in 1:length(resulttable$q)){
+    q.noun<-resulttable$q[k]
+    m<-d10.ai.s$Noun%in%q.noun
+    sum(m)
+    cat<-unique(resulttable$cat.ai[resulttable$q==q.noun])
+    d10.ai.s$cat.ai[m]<-cat
+  }
   d10.ai.s$cat.ai<-gsub("B&UE","B&AE",d10.ai.s$cat.ai)
-  d10.ai.s<-d10.ai.s[sampledist,]
   chks<-d10.ai.s$Token_ID==d10.gs$Token_ID
   print(chks)
   print(sampledist)
@@ -501,33 +904,35 @@ evalcat<-function(goldset,testset,sampledist){
   ############################
   ##################################
 }
+
+evalcat(d10.gold,d10.stef,resulttable,sampledist)
 ### > change algorithm of defining cats from df
-df.known<-distessai$nouns
+#df.known<-distessai$nouns
 ############################################
 ### > evaluate:
 #distessai$df
-distessai$df[!is.na(distessai$df$cat.ai),c('Noun','cat.ai')]
-testset<-distessai$nouns.df
+#distessai$df[!is.na(distessai$df$cat.ai),c('Noun','cat.ai')]
+#testset<-distessai$nouns.df
 #temp
-m<-is.na(testset$cat.ai)
-sum(m)
-mdw<-which(duplicated(testset$Noun))
-mdw
-md<-duplicated(testset$Noun)
+#m<-is.na(testset$cat.ai)
+#sum(m)
+#mdw<-which(duplicated(testset$Noun))
+#mdw
+#md<-duplicated(testset$Noun)
 #sum(md)
-testset$Noun[md]
-md
+#testset$Noun[md]
+#md
 ###
 goldset<-d10.gold
 #print(sum(testset$Token_ID==goldset$Token_ID))
-evaldf<-evalcat(goldset,testset,sampledist)
+#evaldf<-evalcat(goldset,testset,sampledist)
 ###########
 
 
 ### wks.
 ### N: only AC and B&UE are recognized, they are predefined the most.
-catsknown.t<-table(nouns.cats.known$category)
-catsknown.t
+#catsknown.t<-table(nouns.cats.known$category)
+#catsknown.t
 ############################################
 
 ### N: theres too many AC coded, this is the only cat recognized correctly
@@ -542,7 +947,7 @@ catsknown.t
 
 
 ### assemble few results and relate this to overall cat distribution
-evaldf$freq
+#evaldf$freq
 
 evalfrequencies<-function(){
   ### process:
@@ -597,6 +1002,20 @@ evalfrequencies<-function(){
 ### effect of change will be measured and evaluated via lmer, so that it becomes clear which changes have the greatest effect, 
 ### like (lmer df model)
 
+
+
+
+
+################ scribble
+### theres a package to easily get frequencies of matches:
+#library(RecordLinkage)
+
+
+
+
+
+
+tempfun1<-function(){
 effectmodel<-data.frame(errorrate=11:17,cat=c("A",LETTERS[11:16]),mod.cat=c("A",LETTERS[11:16]),mod.fac=c(0,sample(-3:3,6)),effect.cat=NA,effect=NA,run=NA)
 #effectmodel$effect<-NA
 ###
@@ -643,3 +1062,4 @@ distessai$cat$eval$sandwich
 evaldf$Category[evaldf$Noun=="sandwich"]
 length(distessai$cat$eval)
 nouns.cats.known.cpt$category[nouns.cats.known.cpt$noun=="lake"]
+}
