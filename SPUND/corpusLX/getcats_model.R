@@ -185,36 +185,99 @@ for (k in 1:ldv){
   k<-1
   noun<-varset[1]
   coll<-varset[2]
-  lt<-length(temp.set[[noun]])
+  q.noun.u<-unique(testset[[noun]])
+  q.noun.u
+  a.noun.u<-unique(trainset[[noun]])
+  a.noun.u
+  lq<-length(q.noun.u)
   q.list<-list()
   temp.set$freq<-NA
-  eval.set<-data.frame(a.noun=NA,q.noun=temp.set[[noun]],cat=NA,freq=NA)
-  for(k in 1:lt){
-    qnoun<-temp.set[[noun]][k]
-    d2.sel<-temp.set[[noun]]%in%qnoun
-    d2u<-testset[[coll]][d2.sel]
+  k<-1
+  q.array<-rep(q.noun.u,length(a.noun.u))
+  q.array
+  a.array<-rep(a.noun.u,length(q.noun.u))
+  lqa<-length(q.array)
+  laa<-length(a.array)
+  sum(q.array==a.array)
+  #eval.a-array<-rep(a.noun.u,)
+  eval.set<-data.frame(a.noun=a.array,q.noun=q.array,cat=NA,freq=NA,score=NA,max.obs=F,max.score=F)
+  ################
     a<-1
-    cat("run -",k,"- for:",qnoun,"-----\n")
-    for (a in 1:length(trainset[[noun]])){
-      anoun<-trainset[[noun]][a]
-      cat("match freq for--:",anoun,":--- >")
+    for (a in 1:length(eval.set$q.noun)){
+      anoun<-eval.set$a.noun[a]
+      qnoun<-eval.set$q.noun[a]
+      k<-1
+      cat("run -",a,"- for:",qnoun,"-----\n")
+      
+      #for(k in 1:lqa){
+       # qnoun<-q.array[k]
+        d2.sel<-temp.set[[noun]]%in%qnoun
+        d2u<-testset[[coll]][d2.sel]
+        #  a<-1
+       # d3.sel<-eval.set$q.noun%in%qnoun
+        #sum(d3.sel)
+        cat("match freq for--:",qnoun,a,k,"in:",anoun," --- >")
     d1.sel<-trainset[[noun]]%in%anoun
+    #d4.sel<-
     d1u<-matrix(trainset[[coll]][d1.sel])
     d2u<-matrix(d2u)
+    #d4.sel<-k*a
     c1<-compare.linkage(d1u,d2u)
     q.list[[qnoun]]<-c1
-    d3.sel<-temp.set[[noun]]%in%anoun
-    eval.set$freq[d3.sel]<-c1$frequencies
-    cat(c1$frequencies,"\n")
+    # eval.set$a.noun[k]<-anoun
+    # eval.set$freq[k]<-c1$frequencies
+    # d.fac<-sum(d1.sel)+sum(d2.sel) # number of collocates
+    d.fac<-sum(d1.sel)+sum(d2.sel) # number of collocates
+    freq.f<-c1$frequencies/d.fac
+    # freq.f<-c1$frequencies/d.fac
+     cat(anoun,c1$frequencies,"f:",freq.f,"\n") #wks., highest shortest match TRUE
+     # eval.set$score[k]<-freq.f
+   # eval.set$a.noun[d3.sel]<-anoun
+     #eval.set$a.noun[k]<-anoun
+     eval.set$freq[a]<-c1$frequencies
+     eval.set$score[a]<-freq.f
+      #}  
+      
     }
-  }
-  temp.set$max.obs<-NA
-  temp.set$max.obs[which.max(temp.set$freq)]<-T
-  returnlist<-list(freq.df=q.list,qset=temp.set)
+  k<-2
+  for(k in 1:length(q.noun.u)){
+    mnoun<-q.noun.u[k]
+   d3.sel<-eval.set$q.noun%in%mnoun
+   sum(d3.sel)
+   #7*15
+   eval.set$max.obs[d3.sel][which.max(eval.set$freq[d3.sel])]<-T
+   eval.set$max.score[d3.sel][which.max(eval.set$score[d3.sel])]<-T
+   
+}
+  #eval.set$q.noun[d3.sel]
+  eval.set[eval.set$max.score==T,]
+  returnlist<-list(freq.df=q.list,qset=temp.set,eval.set=eval.set)
   return(returnlist)
   return(temp.set)
 }
+#test:
+b<-1:5
+a<-1:2
+c<-a*a
+d<-b*b
 
+
+for(k in a){
+  for(d in b){
+    print((k*k)*(d*d))
+  }
+}
+tempset<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
+evalset<-tempset$eval.set
+tempfun2<-function(){
+  
+eval.set$a.noun[d3.sel]
+d1u<-nouns.df.known$coll[nouns.df.known$noun=="aa2word"]
+d2u<-nouns.df.unknown$coll[nouns.df.unknown$noun=="eee3word"]
+d1u==d2u
+c1<-compare.linkage(matrix(d1u),matrix(d2u))
+c1$frequencies
+c1$frequencies/(length(d1u)+length(d2u))
 tempset<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
 tempeval<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
 #temp.df<-data.frame(tempeval$freq.df$e1word)
@@ -222,7 +285,6 @@ tempeval<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
 
 #nouns.n
 #co.list<-list()
-tempfun2<-function(){
 library(RecordLinkage)
 benchmark(wa1,wa1)
 levenshteinSim(wa1,we1)
