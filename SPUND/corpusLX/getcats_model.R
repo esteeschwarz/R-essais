@@ -35,10 +35,11 @@ w.train<-get.trainset()
 #   c.split<-stri_split_boundaries(word,type="char")
 #   coll.array[[word]]<-c.split
 # }
-
-get.cat.known.df<-function(noun){
+#nounset<-w.array
+get.cat.known.df<-function(nounset){
   nouns.df<-data.frame(noun=NA,coll=NA,cat=NA,factor=NA,fac.c=NA,fac.p=NA)
   k<-1
+  w.train<-nounset
   for(k in 1:length(w.train$noun)){
     word<-w.train$noun[k]
     word
@@ -47,11 +48,14 @@ get.cat.known.df<-function(noun){
     #nouns.n[['coll']]<-c.split
     #nouns.n[['word']]<-word
     #nouns.n[['cat']]<-w.train$cat[k]
-    nouns.df.temp<-data.frame(noun=word,coll=c.split,cat=w.train$cat[k])
+    cat.x<-w.train$cat[k]
+    nouns.df.temp<-data.frame(noun=word,coll=c.split,cat=cat.x,fac.c=NA,fac.p=NA)
     c.factor<-length(c.split)
     nouns.df.temp$factor<-1/c.factor
+    if(!is.na(cat.x)){
     d.c.f.0<-factor(nouns.df.temp$cat)
     d.c.f.0
+    
     d.c.t.0<-table(d.c.f.0)
     d.c.t.0 # cat frequency overall set, this factor has to be taken into account 
     #  k<-1
@@ -59,6 +63,7 @@ get.cat.known.df<-function(noun){
       m2<-nouns.df.temp$cat==names(d.c.t.0[k2])
       sum(m2)
       nouns.df.temp$fac.c[m2]<-1/d.c.t.0[k2]
+    }
     }
     nouns.df.temp$fac.p<-nouns.df.temp$factor*nouns.df.temp$fac.c
     nouns.df<-rbind(nouns.df,nouns.df.temp)
@@ -69,7 +74,8 @@ get.cat.known.df<-function(noun){
 }
 
 #nouns.n
-nouns.df<-get.cat.known.df("xx")
+nouns.df<-get.cat.known.df(w.train)
+nouns.df.known<-get.cat.known.df(w.train)
 
 get.cat.no.df<-function(noun){
   nouns.df.no<-data.frame(w.array)
@@ -150,9 +156,73 @@ get.cat.no.df<-function(noun){
 }
 
 cats.no<-get.cat.no.df("xx")
+############################
+#wks., now with record linkage:
+###############################
+library(RecordLinkage)
+nouns.df.known<-get.cat.known.df(w.train)
+nouns.df.unknown<-get.cat.known.df(w.array)
+testset<-nouns.df.unknown
+trainset<-nouns.df.known
+varset<-c("noun","coll","cat")
+length(unlist(testset[varset[1]]))
+
+getrecords<-function(trainset,testset,varset){
+  ldf<-length(unlist(testset[varset[1]]))
+  ldv<-length(varset)
+  ldm<-ldf*ldv
+  temp.set<-matrix(1:ldm,ncol=length(varset))
+  temp.set[1:ldm]<-NA
+  temp.set<-data.frame(temp.set)
+  colnames(temp.set)<-varset
+for (k in 1:ldv){
+  temp.set[varset[k]]<-testset[varset[k]]
+}
+### wks., df from global testset
+###############################
+### now record linkage:
+### get train array for noun
+  k<-1
+  noun<-varset[1]
+  coll<-varset[2]
+  lt<-length(temp.set[[noun]])
+  q.list<-list()
+  temp.set$freq<-NA
+  eval.set<-data.frame(a.noun=NA,q.noun=temp.set[[noun]],cat=NA,freq=NA)
+  for(k in 1:lt){
+    qnoun<-temp.set[[noun]][k]
+    d2.sel<-temp.set[[noun]]%in%qnoun
+    d2u<-testset[[coll]][d2.sel]
+    a<-1
+    cat("run -",k,"- for:",qnoun,"-----\n")
+    for (a in 1:length(trainset[[noun]])){
+      anoun<-trainset[[noun]][a]
+      cat("match freq for--:",anoun,":--- >")
+    d1.sel<-trainset[[noun]]%in%anoun
+    d1u<-matrix(trainset[[coll]][d1.sel])
+    d2u<-matrix(d2u)
+    c1<-compare.linkage(d1u,d2u)
+    q.list[[qnoun]]<-c1
+    d3.sel<-temp.set[[noun]]%in%anoun
+    eval.set$freq[d3.sel]<-c1$frequencies
+    cat(c1$frequencies,"\n")
+    }
+  }
+  temp.set$max.obs<-NA
+  temp.set$max.obs[which.max(temp.set$freq)]<-T
+  returnlist<-list(freq.df=q.list,qset=temp.set)
+  return(returnlist)
+  return(temp.set)
+}
+
+tempset<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
+tempeval<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
+#temp.df<-data.frame(tempeval$freq.df$e1word)
+
+
 #nouns.n
 #co.list<-list()
-
+tempfun2<-function(){
 library(RecordLinkage)
 benchmark(wa1,wa1)
 levenshteinSim(wa1,we1)
@@ -186,3 +256,4 @@ rpairs
 rpairs<-epiWeights(rpairs)
 getPairs(rpairs)
 
+}
