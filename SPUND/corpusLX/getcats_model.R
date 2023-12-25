@@ -23,6 +23,7 @@ for(k in 1:length(w.train$noun)){
   c.count<-table(factor(c.split))
   c.count
   w.split<-stri_split_regex(word,"word",simplify = T)
+  w.split<-stri_split_regex(word,"[0-9]",simplify = T)
   w.train$cat[k]<-w.split[,1]
 
 }
@@ -251,6 +252,9 @@ for (k in 1:ldv){
 }
   #eval.set$q.noun[d3.sel]
   eval.set[eval.set$max.score==T,]
+  ### wks.
+  ### > here factor modeling, category u with less recognitions has to be factored
+  
   returnlist<-list(freq.df=q.list,qset=temp.set,eval.set=eval.set)
   return(returnlist)
   return(temp.set)
