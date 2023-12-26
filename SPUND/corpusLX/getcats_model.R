@@ -4,6 +4,11 @@
 #####################
 library(stringi)
 library(rbenchmark)
+box<-"https://userpage.fu-berlin.de/stschwarz/cqpdata/"
+desk<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/"
+git<-"https://raw.githubusercontent.com/esteeschwarz/R-essais/main/SPUND/corpusLX/"
+local<-"~/Documents/GitHub/R-essais/SPUND/corpusLX/"
+
 a1<-LETTERS
 a2<-letters
 we1<-c("e1word","ee2word","eee3word","eeee4word","eeeee5word")
@@ -170,7 +175,7 @@ trainset<-nouns.df.known
 varset<-c("noun","coll","cat")
 length(unlist(testset[varset[1]]))
 
-getrecords<-function(trainset,testset,varset){
+getrecords<-function(trainset,testset,varset,mfw.rm){
   ldf<-length(unlist(testset[varset[1]]))
   ldv<-length(varset)
   ldm<-ldf*ldv
@@ -189,7 +194,7 @@ for (k in 1:ldv){
   noun<-varset[1]
   coll<-varset[2]
   cat<-varset[3]
-?unique
+#?unique
   testset[[noun]]
   q.noun.u<-unique(testset[[noun]])
   q.noun.u
@@ -235,11 +240,37 @@ for (k in 1:ldv){
         #sum(d3.sel)
         cat("match freq for--:",qnoun,a,k,"in:",anoun," --- >")
     d1.sel<-trainset[[noun]]%in%anoun
+    sum(d1.sel)
     #d4.sel<-
     d1u<-matrix(trainset[[coll]][d1.sel])
     d2u<-matrix(d2u)
     #d4.sel<-k*a
-    c1<-compare.linkage(d1u,d2u)
+    ### getmfw
+    compareset<-list(d1u=d1u,d2u=d2u)
+
+    remove.mfw<-function(){
+    coll.x<-getmatches.first(d1u,d2u)
+    sum(coll.x)
+    mfw<-getmfw.first(coll.x)
+    mfw
+    #remove mfw:
+    disc.f<-1
+    disc1<-d1u%in%mfw$coll.disc.c[disc.f]
+    sum(disc1)
+    disc2<-d2u%in%mfw$coll.disc.c[disc.f]
+    sum(disc2)
+    d1u<-matrix(d1u[!disc1])
+    d2u<-matrix(d2u[!disc2])
+    return(list(d1u=d1u,d2u=d2u))
+}
+### here chose to remove mfw
+    if(mfw.rm==T)
+       compareset<-remove.mfw() # with removing mfw
+    ### evaluation of mfw discard:
+    ### > the discarding of most frequent collocates from the compared arrays brings
+    
+    c1<-compare.linkage(compareset$d1u,compareset$d2u)
+    c1
     q.list[[qnoun]]<-c1
     # eval.set$a.noun[k]<-anoun
     # eval.set$freq[k]<-c1$frequencies
@@ -254,7 +285,7 @@ for (k in 1:ldv){
      eval.set$freq[a]<-c1$frequencies
      eval.set$score[a]<-freq.f
      ### wks., now create chi matrix and check if results differ
-     ### integrate factor for mfw
+     ### integrate factor for mfw: c("w","o","r","d")
      
      
       #}  
@@ -284,20 +315,71 @@ for (k in 1:ldv){
   return(returnlist)
   return(temp.set)
 }
-#test:
-b<-1:5
-a<-1:2
-c<-a*a
-d<-b*b
-
-
-for(k in a){
-  for(d in b){
-    print((k*k)*(d*d))
-  }
+### > matches of collocates (known cat) in collocates (cat unknown)
+getmatches.first<-function(coltrain,colq){
+  # m.coll<-nouns.cats.known$collocations%in%d2u
+  m.coll<-coltrain%in%colq
+  #m.coll<-d2u%in%nouns.cats.known$collocations
+  length(m.coll)
+  sum(m.coll)
+  m.coll
+  m<-m.coll
+  
 }
-tempset<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"))
+nouns.cats.known<-nouns.df.known
+nouns.cats.known.cpt<-rbind(nouns.cats.known,nouns.df.unknown)
+#m.coll.x<-getmatches.first(d1u,d2u)
+getmfw.first<-function(m.coll.x){
+  m.coll.t<-table(factor(nouns.cats.known$noun[m.coll.x]))[order(table(factor(nouns.cats.known$noun[m.coll.x])))]
+  m.coll.t
+  m.coll.cat<-table(factor(nouns.cats.known$cat[m.coll.x]))[order(table(factor(nouns.cats.known$cat[m.coll.x])))]
+  m.coll.cat
+  ### discard:
+  m.coll.mf.coll<-sort(table(factor(nouns.cats.known.cpt$coll)))
+  m.coll.mf.noun<-sort(table(factor(nouns.cats.known.cpt$noun)))
+  #  ?sort
+  #mnoun
+  m.coll.mf.coll
+  m.coll.mf.noun  
+  coll.disc.noun<-names(tail(m.coll.mf.noun,2)) # most frequent collocates over all /thing/ + /place/
+  coll.disc.noun
+  coll.disc.c<-names(tail(m.coll.mf.coll,2)) # most frequent collocates over all /thing/ + /place/
+  coll.disc.c
+  returnlist<-list(coll.t=m.coll.t,coll.cat=m.coll.cat,coll.disc.noun=coll.disc.noun,coll.disc.c=coll.disc.c)
+  return(returnlist)
+}
+
+# #test:
+# b<-1:5
+# a<-1:2
+# c<-a*a
+# d<-b*b
+# 
+# 
+# for(k in a){
+#   for(d in b){
+#     print((k*k)*(d*d))
+#   }
+# }
+tempset<-getrecords(nouns.df.known,nouns.df.unknown,c("noun","coll","cat"),mfw.rm=T)
 evalset<-tempset$eval.set
+#local
+#save(evalset,file=paste0(local,"model-cat-definition_DF.RData"))
+sum(evalset$q.cat==evalset$m.cat,na.rm = T)/length(unique(evalset$q.noun))*100
+# mfw.remove==T: 73.3% übereinstimmung
+# mfw.remove==F: 60% übereinstimmung
+### > proves model!
+### subset of ambiguos cases:
+m<-evalset$q.cat==evalset$m.cat
+sum(m)
+evalsub<-subset(evalset,!is.na(evalset$q.cat)|!is.na(evalset$m.cat))
+m<-is.na(evalsub[,'q.cat'])
+evalsub[m,'q.cat']<-""
+m<-is.na(evalsub[,'m.cat'])
+evalsub[m,'m.cat']<-""
+evalsub<-subset(evalsub,evalsub$q.cat!=evalsub$m.cat)
+sum(m)
+######################################
 tempfun2<-function(){
   
 eval.set$a.noun[d3.sel]
