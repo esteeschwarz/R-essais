@@ -14,7 +14,7 @@ w.c<-c(we1,wa1,wu1)
 w.array<-data.frame(noun=w.c,cat=NA)
 w.train<-data.frame(noun=sample(w.c,7),cat=NA)
 #k<-1
-
+word<-"uuu3word"
 get.trainset<-function(){
 for(k in 1:length(w.train$noun)){
   word<-w.train$noun[k]
@@ -22,9 +22,11 @@ for(k in 1:length(w.train$noun)){
   c.split
   c.count<-table(factor(c.split))
   c.count
+  c.cat<-c(c=c.split[length(c.split)-5],c.split[length(c.split)-4])
   w.split<-stri_split_regex(word,"word",simplify = T)
   w.split<-stri_split_regex(word,"[0-9]",simplify = T)
-  w.train$cat[k]<-w.split[,1]
+  #w.train$cat[k]<-w.split[,1]
+  w.train$cat[k]<-paste0(c.cat,collapse = "")
 
 }
   return(w.train)
@@ -186,27 +188,41 @@ for (k in 1:ldv){
   k<-1
   noun<-varset[1]
   coll<-varset[2]
+  cat<-varset[3]
+?unique
+  testset[[noun]]
   q.noun.u<-unique(testset[[noun]])
   q.noun.u
   a.noun.u<-unique(trainset[[noun]])
   a.noun.u
-  lq<-length(q.noun.u)
+  trainset[[noun]]
+  a.noun.u<-unique(trainset[[noun]])
+  a.noun.u
+  trainset[[cat]]
+  a.cat.u<-unique(trainset[[cat]])
+  a.cat.u
+  #lq<-length(q.noun.u)
   q.list<-list()
   temp.set$freq<-NA
   k<-1
   q.array<-rep(q.noun.u,length(a.noun.u))
   q.array
   a.array<-rep(a.noun.u,length(q.noun.u))
+  c.array<-rep(a.cat.u,length(q.noun.u))
+  a.array
+  c.array
   lqa<-length(q.array)
   laa<-length(a.array)
+  lca<-length(c.array)
   sum(q.array==a.array)
   #eval.a-array<-rep(a.noun.u,)
-  eval.set<-data.frame(a.noun=a.array,q.noun=q.array,cat=NA,freq=NA,score=NA,max.obs=F,max.score=F)
+  eval.set<-data.frame(a.noun=a.array,q.noun=q.array,a.cat=c.array,q.cat=NA,m.cat=NA,freq=NA,score=NA,max.obs=F,max.score=F)
   ################
     a<-1
     for (a in 1:length(eval.set$q.noun)){
       anoun<-eval.set$a.noun[a]
       qnoun<-eval.set$q.noun[a]
+      acat<-eval.set$a.cat[a]
       k<-1
       cat("run -",a,"- for:",qnoun,"-----\n")
       
@@ -237,6 +253,10 @@ for (k in 1:ldv){
      #eval.set$a.noun[k]<-anoun
      eval.set$freq[a]<-c1$frequencies
      eval.set$score[a]<-freq.f
+     ### wks., now create chi matrix and check if results differ
+     ### integrate factor for mfw
+     
+     
       #}  
       
     }
@@ -249,7 +269,12 @@ for (k in 1:ldv){
    eval.set$max.obs[d3.sel][which.max(eval.set$freq[d3.sel])]<-T
    eval.set$max.score[d3.sel][which.max(eval.set$score[d3.sel])]<-T
    
-}
+  }
+  m.true<-which(eval.set$max.score==T)
+  eval.set$q.cat[m.true]<-eval.set$a.cat[m.true]
+  m.true<-which(eval.set$max.obs==T)
+  eval.set$m.cat[m.true]<-eval.set$a.cat[m.true]
+  
   #eval.set$q.noun[d3.sel]
   eval.set[eval.set$max.score==T,]
   ### wks.
