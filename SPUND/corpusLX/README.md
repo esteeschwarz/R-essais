@@ -1,0 +1,32 @@
+# R corpus linguistics essais
+## 14525.notes
+#### content:
+the directory contains essais to a collocate analysis of a corpus of nouns/adjectives assembled. 
+we try to assign a noun to a category of a set of categories. 92 out of a set of 918 nouns (the corpus) were assigned manually to one of 9 categories according to (Petterson-Traba, 2021)[^1] and 3 additional defined.
+
+##### categories
+
+| ***Category***                      | ***Label*** | ***Examples***                                                                                                        |
+| ----------------------------------- | ----------- | --------------------------------------------------------------------------------------------------------------------- |
+| food & drink                        | F&D         | **apple, beverage, bread, chicken, coffee, cup, drink, food, fruit, liquid, meal, omelet, rice, spice, tea, wine**    |
+| plants & flowers                    | P&F         | **bloom, blossom, bower, flower, garden, geranium, grass, herb, lip\*, leaf, petal, pine, rose, shrub, vine, violet** |
+| earth                               | EA          | **breeze, brook, dew, flood, gale, grove, hill, sea, vale, valley, wind**                                             |
+| body                                | BO          | **arm, breath\*, cheek, face, flesh, hair, hand, head, limb, lip\*, lock, mouth, shoulder, skin, wrist**              |
+| matter                              | MA          | **air, atmosphere, candle, cloud\*, dust, fume, gas, oil\*, night, smoke, steam, vapor**                              |
+| sensation                           | SE          | **aroma, breath\*, flavor, incense, scent, smell, odor, taste**                                                       |
+| aesthetics                          | AE          | **cologne, cosmetics, cream, oil\*, ointment, powder, talcum, wax**                                                   |
+| cleaning                            | CL          | **deodorant, dish-water, disinfectant, napkin, soap, soap-powder, sponge, spray, suds, tissue, wash-ball**            |
+| textile & clothing                  | T&C         | **blanket, cambric, cloth, dress, flannel, garment, glove, lace, linen, pillow, robe, sheet, shirt, silk**            |
+| buildings & artificial environments | B&AE        |                                                                                                                       |
+| humans                              | PE          |                                                                                                                       |
+| animals                             | AN          |                                                                                                                       |
+| abstract concepts                   | AC          |                                                                                                                       |
+
+
+##### scripts:
+- [collocation-essai.R](collocation-essai.R): first essai of assigning categories on base of a collocational analysis
+- [get-cats-from-training\_simple.R](get-cats-from-training_simple.R): cleaned up first script
+- [random-factor\_effects-model.R](random-factor_effects-model.R): essai of modelling a feedback loop in above script
+- [getcats\_model.R](getcats_model.R): apply the algorithm to a model set of words/categegories to prove certainty
+
+[^1]:	Pettersson-Traba, Daniela. “A Diachronic Perspective on Near-Synonymy: The Concept of Sweet-Smelling in American English.” Corpus linguistics and linguistic theory 17.2 (2021): 319–349. [Web.](https://fu-berlin.primo.exlibrisgroup.com/permalink/49KOBV_FUB/5ami3a/cdi_openaire_primary_doi_8ad1d6d6057eb106694cfa96c9ff4fa3)
