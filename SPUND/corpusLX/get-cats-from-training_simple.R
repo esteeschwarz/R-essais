@@ -691,6 +691,8 @@ returnlist<-list(dist.list=dist.df)
 return(returnlist)
 }
 sampledist<-sample(1:length(d10.stef$Corpus),100)
+### > for complete corpus:
+sampledist<-1:length(d10.stef$Corpus)
 #sampledist<-1:10
 ##############################
 ai.form<-expression(nouns.cats.known,nouns.cats.known.cpt,'SE',F,c(1:2))

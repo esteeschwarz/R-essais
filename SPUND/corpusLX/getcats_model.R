@@ -221,7 +221,7 @@ for (k in 1:ldv){
   lca<-length(c.array)
   sum(q.array==a.array)
   #eval.a-array<-rep(a.noun.u,)
-  eval.set<-data.frame(a.noun=a.array,q.noun=q.array,a.cat=c.array,q.cat=NA,m.cat=NA,freq=NA,score=NA,max.obs=F,max.score=F)
+  eval.set<-data.frame(a.noun=a.array,q.noun=q.array,a.cat=c.array,gold=NA,q.cat=NA,m.cat=NA,freq=NA,score=NA,max.obs=F,max.score=F)
   ################
     a<-1
     for (a in 1:length(eval.set$q.noun)){
@@ -366,12 +366,20 @@ evalset<-tempset$eval.set
 #local
 #save(evalset,file=paste0(local,"model-cat-definition_DF.RData"))
 sum(evalset$q.cat==evalset$m.cat,na.rm = T)/length(unique(evalset$q.noun))*100
+### create goldstandard:
+getwd()
+#write.csv(evalset,"model-cats-gold_DF.csv")
+model.df.gold<-evalset
+#model.df.gold$gold<-NA
+model.df.gold.m<-read.csv("model-cats-gold_DF_m.csv")
+#model.df.gold<-fix(evalset)
 # mfw.remove==T: 73.3% übereinstimmung
 # mfw.remove==F: 60% übereinstimmung
 ### > proves model!
 ### subset of ambiguos cases:
 m<-evalset$q.cat==evalset$m.cat
 sum(m)
+evalset<-model.df.gold.m
 evalsub<-subset(evalset,!is.na(evalset$q.cat)|!is.na(evalset$m.cat))
 m<-is.na(evalsub[,'q.cat'])
 evalsub[m,'q.cat']<-""
@@ -379,6 +387,7 @@ m<-is.na(evalsub[,'m.cat'])
 evalsub[m,'m.cat']<-""
 evalsub<-subset(evalsub,evalsub$q.cat!=evalsub$m.cat)
 sum(m)
+
 ######################################
 tempfun2<-function(){
   
