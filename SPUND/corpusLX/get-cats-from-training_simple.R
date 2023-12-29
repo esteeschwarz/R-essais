@@ -744,33 +744,54 @@ c.df.from.dist<-function(distlist){
 disttable<-c.df.from.dist(distessai$dist.list)
 
 apply.factor<-function(disttable){
+  a.noun.u<-unique(disttable$noun)
+  q.noun.u<-unique(disttable$q)
+  ccat.u<-unique(disttable$cat)
   #fac.t<-table(nouns.cats.known$category)
   fac.u<-table(disttable$cat)
   fac.u
+  qnoun<-"rose"
+  qnoun.array<-disttable$q==qnoun
+  sum(qnoun.array) # 55 assigned cat frequencies
+  q.cat.t<-table(disttable$cat[qnoun.array])
+  #q.cat.t<-fac.u
+  q.cat.t # this factor applies to all q.nouns
+  q.cat.exp<-q.cat.t/sum(q.cat.t)*q.cat.t
+  q.cat.exp
+  q.cat.dif<-q.cat.exp-q.cat.t
+  q.cat.dif
+  q.cat.p<-q.cat.dif*q.cat.dif/q.cat.exp
+  q.cat.p
+  
   #write_clip(fac.u)
   #write_clip(names(fac.u))
+  # for(q in 1:length(q.noun.u)){
+  #   qnoun<-q.noun.u[q]
   for(k in 1:length(fac.u)){
-    disttable$fac.u[disttable$cat==names(fac.u)[k]]<-fac.u[k]
+    disttable$fac.u[disttable$cat==names(fac.u)[k]]<-fac.u[k] 
+    disttable$fac.q.p[disttable$cat==names(q.cat.p)[k]]<-q.cat.p[k] 
     
+      #   # qnoun.array<-disttable$q==qnoun
+  #   # fac.u.q<-table(disttable$cat[qnoun.array])
+  #   # disttable$fac.u.q[disttable$cat==names(fac.u)[k]<-fac.u[k]
+  # }
   }
+  
   fac.s<-sum(fac.u)
   fac.s #100%
   fac.u #p
-  
-  
-  
+  sum(q.cat.p)
+  ### get p for category:
+  q<-7
   fac.u.s<-fac.u/fac.s
   fac.u.s
   fac.u.ch<-fac.s
   #write_clip(fac.u)
   fac.s
   disttable$max.obs<-F
+  disttable$max.qp<-F
   mode(disttable$freq)<-"double"
   disttable$max.p<-F
-  #disttable$max.c<-NA
-  #disttable$fac.n<-NA
-  #disttable$fac.s<-NA
-  #disttable$max.n<-F
   k<-1
   anoun<-unique(disttable$noun)
   qnoun<-unique(disttable$q)
@@ -784,11 +805,9 @@ apply.factor<-function(disttable){
     sum(n.array)
     disttable$max.obs[n.array][which.max(disttable$freq[n.array])]<-T
   }
-    print(disttable[disttable$max.obs,])
-  #a.noun<-"lunchroom"
-  #q.noun
   typeof(disttable$freq)
   for (k in 1:length(anoun)){
+    cat(k,"of",length(anoun),"\n")
     a.noun<-anoun[k]
     a.noun.array<-disttable$noun==a.noun
     
@@ -830,7 +849,10 @@ apply.factor<-function(disttable){
   disttable$ex.dif<-abs(disttable$freq-disttable$exp)
   disttable$p<-(disttable$ex.dif*disttable$ex.dif)/disttable$freq
   disttable$freq.p<-(disttable$p*disttable$freq)
-  print(disttable[disttable$max.obs,])
+  #disttable$freq.q.p<-(disttable$freq.p*disttable$fac.q.p) # this not, makes all to B&UE
+  disttable$freq.q.p<-(disttable$freq.p/disttable$fac.q.p)
+  
+  #print(disttable[disttable$max.obs,])
   
   for (k in 1:length(qnoun)){
     u.noun<-qnoun[k]
@@ -842,6 +864,7 @@ apply.factor<-function(disttable){
   disttable$max.p[q.noun.array][which.max(disttable$freq.p[q.noun.array])]<-T
   cat.true<-disttable$cat[q.noun.array][which.max(disttable$freq.p[q.noun.array])]
   disttable$cat.ai[q.noun.array]<-cat.true
+  disttable$max.qp[q.noun.array][which.max(disttable$freq.q.p[q.noun.array])]<-T
   }
 #  cat.true<-which(disttable$max.p==T)
  # disttable
@@ -853,9 +876,9 @@ apply.factor<-function(disttable){
   }
   
 resulttable<-apply.factor(disttable)
-save(resulttable,file = paste0(local,"/result_DF(sample1-918).RData"))
+save(resulttable,file = paste0(local,"/result_DF_qp(sample1-918).RData"))
 
-print(resulttable[resulttable$max.p,c('q','cat')])
+print(resulttable[resulttable$max.qp,c('q','cat')])
 #print(resulttable[resulttable$max.0,])
 #print(resulttable[resulttable$max.n,c('q','cat')])
 
@@ -885,34 +908,48 @@ evalcat<-function(goldset,testset){
   #   cat<-unique(resulttable$cat.ai[resulttable$q==q.noun])
   #   d10.ai.s$cat.ai[m]<-cat
   # }
-  d10.ai.s$cat.ai<-gsub("B&UE","B&AE",d10.ai.s$cat.ai)
+  d10.ai.s$cat.ai.f<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.f)
+  d10.ai.s$cat.ai.c<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.c)
+  d10.ai.s$cat.ai.cq<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.cq)
   chks<-d10.ai.s$Token_ID==d10.gs$Token_ID
   sum(chks)
   #print(chks)
   #print(sampledist)
   #print(sum(chks,na.rm = T))
   #d10.gs$cat.ai<-cat
-  p1<-d10.gs$Category==d10.ai.s$cat.ai
+  p1<-d10.gs$Category==d10.ai.s$cat.ai.f
   sum(p1)
   p2<-p1
-  p2[is.na(p1)]<-F
-  # print(d10.gs$Noun[p2])
-  # print(d10.gs$Category[p2])
+  #p2[is.na(p1)]<-F
+  p2<-d10.gs$Category==d10.ai.s$cat.ai.c
+  p3<-d10.gs$Category==d10.ai.s$cat.ai.cq
   print(sum(p1,na.rm = T))
   print(sum(p1,na.rm = T)/length(p1))
-  dfreturn<-data.frame(cat=d10.gs$Category,ai=d10.ai.s$cat.ai)
-  d10.ai.s$Category<-d10.gs$Category
-  ai.t<-table(d10.ai.s$Category[p2])
-  ai.t
-  listreturn<-list(freq=ai.t,set=d10.ai.s)
-  return(listreturn)
-  return(d10.ai.s)
+  print(sum(p2,na.rm = T))
+  print(sum(p2,na.rm = T)/length(p1))
+  print(sum(p3,na.rm = T))
+  print(sum(p3,na.rm = T)/length(p1))
+  dfreturn<-data.frame(noun=d10.gs$Noun,cat=d10.gs$Category,ai.f=d10.ai.s$cat.ai.f,ai.c=d10.ai.s$cat.ai.c,ai.cq=d10.ai.s$cat.ai.cq)
+ # d10.ai.s$Category<-d10.gs$Category
+  #ai.t<-table(d10.ai.s$Category[p2])
+  #ai.t
+  #listreturn<-list(freq=ai.t,set=d10.ai.s)
+  #return(listreturn)
+  #return(d10.ai.s)
   ############################
   ##################################
 }
 
-evalcat(d10.gold,d10.stef.ai)
-### > change algorithm of defining cats from df
+d10.eval.log<-evalcat(d10.gold,d10.stef.ai)
+t.g<-table(d10.eval.log$cat)
+t.g
+t.f<-table(d10.eval.log$ai.f)
+t.f
+t.c<-table(d10.eval.log$ai.c)
+t.c
+t.cq<-table(d10.eval.log$ai.cq)
+t.cq
+### > change algorithm oai.c### > change algorithm of defining cats from df
 #df.known<-distessai$nouns
 ############################################
 ### > evaluate:
@@ -960,7 +997,7 @@ goldset<-d10.gold
 #################################
 # get X-square matrix from results
 
-getfreq.df<-function(){
+getfreq.df<-function(resulttable){
 catarray<-resulttable$cat
 cat.u<-unique(catarray)
 colnames(resulttable)
@@ -1011,17 +1048,17 @@ return(resultlist)
 }
 cat.df.sf<-cat.df
 #xdf<-getfreq.df()
-resultlist<-getfreq.df()
+resultlist<-getfreq.df(resulttable)
 save(resultlist,file = paste0(local,"/result_DF(sample1-918)_singled-list.RData"))
 save(cat.df,file = paste0(local,"/catdf_freq(sample1-918).RData"))
 
-qnoun<-"lake"
+qnoun<-"crab"
 ex.df<-list()
-resultlist[[qnoun]]
+qrose<-resultlist[[qnoun]]
 anoun<-"lane"
 cat<-"MA"
 k<-1
-qnoun<-"odor"
+qnoun<-"crab"
 get.exp<-function(qnoun){
   t.df<-data.frame(resultlist[[qnoun]])
   #t.df<-data.frame(resultlist[qnoun])
@@ -1033,18 +1070,39 @@ get.exp<-function(qnoun){
   t.df$dif<-NA
   t.df$p<-NA
   t.df$score<-NA
-  k<-1
+  t.df$fac.c<-NA
+  t.df$score.sum<-NA
+  #k<-1
   t.cat<-matrix(ncol = length(a.noun.u),nrow = length(cat.u))
   for(k in 1:length(a.noun.u)){
+    cat(k,"\n")
     a.noun<-a.noun.u[k]
     m<-resulttable$noun%in%a.noun
     cat<-unique(resulttable$cat[m])
     m2<-rownames(t.df)%in%a.noun
     t.df$cat[m2]<-cat
+    q.cat.t<-table(t.df$cat)
+    #q.cat.t<-fac.u
+    q.cat.t # this factor applies to all q.nouns
+    q.cat.exp<-q.cat.t/sum(q.cat.t)*q.cat.t
+    q.cat.exp
+    q.cat.dif<-q.cat.exp-q.cat.t
+    q.cat.dif
+    q.cat.p<-q.cat.dif*q.cat.dif/q.cat.exp
+    q.cat.p
     m3<-t.df$cat%in%cat
+    m3
+    cat
     sum(m3)
     t.df$csum[m3]<-sum(t.df$freq[m3])
+    m4<-names(q.cat.p)%in%cat
+    t.df$fac.c[m3]<-q.cat.p[m4]
   }
+  m4
+  qnoun<-"rose"
+  qnoun.array<-disttable$q==qnoun
+  sum(qnoun.array) # 55 assigned cat frequencies
+  
 ### in a distribution matrix: 
 ### rowsums = catsum, colsum = a.noun.sum = freq, total = sum(catsum) = q.sum
 ### chi formula exp (1): token(freq)/total*catsum
@@ -1056,17 +1114,52 @@ get.exp<-function(qnoun){
   t.df$exp<-t.df$freq/t.df$qsum*t.df$csum
   t.df$dif<-t.df$exp-t.df$freq
   t.df$p<-(t.df$dif*t.df$dif)/t.df$exp
+  k<-1
+  for(k in 1:length(a.noun.u)){
+    cat(k,"\n")
+    a.noun<-a.noun.u[k]
+    #m<-rownames(t.df)%in%a.noun
+    #cat<-unique(resulttable$cat[m])
+    m2<-rownames(t.df)%in%a.noun
+    cat<-unique(resulttable$cat[m])
+    #t.df$cat[m2]<-cat
+    #q.cat.t<-table(t.df$cat)
+    #q.cat.t<-fac.u
+    #q.cat.t # this factor applies to all q.nouns
+    #q.cat.exp<-q.cat.t/sum(q.cat.t)*q.cat.t
+    #q.cat.exp
+    #q.cat.dif<-q.cat.exp-q.cat.t
+    #q.cat.dif
+    #q.cat.p<-q.cat.dif*q.cat.dif/q.cat.exp
+    #q.cat.p
+    m3<-t.df$cat%in%cat
+    m3
+    cat
+    sum(m3)
+#    t.df$cat.qsum[m3]<-sum(t.df$freq[m3])
+    #m4<-names(q.cat.p)%in%cat
+    t.df$score.sum[m3]<-sum(t.df$score[m3])
+  }
   t.df$score<-t.df$freq*t.df$p
+  t.df$score.c<-t.df$csum*t.df$fac.c
+  t.df$score.cs<-t.df$score.sum*t.df$fac.c
   max<-which.max(t.df$score)
   c.max<-t.df$cat[max]
-  return(list(df=t.df,c.max=c.max))
+  max<-which.max(t.df$score.c)
+  c.max.c<-t.df$cat[max]
+  max<-which.max(t.df$freq)
+  c.max.f<-t.df$cat[max]
+  max<-which.max(t.df$score.cs)
+  c.max.score<-t.df$cat[max]
+  return(list(df=t.df,f.max=c.max.f,c.max=c.max,cq.max=c.max.c,c.max.score=c.max.score))
   
     #  ex.df[[noun]]<-exp
 }
-qnoun<-'rose'
+qnoun<-"lake"
 #get.exp.df<-function(qnoun){
 
-q.cat<-get.exp(qnoun)$c.max  
+q.cat<-get.exp(qnoun)
+#q.cat$
 k<-1
 put.max.cat<-function(){
   d10.stef$cat.ai<-NA
@@ -1074,9 +1167,15 @@ put.max.cat<-function(){
     qnoun<-d10.stef$Noun[k]
     cat("fetch",k,"of",length(d10.stef$Noun), "category for:",qnoun,"---> ")
     max.list<-get.exp(qnoun)
-    max.cat<-max.list$c.max
-    cat(max.cat,"\n")
-    d10.stef$cat.ai[k]<-max.cat
+    max.c.cat<-max.list$c.max
+    max.f.cat<-max.list$f.max
+    max.cq.cat<-max.list$cq.max
+    max.score.f<-max.list$c.max.score
+    cat(max.f.cat,max.c.cat,max.cq.cat,"\n")
+    d10.stef$cat.ai.f[k]<-max.f.cat
+    d10.stef$cat.ai.c[k]<-max.c.cat
+    d10.stef$cat.ai.cq[k]<-max.cq.cat
+    d10.stef$cat.ai.score[k]<-max.score.f
   }
   return(d10.stef)
 }
@@ -1096,7 +1195,7 @@ evalfrequencies<-function(){
   distessai$dist.df
   ###
   df<-data.frame(evaldf$freq)
-  library(collostructions)
+ # library(collostructions)
   #  df$set<-"eval"
   df
   #m1<-nouns.cats.known$category%in%df$Var1
