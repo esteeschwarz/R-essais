@@ -41,3 +41,5 @@ qdfx<-qdf$df
 188/826 # unknown nouns
 ### 2nd run with match d1u%in%d2u, way faster, see difference if d2u%in%d1u resp longer in shorter array
 371/826
+### now find pattern of different frequency evaluations and feed back results
+266/826

@@ -1100,7 +1100,7 @@ get.exp<-function(qnoun){
     sum(m3)
     if(sum(t.df$freq[m3])==0)
       t.df$freq[m3]<-0.00001 #set minimal frequency for 0 matches
-    t.df$csum[m3]<-sum(t.df$freq[m3])
+    t.df$csum[m3]<-sum(t.df$freq[m3]) # cat sum per qnoun&cat
    # m4<-names(q.cat.p)%in%cat
     t.df$fac.c[m3]<-q.cat.p[k]
     }
@@ -1153,6 +1153,7 @@ get.exp<-function(qnoun){
   #t.df$score.cs<-t.df$score.sum*t.df$fac.c
   t.df$score.cs<-t.df$cat.p.sum/t.df$csum
   t.df$freq.c<-t.df$freq*t.df$fac.c
+  #t.df$score.catsum<-t.df$cat.p.sum/t.df$csum
   max<-which.max(t.df$freq.c)
   freq.c<-t.df$cat[max]
   max<-which.max(t.df$score.sum)
@@ -1163,16 +1164,18 @@ get.exp<-function(qnoun){
   c.max.f<-t.df$cat[max]
   max<-which.max(t.df$score.cs)
   c.max.score<-t.df$cat[max]
-  return(list(df=t.df,f.max=c.max.f,freq.c=freq.c,c.max=c.max,cq.max=c.max.c,c.max.score=c.max.score))
+  max<-which.max(t.df$csum)
+  f.max.catsum<-t.df$cat[max]
+  return(list(df=t.df,f.max=c.max.f,f.max.catsum=f.max.catsum,freq.c=freq.c,c.max=c.max,cq.max=c.max.c,c.max.score=c.max.score))
   
     #  ex.df[[noun]]<-exp
 }
-qnoun<-"pomatum"
+qnoun<-"tradition"
 #get.exp.df<-function(qnoun){
 
  q.cat<-get.exp(qnoun)
  qdf<-q.cat$df
- q.cat$c.max
+ q.cat$f.max.catsum
 #q.cat$
 #k<-1
 put.max.cat<-function(){
@@ -1187,8 +1190,10 @@ put.max.cat<-function(){
     max.cq.cat<-max.list$cq.max
     max.score.f<-max.list$c.max.score
     max.freq.c<-max.list$freq.c
-    cat(max.f.cat,max.freq.c,max.c.cat,max.cq.cat,"\n")
+    max.catsum<-max.list$f.max.catsum
+        cat(max.f.cat,max.catsum,max.freq.c,max.c.cat,max.cq.cat,"\n")
     d10.stef$cat.ai.f[k]<-max.f.cat
+    d10.stef$cat.ai.f.catsum[k]<-max.catsum
     d10.stef$cat.ai.fc[k]<-max.freq.c
     d10.stef$cat.ai.c[k]<-max.c.cat
     d10.stef$cat.ai.cq[k]<-max.cq.cat
@@ -1233,6 +1238,8 @@ evalcat<-function(goldset,testset){
   d10.ai.s<-df[with(df,order(df[,"Token_ID"])), ]
   d10.ai.s$cat.ai.f<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.f)
   d10.ai.s$cat.ai.c<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.c)
+  d10.ai.s$cat.ai.f.catsum<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.f.catsum)
+  
   d10.ai.s$cat.ai.cq<-gsub("B&UE","B&AE",d10.ai.s$cat.ai.cq)
   d10.ai.s$Category<-gsub("B&UE","B&AE",d10.ai.s$Category)
   chks<-d10.ai.s$Token_ID==d10.gs$Token_ID
@@ -1246,18 +1253,22 @@ evalcat<-function(goldset,testset){
   sum(p1)
   p2<-d10.gs$cat.cons==d10.ai.s$cat.ai.c
   p3<-d10.gs$cat.cons==d10.ai.s$cat.ai.cq
-  p.array<-data.frame(match.sum=1:3,match.freq=1:3,cpt=918,pre=92,minus=918-92,match.clean=1:3)
+  p4<-d10.gs$cat.cons==d10.ai.s$cat.ai.f.catsum
+  sum(p4)
+  p.array<-data.frame(match.sum=1:4,match.freq=1:4,cpt=918,pre=92,minus=918-92,match.clean=1:4)
   p.array$match.sum[1]<-print(sum(p1,na.rm = T))
   p.array$match.freq[1]<-print(sum(p1,na.rm = T)/length(p1))
   p.array$match.sum[2]<-print(sum(p2,na.rm = T))
   p.array$match.freq[2]<-print(sum(p2,na.rm = T)/length(p2))
   p.array$match.sum[3]<-print(sum(p3,na.rm = T))
   p.array$match.freq[3]<-print(sum(p3,na.rm = T)/length(p3))
+  p.array$match.sum[4]<-print(sum(p4,na.rm = T))
+  p.array$match.freq[4]<-print(sum(p4,na.rm = T)/length(p4))
   p.array$BUE<-sum(d10.gs$cat.cons=="B&AE")
   p.array$match.clean<-p.array$match.sum-p.array$pre
   p.array$match.clean.freq<-p.array$match.clean/p.array$minus
   p.array$match.clean.freq.BUE<-(p.array$match.clean-p.array$BUE)/p.array$minus
-  rownames(p.array)<-c("meth:raw.freq","meth:cat.c","meth:cat.cq")
+  rownames(p.array)<-c("meth:raw.freq","meth:cat.c","meth:cat.cq","meth:catsum")
   # print(sum(p1,na.rm = T))
   # print(sum(p1,na.rm = T)/length(p1))
   # print(sum(p2,na.rm = T))
