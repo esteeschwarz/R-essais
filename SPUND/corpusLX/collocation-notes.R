@@ -16,6 +16,8 @@ library(googlesheets4)
 ?googlesheets4
 dtrain<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?usp=sharing")
 # NO. 403
+# try:
+gs4_deauth() # before request
 baseurl<-"https://sheets.googleapis.com"
 sheet<-"/v4/spreadsheets/{spreadsheetId}"
 sheets<-"/v4/spreadsheets/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg"
@@ -38,3 +40,4 @@ qdfx<-qdf$df
 280/918
 188/826 # unknown nouns
 ### 2nd run with match d1u%in%d2u, way faster, see difference if d2u%in%d1u resp longer in shorter array
+371/826

@@ -34,7 +34,8 @@ the major premise was, that the noun collocates among the categories share commo
 above shows, that the simple computation of most-common collocates (cf. Sariyar, Murat, and Andreas Borg 2010)[^2] works fine.
 
 #### evaluation
-the script works with 100% correct assignment of the predefined categories and a 22% assignment of not known nouns. theres some inconsistencies in the training (92 predefined nouns) and gold (918 defined nouns) set where some assignments vary from training to gold set and some duplicate nouns in the gold set were assigned to different categories. 
+the script works with 100% correct assignment of the predefined categories and a 22% assignment of not known nouns. theres some inconsistencies in the training (92 predefined nouns) and gold (918 defined nouns) set where some assignments vary from training to gold set and some duplicate nouns in the gold set were assigned to different categories.  
+after refining train and gold set and re-applying the first approach (simple match array frequencies [matches of testarray in train array / length(trainarray+testarray)] without the recordlinkage package) assignment proof rate vs goldset is 44% in unknown nouns.
 
 [^1]:	Pettersson-Traba, Daniela. “A Diachronic Perspective on Near-Synonymy: The Concept of Sweet-Smelling in American English.” Corpus linguistics and linguistic theory 17.2 (2021): 319–349. [Web.](https://fu-berlin.primo.exlibrisgroup.com/permalink/49KOBV_FUB/5ami3a/cdi_openaire_primary_doi_8ad1d6d6057eb106694cfa96c9ff4fa3)
 [^2]: Sariyar, Murat, and Andreas Borg. “The RecordLinkage Package: Detecting Errors in Data.” The R journal 2.2 (2010): 61–67. [Web.](https://fu-berlin.primo.exlibrisgroup.com/permalink/49KOBV_FUB/5ami3a/cdi_openaire_primary_doi_ba8b716343e3913e3b82aa41329d8948)
