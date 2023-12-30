@@ -18,3 +18,6 @@
 
 qdf<-get.exp("tradition")
 qdfx<-qdf$df
+
+# theres inconsistency of predefined cats in the 92 training sample and the finally manually defined gold cats, some nouns were assigned
+# to different cats in training and gold data, some duplicate nouns were assigned differently
