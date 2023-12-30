@@ -22,7 +22,7 @@ desk<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/"
 #d10.stef<-read.csv(paste0(box,"CaseStudy2_FullData.csv"))
 #d10.gold<-read_csv(paste0(box,"casestudy2_full.gold.csv")) # manually defined gold 
 d10.stef<-read.csv(paste0(desk,"CaseStudy2_FullData.csv"))
-d10.gold<-read_csv(paste0(desk,"casestudy2_full.csv")) # manually defined gold
+d10.gold<-read_csv(paste0(desk,"casestudy2_full_m.csv")) # manually defined gold
 
 #from saved df
 #nouns.cats.known<-read.csv("fragrance_known-cats_coll.cpt.csv")
@@ -342,30 +342,36 @@ returnlist<-list(train=d1u.df,test=d2u.df)
 u<-1
 #testarray<-get.coll.array(nouns.cats.known.cpt,"odor")
 #sum(is.na(nouns.cats.known$category))
-#trainset<-nouns.cats.known
+#trainset<-train.clean
+#testset<-nouns.cats.known.cpt
 u<-4
 #qnoun
 ###################################################
 get.max.compare.cats<-function(trainset,testset,qnoun){
   nouns.cats.known<-trainset
   u1<-data.frame(noun=unique(nouns.cats.known$noun[!is.na(nouns.cats.known$category)]),freq=NA,category=NA)
-  
+  u<-1
   for (u in 1:length(u1$noun)){
     unoun<-u1$noun[u]
     unoun
     cat(u,"getmatches for:",unoun)
     compareset<-get.compare.df(trainset,testset,unoun,qnoun)
     #compareset$
-    length(compareset$train$coll)
-    length(compareset$test$coll)
-    if(length(compareset$test$coll)>0)
+    l1<-length(compareset$train$coll)
+    l2<-length(compareset$test$coll)
+    if(l2>0)
 ####>      c1<-get.max.compare.cats(compareset$train$coll,compareset$test$coll)
-      c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
+####>      ###########################################################################
+    #  c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
+    #  f1<-c1$frequencies # THIS 1st method, 22%
+    ##################################################################################
+      #c1$frequencies
+          c1<-compareset$train$coll%in%compareset$test$coll
+    f1<-sum(c1)/(l1+l2)
     
   #    d1u<-get.train.array(u1$noun[u])
   #d2u<-get.coll.array(nouns.cats.known.cpt,q)
   #c1<-compare.linkage(matrix(d1u),matrix(testarray))
-  f1<-c1$frequencies
   cat("> ",f1,"\n")
 #  u1$[u]
   u1$freq[u]<-f1
@@ -407,7 +413,7 @@ getlinks<-function(compareset){
 # 
 # }
 
-get.cat.no.df<-function(noun.q,nouns.df.ai){
+get.cat.no.df.obs<-function(noun.q,nouns.df.ai){
 #  nouns.df.no<-data.frame(w.array)
   nouns.df.no<-d10.stef
   nouns.df.no$cat.ai<-NA
@@ -628,7 +634,7 @@ get.cat.no.df<-function(noun.q,nouns.df.ai){
 #q<-10
 #qnoun<-d10.stef$Noun[q]
 #qnoun
-get.link.freq.x<-function(trainset,testset,q){
+get.link.freq.obs<-function(trainset,testset,q){
   max.df<-data.frame(noun=q,freq=NA,category=NA)
  # trainset<-get.train.array(nouns.cats.known,q)
 #  testset<-get.coll.array(nouns.cats.known.cpt,q)
@@ -705,7 +711,27 @@ returnlist<-list(dist.list=dist.df)
 
 #returnlist<-list(nouns.df=d10.stef,trainset=nouns.cats.known)#dist.df=dist.list$dist.df,trainset=nouns.cats.known)
 return(returnlist)
+} #end catcall
+goldset<-d10.gold
+clean.db<-function(trainset,goldset){
+  trainset$category<-gsub("B&UE","B&AE",trainset$category)
+  a.noun.u<-unique(trainset$noun)
+    for(k in 1:length(a.noun.u)){
+    anoun<-a.noun.u[k]
+    gn.array<-goldset$Noun%in%anoun
+    q.cat<-table(goldset$Category[gn.array])
+    cat.max<-names(q.cat)[which.max(q.cat)]
+    kn.array<-trainset$noun%in%anoun
+    trainset$category[kn.array]<-cat.max
+  }
+#  m<-trainset$noun%in%goldset$Noun
+ return(trainset) 
+
 }
+train.clean<-clean.db(nouns.cats.known,goldset)
+##############################
+nouns.cats.known<-train.clean
+##############################
 #sampledist<-sample(1:length(d10.stef$Corpus),100)
 ### > for complete corpus:
 sampledist<-1:length(d10.stef$Corpus)
@@ -714,9 +740,11 @@ sampledist<-1:length(d10.stef$Corpus)
 ai.form<-expression(nouns.cats.known,nouns.cats.known.cpt,'SE',F,c(1:2))
 eval(ai.form[4])
 #eval(get.cat.no.df)
+###################################### THIS >
 distessai<-catcall(sampledist,ai.form)
+#############################################
 getwd()
-save(distessai,file = paste0(local,"/freqlist_linkrecord(sample1-100.3).RData"))
+save(distessai,file = paste0(local,"/freqlist_linkrecord(sample1-918.4).RData"))
 ### > get factor into df
 distlist<-distessai$dist.list
 c.df.from.dist<-function(distlist){

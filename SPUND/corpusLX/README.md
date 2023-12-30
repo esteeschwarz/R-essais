@@ -31,7 +31,10 @@ we try to assign a noun to a category of a set of categories. 92 out of a set of
 
 #### premises
 the major premise was, that the noun collocates among the categories share common associates. this would result in similar category assigments for nouns with lots of similar collocates. this hypothesis is to be tested. in the model we proved that the algorithm for assigning the correct category under common collocates is working, the recognition errorrate is 0%. theres ambiguos cases for which two assignments are possible, these have two correct assignments as well.   
-above shows, that the simple computation of most-common collocates (cf. Sariyar, Murat, and Andreas Borg 2010)[^2] works fine. 
+above shows, that the simple computation of most-common collocates (cf. Sariyar, Murat, and Andreas Borg 2010)[^2] works fine.
+
+#### evaluation
+the script works with 100% correct assignment of the predefined categories and a 22% assignment of not known nouns. theres some inconsistencies in the training (92 predefined nouns) and gold (918 defined nouns) set where some assignments vary from training to gold set and some duplicate nouns in the gold set were assigned to different categories. 
 
 [^1]:	Pettersson-Traba, Daniela. “A Diachronic Perspective on Near-Synonymy: The Concept of Sweet-Smelling in American English.” Corpus linguistics and linguistic theory 17.2 (2021): 319–349. [Web.](https://fu-berlin.primo.exlibrisgroup.com/permalink/49KOBV_FUB/5ami3a/cdi_openaire_primary_doi_8ad1d6d6057eb106694cfa96c9ff4fa3)
 [^2]: Sariyar, Murat, and Andreas Borg. “The RecordLinkage Package: Detecting Errors in Data.” The R journal 2.2 (2010): 61–67. [Web.](https://fu-berlin.primo.exlibrisgroup.com/permalink/49KOBV_FUB/5ami3a/cdi_openaire_primary_doi_ba8b716343e3913e3b82aa41329d8948)

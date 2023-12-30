@@ -11,6 +11,19 @@
 #2nd: duplicated collocates in nouns.cats.known.cpt: pushes frequency! remove duplicate entries
 # try d1u%in%d2u matches again for faster algorithm / recordlinkage needs about 2h (918qnounsx55anounsx1.5s)
 # import sets via package googlesheets4
+install.packages("googlesheets4")
+library(googlesheets4)
+?googlesheets4
+dtrain<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?usp=sharing")
+# NO. 403
+baseurl<-"https://sheets.googleapis.com"
+sheet<-"/v4/spreadsheets/{spreadsheetId}"
+sheets<-"/v4/spreadsheets/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg"
+sheeturl<-paste0(baseurl,sheets)
+sheeturl
+library(httr)
+x<-GET(sheeturl)
+# NO. 403
 # script runs through all qnouns (918), not the unique number
 # check if all duplicate qnouns have same cat assigned
 # anouns is also only 55 unique, 92 total: compute new cat factor among 55
@@ -24,3 +37,4 @@ qdfx<-qdf$df
 # after cleaning:
 280/918
 188/826 # unknown nouns
+### 2nd run with match d1u%in%d2u, way faster, see difference if d2u%in%d1u resp longer in shorter array
