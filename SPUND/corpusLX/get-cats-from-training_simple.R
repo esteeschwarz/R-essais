@@ -30,7 +30,7 @@ git<-"https://raw.githubusercontent.com/esteeschwarz/R-essais/main/SPUND/corpusL
 local<-"~/Documents/GitHub/R-essais/SPUND/corpusLX/"
 nouns.cats.known<-read.csv(paste0(local,"fragrance_known-cats_coll.cpt.csv"))
 nouns.cats.known.fix<-read.csv(paste0(local,"nouns.cats.known.csv")) # modeled df of fixed cats, 8274 obs
-nouns.cats.known.cpt<-read.csv(paste0(local,"nouns.cats.temp_918_m.csv"))
+nouns.cats.known.cpt<-read.csv(paste0(local,"nouns_collocations_cpt.csv"))
 #load(paste0(local,"result_DF(sample1-918)_singled-list.RData"))
 
 ### from git:
@@ -359,14 +359,16 @@ get.max.compare.cats<-function(trainset,testset,qnoun){
     #compareset$
     l1<-length(compareset$train$coll)
     l2<-length(compareset$test$coll)
-    if(l2>0)
+    #ifelse(l1>l2,c<-1,c<-2)
+    #if(l2==l1)
+     # c1<-compareset$train$coll%in%compareset$test$coll
 ####>      c1<-get.max.compare.cats(compareset$train$coll,compareset$test$coll)
 ####>      ###########################################################################
     #  c1<-compare.linkage(matrix(compareset$train$coll),matrix(compareset$test$coll))
     #  f1<-c1$frequencies # THIS 1st method, 22%
     ##################################################################################
       #c1$frequencies
-          c1<-compareset$train$coll%in%compareset$test$coll
+    ifelse(l1>l2,c1<-compareset$train$coll%in%compareset$test$coll,c1<-compareset$test$coll%in%compareset$train$coll)
     f1<-sum(c1)/(l1+l2)
     
   #    d1u<-get.train.array(u1$noun[u])
@@ -734,9 +736,12 @@ nouns.cats.known<-train.clean
 ##############################
 #sampledist<-sample(1:length(d10.stef$Corpus),100)
 ### > for complete corpus:
+#d10.stef.d<-d10.stef[!duplicated(d10.stef$Noun),]
+q.noun.d<-!duplicated(d10.stef$Noun)
+sum(q.noun.d)
 sampledist<-1:length(d10.stef$Corpus)
+#sampledist<-q.noun.d
 # make sample of unique qnouns
-q.noun.d<-duplicates(d10.stef$Noun)
 #sampledist<-1:10
 ##############################
 ai.form<-expression(nouns.cats.known,nouns.cats.known.cpt,'SE',F,c(1:2))
@@ -746,7 +751,8 @@ eval(ai.form[4])
 distessai<-catcall(sampledist,ai.form)
 #############################################
 getwd()
-save(distessai,file = paste0(local,"/freqlist_linkrecord(sample1-918.4).RData"))
+#save(distessai,file = paste0(local,"/freqlist_linkrecord(sample1-918.m-array).RData"))
+save(distessai,file = paste0(local,"/freqlist_matcharray-2(sample1-918).RData"))
 ### > get factor into df
 distlist<-distessai$dist.list
 c.df.from.dist<-function(distlist){
@@ -923,7 +929,7 @@ apply.factor<-function(disttable){
   }
   
 resulttable<-apply.factor(disttable)
-save(resulttable,file = paste0(local,"/result_DF_qp(sample1-918)_4_m-array.RData"))
+save(resulttable,file = paste0(local,"/result_DF_qp(sample1-918)_5_m-array.RData"))
 #load(paste0(local,"/result_DF_qp(sample1-918)_4_m-array.RData")) # earlier dataset with c1 recordlinkage
 #print(resulttable[resulttable$max.qp,c('q','cat')])
 #print(resulttable[resulttable$max.0,])
@@ -1288,7 +1294,8 @@ testset<-d10.stef.ai
 eval.set<-evalcat(goldset,testset)
 evals<-eval.set$eval
 evaldf<-eval.set$df
-save(evals,file=paste0(local,"cats_eval-assignment_m-array.csv"))
+#load(paste0(local,"cats_eval-assignment_m-array.csv"))
+#write.csv(evals,file=paste0(local,"cats_eval-assignment_m-array.csv"))
 ### no. try with freq*p
 evalfrequencies.obs<-function(){
   ### process:
