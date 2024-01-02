@@ -145,16 +145,18 @@ a.cat.nouns<-unique(nouns4df$anoun)
 nouns4sub<-nouns4df[a.cat.na,]
 q<-26
 #############################
+nouns4df$freq<-NA
 for(q in 1:length(q.noun.u)){
   
   qnoun<-q.noun.u[q]
   qnoun
-  d<-1
+  d<-24
   for(d in 1:length(a.noun.u)){
     anoun<-a.noun.u[d]
     anoun
     qc.array<-nouns4df$noun==qnoun&nouns4df$a.id==d
     sum(qc.array)
+    nouns4df[qc.array,]
     d2u<-nouns4df$coll[qc.array]
     d2u
     cat(q,qnoun,"in",d,anoun,"--->")  
@@ -162,17 +164,21 @@ for(q in 1:length(q.noun.u)){
     #anoun.array<-nouns4sub$a.id==d
     sum(anoun.array)
     d1u<-nouns4df$coll[anoun.array]
+    nouns4df[anoun.array,]
     l1<-length(d1u)
     l2<-length(d2u)
     ifelse(l1>l2,m<-d1u%in%d2u,m<-d2u%in%d1u)
     mf<-sum(m,na.rm = T)/(length(d1u)+length(d2u))
     cat("f=",mf,"\n")
-    nouns4df$freq[anoun.array]<-mf
+    nouns4df$freq[qc.array]<-mf
   }
   
 }
+#chk:
+sum(is.na(nouns4df$freq))
 ##################################
-write.csv(nouns1df,"nouns1df.csv")
+#write.csv(nouns4df,"nouns4df.csv")
+save(nouns4df,file = "nouns4df.RData") # save .csv= 267MB, save Rdata= 21MB
 library(purrr)
 nouns2df<-as.matrix.data.frame(nouns1df[1:length(nouns1df$collocations),5:length(nouns1df)])
 mode(nouns2df)<-"double"
@@ -186,10 +192,11 @@ library(stats)
 # Split the data into training and testing sets
 #train <- data[1:100, ]
 #test <- data[101:146, ]
-train<-nouns3df[1:200,]
-test<-nouns3df[101:146,]
+train<-nouns4df[a.cat.na,]
+sampledist<-sample(1:length(nouns4df$id),100)
+test<-nouns4df[sampledist,]
 # Train the model using linear regression
-model <- lm(f ~ cat, data = train)
+model <- lm(freq ~ anoun, data = train)
 summary(model)
 model$residuals
 names(model$effects)
@@ -199,6 +206,10 @@ sum(m,na.rm = T)
 # Make predictions on the test set
 predictions <- predict(model, newdata = test)
 predictions
+nounsp<-nouns4df[sampledist,]
+nounsp$freq.p<-predictions
+nouns4df$res[a.cat.na]<-model$residuals
+summary(predictions)
 nouns3df<-nouns1df[1:length(nouns1df$collocations),1:4]
 for(c in 1:length(q.noun.u)){
   qnoun<-q.noun.u[c]
