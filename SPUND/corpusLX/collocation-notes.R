@@ -139,26 +139,39 @@ nouns1df<-data.frame(nouns.1.matrix)
 colnames(nouns1df)<-c("collocations","noun","cat","f",a.noun.u)
 k<-1
 qnoun<-"river"
-for(k in 1:length(q.noun.u)){
+a.cat.na<-!is.na(nouns4df$cat)
+sum(a.cat.na)
+a.cat.nouns<-unique(nouns4df$anoun)
+nouns4sub<-nouns4df[a.cat.na,]
+q<-26
+#############################
+for(q in 1:length(q.noun.u)){
   
-  qnoun<-q.noun.u[k]
-  qc.array<-nouns1df$noun==qnoun
-  sum(qc.array)
-  d2u<-nouns1df$collocations[qc.array]
-  d<-2
+  qnoun<-q.noun.u[q]
+  qnoun
+  d<-1
   for(d in 1:length(a.noun.u)){
     anoun<-a.noun.u[d]
-    cat(k,qnoun,"in",d,anoun,"--->")  
-    anoun.array<-nouns1df$noun==anoun
-    d1u<-nouns1df$collocations[anoun.array]
-    # d2u<-qc.array
-    m<-d1u%in%d2u
+    anoun
+    qc.array<-nouns4df$noun==qnoun&nouns4df$a.id==d
+    sum(qc.array)
+    d2u<-nouns4df$coll[qc.array]
+    d2u
+    cat(q,qnoun,"in",d,anoun,"--->")  
+    anoun.array<-nouns4df$anoun==anoun&nouns4df$noun==anoun
+    #anoun.array<-nouns4sub$a.id==d
+    sum(anoun.array)
+    d1u<-nouns4df$coll[anoun.array]
+    l1<-length(d1u)
+    l2<-length(d2u)
+    ifelse(l1>l2,m<-d1u%in%d2u,m<-d2u%in%d1u)
     mf<-sum(m,na.rm = T)/(length(d1u)+length(d2u))
     cat("f=",mf,"\n")
-    nouns1df[qc.array,anoun]<-mf
+    nouns4df$freq[anoun.array]<-mf
   }
   
 }
+##################################
 write.csv(nouns1df,"nouns1df.csv")
 library(purrr)
 nouns2df<-as.matrix.data.frame(nouns1df[1:length(nouns1df$collocations),5:length(nouns1df)])
