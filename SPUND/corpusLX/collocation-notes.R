@@ -14,10 +14,16 @@
 install.packages("googlesheets4")
 library(googlesheets4)
 ?googlesheets4
+gs4_deauth() # before request
+
 dtrain<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?usp=sharing")
+#traintest<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?pli=1#gid=0")
+dfull<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?usp=sharing",range = "Full Data")
+#wks.
+#df_full<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?pli=1#gid=410281101")
+#dtest<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?pli=1#gid=1535770502")
 # NO. 403
 # try:
-gs4_deauth() # before request
 baseurl<-"https://sheets.googleapis.com"
 sheet<-"/v4/spreadsheets/{spreadsheetId}"
 sheets<-"/v4/spreadsheets/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg"

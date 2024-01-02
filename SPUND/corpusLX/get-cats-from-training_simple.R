@@ -16,6 +16,14 @@ library(readr)
 library(stringi)
 library(RecordLinkage)
 library(clipr)
+library(googlesheets4)
+gs4_deauth() # before request
+
+dtrain<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?usp=sharing")
+#traintest<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?pli=1#gid=0")
+dfull<-read_sheet("https://docs.google.com/spreadsheets/d/199KLIWoE8C5vjAqQsKKcqAuzKOfZPkpwAI24jZOaZWg/edit?usp=sharing",range = "Full Data")
+
+
 
 box<-"https://userpage.fu-berlin.de/stschwarz/cqpdata/"
 desk<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/"
@@ -29,8 +37,8 @@ d10.gold<-read_csv(paste0(desk,"casestudy2_full_m.csv")) # manually defined gold
 git<-"https://raw.githubusercontent.com/esteeschwarz/R-essais/main/SPUND/corpusLX/"
 local<-"~/Documents/GitHub/R-essais/SPUND/corpusLX/"
 nouns.cats.known<-read.csv(paste0(local,"fragrance_known-cats_coll.cpt.csv"))
-nouns.cats.known.fix<-read.csv(paste0(local,"nouns.cats.known.csv")) # modeled df of fixed cats, 8274 obs
-nouns.cats.known.cpt<-read.csv(paste0(local,"nouns_collocations_cpt.csv"))
+nouns.cats.known.fix<-read.csv(paste0(local,"nouns.cats.known.csv")) # modeled df of 92 fixed cats with collocates, 8274 obs
+nouns.cats.known.cpt<-read.csv(paste0(local,"nouns_collocations_cpt.csv")) # 
 #load(paste0(local,"result_DF(sample1-918)_singled-list.RData"))
 
 ### from git:
@@ -38,7 +46,7 @@ nouns.cats.known.cpt<-read.csv(paste0(local,"nouns_collocations_cpt.csv"))
 # nouns.cats.known.fix<-read.csv(git,"nouns.cats.known.csv") # modeled df of fixed cats, 8274 obs
 # nouns.cats.known.cpt<-read.csv(git,"nouns.cats.temp_918.csv")
 lfix<-length(nouns.cats.known.fix$lfd)
-nouns.cats.known.cpt$category[(lfix+1):length(nouns.cats.known.cpt$lfd)]<-NA
+nouns.cats.known.cpt$category[(lfix+1):length(nouns.cats.known.cpt$lfd)]<-NA # reset cats in fulldata set in rows after defined cats
 
 #########################################################
 #########################################################
@@ -732,6 +740,8 @@ clean.db<-function(trainset,goldset){
 }
 train.clean<-clean.db(nouns.cats.known,goldset)
 ##############################
+### for consistency: this assigns to these categories, which were earlier defined in the 92 sample set (which we use for training here), 
+### the later corrected cats of the 918 full data set / and replaces B&UE with B&AE as used later
 nouns.cats.known<-train.clean
 ##############################
 #sampledist<-sample(1:length(d10.stef$Corpus),100)
@@ -755,6 +765,7 @@ getwd()
 save(distessai,file = paste0(local,"/freqlist_matcharray-2(sample1-918).RData"))
 ### > get factor into df
 distlist<-distessai$dist.list
+### > this creates a matrix from the resultlist
 c.df.from.dist<-function(distlist){
   t.df<-data.frame(distlist)
   delist<-function(x)data.frame(noun=unlist(x$noun),freq=unlist(x$freq),category=unlist(x$category))
@@ -795,6 +806,7 @@ c.df.from.dist<-function(distlist){
 }
 disttable<-c.df.from.dist(distessai$dist.list)
 
+### this is TODO: find way to apply statistically measured weight etc. of predefined cats to equalise assignment
 apply.factor<-function(disttable){
   a.noun.u<-unique(disttable$noun)
   q.noun.u<-unique(disttable$q)
