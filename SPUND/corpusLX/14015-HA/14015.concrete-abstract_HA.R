@@ -55,10 +55,20 @@ trntemp.2<-data.frame(scb=k,id=1:length(trntext$text),text=trntext)
 trndf<-rbind(trndf,trntemp.2)
 
 }
-
-m1<-grep("take",trndf$text)
-trn.take<-trndf[m1,]
+#save(trndf,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
+m1<-grep("tak",trndf$text) #take:415,tak:478 obs.
+trn.take<-cbind(trndf[m1,],"concrete"=0,"light"=1)
+m2<-grep("mak",trndf$text) #take:415,tak:478 obs.
+trn.make<-cbind(trndf[m2,],"concrete"=0,"light"=1) #430
+m3<-grep("giv",trndf$text) #take:415,tak:478 obs.
+trn.give<-cbind(trndf[m3,],"concrete"=0,"light"=1) #235
 ### wks., wonderful. now annotate for concrete/light use
-
-
+#trn.make.a<-fix(trn.make)
+#save(trn.make.a,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/make.annotated.RData")
+eval1<-sum(trn.make.a$concrete==1)
+eval2<-sum(trn.make.a$light==1)
+eval3<-sum(trn.make.a$concrete==0&trn.make.a$light==0)
+eval4<-length(trn.make.a$scb)-eval3
+p.light<-eval2/eval4 #95%
+p.concrete<-eval1/eval4 #5%
 
