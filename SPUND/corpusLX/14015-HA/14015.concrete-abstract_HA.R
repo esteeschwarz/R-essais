@@ -55,6 +55,7 @@ trntemp.2<-data.frame(scb=k,id=1:length(trntext$text),text=trntext)
 trndf<-rbind(trndf,trntemp.2)
 
 }
+trndf$lfd<-1:length(trndf$scb)
 #save(trndf,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
 m1<-grep("tak",trndf$text) #take:415,tak:478 obs.
 trn.take<-cbind(trndf[m1,],"concrete"=0,"light"=1)
@@ -64,11 +65,28 @@ m3<-grep("giv",trndf$text) #take:415,tak:478 obs.
 trn.give<-cbind(trndf[m3,],"concrete"=0,"light"=1) #235
 ### wks., wonderful. now annotate for concrete/light use
 #trn.make.a<-fix(trn.make)
+trn.make.a$lfd<-trn.make$lfd
 #save(trn.make.a,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/make.annotated.RData")
-eval1<-sum(trn.make.a$concrete==1)
-eval2<-sum(trn.make.a$light==1)
-eval3<-sum(trn.make.a$concrete==0&trn.make.a$light==0)
+eval1.m<-(trn.make.a$concrete==1)
+eval2.m<-(trn.make.a$light==1&trn.make.a$concrete==0)
+eval3.m<-(trn.make.a$concrete==0&trn.make.a$light==0|trn.make.a$concrete==-9)
+eval1<-sum(eval1.m)
+eval2<-sum(eval2.m)
+eval3<-sum(eval3.m)
 eval4<-length(trn.make.a$scb)-eval3
-p.light<-eval2/eval4 #95%
-p.concrete<-eval1/eval4 #5%
-
+p.light<-eval2/eval4 #89.4%
+p.concrete<-eval1/eval4 #10.6%
+eval1+eval2
+library(stringi)
+trn.split<-stri_split_boundaries(trndf$text,type="word",simplify = T)
+get.mfw<-function(t.array){
+  m1<-grepl("[^A-Za-z ]",t.array)
+  sum(m1)
+  t.array<-t.array[!m1]
+  t1<-table(t.array)
+  t1<-sort(t1,decreasing = T)
+}
+t1
+t.con<-get.mfw(trn.split[trn.make.a$lfd[eval1.m],]) #gets most frequent words for selection
+t.con
+#t.array<-trn.split[trn.make.a$lfd[eval1.m],]
