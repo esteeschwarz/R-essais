@@ -66,7 +66,12 @@ trn.give<-cbind(trndf[m3,],"concrete"=0,"light"=1) #235
 ### wks., wonderful. now annotate for concrete/light use
 #trn.make.a<-fix(trn.make)
 trn.make.a$lfd<-trn.make$lfd
+trndf$lfd<-1:length(trndf$scb)
 #save(trn.make.a,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/make.annotated.RData")
+#save(trndf,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
+library(readr)
+write_csv(trn.make.a,"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/make.ann.csv")
+write_csv(trndf,"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/scb-raw.csv")
 eval1.m<-(trn.make.a$concrete==1)
 eval2.m<-(trn.make.a$light==1&trn.make.a$concrete==0)
 eval3.m<-(trn.make.a$concrete==0&trn.make.a$light==0|trn.make.a$concrete==-9)
@@ -86,7 +91,38 @@ get.mfw<-function(t.array){
   t1<-table(t.array)
   t1<-sort(t1,decreasing = T)
 }
-t1
+df<-trn.split
+k<-3
+cleandf<-function(df){
+  for(k in 2:length(df[,1])){
+  t.array<-df[k,]
+  m1<-grepl("[^A-Za-z ]",t.array)
+  t.array
+  sum(m1)
+  t.array.m<-t.array[!m1]
+  t.array.m
+  m2<-t.array.m!=""
+  sum(m2)
+  t.array.m
+  t.array.m2<-t.array.m[m2]
+  m3<-t.array.m2!=" "
+  sum(m3)
+  t.array.m2
+  t.array.m3<-t.array.m2[m3]
+  t.array.m3
+  length(t.array.m3)
+  df[k,]<-NA
+  if(length(t.array.m3)>0)
+    df[k,1:length(t.array.m3)]<-t.array.m3
+  return(df)
+  }
+}
+k
+df[3,]
+cleantrn<-cleandf(trn.split)
+cleantrn[3,]
 t.con<-get.mfw(trn.split[trn.make.a$lfd[eval1.m],]) #gets most frequent words for selection
 t.con
 #t.array<-trn.split[trn.make.a$lfd[eval1.m],]
+
+
