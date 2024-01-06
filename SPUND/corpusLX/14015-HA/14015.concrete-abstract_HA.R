@@ -138,11 +138,18 @@ udpipepath<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/english-ewt-ud-2.5-191206.udpi
 md<-udpipe_load_model(udpipepath)
 #an1<-udpipe_annotate(md,cleantrn[7,])                
 #an1                      
-#an2<-as.data.frame(an1)                      
+#an2<-as.data.frame(an1)      
+tna<-is.na(trndf$text)
+sum(tna)
+trndf<-trndf[!tna,]
 an3<-udpipe_annotate(md,x=trndf$text,tagger = "default",parser = "none")
-save(an4,file="~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/SCB-df.PoS.RData")
-save(trndf,file="~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/SCB-df.cpt.RData")
-an4<-list(an3$x,an3$conllu)
+#save(an4,file="~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/SCB-df.PoS.RData")
+#save(trndf,file="~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/SCB-df.cpt.RData")
+an2<-udpipe_annotate(md,x=trndf$text[40001:length(trndf$text)],tagger = "default",parser = "none")
+
+an4<-list(docid=an3$x,pos=an3$conllu)
 load("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.ann.RData")
-an5<-data.frame(an4,row.names = NULL)
+an5<-as.data.frame(an3$x,an3$conllu)
+an6<-as.data.frame(an2)
+an5[5,]
 # R crashes
