@@ -69,7 +69,6 @@ trn.make.a$lfd<-trn.make$lfd
 trndf$lfd<-1:length(trndf$scb)
 #save(trn.make.a,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/make.annotated.RData")
 #save(trndf,file = "~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
-library(readr)
 write_csv(trn.make.a,"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/make.ann.csv")
 write_csv(trndf,"~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/scb-raw.csv")
 eval1.m<-(trn.make.a$concrete==1)
@@ -82,6 +81,10 @@ eval4<-length(trn.make.a$scb)-eval3
 p.light<-eval2/eval4 #89.4%
 p.concrete<-eval1/eval4 #10.6%
 eval1+eval2
+# load("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
+#trndf<-trndf[2:length(trndf$scb),]
+#trndf$lfd<-1:length(trndf$scb)
+library(readr)
 library(stringi)
 trn.split<-stri_split_boundaries(trndf$text,type="word",simplify = T)
 get.mfw<-function(t.array){
@@ -92,37 +95,51 @@ get.mfw<-function(t.array){
   t1<-sort(t1,decreasing = T)
 }
 df<-trn.split
-k<-3
+k<-6
 cleandf<-function(df){
   for(k in 2:length(df[,1])){
   t.array<-df[k,]
   m1<-grepl("[^A-Za-z ]",t.array)
   t.array
   sum(m1)
-  t.array.m<-t.array[!m1]
-  t.array.m
-  m2<-t.array.m!=""
+  t.array<-t.array[!m1]
+  t.array
+  m2<-t.array!=""
   sum(m2)
-  t.array.m
-  t.array.m2<-t.array.m[m2]
-  m3<-t.array.m2!=" "
+  t.array
+  t.array<-t.array[m2]
+  t.array
+  m3<-t.array!=" "
   sum(m3)
-  t.array.m2
-  t.array.m3<-t.array.m2[m3]
-  t.array.m3
-  length(t.array.m3)
+  t.array
+  t.array<-t.array[m3]
+  t.array
+  length(t.array)
   df[k,]<-NA
-  if(length(t.array.m3)>0)
-    df[k,1:length(t.array.m3)]<-t.array.m3
-  return(df)
+  if(length(t.array)>0)
+    df[k,1:length(t.array)]<-t.array
   }
+  return(df)
 }
 k
 df[3,]
 cleantrn<-cleandf(trn.split)
-cleantrn[3,]
+cleantrn[4,]
 t.con<-get.mfw(trn.split[trn.make.a$lfd[eval1.m],]) #gets most frequent words for selection
 t.con
 #t.array<-trn.split[trn.make.a$lfd[eval1.m],]
-
-
+### PoS tagging
+load("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
+library(udpipe)
+#udpipe_download_model("english",udpipe_model_repo = "jwijffels/udpipe.models.ud.2.5")
+udpipepath<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/english-ewt-ud-2.5-191206.udpipe"
+md<-udpipe_load_model(udpipepath)
+#an1<-udpipe_annotate(md,cleantrn[7,])                
+#an1                      
+#an2<-as.data.frame(an1)                      
+an3<-udpipe_annotate(md,x=trndf$text,tagger = "default",parser = "none")
+save(an4,file="~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.ann.RData")
+an4<-list(an3$x,an3$conllu)
+load("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.ann.RData")
+an5<-as.data.frame(an4)
+# R crashes
