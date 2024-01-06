@@ -131,6 +131,8 @@ t.con
 ### PoS tagging
 load("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.cpt.RData")
 library(udpipe)
+library(stringr)
+library(stringi)
 #udpipe_download_model("english",udpipe_model_repo = "jwijffels/udpipe.models.ud.2.5")
 udpipepath<-"~/boxHKW/21S/DH/local/SPUND/corpuslx/english-ewt-ud-2.5-191206.udpipe"
 md<-udpipe_load_model(udpipepath)
@@ -138,8 +140,8 @@ md<-udpipe_load_model(udpipepath)
 #an1                      
 #an2<-as.data.frame(an1)                      
 an3<-udpipe_annotate(md,x=trndf$text,tagger = "default",parser = "none")
-save(an4,file="~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.ann.RData")
+save(an4,file="~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/SCB-df.PoS.RData")
 an4<-list(an3$x,an3$conllu)
 load("~/boxHKW/21S/DH/local/SPUND/corpuslx/stefanowitsch/HA/data/SCB-df.ann.RData")
-an5<-as.data.frame(an4)
+an5<-data.frame(an4,row.names = NULL)
 # R crashes
