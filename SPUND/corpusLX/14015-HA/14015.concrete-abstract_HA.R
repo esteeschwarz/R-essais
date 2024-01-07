@@ -156,7 +156,7 @@ an5[5,]
 ### df too large
 ### created corpus in sketchengine
 library(readr)
-dmake<-read.csv("~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make+objects_of_make.csv",skip = 4)
+dmake<-read.csv("~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make+objects_of_make.csv",skip = 4) # sketchengine export
 library(stringi)
 stri_extract_all_regex(dmake$Right,"(.*<coll>.*</coll>.+?[0-9]{1,3}\\.)")
 coll.make<-stri_extract_all_regex(dmake$Right,"(.*<coll>.*</coll>.+?[0-9]{1,3}\\.)")
@@ -179,4 +179,24 @@ dmake.fix.4<-fix(dmake.fix.3)
 m<-dmake.fix.4$light==1
 dmake.fix.4$concrete[m]<-1
 dmake.fix.4$coll[!m]
-save(dmake.fix.4,file = "~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make.annotated(SkE-coll).RData")
+save(dmake.fix.4,file = "~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make.annotated(SkE-coll).RData") # 238 obs.
+load("~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make.annotated.RData") # 430 obs.
+#####
+trn.make.a$coll<-NA
+trn.make.a$synonyme<-NA
+trn.make.a$n.alt<-NA
+trn.make.a$n.0<-NA
+colnames(trn.make.light)
+trn.make.a<-trn.make.a[,c(1,2,3,6,4,5,7,8,9)]
+trn.make.light<-trn.make.a[trn.make.a$concrete==0&trn.make.a$light==1,] #321 obs
+mode(trn.make.light$coll)<-"character" # !!!!important: if not, then fix() will not save string input
+mode(trn.make.light$synonyme)<-"character"
+make.l.3<-fix(trn.make.light)
+save(make.l.4,file = "~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make.annotated.light.RData") # 238 obs.
+m<-make.l.1$concrete==1
+sum(m)
+make.l.2<-make.l.1[!m,]
+make.l.2[!is.na(make.l.2$synonyme),]
+mode(make.l.2$coll)<-"character" # !!!!important: if not, then fix() will not save string input
+mode(make.l.2$synonyme)<-"character"
+make.l.4<-fix(make.l.3)
