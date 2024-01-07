@@ -153,3 +153,30 @@ an5<-as.data.frame(an3$x,an3$conllu)
 an6<-as.data.frame(an2)
 an5[5,]
 # R crashes
+### df too large
+### created corpus in sketchengine
+library(readr)
+dmake<-read.csv("~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make+objects_of_make.csv",skip = 4)
+library(stringi)
+stri_extract_all_regex(dmake$Right,"(.*<coll>.*</coll>.+?[0-9]{1,3}\\.)")
+coll.make<-stri_extract_all_regex(dmake$Right,"(.*<coll>.*</coll>.+?[0-9]{1,3}\\.)")
+coll.make
+dmake.conc<-data.frame(kwic=dmake$KWIC,coll=unlist(coll.make))
+dmake.conc$concrete<-1
+dmake.conc$light<-1
+dmake.conc$synonyme<-NA
+dmake.conc$n.alt<-NA
+dmake.conc$n.0<-NA
+dmake.fix<-fix(dmake.conc)
+dmake.fix$left<-dmake$Left
+colnames(dmake.fix.2)
+dmake.fix.2<-dmake.fix[,c(8,1,2,3,4,5,6,7)]
+stri_extract_all_regex(dmake$Left,"((.){30}$)")
+dmake.fix.2$left<-unlist(stri_extract_all_regex(dmake$Left,"((.){30}$)"))
+dmake.fix.3<-fix(dmake.fix.2)
+dmake.fix.3$coll<-unlist(coll.make)
+dmake.fix.4<-fix(dmake.fix.3)
+m<-dmake.fix.4$light==1
+dmake.fix.4$concrete[m]<-1
+dmake.fix.4$coll[!m]
+save(dmake.fix.4,file = "~/Documents/GitHub/R-essais/SPUND/corpusLX/14015-HA/make.annotated(SkE-coll).RData")
