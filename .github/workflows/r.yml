@@ -32,7 +32,7 @@ jobs:
        # with:
        #   r-version: ${{ matrix.r-version }}
       - name: run eins
-        run: print(4/100)
+        run: source("scripts/testrun.R")
        # with:
         #  r-version: ${{ matrix.r-version }}
              
