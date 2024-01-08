@@ -27,14 +27,16 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - name: Set up R ${{ matrix.r-version }}
-        uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
-        with:
-          r-version: ${{ matrix.r-version }}
+       # not run
+       # uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
+       # with:
+       #   r-version: ${{ matrix.r-version }}
       - name: run eins
-        run: print(4/100)
-          
-        shell: Rscript testrun.R 
+        run: |
+        print(4/100)
+        source(testrun.R)  
+        #shell: Rscript testrun.R 
       - name: run zwei
         run: print(3/100)
   
-        shell: Rscript testrun.2.R
+        #shell: Rscript testrun.2.R
