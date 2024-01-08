@@ -36,7 +36,7 @@ jobs:
        # with:
         #  r-version: ${{ matrix.r-version }}
              
-        #shell: Rscript testrun.R 
+        shell: Rscript {0} 
      # - name: run zwei
         #run: print(3/100)
   
