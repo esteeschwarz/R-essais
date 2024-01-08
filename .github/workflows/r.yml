@@ -38,7 +38,8 @@ jobs:
        # with:
        #   r-version: ${{ matrix.r-version }}
       #- name: run eins
-        run: install.packages("knitr")
+        run: install.packages("knitr",contriburl = "https://cloud.r-project.org")
+
        # with:
         #  r-version: ${{ matrix.r-version }}
              
