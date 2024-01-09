@@ -1,5 +1,5 @@
-library(rmarkdown)
-library(knitr)
+library(rmarkdown,lib.loc = "/usr/local/lib/R/4.3/site-library")
+library(knitr,lib.loc = "/usr/local/lib/R/4.3/site-library")
 #?render_markdown()
 #?knit
 #?output_format
