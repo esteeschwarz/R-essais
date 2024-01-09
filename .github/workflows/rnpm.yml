@@ -28,7 +28,7 @@ jobs:
             ${{ runner.os }}-
 
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
-        name: installed.packages
+        name: installed-packages
         continue-on-error: true
         run: |
            print("cache false")
