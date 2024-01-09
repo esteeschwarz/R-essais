@@ -44,7 +44,7 @@ jobs:
        # with:
         #  r-version: ${{ matrix.r-version }}
              
-      #  shell: Rscript {0} 
+        shell: Rscript {0} 
       - name: check installed
         run: |
           ls /usr/local/lib/R/4.3
