@@ -2,9 +2,15 @@ name: Caching with npm
 on: push
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
+    strategy:
+      matrix:
+        r-version: ['4.1.1']
+
     steps:
       - uses: actions/checkout@v4
+    #  - uses: actions/checkout@v3
+      - name: Set up R ${{ matrix.r-version }}
 
       - name: Cache node modules
         id: cache-npm
@@ -23,19 +29,21 @@ jobs:
       - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
         name: List the state of node modules
         continue-on-error: true
-        run: installed.packages()
+        run: |
+           print("cache false")
+           installed.packages()
         shell: Rscript {0} 
 
       - name: Install dependencies
-        run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib")
-        shell: Rscript {0} 
+      #  run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib")
+       # shell: Rscript {0} 
 
       - name: Build
-        run: library(jsonlite)
-        shell: Rscript {0}
+        #run: library(jsonlite)
+        #shell: Rscript {0}
 
       - name: Test
         run: |
            installed.packages()
-           print("succes")
+           print("success")
         shell: Rscript {0}
