@@ -45,7 +45,7 @@ jobs:
              
       #  shell: Rscript {0} 
       - name: check installed
-        run: ls /usr/local/lib/R/4.3/site-library
+        run: ls /usr/local/lib/R/4.3
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
@@ -53,7 +53,7 @@ jobs:
         #run: mdbook build -d ./mdbook/workflow/book
         run: |
            source("scripts/testrun.R")
-           source("pages/knitpagesrmd.R")
+          # source("pages/knitpagesrmd.R")
         shell: Rscript {0} 
       
       - name: Upload artifact
