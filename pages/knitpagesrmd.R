@@ -1,4 +1,4 @@
-#library(rmarkdown)
+library(rmarkdown)
 library(knitr)
 #?render_markdown()
 #?knit

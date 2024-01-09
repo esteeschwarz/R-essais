@@ -1,3 +1,5 @@
 print(2/100)
 print("testrun")
 #install.packages("knitr")
+install.packages("knitr",contriburl = "https://cran.uni-muenster.de")
+install.packages("rmarkdown",contriburl = "https://cran.uni-muenster.de")
