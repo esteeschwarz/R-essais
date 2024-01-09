@@ -1,0 +1,9 @@
+{
+  "name": "testpackage",
+  "version": "x.x.1",
+  "private": false,
+  "dependencies": {
+    "react-scripts": "1.1.4"
+    
+  }
+  }
