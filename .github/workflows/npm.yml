@@ -27,7 +27,7 @@ jobs:
         shell: Rscript {0} 
 
       - name: Install dependencies
-        run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib",lib="/usr/local/Cellar/r/4.3.2/lib/R/library")
+        run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib",lib="/usr/local/lib/R/4.3/site-library")
         shell: Rscript {0} 
 
       - name: Build
