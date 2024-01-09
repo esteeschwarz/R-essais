@@ -49,6 +49,7 @@ jobs:
         run: |
           ls /usr/local/lib/R/4.3
           ls /usr/local/lib/R/4.3/site-library
+          ls /usr/local/Cellar/r/4.3.2/lib/R/library
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
