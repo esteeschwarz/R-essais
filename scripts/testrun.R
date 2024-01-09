@@ -10,3 +10,4 @@ print(installed.packages())
 print(getOption("repos"))
 #just testing cache, force yaml run
 #cache: run wks.,
+#json chgd, rerun install, now try if cached.
