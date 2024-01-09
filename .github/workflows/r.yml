@@ -32,18 +32,18 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
-      - name: Set up R ${{ matrix.r-version }}
+    #  - name: Set up R ${{ matrix.r-version }}
        # not run
        # uses: r-lib/actions/setup-r@f57f1301a053485946083d7a45022b278929a78a
        # with:
        #   r-version: ${{ matrix.r-version }}
       #- name: run eins
-        run: install.packages(c("knitr","rmarkdown"),contriburl = "https://cloud.r-project.org/src/contrib")
+     #   run: install.packages(c("knitr","rmarkdown"),contriburl = "https://cloud.r-project.org/src/contrib")
 
        # with:
         #  r-version: ${{ matrix.r-version }}
              
-        shell: Rscript {0} 
+      #  shell: Rscript {0} 
       - name: Setup Pages
         id: pages
         uses: actions/configure-pages@v3
