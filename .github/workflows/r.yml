@@ -39,7 +39,7 @@ jobs:
        #   r-version: ${{ matrix.r-version }}
       #- name: run eins
   #      run: install.packages(c("knitr","rmarkdown"),contriburl = "https://cloud.r-project.org/src/contrib")
-        run: install.packages(c("syuzhet"),contriburl = "https://cloud.r-project.org/src/contrib")
+        run: install.packages("syuzhet"),contriburl = "https://cloud.r-project.org/src/contrib",lib="/usr/local/lib/R/4.3/site-library")
 
        # with:
         #  r-version: ${{ matrix.r-version }}
