@@ -40,12 +40,12 @@ jobs:
 
         run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib")
         shell: Rscript {0} 
-        run: ls /usr/local/lib/R/4.3/site-library
+      #  run: ls /usr/local/lib/R/4.3/site-library
 
-      - name: Build
+     # - name: Build
         #run: library(jsonlite)
         #shell: Rscript {0}
-        run: ls /usr/local/lib/R/4.3/site-library
+      #  run: ls /usr/local/lib/R/4.3/site-library
 
       - name: Test
         run: |
