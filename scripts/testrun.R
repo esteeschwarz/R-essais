@@ -8,3 +8,4 @@ print("packages installed")
 print(installed.packages())
 #library(jsonlite,lib.loc = "/usr/local/Cellar/r/4.3.2/lib/R/library")
 print(getOption("repos"))
+#just testing cache, force yaml run
