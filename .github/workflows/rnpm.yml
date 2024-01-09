@@ -15,9 +15,7 @@ jobs:
       uses: r-lib/actions/setup-r-dependencies@v1
       with:
         packages: |
-#          tidyverse
           jsonlite
- #         remotes
     - name: R CMD check
       run: |
        #  R CMD build .
