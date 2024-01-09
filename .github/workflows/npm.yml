@@ -37,8 +37,8 @@ jobs:
 
       - name: Install dependencies
       - uses: actions/checkout@v3
-        run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib")
-        shell: Rscript {0} 
+          run: install.packages("jsonlite",contriburl = "https://cloud.r-project.org/src/contrib")
+          shell: Rscript {0} 
       #  run: ls /usr/local/lib/R/4.3/site-library
 
      # - name: Build
@@ -47,7 +47,7 @@ jobs:
       #  run: ls /usr/local/lib/R/4.3/site-library
 
       - name: Test
-        run: |
+          run: |
            installed.packages()
            print("success")
-        shell: Rscript {0}
+          shell: Rscript {0}
