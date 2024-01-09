@@ -25,6 +25,9 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
+   environment:
+    name: Renvironment
+    id: renv
     runs-on: macos-latest
     strategy:
       matrix:
