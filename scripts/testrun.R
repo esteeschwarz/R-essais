@@ -1,5 +1,6 @@
 print(2/100)
 print("testrun")
 #install.packages("knitr")
-install.packages("knitr",repos=getOption("repos"),contriburl = "https://CRAN.R-project.org")
+#install.packages("knitr",repos=getOption("repos"),contriburl = "https://cran.r-project.org")
 #install.packages("rmarkdown",contriburl = "https://cran.uni-muenster.de")
+getOption("repos")
