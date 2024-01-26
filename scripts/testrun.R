@@ -1,5 +1,6 @@
 print(2/100)
 print("testrun")
+list.files()
 samplepage<-'<p>just a small html sample index</p><p><a href="pkg.csv"><packages installed</a></p>'
 writeLines(samplepage,"index.html")
 pkg<-installed.packages()
