@@ -1,0 +1,13 @@
+Package: test git actions wf
+Type: Package
+Title: test1
+Version: 0.1.0
+Author: esteeschwarz
+Maintainer: esteeschwarz <estee@dh-index.org>
+Description: no
+License: GPL
+Imports:
+   clipr,
+   stringi
+Encoding: UTF-8
+LazyData: true
