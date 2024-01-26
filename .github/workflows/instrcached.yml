@@ -9,7 +9,8 @@ on:
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
-    env: testcacher
+      env: 
+       testcacher
     steps:
       - uses: actions/checkout@v4
       #- uses: r-lib/actions/setup-r@master
@@ -28,7 +29,8 @@ jobs:
       - name: Cache R packages
 #        if: runner.os != 'Windows'
         uses: actions/cache@v3
-        env: testcacher
+        env: 
+          cache-name: testcacher
         with:
 #          path: ${{ env.R_LIBS_USER }}
           path: ~/.npm
