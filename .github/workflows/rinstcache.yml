@@ -32,7 +32,7 @@ jobs:
           cache-name: cache-r-dep
         with:
 #          path: ${{ env.R_LIBS_USER }}
-          path: ~/.rcache
+          path: ~/.npm
          # key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/dependencies.csv') }}
 
