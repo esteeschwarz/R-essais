@@ -16,7 +16,7 @@ jobs:
       #- uses: r-lib/actions/setup-r@master
        # with:
         #    r-version: '4.2'
-      # - name: Install libcurl
+      - name: md libdir
         run: |
               mkdir rlibs
       - name: Cache R packages
