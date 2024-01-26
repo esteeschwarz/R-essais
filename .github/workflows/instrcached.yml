@@ -18,8 +18,7 @@ jobs:
         #    r-version: '4.2'
       - name: Install libcurl
         run: |
-            sudo apt-get install libcurl4-openssl-dev
-            mkdir rlibs
+             mkdir rlibs
       - name: Query dependencies
         run: |
              install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
@@ -41,6 +40,24 @@ jobs:
         run: Rscript -e "install.packages('renv', lib='rlibs',repos = 'https://cloud.r-project.org')"
       - name: Install rcmdcheck 1.3.3
         run: Rscript -e "install.packages('rcmdcheck', lib='rlibs',repos = 'https://cloud.r-project.org')"
+      - name: Setup Pages
+        id: pages
+        uses: actions/configure-pages@v4
+      - name: getlibs
+        run: RScript -e 'installed.libraries()' > rlibsinst.txt  
+      - name: build book
+        #run: mdbook build -d ./mdbook/workflow/book
+        
+        run: |
+           source("scripts/testrun.R")
+           source("pages/knitpagesrmd.R")
+        shell: Rscript {0} 
+      
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v2
+        with:
+          path: ./pages
+      # Deployment job
       - name: Check
         run: |
             print("check last, removed all calls")
@@ -49,3 +66,15 @@ jobs:
             # renv::restore()
             # rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')
         shell: Rscript {0}
+
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v2
+ 

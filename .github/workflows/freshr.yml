@@ -25,4 +25,5 @@ jobs:
       run: |
           print("from here on")
           installed.libraries()
+          print("checkout")
       shell: Rscript{0}
