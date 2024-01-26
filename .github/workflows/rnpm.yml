@@ -57,7 +57,7 @@ jobs:
     - name: Setup Pages
       id: pages
       uses: actions/configure-pages@v3
-    #- name: build book
+    - name: build book
         #run: mdbook build -d ./mdbook/workflow/book
       run: |
            source("scripts/testrun.R")
