@@ -16,15 +16,9 @@ jobs:
       #- uses: r-lib/actions/setup-r@master
        # with:
         #    r-version: '4.2'
-      - name: Install libcurl
-        run: |
-             mkdir rlibs
-      - name: Query dependencies
-        run: |
-             install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
-             library(remotes, lib.loc="rlibs") 
-             saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')
-        shell: Rscript {0}
+      # - name: Install libcurl
+      #   run: |
+      #        mkdir rlibs
       - name: Cache R packages
         id: cache-r
 #        if: runner.os != 'Windows'
@@ -39,8 +33,28 @@ jobs:
           restore-keys: ${{ runner.os }}-r-3.6.1-
       
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
-        run: | 
-          echo "testcache, hit!=true"
+        run: |
+             print("no cached pkg")
+             install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
+             library(remotes, lib.loc="rlibs") 
+             saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')
+        shell: Rscript {0}
+#       - name: Cache R packages
+#         id: cache-r
+# #        if: runner.os != 'Windows'
+#         uses: actions/cache@v3
+#         # env: 
+#         #   cache-name: testcacher
+#         with:
+#          #path: ${{ env.R_LIBS_USER }}
+#           path: rlibs
+
+#           key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('depends.Rds') }}
+#           restore-keys: ${{ runner.os }}-r-3.6.1-
+      
+#       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
+#         run: | 
+#           echo "testcache, hit!=true"
          # RScript -e 'installed.libraries()' > rlibsinst.txt  
 
       # - name: Install renv 0.9.2
