@@ -4,7 +4,7 @@ print(list.files())
 samplepage<-'
 <p>just a small html sample index...:</p><a href="pkg.csv">packages installed</a>'
 writeLines(samplepage,"pages/index.html")
-pkg<-installed.packages()
+pkg<-installed.packages(lib.loc="rlibs")
 write.csv(pkg,"pages/pkg.csv")
 #dir.create("/home/rlibs")
 #install.packages("rmarkdown",lib="/home/rlibs")
