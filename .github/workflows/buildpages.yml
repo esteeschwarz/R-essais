@@ -9,48 +9,47 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v3
-    - name: Set up R
-      uses: r-lib/actions/setup-r@v2
-    - name: Install dependencies
-      uses: r-lib/actions/setup-r-dependencies@v2
-      with:
-         packages: |
-          tidyverse
-          remotes
-          stringi
-          readr
-          httr
-          jsonlite
-          rmarkdown
-          markdown
-          devtools
-          knitr
-          quanteda
-          readtext
-          readxl
-          xml2
-          purrr
-          tinytex
-          RecordLinkage
-          R.utils
-          writexl
-          udpipe
-          syuzhet
-          rlang
-          png
-          graphics
-          lme4
-          stats
-          htmltools
-          googlesheets4
-          ggplot2
-          bookdown
-          abind
+    # - name: Set up R
+    #   uses: r-lib/actions/setup-r@v2
+    # - name: Install dependencies
+    #   uses: r-lib/actions/setup-r-dependencies@v2
+    #   with:
+    #      packages: |
+    #       tidyverse
+    #       remotes
+    #       stringi
+    #       readr
+    #       httr
+    #       jsonlite
+    #       rmarkdown
+    #       markdown
+    #       devtools
+    #       knitr
+    #       quanteda
+    #       readtext
+    #       readxl
+    #       xml2
+    #       purrr
+    #       tinytex
+    #       RecordLinkage
+    #       R.utils
+    #       writexl
+    #       udpipe
+    #       syuzhet
+    #       rlang
+    #       png
+    #       graphics
+    #       lme4
+    #       stats
+    #       htmltools
+    #       googlesheets4
+    #       ggplot2
+    #       bookdown
+    #       abind
            
     - name: R CMD check
       run: |
-        #installed.packages()
-        print("check ohne installation")
+        installed.packages()
       shell: Rscript {0}
     
     #########################
