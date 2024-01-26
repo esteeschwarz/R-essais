@@ -1,4 +1,5 @@
-.libPaths("rlibs","/usr/local/lib/R/4.3/site-library")
+.libPaths(new = "rlibs", include.site = TRUE)
+.libPaths(new = "/usr/local/lib/R/4.3/site-library", include = T)
 library(rmarkdown,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
 library(yaml,lib.loc="rlibs")
 #library(knitr,lib.loc = "/usr/local/lib/R/4.3/site-library")
