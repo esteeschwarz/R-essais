@@ -4,8 +4,8 @@ print(list.files())
 samplepage<-'
 <p>just a small html sample index...:</p><a href="pkg.csv">packages installed</a>'
 writeLines(samplepage,"pages/index.html")
-install.packages("rmarkdown",lib="rlibs",repos = 'https://cloud.r-project.org')
-install.packages("markdown",lib="rlibs",repos = 'https://cloud.r-project.org')
+#install.packages("rmarkdown",lib="rlibs",repos = 'https://cloud.r-project.org')
+#install.packages("markdown",lib="rlibs",repos = 'https://cloud.r-project.org')
 pkg<-installed.packages(lib.loc="rlibs")
 write.csv(pkg,"pages/pkg.csv")
 #dir.create("/home/rlibs")
