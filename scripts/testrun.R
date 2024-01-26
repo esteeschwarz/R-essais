@@ -1,6 +1,7 @@
 print(2/100)
 print("testrun")
-#install.packages("rmarkdown")
+dir.create("~/libs/rlibs")
+install.packages("rmarkdown",lib="~/libs/rlibs")
 #Sys.setenv(R_CRAN_WEB = "https://cloud.r-project.org")
 #install.packages("knitr",contriburl = "https://cloud.r-project.org/src/contrib")
 #install.packages("rmarkdown",contriburl = "https://cloud.r-project.org/src/contrib")
