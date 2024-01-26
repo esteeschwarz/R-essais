@@ -21,7 +21,6 @@ jobs:
       #- uses: r-lib/actions/setup-r@master
        # with:
         #    r-version: '4.2'
-      - uses: r-lib/actions/setup-pandoc@v2
       - name: Restore cached primes
         id: cache-primes-restore
         uses: actions/cache/restore@v4
@@ -32,6 +31,14 @@ jobs:
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
+      - uses: r-lib/actions/setup-pandoc@v2
+      - name: Save Primes
+        id: cache-primes-save
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            rlibs
+          key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
       - name: Cache R packages
         id: cache-r
 #        if: runner.os != 'Windows'
@@ -44,13 +51,7 @@ jobs:
 
           key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
           restore-keys: ${{ runner.os }}-r-3.6.1-
-      - name: Save Primes
-        id: cache-primes-save
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            rlibs
-          key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
+    
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
         run: |
              print("new not cached pkg")
