@@ -22,6 +22,8 @@ jobs:
           httr
           jsonlite
           rmarkdown
+          markdown
+          devtools
           knitr
           quanteda
           readtext
@@ -36,11 +38,12 @@ jobs:
           syuzhet
           rlang
           png
+          graphics
           lme4
+          stats
           htmltools
           googlesheets4
           ggplot2
-          collostructions
           bookdown
           abind
            
