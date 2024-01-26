@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  pkgdown:
+  install-r-dep:
     runs-on: macOS-latest
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
@@ -16,7 +16,7 @@ jobs:
 
 #      - uses: r-lib/actions/setup-r@v1
 
-      - uses: r-lib/actions/setup-pandoc@v3
+      - uses: r-lib/actions/setup-pandoc@v2
 
       - name: Query dependencies
         run: |
