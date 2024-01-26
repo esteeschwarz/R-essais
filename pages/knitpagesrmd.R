@@ -4,5 +4,5 @@ library(rmarkdown,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library
 #?knit
 #?output_format
 #knit("pages/README.Rmd",output="pages/index.html")
-render("pages/wp001.Rmd",output_file ="pages/wp001.html",run_pandoc=T)
+#render("pages/wp001.Rmd",output_file ="pages/wp001.html",run_pandoc=T)
 print("from renderscript")
