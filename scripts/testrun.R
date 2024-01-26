@@ -1,5 +1,7 @@
 print(2/100)
 print("testrun")
+samplepage<-"<p>just a small html sample index</p>"
+writeLines(samplepage,"index.html")
 #dir.create("/home/rlibs")
 #install.packages("rmarkdown",lib="/home/rlibs")
 #Sys.setenv(R_CRAN_WEB = "https://cloud.r-project.org")
