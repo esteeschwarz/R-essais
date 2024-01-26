@@ -9,8 +9,8 @@ on:
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
-      env: 
-       testcacher
+    #  env: 
+     #  testcacher
     steps:
       - uses: actions/checkout@v4
       #- uses: r-lib/actions/setup-r@master
