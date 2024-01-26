@@ -1,4 +1,5 @@
 library(rmarkdown,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
+library(yaml,lib.loc="rlibs")
 #library(knitr,lib.loc = "/usr/local/lib/R/4.3/site-library")
 #?render_markdown()
 #?knit
