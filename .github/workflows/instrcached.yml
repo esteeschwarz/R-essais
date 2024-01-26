@@ -37,6 +37,7 @@ jobs:
         run: Rscript -e "install.packages('rcmdcheck', lib='rlibs',repos = 'https://cloud.r-project.org')"
       - name: Check
         run: |
+            print("check last")
             library(renv,lib.loc="rlibs")
             library(rcmd,lib.loc="rlibs")
             renv::restore()
