@@ -7,6 +7,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+     using: 'node20'
+    main: 'main.js'
     steps:
     - uses: actions/checkout@v3
     # - name: Set up R
@@ -49,7 +51,8 @@ jobs:
            
     - name: R CMD check
       run: |
-        installed.packages()
+        #installed.packages()
+        print("test command")
       shell: Rscript {0}
     
     #########################
