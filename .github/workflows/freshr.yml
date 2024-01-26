@@ -1,0 +1,28 @@
+name: fresh r@v2
+on:
+  push:
+    branches: [ pages ]
+  pull_request:
+    branches: [ main ]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+      #using: 'node20'
+    steps:
+    - uses: actions/checkout@v3
+#    - name: Set up R
+ #     uses: r-lib/actions/setup-r@v2
+    - name: Install dependencies
+      uses: r-lib/actions/setup-r-dependencies@v2
+      with:
+       cache-version: 2
+       extra-packages: |
+          ggplot2
+          rcmdcheck
+          rmarkdown
+          markdown
+    - name: chk
+      run: |
+          print("from here on")
+          installed.libraries()
+      shell: Rscript{0}
