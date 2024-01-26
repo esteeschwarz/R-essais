@@ -34,15 +34,23 @@ jobs:
          #path: ${{ env.R_LIBS_USER }}
           path: rlibs
 
-          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('depends.Rds') }}
+          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
           restore-keys: ${{ runner.os }}-r-3.6.1-
       
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
         run: |
-             print("no cached pkg")
-             install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
-             library(remotes, lib.loc="rlibs") 
-             saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')
+             print("new not cached pkg")
+             dep<-read.csv("rdependencies.csv")
+             rlib<-"rlibs"
+             repos<-'https://cloud.r-project.org'
+             dep.array<-dep$pkg[dep$chk!=1]
+             for(k in 1:length(dep.array)){
+             install.packages(dep.array[k],lib=rlib,repos=repos)
+             }
+             
+             #install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
+             #library(remotes, lib.loc="rlibs") 
+             #saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')
         shell: Rscript {0}
 #       - name: Cache R packages
 #         id: cache-r
