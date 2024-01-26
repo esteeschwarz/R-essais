@@ -17,8 +17,8 @@ jobs:
        # with:
         #    r-version: '4.2'
       # - name: Install libcurl
-      #   run: |
-      #        mkdir rlibs
+        run: |
+              mkdir rlibs
       - name: Cache R packages
         id: cache-r
 #        if: runner.os != 'Windows'
