@@ -29,9 +29,9 @@ jobs:
           path: |
             rlibs
           key: ${{ runner.os }}-primes
-      - name: md libdir
-        run: |
-              mkdir rlibs
+      # - name: md libdir
+      #   run: |
+      #         mkdir rlibs
       - name: Cache R packages
         id: cache-r
 #        if: runner.os != 'Windows'
