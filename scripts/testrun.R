@@ -1,8 +1,8 @@
 print(2/100)
 print("testrun")
-samplepage<-"<p>just a small html sample index</p>"
+samplepage<-"<p>just a small html sample index</p><p><a href="pkg.csv"><packages installed</a></p>"
 writeLines(samplepage,"index.html")
-pkg<-print(installed.packages)
+pkg<-installed.packages()
 write.csv(pkg,"pkg.csv")
 #dir.create("/home/rlibs")
 #install.packages("rmarkdown",lib="/home/rlibs")
