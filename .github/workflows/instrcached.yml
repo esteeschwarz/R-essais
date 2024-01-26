@@ -51,7 +51,9 @@ jobs:
         id: pages
         uses: actions/configure-pages@v4
       - name: getlibs
-        run: RScript -e 'installed.libraries()' > rlibsinst.txt  
+        run: |
+             print("libs da?")
+        shell: Rscript {0}  
       # - name: build book
       #   #run: mdbook build -d ./mdbook/workflow/book
         
