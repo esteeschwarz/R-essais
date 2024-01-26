@@ -31,8 +31,9 @@ jobs:
         env:
           cache-name: cache-r-dep
         with:
-          path: ${{ env.R_LIBS_USER }}
-          # key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+#          path: ${{ env.R_LIBS_USER }}
+          path: ~/.rcache
+         # key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
           key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/dependencies.csv') }}
 
           restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
