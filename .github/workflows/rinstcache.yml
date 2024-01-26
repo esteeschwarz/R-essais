@@ -1,4 +1,4 @@
-name: cache inst dep + build pages
+name: rinstcache inst dep
 on:
   push:
     branches: [ pages ]
@@ -41,7 +41,7 @@ jobs:
       - name: Install dependencies
         run: |
               #          remotes::install_deps(dependencies = TRUE)
-              # install.packages("jsonlite", repos = "https://cloud.r-project.org")
+               install.packages("jsonlite", repos = "https://cloud.r-project.org")
               library(jsonlite)
               #install.packages("rmarkdown", repos = "https://cloud.r-project.org")
         shell: Rscript {0}
