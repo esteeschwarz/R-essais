@@ -1,6 +1,6 @@
 print(2/100)
 print("testrun")
-#install.packages("knitr")
+#install.packages("rmarkdown") # wks not from here, dir not writable
 #Sys.setenv(R_CRAN_WEB = "https://cloud.r-project.org")
 #install.packages("knitr",contriburl = "https://cloud.r-project.org/src/contrib")
 #install.packages("rmarkdown",contriburl = "https://cloud.r-project.org/src/contrib")

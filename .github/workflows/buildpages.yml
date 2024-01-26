@@ -62,6 +62,7 @@ jobs:
     - name: build book
         #run: mdbook build -d ./mdbook/workflow/book
       run: |
+           install.packages("rmarkdown")
            source("scripts/testrun.R")
            source("pages/knitpagesrmd.R")
       shell: Rscript {0} 
