@@ -62,7 +62,7 @@ jobs:
 #           echo "testcache, hit!=true"
          # RScript -e 'installed.libraries()' > rlibsinst.txt  
 
-      - name: Install packages
+    #  - name: Install packages
         # run:  |
         #   install.packages('rmarkdown', lib='rlibs',repos = 'https://cloud.r-project.org')
         #   install.packages('markdown', lib='rlibs',repos = 'https://cloud.r-project.org')
