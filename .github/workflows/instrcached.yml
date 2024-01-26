@@ -63,17 +63,17 @@ jobs:
          # RScript -e 'installed.libraries()' > rlibsinst.txt  
 
       - name: Install packages
-        run:  |
-          install.packages('rmarkdown', lib='rlibs',repos = 'https://cloud.r-project.org')
-          install.packages('markdown', lib='rlibs',repos = 'https://cloud.r-project.org')
-        shell: Rscript {0}
-      - name: build text
-        run: |
-            source("scripts/testrun.R")
-        shell: Rscript {0}
-      - name: run pages
+        # run:  |
+        #   install.packages('rmarkdown', lib='rlibs',repos = 'https://cloud.r-project.org')
+        #   install.packages('markdown', lib='rlibs',repos = 'https://cloud.r-project.org')
+        # shell: Rscript {0}
+      - name: build pages
         id: pages
         uses: actions/configure-pages@v4
+      - name: build text
+        run: |
+             source("scripts/testrun.R")
+        shell: Rscript {0}
       - name: getlibs
         run: |
              print("libs da?")
