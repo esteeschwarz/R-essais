@@ -21,7 +21,7 @@ jobs:
       - name: Query dependencies
         run: |
              install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
-             library(remotes, lib_loc="rlibs") 
+             library(remotes, lib.loc="rlibs") 
              saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')
         shell: Rscript {0}
       - name: Cache R packages
@@ -37,8 +37,8 @@ jobs:
         run: Rscript -e "install.packages('rcmdcheck', lib='rlibs',repos = 'https://cloud.r-project.org')"
       - name: Check
         run: |
-            library(renv,lib_loc="rlibs")
-            library(rcmd,lib_loc="rlibs")
+            library(renv,lib.loc="rlibs")
+            library(rcmd,lib.loc="rlibs")
             renv::restore()
             rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')
         shell: Rscript {0}
