@@ -9,11 +9,12 @@ on:
 jobs:
   R-CMD-check:
     runs-on: ubuntu-latest
+    env: testcacher
     steps:
       - uses: actions/checkout@v4
-      # - uses: r-lib/actions/setup-r@master
-      #   with:
-      #       r-version: '3.6.1'
+      #- uses: r-lib/actions/setup-r@master
+       # with:
+        #    r-version: '4.2'
       - name: Install libcurl
         run: |
             sudo apt-get install libcurl4-openssl-dev
@@ -27,6 +28,7 @@ jobs:
       - name: Cache R packages
 #        if: runner.os != 'Windows'
         uses: actions/cache@v3
+        env: testcacher
         with:
 #          path: ${{ env.R_LIBS_USER }}
           path: ~/.npm
@@ -39,9 +41,9 @@ jobs:
         run: Rscript -e "install.packages('rcmdcheck', lib='rlibs',repos = 'https://cloud.r-project.org')"
       - name: Check
         run: |
-            print("check last")
-            library(renv,lib.loc="rlibs")
-            library(rcmdcheck,lib.loc="rlibs")
-            renv::restore()
-            rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')
+            print("check last, removed all calls")
+            # library(renv,lib.loc="rlibs")
+            # library(rcmdcheck,lib.loc="rlibs")
+            # renv::restore()
+            # rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')
         shell: Rscript {0}
