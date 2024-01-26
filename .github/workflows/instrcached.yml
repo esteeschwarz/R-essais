@@ -1,7 +1,7 @@
 name: instrcached R cached
 on:
   push:
-    branches: [ pages ]
+    branches: [ main ]
   pull_request:
     branches: [ main ]
 #name: R-CMD-check
