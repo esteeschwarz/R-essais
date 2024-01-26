@@ -55,18 +55,18 @@ jobs:
     #########################
 
     - name: Setup Pages
-        id: pages
-        uses: actions/configure-pages@v3
+      id: pages
+      uses: actions/configure-pages@v3
     #- name: build book
         #run: mdbook build -d ./mdbook/workflow/book
-        run: |
+      run: |
            source("scripts/testrun.R")
            source("pages/knitpagesrmd.R")
-        shell: Rscript {0} 
+      shell: Rscript {0} 
       
     - name: Upload artifact
-        uses: actions/upload-pages-artifact@v2
-        with:
+      uses: actions/upload-pages-artifact@v2
+      with:
           path: ./pages
       # Deployment job
   deploy:
