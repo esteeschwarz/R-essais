@@ -28,7 +28,9 @@ jobs:
 #        if: runner.os != 'Windows'
         uses: actions/cache@v3
         with:
-          path: ${{ env.R_LIBS_USER }}
+#          path: ${{ env.R_LIBS_USER }}
+          path: ~/.npm
+
           key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('depends.Rds') }}
           restore-keys: ${{ runner.os }}-r-3.6.1-
       - name: Install renv 0.9.2
@@ -39,7 +41,7 @@ jobs:
         run: |
             print("check last")
             library(renv,lib.loc="rlibs")
-            library(rcmd,lib.loc="rlibs")
+            library(rcmdcheck,lib.loc="rlibs")
             renv::restore()
             rcmdcheck::rcmdcheck(args = '--no-manual', error_on = 'error')
         shell: Rscript {0}
