@@ -28,9 +28,11 @@ jobs:
     - if: ${{ steps.cache-npm.outputs.cache-hit != 'true' }}
       name: List the state of node modules
       continue-on-error: true
-      run: |
-          print("testcache, hit!=true")
-      shell: Rscript{0}
+      run: echo "testcache, hit!=true"
+
+    - name: general action
+      run: echo "from here on"
+     # shell: Rscript{0}
 
     # - name: Install dependencies
     #   run: npm install
@@ -39,36 +41,36 @@ jobs:
     #   run: npm run build
     # - name: Test
     #   run: npm test
-    - name: R CMD check
-      run: |
-        #installed.packages()
-        print("test command")
-      shell: Rscript {0}
+  #   - name: R CMD check
+  #     run: |
+  #       #installed.packages()
+  #       print("test command")
+  #     shell: Rscript {0}
     
-    #########################
+  #   #########################
 
-    - name: Setup Pages
-      id: pages
-      uses: actions/configure-pages@v4
-    - name: build book
-        #run: mdbook build -d ./mdbook/workflow/book
-      run: |
-           source("scripts/testrun.R")
-           source("pages/knitpagesrmd.R")
-      shell: Rscript {0} 
+  #   - name: Setup Pages
+  #     id: pages
+  #     uses: actions/configure-pages@v4
+  #   - name: build book
+  #       #run: mdbook build -d ./mdbook/workflow/book
+  #     run: |
+  #          source("scripts/testrun.R")
+  #          source("pages/knitpagesrmd.R")
+  #     shell: Rscript {0} 
       
-    - name: Upload artifact
-      uses: actions/upload-pages-artifact@v2
-      with:
-          path: ./pages
-      # Deployment job
-  deploy:
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    runs-on: ubuntu-latest
-    needs: build
-    steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
+  #   - name: Upload artifact
+  #     uses: actions/upload-pages-artifact@v2
+  #     with:
+  #         path: ./pages
+  #     # Deployment job
+  # deploy:
+  #   environment:
+  #     name: github-pages
+  #     url: ${{ steps.deployment.outputs.page_url }}
+  #   runs-on: ubuntu-latest
+  #   needs: build
+  #   steps:
+  #     - name: Deploy to GitHub Pages
+  #       id: deployment
+  #       uses: actions/deploy-pages@v2
