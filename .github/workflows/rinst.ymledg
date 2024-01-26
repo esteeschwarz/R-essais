@@ -1,0 +1,31 @@
+name: R Workflow with Dependency Caching
+
+on:
+  push:
+    branches:
+      - main  # Adjust this to your desired branch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout your repository
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      # Step 2: Set up R and cache dependencies
+      - name: Set up R and cache dependencies
+        uses: r-lib/actions/setup-r@v1
+        with:
+          r-version: '4.x'  # Specify the desired R version
+          cache: 'r-packages'  # Unique cache key for R packages
+
+      # Step 3: Install R dependencies (if not cached)
+      - name: Install R dependencies
+        run: |
+          Rscript -e "install.packages(c('dplyr', 'ggplot2', 'other_package'))"  # Add your package names here
+
+      # Step 4: Your R script execution
+      - name: Run R script
+        run: Rscript your_script.R  # Replace with your actual R script filename

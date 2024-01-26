@@ -1,0 +1,55 @@
+name: rinstcache inst dep
+on:
+  push:
+    branches: [ pages ]
+  pull_request:
+    branches: [ main ]
+
+
+jobs:
+  install-r-dep:
+    runs-on: macOS-latest
+    # env:
+    #   GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+#      - uses: r-lib/actions/setup-r@v1
+
+      - uses: r-lib/actions/setup-pandoc@v2
+
+      - name: Query dependencies
+        run: |
+          # install.packages('remotes',contriburl = "https://cloud.r-project.org/src/contrib")
+          # saveRDS(remotes::dev_package_deps(dependencies = TRUE), ".github/depends.Rds", version = 2)
+           writeLines(sprintf("R-%i.%i", getRversion()$major, getRversion()$minor), ".github/R-version")
+          print("install rem")
+        shell: Rscript {0}
+
+      - name: Restore R package cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-r-dep
+        with:
+#          path: ${{ env.R_LIBS_USER }}
+          path: ~/.npm
+         # key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/depends.Rds') }}
+          key: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-${{ hashFiles('.github/dependencies.csv') }}
+
+          restore-keys: ${{ runner.os }}-${{ hashFiles('.github/R-version') }}-1-
+
+      - name: Install dependencies
+        run: |
+              #          remotes::install_deps(dependencies = TRUE)
+               install.packages("jsonlite", repos = "https://cloud.r-project.org")
+              library(jsonlite)
+              #install.packages("rmarkdown", repos = "https://cloud.r-project.org")
+        shell: Rscript {0}
+
+      # - name: Install package
+      #   run: R CMD INSTALL .
+
+      - name: test
+        run: |
+           print("end script")
+        shell: Rscript {0}
