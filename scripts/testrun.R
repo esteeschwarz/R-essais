@@ -2,7 +2,7 @@ print(2/100)
 print("testrun")
 print(list.files())
 samplepage<-'
-<p>just a small html sample index...:</p><a href="pkg.csv"><packages installed</a>'
+<p>just a small html sample index...:</p><a href="pkg.csv">packages installed</a>'
 writeLines(samplepage,"pages/index.html")
 pkg<-installed.packages()
 write.csv(pkg,"pages/pkg.csv")
