@@ -60,7 +60,7 @@ jobs:
         run: |
              print("no cache hit, install new not cached pkg")
              dir.create("rlibs")
-             #print(list.files("rlibs"))
+             print(list.files("rlibs"))
              dep<-read.csv("rdependencies.csv")
              rlib<-"rlibs"
              repos<-'https://cloud.r-project.org'
@@ -68,7 +68,7 @@ jobs:
              for(k in 1:length(dep.array)){
              cat("libs to install:",dep.array[k],"\n")
              cat("suspended\n")
-             #install.packages(dep.array[k],lib=rlib,repos=repos)
+             install.packages(dep.array[k],lib=rlib,repos=repos)
              }
              
              #install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
