@@ -2,6 +2,7 @@
 .libPaths(new = "/usr/local/lib/R/4.3/site-library", include = T)
 library(rmarkdown,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
 library(yaml,lib.loc="rlibs")
+library(jquerylib,lib.loc="rlibs")
 #library(knitr,lib.loc = "/usr/local/lib/R/4.3/site-library")
 #?render_markdown()
 #?knit

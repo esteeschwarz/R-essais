@@ -32,13 +32,7 @@ jobs:
       #   run: |
       #         mkdir rlibs
       - uses: r-lib/actions/setup-pandoc@v2
-      - name: Save Primes
-        id: cache-primes-save
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            rlibs
-          key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
+      
       - name: Cache R packages
         id: cache-r
 #        if: runner.os != 'Windows'
@@ -90,6 +84,13 @@ jobs:
         #   install.packages('rmarkdown', lib='rlibs',repos = 'https://cloud.r-project.org')
         #   install.packages('markdown', lib='rlibs',repos = 'https://cloud.r-project.org')
         # shell: Rscript {0}
+      - name: Save cache libs
+        id: cache-primes-save
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            rlibs
+          key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}
       - name: build pages
         id: pages
         uses: actions/configure-pages@v4
