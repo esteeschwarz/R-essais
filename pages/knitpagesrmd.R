@@ -1,5 +1,7 @@
 .libPaths(new = "rlibs", include.site = TRUE)
-list.files()
+print(list.files())
+cat("home:\n")
+print(list.files(~))
 .libPaths(new = "/usr/local/lib/R/4.3/site-library", include = T)
 library(rmarkdown,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
 library(yaml,lib.loc="rlibs")
