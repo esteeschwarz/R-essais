@@ -21,8 +21,8 @@ jobs:
       #- uses: r-lib/actions/setup-r@master
        # with:
         #    r-version: '4.2'
-      - name: show libs befor restore
-        run: ls rlibs
+      - name: show libs befor restore #doesnt exists
+        run: ls
 
       - name: Restore cached primes
         id: cache-primes-restore
