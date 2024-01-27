@@ -30,7 +30,7 @@ jobs:
         with:
           path: |
             rlibs
-          key: ${{ runner.os }}-r-3.6.1-
+          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
@@ -106,12 +106,13 @@ jobs:
         # shell: Rscript {0}
       - name: Save cache libs
         id: cache-primes-save
-        uses: actions/cache/save@v4
-        with:
-          path: |
-            rlibs
-#          key: ${{ steps.cache-primes-restore.outputs.cache-deps }}
-          key: ${{ steps.cache-primes-restore.outputs }}-rdeps
+        run: echo "out"
+#         uses: actions/cache/save@v4
+#         with:
+#           path: |
+#             rlibs
+# #          key: ${{ steps.cache-primes-restore.outputs.cache-deps }}
+#           key: ${{ steps.cache-primes-restore.outputs }}-rdeps
       - name: build pages
         id: pages
         uses: actions/configure-pages@v4
