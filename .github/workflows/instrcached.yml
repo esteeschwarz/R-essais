@@ -38,7 +38,7 @@ jobs:
         run: |
             ls 
             echo "whats in libs after restore cache?"
-            ls rlibs
+            ls
         
       - uses: r-lib/actions/setup-pandoc@v2
       
