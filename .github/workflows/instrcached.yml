@@ -42,7 +42,7 @@ jobs:
 
       - name: hard install libs
         run: |
-             install.packages('xfun', lib='rlibs',repos = 'https://cloud.r-project.org')
+             install.packages('xfun',repos = 'https://cloud.r-project.org')
         shell: Rscript {0}  
       - uses: r-lib/actions/setup-pandoc@v2
       
@@ -53,8 +53,10 @@ jobs:
         # env: 
         #   cache-name: testcacher
         with:
-         #path: ${{ env.R_LIBS_USER }}
-          path: rlibs
+          
+          path: | 
+              rlibs
+              ${{ R_LIBS_USER }}
 
           key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
 #          key: ${{ hashFiles('rdependencies.csv') }} # where to look for changes
