@@ -3,7 +3,7 @@ cat("where we at:\n") #were in top dir
 print(list.files())
 #print(list.files(~))
 #.libPaths(new = "/usr/local/lib/R/4.3/site-library", include.site = T)
-library(rmarkdown#),lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
+library(rmarkdown)#,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
 library(yaml)#,lib.loc="/home/runner/work/R-essais/R-essais/rlibs")
 library(jquerylib)#,lib.loc="/home/runner/work/R-essais/R-essais/rlibs")
 #library(knitr,lib.loc = "/usr/local/lib/R/4.3/site-library")
