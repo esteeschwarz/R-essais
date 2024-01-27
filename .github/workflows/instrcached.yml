@@ -49,7 +49,8 @@ jobs:
          #path: ${{ env.R_LIBS_USER }}
           path: rlibs
 
-          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
+#          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
+          key: ${{ hashFiles('rdependencies.csv') }}
           restore-keys: ${{ runner.os }}-r-3.6.1-
     
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
