@@ -42,7 +42,7 @@ jobs:
 
       - name: hard install libs
         run: |
-             install.packages('xfun',repos = 'https://cloud.r-project.org')
+             install.packages('xfun',lib="/home/runner/R/x86_64-pc-linux-gnu-library/4.3",repos = 'https://cloud.r-project.org')
         shell: Rscript {0}  
       - uses: r-lib/actions/setup-pandoc@v2
       
