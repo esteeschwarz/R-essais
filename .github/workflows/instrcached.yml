@@ -30,7 +30,7 @@ jobs:
         with:
           path: |
             rlibs
-          key: cache-r-dep-${{ runner.os }}-r-3.6.1-
+          restore-keys: cache-r-dep-${{ runner.os }}-r-3.6.1-
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
