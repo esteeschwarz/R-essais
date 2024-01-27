@@ -38,7 +38,7 @@ jobs:
         run: |
             ls 
             echo "whats in libs after restore cache from v3 at v4?"
-            ls rlibs
+            ls 
 
       # - name: hard install libs
       #   run: |
@@ -58,9 +58,10 @@ jobs:
               rlibs
               $R_LIBS_USER
 
-          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
+          key: cache-r-dep-${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
 #          key: ${{ hashFiles('rdependencies.csv') }} # where to look for changes
-          restore-keys: ${{ runner.os }}-r-3.6.1-
+          restore-keys: |
+               cache-r-dep-${{ runner.os }}-r-3.6.1-
     
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
         run: |
