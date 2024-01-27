@@ -62,12 +62,14 @@ jobs:
               rlibs
               $R_LIBS_USER
 
-       #   key: cache-r-dep-${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
-          key: cache-r-dep-Linux-r-3.6.1-2f051200a682436eb92484a70968b5860b38b9e609a371c0c297dfe45be58d5c # #where to look for changes
+          key: cache-r-dep-${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
+       #   key: cache-r-dep-Linux-r-3.6.1-2f051200a682436eb92484a70968b5860b38b9e609a371c0c297dfe45be58d5c # #where to look for changes
           restore-keys: |
+               cache-r-dep-Linux-r-3.6.1-2f051200a682436eb92484a70968b5860b38b9e609a371c0c297dfe45be58d5c
                cache-r-dep-${{ runner.os }}-r-3.6.1-
     
-      - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
+    #  - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
+      - name: force install deps 
         run: |
              print("no cache hit, install new not cached pkg")
              dir.create("rlibs")
