@@ -1,6 +1,7 @@
 pkg,version,chk
 rmarkdown,xxx,0
 markdown,xxx,0
-yaml,xxx,0
+yaml,xxx,1
 jquerylib,xxx,0
 xfun,xxx,0
+jsonlite,xxx,0

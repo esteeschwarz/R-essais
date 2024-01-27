@@ -65,11 +65,13 @@ jobs:
              rlib<-"rlibs"
              repos<-'https://cloud.r-project.org'
              dep.array<-dep$pkg[dep$chk!=1]
-             for(k in 1:length(dep.array)){
-             cat("libs to install:",dep.array[k],"\n")
-             cat("suspended\n")
-             install.packages(dep.array[k],lib=rlib,repos=repos)
-             }
+             print(dep.array)
+             source("install-dependencies.R")
+             #for(k in 1:length(dep.array)){
+             #cat("libs to install:",dep.array[k],"\n")
+             #cat("suspended\n")
+             #install.packages(dep.array[k],lib=rlib,repos=repos)
+             #}
              
              #install.packages('remotes', lib='rlibs',repos = 'https://cloud.r-project.org')
              #library(remotes, lib.loc="rlibs") 
