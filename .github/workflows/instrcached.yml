@@ -56,7 +56,7 @@ jobs:
           
           path: | 
               rlibs
-              ${{ R_LIBS_USER }}
+              $R_LIBS_USER
 
           key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
 #          key: ${{ hashFiles('rdependencies.csv') }} # where to look for changes
