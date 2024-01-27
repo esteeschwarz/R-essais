@@ -38,7 +38,7 @@ jobs:
         run: |
             ls 
             echo "whats in libs after restore cache from v3 at v4?"
-            ls libs
+            ls rlibs
 
         
       - uses: r-lib/actions/setup-pandoc@v2
