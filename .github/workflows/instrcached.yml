@@ -53,13 +53,13 @@ jobs:
           path: rlibs
 
 #          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
-          key: ${{ hashFiles('rdependencies.csv') }}
+          key: ${{ hashFiles('rdependencies.csv') }} # where to look for changes
         #  restore-keys: ${{ runner.os }}-r-3.6.1-
     
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
         run: |
+             print("no cache hit, install new not cached pkg")
              print(list.files("rlibs"))
-             print("new not cached pkg")
              dep<-read.csv("rdependencies.csv")
              rlib<-"rlibs"
              repos<-'https://cloud.r-project.org'

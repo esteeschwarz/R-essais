@@ -1,5 +1,5 @@
 .libPaths(new = "rlibs", include.site = TRUE)
-cat("where we")
+cat("where we at:\n") #were in top dir
 print(list.files())
 #print(list.files(~))
 .libPaths(new = "/usr/local/lib/R/4.3/site-library", include = T)
@@ -11,5 +11,6 @@ library(jquerylib,lib.loc="rlibs")
 #?knit
 #?output_format
 #knit("pages/README.Rmd",output="pages/index.html")
-#render("wp001.Rmd",output_file ="wp001.html",run_pandoc=T)
+setwd("pages")
+render("wp001.Rmd",output_file ="wp001.html",run_pandoc=T)
 print("from renderscript")
