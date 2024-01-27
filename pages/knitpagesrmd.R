@@ -1,4 +1,4 @@
-.libPaths(new = "rlibs", include.site = TRUE)
+.libPaths(new = "/home/runner/work/R-essais/R-essais/rlibs", include.site = TRUE)
 cat("where we at:\n") #were in top dir
 print(list.files())
 #print(list.files(~))
