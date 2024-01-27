@@ -1,10 +1,18 @@
 print(2/100)
 print("testrun")
+print(list.files())
+print(list.files("rlibs"))
+samplepage<-'
+<p>just a small html sample index...:</p><a href="pkg.csv">packages installed</a><p><a href="wp001.html">wp001</a></p>'
+
+writeLines(samplepage,"pages/index.html")
+print(samplepage)
+#install.packages("rmarkdown",lib="rlibs",repos = 'https://cloud.r-project.org')
+#install.packages("markdown",lib="rlibs",repos = 'https://cloud.r-project.org')
+pkg<-installed.packages(lib.loc="rlibs")
+write.csv(pkg,"pages/pkg.csv")
+source("pages/knitpagesrmd.R")
 #dir.create("/home/rlibs")
-#install.packages("rmarkdown",lib="/home/rlibs")
-#Sys.setenv(R_CRAN_WEB = "https://cloud.r-project.org")
-#install.packages("knitr",contriburl = "https://cloud.r-project.org/src/contrib")
-#install.packages("rmarkdown",contriburl = "https://cloud.r-project.org/src/contrib")
 #print("packages installed")
 #print(installed.packages())
 #library(jsonlite,lib.loc = "/usr/local/Cellar/r/4.3.2/lib/R/library")

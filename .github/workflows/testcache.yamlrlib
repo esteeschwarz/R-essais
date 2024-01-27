@@ -1,0 +1,8 @@
+- name: Save Primes
+      id: cache-primes-save
+      uses: actions/cache/save@v4
+      with:
+        path: |
+          path/to/dependencies
+          some/other/dependencies
+        key: ${{ steps.cache-primes-restore.outputs.cache-primary-key }}

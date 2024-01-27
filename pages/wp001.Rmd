@@ -6,7 +6,7 @@ output:
    html_document:
    # toc: true
    # number_sections: true
-   bibliography: comp.bib
+bibliography: comp.bib
 ---
 
 ```{r setup, include=FALSE}
@@ -60,12 +60,20 @@ modified the content of the *knit2wp()* function as to use *render()* and *mark(
 wrote small R package that does the same: <https://github.com/esteeschwarz/knitXwp>
 
 ## issues
+14047.rlibs da?
+
 ### 14045.
 - if there are images in the post: they are uploaded, but not overwritten on the server, if uploaded again in case you actualise the post. that means for every post action a new image on the server is created with a trailing increasing number. this is a wordpress feature to prevent overwrite uploaded files with the same name.
 - tweaking in the wordpress functions to prevent that, had no success. so i will integrate a function which allows deleting old instances of images if you decide for that.
 
 #### play along image references
-removed
+```{r wp001-fig-07-wordcloud, warning=F,message=F,echo=F,fig.cap="quanteda wordcloud output of this document"}
+mdx<-readLines("wp001.Rmd")
+library(quanteda.textplots)
+library(quanteda)
+mdfm<-dfm(tokens(mdx))
+textplot_wordcloud(mdfm)
+```
 
 ## versions 
 ### 14037.v0.1.5
