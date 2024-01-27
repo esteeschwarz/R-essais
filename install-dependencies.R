@@ -22,4 +22,4 @@ for(k in 1:length(dep.array)){
   dep$chk[dep$pkg==li]<-1
 }
 #dep$chk[4]<-1
-write.csv(dep,"rependencies.csv",row.names = F)
+#write.csv(dep,"rdependencies.csv",row.names = F)
