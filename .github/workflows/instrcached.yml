@@ -31,6 +31,11 @@ jobs:
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
+      - name: show libs
+        run: |
+            ls rlibs
+            ls
+        
       - uses: r-lib/actions/setup-pandoc@v2
       
       - name: Cache R packages
@@ -61,6 +66,9 @@ jobs:
              #library(remotes, lib.loc="rlibs") 
              #saveRDS(remotes::dev_package_deps(dependencies = TRUE), 'depends.Rds')
         shell: Rscript {0}
+      - name: show libs after installing
+        run: ls rlibs
+
 #       - name: Cache R packages
 #         id: cache-r
 # #        if: runner.os != 'Windows'

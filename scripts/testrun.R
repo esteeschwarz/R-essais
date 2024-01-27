@@ -4,7 +4,9 @@ print(list.files())
 print(list.files("rlibs"))
 samplepage<-'
 <p>just a small html sample index...:</p><a href="pkg.csv">packages installed</a><p><a href="wp001.html">wp001</a></p>'
+
 writeLines(samplepage,"pages/index.html")
+print(samplepage)
 #install.packages("rmarkdown",lib="rlibs",repos = 'https://cloud.r-project.org')
 #install.packages("markdown",lib="rlibs",repos = 'https://cloud.r-project.org')
 pkg<-installed.packages(lib.loc="rlibs")
