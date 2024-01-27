@@ -30,7 +30,7 @@ jobs:
         with:
           path: |
             rlibs
-          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
+          key: cache-r-dep${{ runner.os }}-r-3.6.1-
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
