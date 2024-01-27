@@ -67,7 +67,7 @@ wrote small R package that does the same: <https://github.com/esteeschwarz/knitX
 - tweaking in the wordpress functions to prevent that, had no success. so i will integrate a function which allows deleting old instances of images if you decide for that.
 
 #### play along image references
-```{r wp001-fig-07-wordcloud, warning=F,echo=F,fig.cap="quanteda wordcloud output of this document"}
+```{r wp001-fig-07-wordcloud, warning=F,message=F,echo=F,fig.cap="quanteda wordcloud output of this document"}
 mdx<-readLines("wp001.Rmd")
 library(quanteda.textplots)
 library(quanteda)

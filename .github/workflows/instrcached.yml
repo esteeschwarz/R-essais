@@ -1,4 +1,4 @@
-name: instrcached R cached
+name: run cache check+install deps+process rmd
 on:
   push:
     branches: [ pages ]
