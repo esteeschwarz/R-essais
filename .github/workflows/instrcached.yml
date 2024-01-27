@@ -40,7 +40,10 @@ jobs:
             echo "whats in libs after restore cache from v3 at v4?"
             ls rlibs
 
-        
+      - name: hard install libs
+        run: |
+             install.packages("xfun")
+        shell: RScript {0}  
       - uses: r-lib/actions/setup-pandoc@v2
       
       - name: Cache R packages
