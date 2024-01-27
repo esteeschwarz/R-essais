@@ -32,7 +32,9 @@ jobs:
             rlibs
           key: cache-r-dep-${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
           restore-keys: |
+               cache-r-dep-${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
                cache-r-dep-${{ runner.os }}-r-3.6.1-
+               cache-r-dep-
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
