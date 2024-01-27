@@ -21,6 +21,9 @@ jobs:
       #- uses: r-lib/actions/setup-r@master
        # with:
         #    r-version: '4.2'
+      - name: show libs befor restore
+        run: ls rlibs
+
       - name: Restore cached primes
         id: cache-primes-restore
         uses: actions/cache/restore@v4
@@ -51,10 +54,11 @@ jobs:
 
 #          key: ${{ runner.os }}-r-3.6.1-${{ hashFiles('rdependencies.csv') }}
           key: ${{ hashFiles('rdependencies.csv') }}
-          restore-keys: ${{ runner.os }}-r-3.6.1-
+        #  restore-keys: ${{ runner.os }}-r-3.6.1-
     
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
         run: |
+             list.files("rlibs"))
              print("new not cached pkg")
              dep<-read.csv("rdependencies.csv")
              rlib<-"rlibs"
