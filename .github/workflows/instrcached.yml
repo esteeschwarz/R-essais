@@ -30,7 +30,7 @@ jobs:
         with:
           path: |
             rlibs
-          key: ${{ runner.os }}-deps
+          key: ${{ runner.os }}-rdeps
       # - name: md libdir
       #   run: |
       #         mkdir rlibs
@@ -107,7 +107,8 @@ jobs:
         with:
           path: |
             rlibs
-          key: ${{ steps.cache-primes-restore.outputs.cache-deps }}
+#          key: ${{ steps.cache-primes-restore.outputs.cache-deps }}
+          key: ${{ steps.cache-primes-restore.outputs }}-rdeps
       - name: build pages
         id: pages
         uses: actions/configure-pages@v4
