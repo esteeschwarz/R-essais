@@ -58,7 +58,7 @@ jobs:
     
       - if: ${{ steps.cache-r.outputs.cache-hit != 'true' }}
         run: |
-             list.files("rlibs"))
+             print(list.files("rlibs"))
              print("new not cached pkg")
              dep<-read.csv("rdependencies.csv")
              rlib<-"rlibs"
