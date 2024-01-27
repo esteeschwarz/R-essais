@@ -2,7 +2,7 @@
 cat("where we at:\n") #were in top dir
 print(list.files())
 #print(list.files(~))
-.libPaths(new = "/usr/local/lib/R/4.3/site-library", include = T)
+.libPaths(new = "/usr/local/lib/R/4.3/site-library", include.site = T)
 library(rmarkdown,lib.loc="rlibs")#,lib.loc = "/usr/local/lib/R/4.3/site-library")
 library(yaml,lib.loc="/home/runner/work/R-essais/R-essais/rlibs")
 library(jquerylib,lib.loc="/home/runner/work/R-essais/R-essais/rlibs")
@@ -12,6 +12,7 @@ library(jquerylib,lib.loc="/home/runner/work/R-essais/R-essais/rlibs")
 #?output_format
 #knit("pages/README.Rmd",output="pages/index.html")
 setwd("pages")
+print(Sys.getenv("R_LIBS_USER"))
 #library(xfun,lib.loc="/home/runner/work/R-essais/R-essais/rlibs")
 #render("wp001.Rmd",output_file ="wp001.html",run_pandoc=T)
 print("from renderscript")
