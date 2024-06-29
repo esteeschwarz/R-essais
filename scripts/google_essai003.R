@@ -7,8 +7,9 @@ library(XML)
 library(rvest)
 
 ######################## Getting URLs ###################
-
-googleSearch <- function(keyworkd, page) {
+page<-2
+keyword<-"register+linguistik"
+googleSearch <- function(keyword, page) {
   
   index <- 1:page # web scraping from multiple pages
   index <- (index-1)*10
@@ -16,8 +17,9 @@ googleSearch <- function(keyworkd, page) {
   links <- list()
   
   for (i in index){
-    search.url = paste("http://www.google.com/search?q=", gsub(" ", "+", keyworkd), "&start=", index, "&*", sep = "")
-    
+#    search.url = paste("http://www.google.com/search?q=", gsub(" ", "+", keyworkd), "&start=", index, "&*", sep = "")
+    search.url = paste("http://www.google.com/search?q=", gsub(" ", "+", keyword), "&start=", index, "&*", sep = "")
+    search.url
     # read in page contents
     search.html <- getURL(search.url)
     
@@ -26,8 +28,9 @@ googleSearch <- function(keyworkd, page) {
     
     # extract url nodes using XPath.
     search.attrs <- xpathApply(search.doc, "//h3[@class='r']/a[@href]", xmlAttrs)
+    search.attrs <- xpathApply(search.doc, "//a", xmlAttrs)
     search.links <- sapply(search.attrs, function(x) x[[1]])
-    
+    search.links
     # free doc from memory
     free(search.doc)
     
@@ -44,7 +47,8 @@ googleSearch <- function(keyworkd, page) {
 }
 
 
-url_list = googleSearch("anarkkiv",2)
+url_list = googleSearch("linguistik+register+definition",2)
+url_list
 
 #################### Getting DOM Texts ######################
 
