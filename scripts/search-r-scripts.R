@@ -1,7 +1,9 @@
 git_folder <- Sys.getenv("GIT_TOP")
 hkw_folder <- Sys.getenv("HKW_TOP")
-r_files_git <- list.files(git_folder, pattern = "\\.R$|\\.r$", recursive = TRUE, full.names = TRUE)
-r_files_hkw <- list.files(hkw_folder, pattern = "\\.R$|\\.r$", recursive = TRUE, full.names = TRUE)
+#r_files_git <- list.files(git_folder, pattern = "\\.R$|\\.r$", recursive = TRUE, full.names = TRUE)
+#r_files_hkw <- list.files(hkw_folder, pattern = "\\.R$|\\.r$", recursive = TRUE, full.names = TRUE)
+r_files_git <- list.files(git_folder, pattern = "\\.R$|\\.r$|\\.Rmd$|\\.rmd$", recursive = TRUE, full.names = TRUE)
+r_files_hkw <- list.files(hkw_folder, pattern = "\\.R$|\\.r$|\\.Rmd$|\\.rmd$", recursive = TRUE, full.names = TRUE)
 r_files<-c(r_files_git,r_files_hkw)
 #head(r_files)
 library(dplyr)
@@ -44,13 +46,17 @@ df <- bind_rows(
 #system.time(get.scripts(top_folder,10))
 #system.time(get.scripts.i(r_files,10))
 
+save.db<-function(){
 df<-get.scripts.i(r_files,length(r_files))
 r.scripts.db<-df
-save(r.scripts.db,file = paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
+#save(r.scripts.db,file = paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
 #head(df)
+}
 #########
 # query
 q<-"dependencies"
+load(paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
+
 get.com<-function(df){
   m<-grep("^#",df$code)
   m2<-grep("^ *?#",df$code)
@@ -72,5 +78,5 @@ get.q<-function(q,df,com=F){
 
   }
 
-mc<-get.q("kraken",df,T)
+mc<-get.q("variant",r.scripts.db,T)
 df$location[mc]
