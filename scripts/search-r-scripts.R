@@ -78,5 +78,8 @@ get.q<-function(q,df,com=F){
 
   }
 
-mc<-get.q("variant",r.scripts.db,T)
+mc<-get.q("readLines",r.scripts.db,T)
+mc<-get.q("readtext",r.scripts.db,T)
+mc<-get.q("keywords",df,T)
 df$location[mc]
+file.edit(df$location[mc[1]])
