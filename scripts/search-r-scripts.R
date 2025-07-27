@@ -66,10 +66,11 @@ get.com<-function(df){
 }
 # head(df$code[m2],1000)
 # head(df$code[get.com(df)],1000)
-df$comment<-F
-df$comment[get.com(df)]<-T
-com<-T
-q
+
+# df$comment<-F
+# df$comment[get.com(df)]<-T
+# com<-T
+# q
 get.q<-function(q,df,com=F){
   ifelse(com,code<-df$code,code<-df$code[df$comment])
   m<-grep(q,code)
@@ -78,8 +79,11 @@ get.q<-function(q,df,com=F){
 
   }
 
-mc<-get.q("readLines",r.scripts.db,T)
-mc<-get.q("readtext",r.scripts.db,T)
-mc<-get.q("keywords",df,T)
-df$location[mc]
-file.edit(df$location[mc[1]])
+#mc<-get.q("readLines",r.scripts.db,T)
+#mc<-get.q("readtext",r.scripts.db,T)
+#mc<-get.q("keywords",df,T)
+mc<-get.q("refs",r.scripts.db,T)
+r.scripts.db$location[mc]
+#file.edit(df$location[mc[1]])
+
+#mx<-grep(".Rmd",r.scripts.db$location)
