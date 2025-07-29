@@ -84,6 +84,6 @@ get.q<-function(q,df,com=F){
 #mc<-get.q("keywords",df,T)
 mc<-get.q("POST",r.scripts.db,T)
 r.scripts.db$location[mc]
-#file.edit(df$location[mc[1]])
+file.edit(r.scripts.db$location[mc[1]])
 
 #mx<-grep(".Rmd",r.scripts.db$location)
