@@ -82,8 +82,8 @@ get.q<-function(q,df,com=F){
 #mc<-get.q("readLines",r.scripts.db,T)
 #mc<-get.q("readtext",r.scripts.db,T)
 #mc<-get.q("keywords",df,T)
-mc<-get.q("POST",r.scripts.db,T)
-r.scripts.db$location[mc]
-file.edit(r.scripts.db$location[mc[1]])
-
+mc<-get.q("download",r.scripts.db,T)
+r.scripts.db$location[mc[181]]
+file.edit(r.scripts.db$location[mc[181]])
+file.edit(paste0(Sys.getenv("HKW_TOP"),"/DYN/dyn_extraction/app.R"))
 #mx<-grep(".Rmd",r.scripts.db$location)
