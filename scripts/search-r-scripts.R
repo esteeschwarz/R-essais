@@ -2,29 +2,31 @@ git_folder <- Sys.getenv("GIT_TOP")
 hkw_folder <- Sys.getenv("HKW_TOP")
 #r_files_git <- list.files(git_folder, pattern = "\\.R$|\\.r$", recursive = TRUE, full.names = TRUE)
 #r_files_hkw <- list.files(hkw_folder, pattern = "\\.R$|\\.r$", recursive = TRUE, full.names = TRUE)
-r_files_git <- list.files(git_folder, pattern = "\\.R$|\\.r$|\\.Rmd$|\\.rmd$", recursive = TRUE, full.names = TRUE)
-r_files_hkw <- list.files(hkw_folder, pattern = "\\.R$|\\.r$|\\.Rmd$|\\.rmd$", recursive = TRUE, full.names = TRUE)
+pattern = "\\.R$|\\.r$|\\.Rmd$|\\.rmd$|\\.qmd"
+r_files_git <- list.files(git_folder, pattern = pattern, recursive = TRUE, full.names = TRUE)
+r_files_hkw <- list.files(hkw_folder, pattern = pattern, recursive = TRUE, full.names = TRUE)
 r_files<-c(r_files_git,r_files_hkw)
 #head(r_files)
 library(dplyr)
 #r_files.s<-r_files[1:10]
-get.scripts<-function(top_folder,n){
-  r_files.s<-r_files[1:n]
-  df <- lapply(r_files.s, function(f) {
-  lines <- readLines(f, warn = FALSE)
-  data.frame(
-    location = f,
-    line = seq_along(lines),
-    code = lines,
-    stringsAsFactors = FALSE
-  )
-}) %>% bind_rows()
-}
+# get.scripts<-function(top_folder,n){
+#   r_files.s<-r_files[1:n]
+#   df <- lapply(r_files.s, function(f) {
+#   lines <- readLines(f, warn = FALSE)
+#   data.frame(
+#     location = f,
+#     line = seq_along(lines),
+#     code = lines,
+#     stringsAsFactors = FALSE
+#   )
+# }) %>% bind_rows()
+# }
 # lines<-1:10
 # seq_along(lines)
 #i<-1
 get.scripts.i<-function(rfiles,n){
   r_files.s<-r_files[1:n]
+  library(tools)
   
 df <- bind_rows(
   lapply(seq_along(r_files.s), function(i) {
@@ -32,6 +34,7 @@ df <- bind_rows(
     finfo<-file.info(r_files.s[i])
     data.frame(
       id = i,
+      type = file_ext(r_files[i]),
       location = r_files[i],
       size = finfo$size,
       created = finfo$ctime,
@@ -49,13 +52,13 @@ df <- bind_rows(
 save.db<-function(){
 df<-get.scripts.i(r_files,length(r_files))
 r.scripts.db<-df
-#save(r.scripts.db,file = paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
+save(r.scripts.db,file = paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
 #head(df)
 }
 #########
 # query
 q<-"dependencies"
-load(paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
+#load(paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
 
 get.com<-function(df){
   m<-grep("^#",df$code)
@@ -83,6 +86,12 @@ get.q<-function(q,df,com=F){
 #mc<-get.q("readtext",r.scripts.db,T)
 #mc<-get.q("keywords",df,T)
 mc<-get.q("download",r.scripts.db,T)
+library(tools)
+#file_ext(f)
+#r.scripts.db$type<-file_ext(r.scripts.db$location)
+unique(file_ext(r_files))
+unique(r.scripts.db$type)
+mc<-get.q("#\\|",r.scripts.db,T)
 r.scripts.db$location[mc[181]]
 file.edit(r.scripts.db$location[mc[181]])
 file.edit(paste0(Sys.getenv("HKW_TOP"),"/DYN/dyn_extraction/app.R"))
