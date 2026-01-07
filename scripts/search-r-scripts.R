@@ -52,7 +52,9 @@ df <- bind_rows(
 save.db<-function(){
 df<-get.scripts.i(r_files,length(r_files))
 r.scripts.db<-df
-save(r.scripts.db,file = paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
+###############################################################################
+# save(r.scripts.db,file = paste0(Sys.getenv("HKW_TOP"),"/R/R-scripts-DB.RData"))
+###############################################################################
 #head(df)
 }
 #########
@@ -85,14 +87,19 @@ get.q<-function(q,df,com=F){
 #mc<-get.q("readLines",r.scripts.db,T)
 #mc<-get.q("readtext",r.scripts.db,T)
 #mc<-get.q("keywords",df,T)
-mc<-get.q("download",r.scripts.db,T)
+mc<-get.q("google",r.scripts.db,T)
 library(tools)
 #file_ext(f)
 #r.scripts.db$type<-file_ext(r.scripts.db$location)
-unique(file_ext(r_files))
-unique(r.scripts.db$type)
-mc<-get.q("#\\|",r.scripts.db,T)
+#unique(file_ext(r_files))
+#unique(r.scripts.db$type)
+mc<-get.q("google",r.scripts.db,T)
+length(mc)
+
 r.scripts.db$location[mc[181]]
-file.edit(r.scripts.db$location[mc[181]])
+r.scripts.db$location[mc]
+r.scripts.db$code[mc]
+
+file.edit(r.scripts.db$location[mc[42]])
 file.edit(paste0(Sys.getenv("HKW_TOP"),"/DYN/dyn_extraction/app.R"))
 #mx<-grep(".Rmd",r.scripts.db$location)
