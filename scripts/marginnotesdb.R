@@ -64,6 +64,7 @@ get.notes<-function(){
   #save(dbnotes.s,file=paste0(Sys.getenv("GIT_TOP"),"/SPUND-LX/marginnotescpt.16172.RData"))
   #m<-grep("Wolf|wolf",dbnotes.s$doc)
   #we<-dbnotes.s[m,]
+  dbDisconnect(con)
   return(dbnotes.s)
 }
 #db.sf<-margindb
