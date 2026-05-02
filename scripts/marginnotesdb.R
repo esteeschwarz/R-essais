@@ -1,4 +1,4 @@
-get.notes<-function(){
+get.notes<-function(qa){
   library(RSQLite)
   d<-dbDriver("SQLite")
   d
@@ -32,8 +32,70 @@ get.notes<-function(){
   })
   #wks.
   i<-1
+  query <- "
+SELECT 
+    'SELECT \"' || m.name || '\" AS table_name, \"' || p.name || '\" AS column_name, * FROM \"' || m.name || 
+    '\" WHERE \"' || p.name || '\" LIKE ''%' || ? || '%'';' AS query
+FROM sqlite_master m
+JOIN pragma_table_info(m.name) p
+WHERE m.type = 'table';
+"
+qa
+ql<-dbGetQuery(con, query, params = list("string"))
+ql<-dbGetQuery(con, query, params = list(names(qa)))
+#x<-unlist(ql)[172]
+qs<-lapply(unlist(ql),function(x){
+  print(x)
+  r<-dbGetQuery(con, x)
+  print(dim(r))
+  ifelse(dim(r)[1]>0,d<-r,d<-NA)
+  return(d)
+})
+library(abind)
+
+qs<-qs[!is.na(qs)]
+qt<-lapply(qs,function(x){
+  c<-grep("TOPICID",colnames(x))
+  t<-ifelse(length(c)>0,unique(x[,c]),NA)
+})
+ qt<-qt[!is.na(qt)]
+ qt<-unique(unlist(qt))
+#  qd<-data.frame(abind(qs,along=1))
+
+#tid<-qd$ZTOPICID
+qlt<-dbGetQuery(con, query, params = list(qt))
+qst<-lapply(unlist(qlt),function(x){
+  print(x)
+  r<-dbGetQuery(con, x)
+  print(dim(r))
+  ifelse(dim(r)[1]>0&sum("ZBOOKNOTE"%in%r$table_name,"ZHIGHLIGHT_TEXT"%in%colnames(r))==2,d<-r,d<-NA)
+  
+  #ifelse(!d,d<-r,d<-NA)
+  return(d)
+})
+qstn<-qst[!is.na(qst)]
+  length(qstn)
+
+    library(dplyr)
+
+  qdt<-bind_rows(qstn)
+#return(qdt)
+#}
+booksmd5<-unique(qdt$ZBOOKMD5)
+booksmd5
+#  lx<-dbGetQuery(con,query)
   ZFILE<-all.tables[[2]]
   ZNOTE<-all.tables[[5]]
+  #tu<-unique(ZNOTE$ZTOPICID)
+  #length(tu)
+  ZTITLE<-all.tables[[11]]
+  #m<-ZTITLE$ZTITLE=="LXtech"
+  #mb<-ZTITLE[m,]
+  #mbooks<-mb$ZLOCALBOOKMD5
+  #mbooks<-strsplit(mbooks,split="|",fixed=T)
+  booksmd5
+  mf<-ZNOTE[ZNOTE$ZBOOKMD5%in%booksmd5,]
+  mf
   ZNOTE[1,]
   all.notes<-lapply(seq_along(1:length(ZFILE$Z_PK)),function(i){
     bookrow<-ZFILE[i,]
@@ -45,11 +107,11 @@ get.notes<-function(){
 #    rlist<-list()
  #   rlist[[booktitle]]<-bookmd5
   #  rlist[["notes"]]<-ZNOTE$ZNOTES_TEXT[m]
-    rdf<-matrix(ncol=7,nrow=1,c(booktitle,"#NO-ANN#",1:5))
+    rdf<-matrix(ncol=9,nrow=1,c(booktitle,"#NO-ANN#",1:6))
     if(sum(m)>0)
-      rdf<-data.frame(doc=booktitle,notes=ZNOTE$ZHIGHLIGHT_TEXT[m],
+      rdf<-data.frame(doc=booktitle,study=ZNOTE$ZNOTETITLE[m],notes=ZNOTE$ZHIGHLIGHT_TEXT[m],
                     comment=ZNOTE$ZNOTES_TEXT[m],spage=ZNOTE$ZSTARTPAGE[m],epage=ZNOTE$ZENDPAGE[m],
-                    xys=ZNOTE$ZSTARTPOS[m],xye=ZNOTE$ZENDPOS[m])
+                    xys=ZNOTE$ZSTARTPOS[m],xye=ZNOTE$ZENDPOS[m],md5=bookmd5)
     
     return(rdf)
 
@@ -103,3 +165,4 @@ ql<-lapply(seq_along(qa), function(x){
 }
 
 
+  
