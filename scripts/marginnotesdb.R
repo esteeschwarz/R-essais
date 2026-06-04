@@ -8,8 +8,8 @@ get.notes<-function(qa){
 #  dbsrc<-"/Users/guhl/Documents/temp/MarginNoteBackup(2025-02-01-13-53-27).marginbackupall"
  # dbsrc<-paste(dbsrc,"MarginNotes.sqlite",sep = "/")
   dborigin<-"/Users/guhl/Library/Containers/QReader.MarginStudy.easy/Data/Library/Private Documents/MN4NotebookDatabase/0/MarginNotes.sqlite"
-  dborigin<-"/Users/guhl/Library/Containers/QReader.MarginStudy.easy/Data/Library/Private Documents/MN4NotebookDatabase/0/"
-  f<-list.files(dborigin,pattern="MarginNotes.sqlite",full.names=T)
+  dborigin<-"/Users/guhl/Library/Containers/QReader.MarginStudy.easy/Data/Library/Private Documents/MN4NotebookDatabase/0"
+  f<-list.files(dborigin,pattern="MarginNotes.sqlite*",full.names=T)
   f
   dbcopy<-"~/db/MarginNotes.sqlite"
   dbcopy<-"~/db/marginnotes/"
@@ -130,7 +130,7 @@ booksmd5
   return(dbnotes.s)
 }
 #db.sf<-margindb
-fetch.anno<-function(dbsub){
+fetch.anno_dep<-function(dbsub){
   load(paste0(Sys.getenv("GIT_TOP"),"/SPUND-LX/play/quarto/start/margindb.RData"))
   #margindb<-dbsub
   # qa<-list(litKI="Wiener_Einführung.pdf",nietzsche=c("nietzsche, kga 3-1, geburt d tragödie.pdf","nietzsche briefe ggl.pdf"),textur=NA) # margin note studyset
