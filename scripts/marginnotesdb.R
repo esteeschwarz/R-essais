@@ -23,13 +23,16 @@ get.notes<-function(qa){
   #highlights<-dbGetQuery(con, "SELECT * FROM highlights")
   #highlights<-highlights[highlights$document_id==2,]
   #highlight_tags<-dbGetQuery(con, "SELECT * FROM highlight_tags")
+  #global.t<-dbGetQuery(con,".schema")
   all.t<-dbGetQuery(con, "SELECT name FROM sqlite_master WHERE type='table';")
+  all.t
   library(abind)
   all.t
   all.tables<-lapply(seq_along(1:length(all.t$name)),function(i){
     t<-dbGetQuery(con,paste0("SELECT * FROM ",all.t$name[i],";"))
                   
   })
+
   #wks.
   i<-1
   query <- "
@@ -42,7 +45,13 @@ WHERE m.type = 'table';
 "
 qa
 ql<-dbGetQuery(con, query, params = list("string"))
-ql<-dbGetQuery(con, query, params = list(names(qa)))
+ql
+#getwd()
+#setwd("../../../../temp")
+typeof(ql)
+qx<-unlist(ql)
+#writeLines(qx,"marginscheme.txt")
+  ql<-dbGetQuery(con, query, params = list(names(qa)))
 #x<-unlist(ql)[172]
 qs<-lapply(unlist(ql),function(x){
   print(x)
@@ -58,10 +67,11 @@ qt<-lapply(qs,function(x){
   c<-grep("TOPICID",colnames(x))
   t<-ifelse(length(c)>0,unique(x[,c]),NA)
 })
+  qt
  qt<-qt[!is.na(qt)]
  qt<-unique(unlist(qt))
 #  qd<-data.frame(abind(qs,along=1))
-
+qt
 #tid<-qd$ZTOPICID
 qlt<-dbGetQuery(con, query, params = list(qt))
 qst<-lapply(unlist(qlt),function(x){
@@ -86,6 +96,7 @@ booksmd5
 #  lx<-dbGetQuery(con,query)
   ZFILE<-all.tables[[2]]
   ZNOTE<-all.tables[[5]]
+  ZNOTE2<-all.tables[[4]]
   #tu<-unique(ZNOTE$ZTOPICID)
   #length(tu)
   ZTITLE<-all.tables[[11]]
@@ -97,6 +108,36 @@ booksmd5
   mf<-ZNOTE[ZNOTE$ZBOOKMD5%in%booksmd5,]
   mf
   ZNOTE[1,]
+  studies<-ZNOTE2$ZTITLE
+  length(studies)
+  length(unique(studies))
+  unique(studies)
+  m1<-studies=="nietzsche"
+  m1<-grepl("nietzsche",studies)
+  m1[is.na(m1)]<-F
+  sum(m1)
+  studies[m1]
+  z1<-unique(ZNOTE2$ZMD5)
+  length(z1)
+  length(ZNOTE2[,1])
+  length(unique(ZNOTE$ZBOOKMD5))
+  m2<-ZNOTE2$ZMD5%in%ZNOTE$ZBOOKMD5
+  sum(m2)
+  topics<-ZNOTE$ZTOPICID
+  #topics<-qdt$ZBOOKMD5
+  t2<-qdt$column_name
+  t3<-unique(t2)
+  length(t3)
+  length(qdt[,1])
+  head(t3)
+  head(topics)
+  t4<-unique(topics)
+  m1<-topics%in%t3
+  t5<-ZNOTE[m1,]
+  t6<-t5[!is.na(t5$ZHIGHLIGHT_TEXT),]
+  length(unique(t2))
+  t1<-ql[grepl("TOPIC",ql)]
+  length(unique(topics))
   all.notes<-lapply(seq_along(1:length(ZFILE$Z_PK)),function(i){
     bookrow<-ZFILE[i,]
     bookrow
@@ -120,7 +161,13 @@ booksmd5
   dbnotes<-data.frame(abind(all.notes,along = 1))
   
   dbnotes.s<-dbnotes[order(dbnotes$doc),]
-
+  studies<-unique(dbnotes.s$study)
+  m<-grep("^nietzsche$",studies)
+  studies[m]
+  m2<-dbnotes.s$study==studies[m]
+  m2[is.na(m2)]<-F
+  sum(m2,na.rm=T)
+  su1<-dbnotes.s[m2,]
     #dbt<-merge(all.tables,check.rows=F,check.names=F)
   #save(dbnotes.s,file="/Users/guhl/db/marginnotescpt.16172.RData")
   #save(dbnotes.s,file=paste0(Sys.getenv("GIT_TOP"),"/SPUND-LX/marginnotescpt.16172.RData"))
