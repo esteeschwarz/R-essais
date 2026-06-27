@@ -30,8 +30,11 @@ get.notes<-function(qa){
   all.t
   all.tables<-lapply(seq_along(1:length(all.t$name)),function(i){
     t<-dbGetQuery(con,paste0("SELECT * FROM ",all.t$name[i],";"))
+
                   
   })
+
+
 
   #wks.
   i<-1
@@ -211,5 +214,59 @@ ql<-lapply(seq_along(qa), function(x){
     
 }
 
+es01<-function(){
+  library(dplyr)
+  tabc<-lapply(seq_along(all.tables),function(i){
+    print(i)
+    x<-all.tables[[i]]
+    head(x)
+    if(length(x[,1])>0)
+      x$table<-all.t$name[i]
+    return(x)
+  })
+  tabd<-bind_rows(tabc)
+  m<-colnames(tabd)=="table"
+  tabd<-tabd[,c(which(m),which(!m))]
 
-  
+
+h1<-head(tabd[!is.na(tabd$ZHIGHLIGHT_TEXT),],10)
+h2<-h1[!is.na(h1[,1:length(h1)]),]
+mn<-!is.na(h1[,1:length(h1)])
+sum(mn)
+h3<-t(mn)
+mn
+m1<-h3[,1:length(h3)]==T
+rowSums(mn)
+s<-apply(mn,2,sum)
+h4<-t(h1)
+s2<-t(s)
+length(h1)
+h5<-h1[,c(which(s2==10))]
+View(h5)
+t1<-h5$ZTOPICID
+s3<-tabd[t1%in%tabd[,1:length(tabd)]]
+t1
+dim(tabd)
+typeof(tabd)
+tabl<-lapply(tabd,unlist)
+l1<-apply(tabd,2,function(i){length(unlist(i))})
+m<-l1==dim(tabd)[1]
+td<-data.frame(tabd[,which(m)])
+mx<-t1[1]%in%td[,1:length(td)]
+dim(tm)
+mx<-apply(td,2,function(i){
+  m<-grep(t1[1],i)
+  ifelse(length(m)!=0,m,F)
+})
+dim(mx)
+mx
+mx[mx!=0]
+ts<-td[c(mx[mx!=0]),]
+tu<-unique(td$ZTITLE)
+tu
+m<-tu=="LFG"
+which(m)
+t3<-ts[!is.na(ts$ZTITLE),]
+t3<-t3[,!is.na(t3[,1:length(t3)])]
+t3
+}
