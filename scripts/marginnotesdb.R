@@ -213,7 +213,29 @@ ql<-lapply(seq_along(qa), function(x){
   
     
 }
-
+get.clist<-function(){
+  nietzsche<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/SZONDI/nietzsche"
+nietzsche<-paste0(mn4,"/SZONDI/nietzsche")
+  nietzsche
+litKI<-paste0("~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/SZONDI/lit-KI")
+litKI<-paste0(mn4,"/SZONDI/lit-KI")
+  
+#stratling<-paste0(cloud,"SZONDI/strätling")
+stratling<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/SZONDI/strätling"
+stratling<-paste0(mn4,"/SZONDI/strätling")
+#textur<-paste0(cloud,"SZONDI/textur")
+  textur<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/SZONDI/textur"
+  textur<-paste0(mn4,"/SZONDI/textur")
+#LXtech<-paste0(cloud,"COMP/LX-tech")
+#LFG<-paste0(cloud,"COMP/LFG")
+LXtech<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/COMP/LX-tech"
+  LXtech<-paste0(mn4,"/COMP/LX-tech")
+  LFG<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/COMP/LFG"
+  LFG<-paste0(mn4,"/COMP/LFG")
+clist<-list(litKI=litKI,nietzsche=nietzsche,VSstr=stratling,textur=textur,LXtech=LXtech,LFG=LFG)
+  clist
+}
+clist<-get.clist()
 es01<-function(){
   library(dplyr)
   tabc<-lapply(seq_along(all.tables),function(i){
@@ -230,32 +252,51 @@ es01<-function(){
 
 
 h1<-head(tabd[!is.na(tabd$ZHIGHLIGHT_TEXT),],10)
-h2<-h1[!is.na(h1[,1:length(h1)]),]
+h1<-tabd[!is.na(tabd$ZHIGHLIGHT_TEXT),]
+#h2<-h1[!is.na(h1[,1:length(h1)]),]
 mn<-!is.na(h1[,1:length(h1)])
 sum(mn)
 h3<-t(mn)
-mn
-m1<-h3[,1:length(h3)]==T
+#mn
+#m1<-h3[,1:length(h3)]==T
 rowSums(mn)
 s<-apply(mn,2,sum)
 h4<-t(h1)
 s2<-t(s)
+s2
 length(h1)
-h5<-h1[,c(which(s2==10))]
+h5<-h1[,c(which(s2==length(h1[,1])))]
 View(h5)
 t1<-h5$ZTOPICID
-s3<-tabd[t1%in%tabd[,1:length(tabd)]]
+length(unique(t1)) # 853 topics
+  s3<-tabd[t1%in%tabd[,1:length(tabd)]]
 t1
-dim(tabd)
+unique(tabd$table)
+zbook<-tabd[tabd$table=="ZBOOK",]
+colnames(zbook)
+ztitle<-tabd[!is.na(tabd$ZTITLE),]
+ztitles<-unique(ztitle$ZTITLE)
+length(ztitles) # 4780
+m<-ztitle$ZTITLE%in%names(clist)
+sum(m)
+cnote<-ztitle[m,]
+ctopicid<-cnote$ZTOPICID
+  dim(tabd)
 typeof(tabd)
 tabl<-lapply(tabd,unlist)
 l1<-apply(tabd,2,function(i){length(unlist(i))})
 m<-l1==dim(tabd)[1]
 td<-data.frame(tabd[,which(m)])
-mx<-t1[1]%in%td[,1:length(td)]
-dim(tm)
+#mx<-ctopicid%in%td[,1:length(td)]
+#dim(tm)
+ctopicid
+mt<-lapply(ctopicid,function(x){
+
 mx<-apply(td,2,function(i){
-  m<-grep(t1[1],i)
+  m<-grep(x,i)
+  ifelse(length(m)!=0,m,F)
+  })
+  m<-unlist(mx)
   ifelse(length(m)!=0,m,F)
 })
 dim(mx)
@@ -264,7 +305,28 @@ mx[mx!=0]
 ts<-td[c(mx[mx!=0]),]
 tu<-unique(td$ZTITLE)
 tu
-m<-tu=="LFG"
+t5<-td[td$ZTOPICID%in%ctopicid,]
+  colnames(t5)
+t6<-t5[!is.na(t5$ZHIGHLIGHT_TEXT)|!is.na(t5$ZNOTES_TEXT),]
+t9<-t5[t5$table=="ZBOOKNOTE",]
+books<-t5$ZBOOKMD5
+length(unique(books))
+t6<-td[td$ZBOOKMD5%in%unique(books)&td$ZTOPICID%in%ctopicid,]
+t6<-td[td$ZBOOKMD5%in%unique(books),]
+t6<-t6[!is.na(t6$ZBOOKMD),]
+unique(t6$table)
+t7<-td[td$table=="ZBOOK",]
+t8<-td[td$ZBOOKMD5%in%unique(books)|td$Z%in%unique(books),]
+colnames(t7)
+m<-lapply(td,function(x){
+  ifelse(length(m<-grep(".pdf",x))>0,m,F)
+})
+m
+m2<-m[unlist(m)]
+m2
+pdfs<-unique(t6$ZBOOKURL)
+pdfs
+  m<-tu=="LFG"
 which(m)
 t3<-ts[!is.na(ts$ZTITLE),]
 t3<-t3[,!is.na(t3[,1:length(t3)])]
