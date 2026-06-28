@@ -326,6 +326,8 @@ length(ztitles) # 4780
 m<-ztitle$ZTITLE%in%names(clist)
 sum(m)
 cnote<-ztitle[m,]
+studies<-ztitle$ZTITLE[m]
+
 ctopicid<-cnote$ZTOPICID
   dim(tabd)
 typeof(tabd)
@@ -359,15 +361,23 @@ books<-t5$ZBOOKMD5
 length(unique(books))
 t6<-td[td$ZBOOKMD5%in%unique(books)&td$ZTOPICID%in%ctopicid,]
 t6<-td[td$ZBOOKMD5%in%unique(books),]
+t6$study<-NA
+# for (k in 1:length(cnote$ZTITLE)){
+#   sid<-cnote$ZTOPICID[k]
+#   m<-t6$ZTOPICID==sid
+#   m[is.na(m)]<-F
+#   t6$study[m]<-cnote$ZTITLE
+# }
 t6<-t6[!is.na(t6$ZBOOKMD),]
 unique(t6$table)
-t7<-td[td$table=="ZBOOK",]
+  colnames(t6)
+#t7<-td[td$table=="ZBOOK",]
 t8<-td[td$ZBOOKMD5%in%unique(books)|td$Z%in%unique(books),]
-colnames(td)
+colnames(t8)
 m1<-lapply(td[,1:length(td)],function(x){
   m1<-grep(".pdf",x)
   #print(colnames(x))
-  print(m1)
+#  print(m1)
   ifelse(length(m1)>0,p<-m1,p<-NA)
   return(p)
 })
@@ -388,11 +398,25 @@ t8<-td[m4,]
   unique(t8$table)
 t9<-bind_rows(t6,t8)
 cn<-colnames(t9)
+t9$study<-NA
+cn<-colnames(t9)
+k<-1
+for (k in 1:length(cnote$ZTITLE)){
+  sid<-cnote$ZTOPICID[k]
+  m<-t9$ZTOPICID==sid
+  sum(m,na.rm=T)
+  m[is.na(m)]<-F
+  t9$study[m]<-cnote$ZTITLE[k]
+}
+  colnames(cnote)
   cn
-  cg<-grep("NOTE|HIGHLIGH|MD5|FILE|PATH|URL|TEXT|COMMENT|PAGE|TITLE|TAG|TOPIC|TIMESTAMP|table",cn)
+  cg<-grep("NOTE|HIGHLIGH|MD5|FILE|PATH|URL|TEXT|COMMENT|PAGE|TITLE|TAG|TOPIC|TIMESTAMP|table|study",cn)
   cg<-unique(cg)
   t10<-t9[,cg]
   t11<-t10[order(t10$ZTOPICID,t10$ZBOOKMD5,t10$ZSTARTPAGE),]
+  s<-unique(t11$study)
+  s<-s[!is.na(s)]
+  
   t11md5<-t11$ZBOOKMD5
   t11md5l<-t11$ZMD5LONG
   u1<-unique(t11md5l)
@@ -424,13 +448,66 @@ cn<-colnames(t9)
       d<-""
     if(length(d)==0)
       d<-""
+#    d<-unique(d)
     p<-pns[[k]]$ZBOOKMD5
     #m<-t11$ZBOOKMD5%in%p
     if(length(p)>0)
       t11$doc[p]<-d
   }
   ### wks.
-  #x<-t11[,1]
+  s<-studies
+  s
+  k<-s[6]
+  k
+  s
+  colnames(t11)
+  ##############
+  ### debug stop
+  ##############
+  for(k in s){
+    m<-t11$study==k
+    sum(m,na.rm=T)
+    m[is.na(m)]<-F
+    d1<-unique(t11$doc[m])
+    d1
+    m2<-t11$doc%in%d1
+    sum(m2)
+    # m3<-is.na(t11$study[m2])
+    # sum(m3)
+    # sum(!m3)
+########################
+    ### ensure book is in study
+    t11b<-t11[m,]
+    m4<-grepl("#notebook_",t11b$ZNOTES_TEXT)
+    m5<-grep("#notebook_",t11b$ZNOTES_TEXT)
+    length(m5)
+    #m4<-grepl("kook",t11$doc)
+    #s1<-t11[m4,]
+    m4[is.na(m4)]<-F
+    sum(m4)
+    t11b[m5,]
+    doc.out<-t11b$doc[m5]
+    m6<-t11$doc==doc.out
+    #t11[which(m4),]
+    #if(sum(m4)==0){
+   # s1
+    m7<-which(m2)
+    m7
+    da<-t11$doc[m7]
+    dm<-da%in%doc.out
+    sum(dm)
+    da[dm]
+    m8<-m2[which(!dm)]
+    length(m8)
+    da[m8]
+    m3<-is.na(t11$study[m2])
+    sum(m3)
+    sum(!m3)
+    cat("--- reapplied",length(m8),"changes to study -",k,"- names according to books ---\n")
+    t11$ZHIGHLIGHT_TEXT[m8]
+    t11$study[m8]<-k
+    #}
+  }#x<-t11[,1]
   cg
   cns<-colnames(t11)
   cns
@@ -440,9 +517,9 @@ cn<-colnames(t9)
 
     e<-x==""
     x[e]<-NA
-    t<-print(sum(is.na(x))==length(x))
+    t<-sum(is.na(x))==length(x)
     ifelse(t,r<-NA,r<-data.frame(c=x))
-    print(c)
+   # print(c)
     if(!t)
       colnames(r)<-c
     return(r)
@@ -456,16 +533,40 @@ cn<-colnames(t9)
   t14<-t14[order(t14$doc,t14$ZSTARTPAGE,t14$ZENDPAGE),]
   sum(is.na(t14$ZNOTEID))
   colnames(t14)
-  cn<-c(27,15,14,21,22,23,24,1,2,3)
+  cn<-c(27,28,15,14,21,22,23,24,1,2,3)
   margin1<-t14[,cn]
-  cns<-c("doc","spage","epage","notes","comment","title","ocr","table","nid","tid")
+  cns<-c("study","doc","spage","epage","notes","comment","title","ocr","table","nid","tid")
   colnames(margin1)<-cns
-  return(margin1)
+  #docs<-unique(margin1$doc)
+  #docs<-docs[!is.na(docs)]
+  studies
+  x<-studies[6]
+  x
+  qax<-lapply(studies,function(x){
+    m<-margin1$study==x
+    sum(m,rm.na=T)
+    d<-unique(margin1$doc[m])
+    d<-d[!is.na(d)]
+    d2<-d
+    
+    if(length(d2)>0)
+      names(d2)<-x
+    r<-list(q=d)
+    print(x)
+    #names(r)<-x
+    return(d)
+
+  })
+  names(qax)<-studies
+  return(list(qa=qax,dbsub=margin1))
 #################
   t11$ZMD5LONG[is.na(t11$ZMD5LONG)]<-F
   px<-t11[mcc$ZMD5LONG,]
   x<-md5u[3]
-  x
+  x<-c("a","b","c")
+  xa<-list(names=x)
+  names(xa)<-"to"
+  xa
   m<-x==t11$ZBOOKMD5
   m[is.na(m)]<-F
   tm5<-t11[m,]
@@ -484,4 +585,10 @@ margin1<-get.margin(qa)
   getwd()
 #margin2<-margin1
 save(margin1,file="margin1.RData")
+load("margindb.RData")
+names(margindb)
+  dbsub<-margindb$dbsub
+m<-grep("kook",dbsub$doc)
+  dbsub$notes[m]
+length(m)
 }
