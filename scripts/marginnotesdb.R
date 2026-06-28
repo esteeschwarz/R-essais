@@ -214,6 +214,8 @@ ql<-lapply(seq_along(qa), function(x){
     
 }
 get.clist<-function(){
+  mn4<-Sys.getenv("MN4")
+
   nietzsche<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN3/A_UNI/SZONDI/nietzsche"
 nietzsche<-paste0(mn4,"/SZONDI/nietzsche")
   nietzsche
@@ -235,8 +237,51 @@ LXtech<-"~/Library/Mobile Documents/iCloud~QReader~MarginStudy~easy/Documents/MN
 clist<-list(litKI=litKI,nietzsche=nietzsche,VSstr=stratling,textur=textur,LXtech=LXtech,LFG=LFG)
   clist
 }
-clist<-get.clist()
-es01<-function(){
+idb<-function(){
+  library(RSQLite)
+  d<-dbDriver("SQLite")
+  d
+  library(DBI)
+  con<-dbConnect(d)
+  con
+#  dbsrc<-"/Users/guhl/Documents/temp/MarginNoteBackup(2025-02-01-13-53-27).marginbackupall"
+ # dbsrc<-paste(dbsrc,"MarginNotes.sqlite",sep = "/")
+  dborigin<-"/Users/guhl/Library/Containers/QReader.MarginStudy.easy/Data/Library/Private Documents/MN4NotebookDatabase/0/MarginNotes.sqlite"
+  dborigin<-"/Users/guhl/Library/Containers/QReader.MarginStudy.easy/Data/Library/Private Documents/MN4NotebookDatabase/0"
+  f<-list.files(dborigin,pattern="MarginNotes.sqlite*",full.names=T)
+  f
+  dbcopy<-"~/db/MarginNotes.sqlite"
+  dbcopy<-"~/db/marginnotes/"
+  #file.copy(dborigin,dbcopy)
+  file.copy(f,dbcopy,overwrite=T)
+  dbsrc<-paste0(dbcopy,"MarginNotes.sqlite")    
+  #dbListTables(con <- dbConnect(RSQLite::SQLite(), ":memory:"))
+  con<-dbConnect(d,dbsrc)
+  #con<-dbConnect(d,"/Users/guhl/boxHKW/21S/DH/local/AVL/2024/WIT/2025-01-21_FolioFF.sqlite")
+  #con<-dbConnect(d,"/Users/guhl/Documents/GitHub/SPUND-LX/szondi/WITprose/2025-01-23_FolioFF.sqlite3")
+  #highlights<-dbGetQuery(con, "SELECT * FROM highlights")
+  #highlights<-highlights[highlights$document_id==2,]
+  #highlight_tags<-dbGetQuery(con, "SELECT * FROM highlight_tags")
+  #global.t<-dbGetQuery(con,".schema")
+  all.t<-dbGetQuery(con, "SELECT name FROM sqlite_master WHERE type='table';")
+  all.t
+  library(abind)
+  all.tg <<- all.t
+  all.tables<-lapply(seq_along(1:length(all.t$name)),function(i){
+    t<-dbGetQuery(con,paste0("SELECT * FROM ",all.t$name[i],";"))
+
+                  
+  })
+    dbDisconnect(con)
+  return(all.tables)
+
+}
+
+get.margin<-function(qa){
+  all.tables<-idb()
+  # clist<-get.clist()
+  clist<-qa
+  all.t<-all.tg
   library(dplyr)
   tabc<-lapply(seq_along(all.tables),function(i){
     print(i)
@@ -251,7 +296,7 @@ es01<-function(){
   tabd<-tabd[,c(which(m),which(!m))]
 
 
-h1<-head(tabd[!is.na(tabd$ZHIGHLIGHT_TEXT),],10)
+#h1<-head(tabd[!is.na(tabd$ZHIGHLIGHT_TEXT),],10)
 h1<-tabd[!is.na(tabd$ZHIGHLIGHT_TEXT),]
 #h2<-h1[!is.na(h1[,1:length(h1)]),]
 mn<-!is.na(h1[,1:length(h1)])
@@ -266,10 +311,11 @@ s2<-t(s)
 s2
 length(h1)
 h5<-h1[,c(which(s2==length(h1[,1])))]
-View(h5)
+#View(h5)
 t1<-h5$ZTOPICID
 length(unique(t1)) # 853 topics
-  s3<-tabd[t1%in%tabd[,1:length(tabd)]]
+########################################
+  #s3<-tabd[t1%in%tabd[,1:length(tabd)]]
 t1
 unique(tabd$table)
 zbook<-tabd[tabd$table=="ZBOOK",]
@@ -283,28 +329,28 @@ cnote<-ztitle[m,]
 ctopicid<-cnote$ZTOPICID
   dim(tabd)
 typeof(tabd)
-tabl<-lapply(tabd,unlist)
+#tabl<-lapply(tabd,unlist)
 l1<-apply(tabd,2,function(i){length(unlist(i))})
 m<-l1==dim(tabd)[1]
 td<-data.frame(tabd[,which(m)])
 #mx<-ctopicid%in%td[,1:length(td)]
 #dim(tm)
 ctopicid
-mt<-lapply(ctopicid,function(x){
+# mt<-lapply(ctopicid,function(x){
 
-mx<-apply(td,2,function(i){
-  m<-grep(x,i)
-  ifelse(length(m)!=0,m,F)
-  })
-  m<-unlist(mx)
-  ifelse(length(m)!=0,m,F)
-})
-dim(mx)
-mx
-mx[mx!=0]
-ts<-td[c(mx[mx!=0]),]
-tu<-unique(td$ZTITLE)
-tu
+# mx<-apply(td,2,function(i){
+#   m<-grep(x,i)
+#   ifelse(length(m)!=0,m,F)
+#   })
+#   m<-unlist(mx)
+#   ifelse(length(m)!=0,m,F)
+# })
+#dim(mx)
+#mx
+#mx[mx!=0]
+#ts<-td[c(mx[mx!=0]),]
+#tu<-unique(td$ZTITLE)
+#tu
 t5<-td[td$ZTOPICID%in%ctopicid,]
   colnames(t5)
 t6<-t5[!is.na(t5$ZHIGHLIGHT_TEXT)|!is.na(t5$ZNOTES_TEXT),]
@@ -317,13 +363,115 @@ t6<-t6[!is.na(t6$ZBOOKMD),]
 unique(t6$table)
 t7<-td[td$table=="ZBOOK",]
 t8<-td[td$ZBOOKMD5%in%unique(books)|td$Z%in%unique(books),]
-colnames(t7)
-m<-lapply(td,function(x){
-  ifelse(length(m<-grep(".pdf",x))>0,m,F)
+colnames(td)
+m1<-lapply(td[,1:length(td)],function(x){
+  m1<-grep(".pdf",x)
+  #print(colnames(x))
+  print(m1)
+  ifelse(length(m1)>0,p<-m1,p<-NA)
+  return(p)
 })
-m
-m2<-m[unlist(m)]
-m2
+  ### wks.
+# m2<-lapply(t6[,1:length(td)],function(x){
+#   m1<-grep(".pdf",x)
+#   #print(colnames(x))
+#   print(m1)
+#   ifelse(length(m1)>0,p<-m1,p<-NA)
+#   return(p)
+# })
+m3<-!is.na(m1)
+sum(m3)
+m2<-m1[m3]
+m4<-unique(unlist(m2))
+length(m4)
+t8<-td[m4,]
+  unique(t8$table)
+t9<-bind_rows(t6,t8)
+cn<-colnames(t9)
+  cn
+  cg<-grep("NOTE|HIGHLIGH|MD5|FILE|PATH|URL|TEXT|COMMENT|PAGE|TITLE|TAG|TOPIC|TIMESTAMP|table",cn)
+  cg<-unique(cg)
+  t10<-t9[,cg]
+  t11<-t10[order(t10$ZTOPICID,t10$ZBOOKMD5,t10$ZSTARTPAGE),]
+  t11md5<-t11$ZBOOKMD5
+  t11md5l<-t11$ZMD5LONG
+  u1<-unique(t11md5l)
+  u1
+  md5u<-unique(t11md5)
+  length(md5u)
+  #x
+#  t11<-t11[!is.na(t11$ZNOTEID),]
+  pns<-lapply(md5u,function(x){
+
+  mc<-lapply(t11[,1:length(t11)],function(c){
+    #x%in%c
+    m<-c%in%x
+    #t11$ZBOOKMD5&t11$table=="ZBOOK"
+    m[is.na(m)]<-F
+    ifelse(sum(m)>0,p<-which(m),p<-NA)
+    return(p)
+    
+  })
+    mcc<-mc[!is.na(mc)]
+#    mcc<-mc[unlist(mc)]
+    mcc
+  })
+  t11$doc<-NA
+  for (k in 1:length(pns)){
+    md5<-pns[[k]]$ZMD5LONG
+    d<-t11$ZFILE[md5]
+    if(is.null(d))
+      d<-""
+    if(length(d)==0)
+      d<-""
+    p<-pns[[k]]$ZBOOKMD5
+    #m<-t11$ZBOOKMD5%in%p
+    if(length(p)>0)
+      t11$doc[p]<-d
+  }
+  ### wks.
+  #x<-t11[,1]
+  cg
+  cns<-colnames(t11)
+  cns
+  #c<-cns[1]
+  t11l<-lapply(cns,function(c){
+    x<-t11[,c]
+
+    e<-x==""
+    x[e]<-NA
+    t<-print(sum(is.na(x))==length(x))
+    ifelse(t,r<-NA,r<-data.frame(c=x))
+    print(c)
+    if(!t)
+      colnames(r)<-c
+    return(r)
+  })
+  cat("--- t12 ---\n")
+  t12<-t11l[!is.na(t11l)]
+  t13<-data.frame(abind(t12,along=2))
+  t14<-t13[!is.na(t13$doc),]
+  mode(t14$ZSTARTPAGE)<-"numeric"
+  mode(t14$ZENDPAGE)<-"numeric"
+  t14<-t14[order(t14$doc,t14$ZSTARTPAGE,t14$ZENDPAGE),]
+  sum(is.na(t14$ZNOTEID))
+  colnames(t14)
+  cn<-c(27,15,14,21,22,23,24,1,2,3)
+  margin1<-t14[,cn]
+  cns<-c("doc","spage","epage","notes","comment","title","ocr","table","nid","tid")
+  colnames(margin1)<-cns
+  return(margin1)
+#################
+  t11$ZMD5LONG[is.na(t11$ZMD5LONG)]<-F
+  px<-t11[mcc$ZMD5LONG,]
+  x<-md5u[3]
+  x
+  m<-x==t11$ZBOOKMD5
+  m[is.na(m)]<-F
+  tm5<-t11[m,]
+  sum(m)
+  pns
+t9$ZBOOK
 pdfs<-unique(t6$ZBOOKURL)
 pdfs
   m<-tu=="LFG"
@@ -331,4 +479,9 @@ which(m)
 t3<-ts[!is.na(ts$ZTITLE),]
 t3<-t3[,!is.na(t3[,1:length(t3)])]
 t3
+qa<-get.clist()
+margin1<-get.margin(qa)
+  getwd()
+#margin2<-margin1
+save(margin1,file="margin1.RData")
 }
