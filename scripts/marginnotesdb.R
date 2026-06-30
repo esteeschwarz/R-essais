@@ -276,6 +276,8 @@ idb<-function(){
   return(all.tables)
 
 }
+#########################
+### 16274.still messy, includes complete pdf annotations if pdf in study
 
 get.margin<-function(qa){
   all.tables<-idb()
@@ -463,7 +465,7 @@ for (k in 1:length(cnote$ZTITLE)){
   ### wks.
   s<-studies
   s
-  k<-s[5]
+  k<-s[3]
   k
   s
   colnames(t11)
@@ -476,6 +478,7 @@ for (k in 1:length(cnote$ZTITLE)){
     m[is.na(m)]<-F
     d1<-unique(t11$doc[m])
     d1
+    # all notes in all docs that appear in study
     m2<-t11$doc%in%d1
     sum(m2)
     # m3<-is.na(t11$study[m2])
@@ -486,39 +489,100 @@ for (k in 1:length(cnote$ZTITLE)){
     t11b<-t11[m,]
     m4<-grepl("#notebook_",t11b$ZNOTES_TEXT)
     m5<-grep("#notebook_",t11b$ZNOTES_TEXT)
+
     length(m5)
+    # if > 0 then theres a doc in study which has notes outside study
     #m4<-grepl("kook",t11$doc)
     #s1<-t11[m4,]
     m4[is.na(m4)]<-F
     sum(m4)
     t11b[m5,]
-    doc.out<-t11b$doc[m5]
-    m6<-t11$doc==doc.out
+    doc.out<-unique(t11b$doc[m5])
+    m6<-t11b$doc==doc.out
+    sum(m6,na.rm=T)
+    # kook: 4, meaning 4 relevant notes, rest to discard
     #t11[which(m4),]
     #if(sum(m4)==0){
    # s1
     m7<-which(m2)
-    m7
+    m7 # all notes
+    da<-t11b$doc
+    da # only docs in study
+    dm<-da%in%doc.out
+    sum(dm)
+    da[dm]
+    do<-which(dm)
+    do
+    do1<-do # position of relevant notes in study subset
     da<-t11$doc
     da
     dm<-da%in%doc.out
     sum(dm)
     da[dm]
-    sum(is.na(m2))
-    m8<-m2[which(!dm)]
+    do
+    do2<-which(dm)
+    do2 # all notes of doc including irrelevant
+    length(do2)
+    do3<-do2%in%do1 # bullshit, cannot map from 2 diff indexes
+
+    #sum(do3)
+    m1<-is.na(t11$study)
+    sum(m1)
+    m1d<-unique(t11$doc[m1])
+    m1d
+    m1e<-m1d%in%d1
+    sum(m1e)
+    m1f<-m1d[m1e]
+    m1f<-m1f[m1f!=""]
+    m1f<-m1f[!is.na(m1f)]
+    m1f
+    m1g<-m1f[!m1f%in%doc.out]
+    m1g
+    m1h<-t11$doc%in%m1g
+    sum(m1h)
+    #do3<-which(m1)%in%do2
+    #sum(do3) # only irrelevant notes
+    #which(do3)
+    #length(which(m1)[do3])
+    #do3
+    #m3<-which(m1)[do3]
+    #m1w<-which(m1)
+    #m3 # irrelevant doc=NA notes position in top df
+    #m4<-m3%in%m1w
+    #sum(m4)
+    #m5<-m3[which(m4)] # notes top pos to exclude
+    #m5
+    # remove from assign
+    # m4b<-which(!m4)
+    # m4b
+    # m2b
+    # m2c<-m2b%in%which(do3)
+    # which(m2c)
+    # sum(m2c)
+    m8<-which(m1h)
+
     #m9<-
     length(m8)
+    #sum(m8)
     ### glitch
     unique(t11$study[m8])
-    m3<-is.na(t11$study[m8])
-    sum(m3)
-    sum(!m3)
-  
-    sum(m3)
+    # m3<-is.na(t11$study)
+    # sum(m3)
+    # sum(!m3)
+    # m4<-which(m3)
+    # m5<-m4%in%m8
+    # sum(m5)
+    # m6<-m4[m5]
+    # m6
+    # which(m5)
+    # which(m6)
+    # sum(m3)
     t12<-t11[m8,]
     t12$ZHIGHLIGHT_TEXT
     t11[m8,]
-    cat("--- reapplied",sum(m8),"changes to study -",k,"- names according to books ---\n")
+    m1i<-is.na(t12$study)
+    sum(m1i)
+    cat("--- reapplied",sum(m1i),"changes to study -",k,"- names according to books ---\n")
     t11$ZHIGHLIGHT_TEXT[m8]
     t11$study[m8]<-k
     #}
@@ -573,7 +637,8 @@ for (k in 1:length(cnote$ZTITLE)){
 
   })
   names(qax)<-studies
-  return(list(qa=qax,dbsub=margin1))
+  margindb<-list(qa=qax,dbsub=margin1)
+  return(margindb)
 #################
   t11$ZMD5LONG[is.na(t11$ZMD5LONG)]<-F
   px<-t11[mcc$ZMD5LONG,]
