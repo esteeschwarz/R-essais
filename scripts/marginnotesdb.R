@@ -280,6 +280,7 @@ idb<-function(){
 get.margin<-function(qa){
   all.tables<-idb()
   # clist<-get.clist()
+  #clist
   clist<-qa
   all.t<-all.tg
   library(dplyr)
@@ -326,8 +327,9 @@ length(ztitles) # 4780
 m<-ztitle$ZTITLE%in%names(clist)
 sum(m)
 cnote<-ztitle[m,]
+  cnote
 studies<-ztitle$ZTITLE[m]
-
+studies
 ctopicid<-cnote$ZTOPICID
   dim(tabd)
 typeof(tabd)
@@ -354,6 +356,9 @@ ctopicid
 #tu<-unique(td$ZTITLE)
 #tu
 t5<-td[td$ZTOPICID%in%ctopicid,]
+t5b<-td[td$ZCURRENTTOPICID%in%ctopicid,]
+t5c<-tabd[td$ZTOPICID%in%ctopicid,]
+t5d<-tabd[td$ZCURRENTTOPICID%in%ctopicid,]
   colnames(t5)
 t6<-t5[!is.na(t5$ZHIGHLIGHT_TEXT)|!is.na(t5$ZNOTES_TEXT),]
 t9<-t5[t5$table=="ZBOOKNOTE",]
@@ -416,7 +421,7 @@ for (k in 1:length(cnote$ZTITLE)){
   t11<-t10[order(t10$ZTOPICID,t10$ZBOOKMD5,t10$ZSTARTPAGE),]
   s<-unique(t11$study)
   s<-s[!is.na(s)]
-  
+  s
   t11md5<-t11$ZBOOKMD5
   t11md5l<-t11$ZMD5LONG
   u1<-unique(t11md5l)
@@ -440,6 +445,7 @@ for (k in 1:length(cnote$ZTITLE)){
 #    mcc<-mc[unlist(mc)]
     mcc
   })
+  colnames(t11)
   t11$doc<-NA
   for (k in 1:length(pns)){
     md5<-pns[[k]]$ZMD5LONG
@@ -457,7 +463,7 @@ for (k in 1:length(cnote$ZTITLE)){
   ### wks.
   s<-studies
   s
-  k<-s[6]
+  k<-s[5]
   k
   s
   colnames(t11)
@@ -493,17 +499,26 @@ for (k in 1:length(cnote$ZTITLE)){
    # s1
     m7<-which(m2)
     m7
-    da<-t11$doc[m7]
+    da<-t11$doc
+    da
     dm<-da%in%doc.out
     sum(dm)
     da[dm]
+    sum(is.na(m2))
     m8<-m2[which(!dm)]
+    #m9<-
     length(m8)
-    da[m8]
-    m3<-is.na(t11$study[m2])
+    ### glitch
+    unique(t11$study[m8])
+    m3<-is.na(t11$study[m8])
     sum(m3)
     sum(!m3)
-    cat("--- reapplied",length(m8),"changes to study -",k,"- names according to books ---\n")
+  
+    sum(m3)
+    t12<-t11[m8,]
+    t12$ZHIGHLIGHT_TEXT
+    t11[m8,]
+    cat("--- reapplied",sum(m8),"changes to study -",k,"- names according to books ---\n")
     t11$ZHIGHLIGHT_TEXT[m8]
     t11$study[m8]<-k
     #}
