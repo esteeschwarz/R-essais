@@ -284,6 +284,7 @@ get.margin<-function(qa){
   # clist<-get.clist()
   #clist
   clist<-qa
+  qa
   all.t<-all.tg
   library(dplyr)
   tabc<-lapply(seq_along(all.tables),function(i){
@@ -338,6 +339,7 @@ typeof(tabd)
 #tabl<-lapply(tabd,unlist)
 l1<-apply(tabd,2,function(i){length(unlist(i))})
 m<-l1==dim(tabd)[1]
+  sum(m)
 td<-data.frame(tabd[,which(m)])
 #mx<-ctopicid%in%td[,1:length(td)]
 #dim(tm)
@@ -368,6 +370,7 @@ books<-t5$ZBOOKMD5
 length(unique(books))
 t6<-td[td$ZBOOKMD5%in%unique(books)&td$ZTOPICID%in%ctopicid,]
 t6<-td[td$ZBOOKMD5%in%unique(books),]
+
 t6$study<-NA
 # for (k in 1:length(cnote$ZTITLE)){
 #   sid<-cnote$ZTOPICID[k]
@@ -399,20 +402,23 @@ m1<-lapply(td[,1:length(td)],function(x){
 m3<-!is.na(m1)
 sum(m3)
 m2<-m1[m3]
+  m2
 m4<-unique(unlist(m2))
 length(m4)
 t8<-td[m4,]
   unique(t8$table)
 t9<-bind_rows(t6,t8)
 cn<-colnames(t9)
+sum(is.na(t9$study))==length(t9$study)
 t9$study<-NA
 cn<-colnames(t9)
-k<-1
+k<-3 #litKI
 for (k in 1:length(cnote$ZTITLE)){
   sid<-cnote$ZTOPICID[k]
   m<-t9$ZTOPICID==sid
   sum(m,na.rm=T)
   m[is.na(m)]<-F
+  cnote$ZTITLE[k]
   t9$study[m]<-cnote$ZTITLE[k]
 }
   colnames(cnote)
@@ -420,6 +426,7 @@ for (k in 1:length(cnote$ZTITLE)){
   cg<-grep("NOTE|HIGHLIGH|MD5|FILE|PATH|URL|TEXT|COMMENT|PAGE|TITLE|TAG|TOPIC|TIMESTAMP|table|study",cn)
   cg<-unique(cg)
   t10<-t9[,cg]
+  sum(t10$study=="litKI",na.rm=T)
   t11<-t10[order(t10$ZTOPICID,t10$ZBOOKMD5,t10$ZSTARTPAGE),]
   s<-unique(t11$study)
   s<-s[!is.na(s)]
@@ -469,9 +476,12 @@ for (k in 1:length(cnote$ZTITLE)){
   k
   s
   colnames(t11)
+  sum(t11$study=="litKI",na.rm=T)
   ##############
   ### debug stop
   ##############
+  s
+  k<-"litKI"
   for(k in s){
     m<-t11$study==k
     sum(m,na.rm=T)
@@ -487,6 +497,7 @@ for (k in 1:length(cnote$ZTITLE)){
 ########################
     ### ensure book is in study
     t11b<-t11[m,]
+    unique(t11b$doc)
     m4<-grepl("#notebook_",t11b$ZNOTES_TEXT)
     m5<-grep("#notebook_",t11b$ZNOTES_TEXT)
 
@@ -507,7 +518,7 @@ for (k in 1:length(cnote$ZTITLE)){
     m7<-which(m2)
     m7 # all notes
     da<-t11b$doc
-    da # only docs in study
+    unique(da) # only docs in study
     dm<-da%in%doc.out
     sum(dm)
     da[dm]
@@ -523,14 +534,16 @@ for (k in 1:length(cnote$ZTITLE)){
     do2<-which(dm)
     do2 # all notes of doc including irrelevant
     length(do2)
-    do3<-do2%in%do1 # bullshit, cannot map from 2 diff indexes
+    #do3<-do2%in%do1 # bullshit, cannot map from 2 diff indexes
 
     #sum(do3)
     m1<-is.na(t11$study)
     sum(m1)
     m1d<-unique(t11$doc[m1])
     m1d
+    d1
     m1e<-m1d%in%d1
+    #m1e<-d1%in%m1d
     sum(m1e)
     m1f<-m1d[m1e]
     m1f<-m1f[m1f!=""]
@@ -560,6 +573,7 @@ for (k in 1:length(cnote$ZTITLE)){
     # which(m2c)
     # sum(m2c)
     m8<-which(m1h)
+    m8
 
     #m9<-
     length(m8)
@@ -579,14 +593,19 @@ for (k in 1:length(cnote$ZTITLE)){
     # sum(m3)
     t12<-t11[m8,]
     t12$ZHIGHLIGHT_TEXT
-    t11[m8,]
+    #t11[m8,]
+    m1i<-is.na(t12$study)
     m1i<-is.na(t12$study)
     sum(m1i)
     cat("--- reapplied",sum(m1i),"changes to study -",k,"- names according to books ---\n")
-    t11$ZHIGHLIGHT_TEXT[m8]
-    t11$study[m8]<-k
+    t11$ZHIGHLIGHT_TEXT[m8][m1i]
+    t11$doc[m8][m1i]
+    t11$study[m8][m1i]<-k
+    sum(t11$study==k,na.rm=T)
+    3+2
     #}
   }#x<-t11[,1]
+    sum(t11$study=="litKI",na.rm=T)
   cg
   cns<-colnames(t11)
   cns
@@ -611,6 +630,8 @@ for (k in 1:length(cnote$ZTITLE)){
   mode(t14$ZENDPAGE)<-"numeric"
   t14<-t14[order(t14$doc,t14$ZSTARTPAGE,t14$ZENDPAGE),]
   sum(is.na(t14$ZNOTEID))
+  sum(is.na(t14$study))
+#  t14$study[is.na(t14$study)]<-""
   colnames(t14)
   cn<-c(27,28,15,14,21,22,23,24,1,2,3)
   margin1<-t14[,cn]
@@ -619,11 +640,14 @@ for (k in 1:length(cnote$ZTITLE)){
   #docs<-unique(margin1$doc)
   #docs<-docs[!is.na(docs)]
   studies
-  x<-studies[6]
+  x<-studies[3]
   x
+  unique(margin1$study)
+  unique(margin1$doc[margin1$study=="litKI"])
   qax<-lapply(studies,function(x){
     m<-margin1$study==x
-    sum(m,rm.na=T)
+    sum(m,na.rm=T)
+    m[is.na(m)]<-F
     d<-unique(margin1$doc[m])
     d<-d[!is.na(d)]
     d2<-d
@@ -637,9 +661,28 @@ for (k in 1:length(cnote$ZTITLE)){
 
   })
   names(qax)<-studies
-  margindb<-list(qa=qax,dbsub=margin1)
+  qax
+  xx<-"litKI"
+  sum(margin1$study==xx,na.rm=T)
+  sum(is.na(margin1$study))
+  unique(margin1$doc[is.na(margin1$study)])
+  margin2<-margin1[!is.na(margin1$study),]
+  unique(margin2$doc[is.na(margin2$study)])
+  #margin1$study[is.na(margin1$study)]<-""
+  m<-margin2$study=="litKI"
+  unique(margin2$doc[m])
+  margindb<-list(qa=qax,dbsub=margin2)
   return(margindb)
 #################
+  qa
+  qax
+  marginx<-get.margin(qa)
+
+  ds<-marginx$dbsub
+  sum(is.na(ds$study))
+  d1<-ds[ds$study=="litKI",]
+  unique(margin2$doc[margin2$study=="litKI"])
+  unique(d1$doc)
   t11$ZMD5LONG[is.na(t11$ZMD5LONG)]<-F
   px<-t11[mcc$ZMD5LONG,]
   x<-md5u[3]
