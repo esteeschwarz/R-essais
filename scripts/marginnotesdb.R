@@ -280,8 +280,8 @@ idb<-function(){
 ### 16274.still messy, includes complete pdf annotations if pdf in study
 
 get.margin<-function(qa){
+  #clist<-get.clist()
   all.tables<-idb()
-  # clist<-get.clist()
   #clist
   clist<-qa
   qa
@@ -427,6 +427,7 @@ for (k in 1:length(cnote$ZTITLE)){
   cg<-unique(cg)
   t10<-t9[,cg]
   sum(t10$study=="litKI",na.rm=T)
+  ##########################################################
   t11<-t10[order(t10$ZTOPICID,t10$ZBOOKMD5,t10$ZSTARTPAGE),]
   s<-unique(t11$study)
   s<-s[!is.na(s)]
@@ -456,6 +457,7 @@ for (k in 1:length(cnote$ZTITLE)){
   })
   colnames(t11)
   t11$doc<-NA
+  #########################
   for (k in 1:length(pns)){
     md5<-pns[[k]]$ZMD5LONG
     d<-t11$ZFILE[md5]
@@ -518,6 +520,7 @@ for (k in 1:length(cnote$ZTITLE)){
     m7<-which(m2)
     m7 # all notes
     da<-t11b$doc
+    
     unique(da) # only docs in study
     dm<-da%in%doc.out
     sum(dm)
@@ -526,7 +529,7 @@ for (k in 1:length(cnote$ZTITLE)){
     do
     do1<-do # position of relevant notes in study subset
     da<-t11$doc
-    da
+    #da
     dm<-da%in%doc.out
     sum(dm)
     da[dm]
@@ -538,6 +541,7 @@ for (k in 1:length(cnote$ZTITLE)){
 
     #sum(do3)
     m1<-is.na(t11$study)
+    d1
     sum(m1)
     m1d<-unique(t11$doc[m1])
     m1d
@@ -553,24 +557,6 @@ for (k in 1:length(cnote$ZTITLE)){
     m1g
     m1h<-t11$doc%in%m1g
     sum(m1h)
-    #do3<-which(m1)%in%do2
-    #sum(do3) # only irrelevant notes
-    #which(do3)
-    #length(which(m1)[do3])
-    #do3
-    #m3<-which(m1)[do3]
-    #m1w<-which(m1)
-    #m3 # irrelevant doc=NA notes position in top df
-    #m4<-m3%in%m1w
-    #sum(m4)
-    #m5<-m3[which(m4)] # notes top pos to exclude
-    #m5
-    # remove from assign
-    # m4b<-which(!m4)
-    # m4b
-    # m2b
-    # m2c<-m2b%in%which(do3)
-    # which(m2c)
     # sum(m2c)
     m8<-which(m1h)
     m8
@@ -580,32 +566,36 @@ for (k in 1:length(cnote$ZTITLE)){
     #sum(m8)
     ### glitch
     unique(t11$study[m8])
-    # m3<-is.na(t11$study)
-    # sum(m3)
-    # sum(!m3)
-    # m4<-which(m3)
-    # m5<-m4%in%m8
-    # sum(m5)
-    # m6<-m4[m5]
-    # m6
-    # which(m5)
-    # which(m6)
-    # sum(m3)
     t12<-t11[m8,]
     t12$ZHIGHLIGHT_TEXT
+    t12$doc
     #t11[m8,]
     m1i<-is.na(t12$study)
-    m1i<-is.na(t12$study)
+    m12<-!is.na(t12$study)
+    m13<-t12$study[m12]!=k
+    #m1i<-is.na(t12$study)
     sum(m1i)
+    sum(m12)
+    sum(m13)
+
     cat("--- reapplied",sum(m1i),"changes to study -",k,"- names according to books ---\n")
     t11$ZHIGHLIGHT_TEXT[m8][m1i]
     t11$doc[m8][m1i]
+    ps<-paste0(t11$study[m8][m12][m13],"|",k)
+    ps
+    # t11$study[m8][m1i]<-k
+    t11$study[m8][m12][m13]<-ps
     t11$study[m8][m1i]<-k
-    sum(t11$study==k,na.rm=T)
+    
+     sum(t11$study==k,na.rm=T) #391
+    length(grep("litKI",t11$study))
     3+2
     #}
   }#x<-t11[,1]
-    sum(t11$study=="litKI",na.rm=T)
+    sum(t11$study=="litKI",na.rm=T) #355 after looping whole studies!
+    length(grep("litKI",t11$study))
+    length(grep("textur",t11$study)) #765
+  s
   cg
   cns<-colnames(t11)
   cns
@@ -646,6 +636,7 @@ for (k in 1:length(cnote$ZTITLE)){
   unique(margin1$doc[margin1$study=="litKI"])
   qax<-lapply(studies,function(x){
     m<-margin1$study==x
+    m<-grepl(x,margin1$study)
     sum(m,na.rm=T)
     m[is.na(m)]<-F
     d<-unique(margin1$doc[m])
@@ -663,7 +654,7 @@ for (k in 1:length(cnote$ZTITLE)){
   names(qax)<-studies
   qax
   xx<-"litKI"
-  sum(margin1$study==xx,na.rm=T)
+  length(grep(xx,margin1$study))
   sum(is.na(margin1$study))
   unique(margin1$doc[is.na(margin1$study)])
   margin2<-margin1[!is.na(margin1$study),]
