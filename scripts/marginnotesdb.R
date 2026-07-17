@@ -456,7 +456,9 @@ for (k in 1:length(cnote$ZTITLE)){
     mcc
   })
   colnames(t11)
+  pns
   t11$doc<-NA
+  k<-1
   #########################
   for (k in 1:length(pns)){
     md5<-pns[[k]]$ZMD5LONG
@@ -465,10 +467,14 @@ for (k in 1:length(cnote$ZTITLE)){
       d<-""
     if(length(d)==0)
       d<-""
+    # if(length(d)>1)
+    #   print(d)
+    d<-d[(!is.na(d))]
 #    d<-unique(d)
     p<-pns[[k]]$ZBOOKMD5
     #m<-t11$ZBOOKMD5%in%p
-    if(length(p)>0)
+    d
+    if(length(p)>0&length(d)>0)
       t11$doc[p]<-d
   }
   ### wks.
@@ -484,8 +490,11 @@ for (k in 1:length(cnote$ZTITLE)){
   ##############
   s
   k<-"litKI"
+  k<-"textur"
+  #################################################
   for(k in s){
     m<-t11$study==k
+    m<-grepl(k,t11$study)
     sum(m,na.rm=T)
     m[is.na(m)]<-F
     d1<-unique(t11$doc[m])
@@ -541,9 +550,11 @@ for (k in 1:length(cnote$ZTITLE)){
 
     #sum(do3)
     m1<-is.na(t11$study)
+    m2<-grepl(k,t11$study)
     d1
-    sum(m1)
+    sum(m1,m2)
     m1d<-unique(t11$doc[m1])
+    m1d<-unique(t11$doc[c(which(m1),which(m2))])
     m1d
     d1
     m1e<-m1d%in%d1
@@ -569,6 +580,7 @@ for (k in 1:length(cnote$ZTITLE)){
     t12<-t11[m8,]
     t12$ZHIGHLIGHT_TEXT
     t12$doc
+#    dsx<-t12[t12]
     #t11[m8,]
     m1i<-is.na(t12$study)
     m12<-!is.na(t12$study)
@@ -581,7 +593,21 @@ for (k in 1:length(cnote$ZTITLE)){
     cat("--- reapplied",sum(m1i),"changes to study -",k,"- names according to books ---\n")
     t11$ZHIGHLIGHT_TEXT[m8][m1i]
     t11$doc[m8][m1i]
+    t11$doc[m8][m12][m13]
     ps<-paste0(t11$study[m8][m12][m13],"|",k)
+    ps
+    ps2<-paste0(t11$study[m8][m1i],"|",k)
+    ps2
+    ps3<-t11$study[m8][m12][m13]
+    ps3
+    ps4<-unique(t11$study[m8][m1i])
+    ps3<-paste(unique(ps3),collapse="|")
+    ps3
+    ps4<-unique(t11$study[m8][m1i])
+    ps4[is.na(ps4)]<-ps3
+    ps4
+    ps4<-paste0(ps4,"|",k,"|",ps3)
+    ps4
     ps
     # t11$study[m8][m1i]<-k
     t11$study[m8][m12][m13]<-ps
@@ -589,12 +615,27 @@ for (k in 1:length(cnote$ZTITLE)){
     
      sum(t11$study==k,na.rm=T) #391
     length(grep("litKI",t11$study))
+    k
+    dsx<-t11[grep(k,t11$study),]
+    dst<-dsx[grep("Calvino",dsx$doc),]
+    dst<-dst[order(dst$ZNOTEID),]
     3+2
     #}
   }#x<-t11[,1]
+  ######################################################################
     sum(t11$study=="litKI",na.rm=T) #355 after looping whole studies!
     length(grep("litKI",t11$study))
     length(grep("textur",t11$study)) #765
+  debug<-T
+  if(!debug){
+    dsx<-t11[grep("litKI|textur",t11$study),]
+    dsx[duplicated(dsx$ZHIGHLIGHT_DATE),]
+    dst<-t11[grep("textur",t11$study),]
+id<-"CCAA6353-3A42-4D28-93A8-DF035DD1539A"
+    m<-dsx$ZNOTEID==id
+    sum(m)
+
+  }
   s
   cg
   cns<-colnames(t11)
@@ -665,13 +706,16 @@ for (k in 1:length(cnote$ZTITLE)){
   margindb<-list(qa=qax,dbsub=margin2)
   return(margindb)
 #################
+  qa<-get.clist()
   qa
   qax
   marginx<-get.margin(qa)
-
+margin1<-ds
   ds<-marginx$dbsub
   sum(is.na(ds$study))
-  d1<-ds[ds$study=="litKI",]
+  d1<-ds[grep("litKI",ds$study),]
+  ds[ds$nid=="0DD212B7-EF16-4242-809E-766305ED590D",]
+  ds[grepl("Calvino",ds$doc)&ds$spage=="3",]
   unique(margin2$doc[margin2$study=="litKI"])
   unique(d1$doc)
   t11$ZMD5LONG[is.na(t11$ZMD5LONG)]<-F
