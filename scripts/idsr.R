@@ -2,8 +2,10 @@
 
 run<-function(s){
 msg<-"Hello Owl"
-df<-data.frame(t=16313,msg=msg)
-print(df)
+t<-16313
+
 if(s!="")
   source(s)
+df<-data.frame(t=t,msg=msg)
+print(df)
 }
